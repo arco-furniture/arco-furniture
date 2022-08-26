@@ -1,0 +1,16 @@
+@import "../variables";
+@import "../mixins";
+
+.header {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 230px;
+  background-color: $gray;
+
+  &__wrapper {
+    @include flex-center-center;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+  }
+}

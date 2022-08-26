@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# 🚀 Проект: «АркоМебель»
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Лендинг](https://i.ibb.co/BBDp0SP/2022-08-26-15-15-36.png)
 
-## Available Scripts
+### <img src="https://cdn-icons-png.flaticon.com/512/7135/7135133.png" width="25" />[ Ссылка на проект](https://kejjero.github.io/mars-food/)
 
-In the project directory, you can run:
+## Функциональность
+....
 
-### `npm start`
+## Стек:
+![TypeScript](https://img.shields.io/badge/-TypeScript-0d1117?style=for-the-badge&logo=TypeScript)
+![Redux](https://img.shields.io/badge/-Redux_Toolkit-0d1117?style=for-the-badge&logo=Redux)
+![React](https://img.shields.io/badge/-React-0d1117?style=for-the-badge&logo=React)
+![React_router](https://img.shields.io/badge/-React_router-0d1117?style=for-the-badge&logo=React-router)
+![React_Skeleton](https://img.shields.io/badge/-React_Skeleton-0d1117?style=for-the-badge&logo=React_Skeleton)
+![Axios](https://img.shields.io/badge/-Axios-0d1117?style=for-the-badge&logo=Axios)
+![SCSS](https://img.shields.io/badge/-SCSS-0d1117?style=for-the-badge&logo=sass)
+![Material_UI](https://img.shields.io/badge/-Material_UI-0d1117?style=for-the-badge&logo=mui)
+![Styled-components](https://img.shields.io/badge/-Styled_components-0d1117?style=for-the-badge&logo=Styled-components)
+![Swiper](https://img.shields.io/badge/-Swiper-0d1117?style=for-the-badge&logo=swiper)
+![lodash](https://img.shields.io/badge/-Lodash-0d1117?style=for-the-badge&logo=lodash)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Команда разработки:
+....
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Инструкция для работы с проектом:
+```
+git clone git@github.com:arco-furniture/arco-furniture.git
+cd arco-furniture
+npm i webpack --save-dev
+npm run build
+npm run dev
+```
+## Задеплоить проект в Github Pages
+```
+npm run deploy
+```

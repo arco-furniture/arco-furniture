@@ -1,0 +1,46 @@
+@import "../variables";
+@import "../mixins";
+
+.footer {
+  flex: 0 0 auto;
+  height: 140px;
+  background-color: $blue;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  color: $white;
+  @include flex-center-center;
+
+  .wrapper {
+    @include flex-column-center;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    .container {
+      @include flex-column-center;
+      gap: 10px;
+
+      img {
+        width: 238px;
+        height: 43px;
+      }
+
+      em {
+        @include reset;
+        font-style: normal;
+
+        a {
+          @include reset;
+          text-decoration: none;
+          color: $white;
+          opacity: 0.6;
+          transition: opacity ease-in-out 0.2s;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+      }
+    }
+  }
+}
