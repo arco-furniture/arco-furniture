@@ -2,7 +2,7 @@
 @import "../mixins";
 
 .header {
-  width: 100vw;
+  width: 100%;
   margin-left: calc(50% - 50vw);
   height: 230px;
   background-color: $gray;
