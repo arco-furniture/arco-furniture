@@ -18,3 +18,12 @@ body {
     @include flex-column-center;
   }
 }
+
+.title {
+  @include reset;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  color: $mainBlack;
+  margin: 30px 0;
+}
