@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from "react-router-dom";
 import { Typography, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { testSelector } from "../../redux/test/testSlice";
+import { stageSelector } from "../../redux/test/numberOfStage";
 import Card from './components/Card';
+import BasketMenu from './components/BasketMenu';
 
 const circleStyle = {
     borderRadius: '50%',
@@ -30,17 +32,29 @@ const navigationStyle = {
 };
 
 const Basket = () => {
-    const { count } = useSelector(testSelector);
+    const { stage } = useSelector(stageSelector);
+
+    useEffect(() => {
+        console.log(stage)
+    }, [stage])
 
     return (
         <section>
             <Box sx={{
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
             }}>
                 <Typography sx={{
                     mb: '0',
-                    mr: '31px'
+                    mr: '31px',
+                    mt: '20px',
+                    mb: '12px',
+                    fontFamily: 'PT Sans',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '26px',
+                    lineHeight: '34px',
+                    color: '#414141',
                 }} variant="h2" gutterBottom>
                     Корзина
                 </Typography>
@@ -91,8 +105,21 @@ const Basket = () => {
                     Подтверждение
                 </Typography>
             </Box>
-            <Card />
-        </section>
+            <Box sx={{
+                display: 'flex',
+            }}>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}>
+                    <Card />
+                    <Card />
+                </Box>
+                {stage === 1 ? (
+                    <BasketMenu />
+                ) : '21'}
+            </Box>
+        </section >
     )
 }
 
