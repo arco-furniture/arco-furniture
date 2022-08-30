@@ -5,8 +5,7 @@
   flex: 0 0 auto;
   height: 140px;
   background-color: $blue;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
   color: $white;
   @include flex-center-center;
 
