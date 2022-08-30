@@ -5,10 +5,8 @@ const Header: React.FC = () => {
     return (
         <header className="header">
             <div className="header__wrapper">
-
             <TopOfHeader />
             </div>
-           
         </header>
     )
 }
