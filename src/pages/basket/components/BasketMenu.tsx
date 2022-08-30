@@ -1,8 +1,9 @@
 
-import React from "react"
-import { Typography, Box, Checkbox, Tooltip, Button } from "@mui/material";
+import React, { useEffect } from "react"
+import { Typography, Box, Checkbox, Switch, Button } from "@mui/material";
 import { nextCount } from "../../../redux/test/numberOfStage";
 import { useDispatch, useSelector } from "react-redux";
+import { stageSelector } from "../../../redux/test/numberOfStage";
 
 const titleStyle = {
     fontFamily: 'PT Sans',
@@ -28,6 +29,8 @@ const lineStyle = {
 
 const BasketMenu: React.FC = () => {
     const dispatch = useDispatch();
+    const { stage }: any = useSelector(stageSelector);
+
 
     const handleNextStage = () => {
         dispatch(nextCount())
@@ -40,99 +43,133 @@ const BasketMenu: React.FC = () => {
             borderRadius: '5px',
             padding: '20px',
         }}>
-            <Typography sx={{
-                ...titleStyle
-            }}>Выберите способ доставки</Typography>
-            <Box sx={{
-                ...checkBoxContentStyle
-            }}>
-                <Checkbox />
-                <Typography>Самовывоз</Typography>
+            {stage === 1 ?
+                (<><Typography sx={{
+                    ...titleStyle
+                }}>Выберите способ доставки</Typography><Box sx={{
+                    ...checkBoxContentStyle
+                }}>
+                        <Checkbox />
+                        <Typography>Самовывоз</Typography>
 
-                <Checkbox />
-                <Typography>Доставка</Typography>
-            </Box>
+                        <Checkbox />
+                        <Typography>Доставка</Typography>
+                    </Box><Typography sx={{
+                        ...titleStyle
+                    }}>Выберите способ оплаты</Typography><Box sx={{
+                        ...checkBoxContentStyle
+                    }}>
+                        <Checkbox />
+                        <Typography>Наличные</Typography>
 
-            <Typography sx={{
-                ...titleStyle
-            }}>Выберите способ оплаты</Typography>
-            <Box sx={{
-                ...checkBoxContentStyle
-            }}>
-                <Checkbox />
-                <Typography>Наличные</Typography>
+                        <Checkbox />
+                        <Typography>Оплата картой</Typography>
+                    </Box><Box sx={{
+                        ...lineStyle
+                    }} /><Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mt: '15px'
+                    }}>
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>Итого:</Typography>
 
-                <Checkbox />
-                <Typography>Оплата картой</Typography>
-            </Box>
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>22 600 руб.</Typography>
+                    </Box><Typography sx={{
+                        fontFamily: 'PT Sans',
+                        fontStyle: 'normal',
+                        fontWeight: '400',
+                        fontSize: '14px',
+                        lineHeight: '18px',
+                        color: '#626262',
+                        mt: '2px'
+                    }}>Стоимость указана без учета доставки</Typography><Box sx={{
+                        ...lineStyle,
+                        mt: '34px',
+                        mb: '27px'
+                    }} /><Box sx={{
+                        display: 'flex',
+                        alignItems: 'start',
+                    }}>
+                        <Checkbox />
+                        <Typography sx={{
+                            fontFamily: 'PT Sans',
+                            fontStyle: 'normal',
+                            fontWeight: '400',
+                            fontSize: '14px',
+                            lineHeight: '18px',
+                            color: '#626262',
+                            width: '327px',
+                        }}>Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.</Typography>
+                    </Box><Button sx={{
+                        bgcolor: '#4675CE',
+                        color: 'white',
+                        mt: '36px',
+                        width: '100%',
+                        height: '50px',
+                        fontFamily: 'PT Sans',
+                        fontStyle: 'normal',
+                        fontWeight: '700',
+                        fontSize: '26px',
+                        lineHeight: '34px',
+                        textTransform: 'uppercase',
+                    }}
+                        variant="contained"
+                        onClick={handleNextStage}
+                    >Продолжить</Button></>)
+                : null}
+            {stage === 2 ? (
+                <>
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mt: '98px'
+                    }}>
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>Итого:</Typography>
 
-            <Box sx={{
-                ...lineStyle
-            }} />
-
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                mt: '15px'
-            }}>
-                <Typography sx={{
-                    ...titleStyle,
-                }}>Итого:</Typography>
-
-                <Typography sx={{
-                    ...titleStyle,
-                }}>22 600 руб.</Typography>
-            </Box>
-            <Typography sx={{
-                fontFamily: 'PT Sans',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '14px',
-                lineHeight: '18px',
-                color: '#626262',
-                mt: '2px'
-            }}>Стоимость указана без учета доставки</Typography>
-
-            <Box sx={{
-                ...lineStyle,
-                mt: '34px',
-                mb: '27px'
-            }} />
-
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'start',
-            }}>
-                <Checkbox />
-                <Typography sx={{
-                    fontFamily: 'PT Sans',
-                    fontStyle: 'normal',
-                    fontWeight: '400',
-                    fontSize: '14px',
-                    lineHeight: '18px',
-                    color: '#626262',
-                    width: '327px',
-                }}>Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.</Typography>
-            </Box>
-
-            <Button sx={{
-                bgcolor: '#4675CE',
-                color: 'white',
-                mt: '36px',
-                width: '100%',
-                height: '50px',
-                fontFamily: 'PT Sans',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '26px',
-                lineHeight: '34px',
-                textTransform: 'uppercase',
-            }}
-                variant="contained"
-                onClick={handleNextStage}
-            >Продолжить</Button>
-        </Box >
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>22 600 руб.</Typography>
+                    </Box>
+                    <Box sx={{
+                        ...lineStyle,
+                        mt: '34px',
+                        mb: '27px'
+                    }} />
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                        <Typography>
+                            Сборка 2 193 ₽
+                        </Typography>
+                        <Switch defaultChecked />
+                    </Box>
+                    <Button sx={{
+                        bgcolor: '#4675CE',
+                        color: 'white',
+                        mt: '36px',
+                        width: '100%',
+                        height: '50px',
+                        fontFamily: 'PT Sans',
+                        fontStyle: 'normal',
+                        fontWeight: '700',
+                        fontSize: '26px',
+                        lineHeight: '34px',
+                        textTransform: 'uppercase',
+                    }}
+                        variant="contained"
+                        onClick={handleNextStage}
+                    >Продолжить</Button></>)
+                : null}
+        </Box>
     )
 }
 

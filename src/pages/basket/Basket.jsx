@@ -7,6 +7,7 @@ import { testSelector } from "../../redux/test/testSlice";
 import { stageSelector } from "../../redux/test/numberOfStage";
 import Card from './components/Card';
 import BasketMenu from './components/BasketMenu';
+import Form from './components/Form';
 
 const circleStyle = {
     borderRadius: '50%',
@@ -39,7 +40,7 @@ const Basket = () => {
     }, [stage])
 
     return (
-        <section>
+        <Box>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -112,14 +113,21 @@ const Basket = () => {
                     display: 'flex',
                     flexDirection: 'column'
                 }}>
-                    <Card />
-                    <Card />
+                    {
+                        stage === 1 ? (
+                            <><Card /><Card /></>
+                        ) : null
+                    }
+                    {
+                        stage === 2 ? (
+                            <Form />
+                        ) : null
+                    }
+
                 </Box>
-                {stage === 1 ? (
-                    <BasketMenu />
-                ) : '21'}
+                <BasketMenu />
             </Box>
-        </section >
+        </Box >
     )
 }
 
