@@ -1,8 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -15,8 +12,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -36,54 +33,60 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
-export default function FullWidthTabs() {
-  const theme = useTheme();
+export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
   return (
-    <Box sx={{ bgcolor: "background.paper", width: 500 }}>
-      <AppBar position="static">
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Кухни" {...a11yProps(0)} />
+          <Tab label="Гостинные" {...a11yProps(1)} />
+          <Tab label="Спальни" {...a11yProps(2)} />
+          <Tab label="Прихожие" {...a11yProps(3)} />
+          <Tab label="Шкафы-купе" {...a11yProps(4)} />
+          <Tab label="Детские" {...a11yProps(5)} />
+          <Tab label="Диваны" {...a11yProps(6)} />
+          <Tab label="Столы и стулья" {...a11yProps(7)} />
         </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
+      </Box>
+      <TabPanel value={value} index={0}>
+        Кухни
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Гостинные
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Спальни
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Прихожие
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Шкафы-купе
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Детские
+      </TabPanel>
+      <TabPanel value={value} index={6}>
+        Диваны
+      </TabPanel>
+      <TabPanel value={value} index={7}>
+        Столы и стулья
+      </TabPanel>
     </Box>
   );
 }

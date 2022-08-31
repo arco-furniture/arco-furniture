@@ -12,5 +12,36 @@
     max-width: 1280px;
     margin: 0 auto;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__place {
+    display: flex;
+    flex-direction: row;
+  }
+  &__top {
+    display: flex;
+    flex-direction: row;
+  }
+  &__place{
+
+  }
+  &__place_city{
+    margin: 0;
+    padding: 0;
+  }
+  &__place_arrow{
+    background-image: url(../../images/arrow.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 14px;
+    width: 14px;
+  }
+  &__phone_logo {
+    background-image: url(../../images/phone_logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 19px;
+    width: 19px;
   }
 }
