@@ -36,6 +36,7 @@ const Basket = () => {
     const { stage } = useSelector(stageSelector);
 
     useEffect(() => {
+
         console.log(stage)
     }, [stage])
 
@@ -78,7 +79,7 @@ const Basket = () => {
                 <Box
                     sx={{
                         ...circleStyle,
-                        bgcolor: 'rgba(65, 65, 65, 0.2)',
+                        // bgcolor: 'rgba(65, 65, 65, 0.2)',
                     }}
                 >
                     2

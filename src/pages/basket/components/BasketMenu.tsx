@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react"
-import { Typography, Box, Checkbox, Switch, Button } from "@mui/material";
+import { Typography, Box, Checkbox, Switch, Button, Radio, FormControlLabel, RadioGroup, FormLabel, FormControl } from "@mui/material";
 import { nextCount } from "../../../redux/test/numberOfStage";
 import { useDispatch, useSelector } from "react-redux";
 import { stageSelector } from "../../../redux/test/numberOfStage";
@@ -31,7 +31,6 @@ const BasketMenu: React.FC = () => {
     const dispatch = useDispatch();
     const { stage }: any = useSelector(stageSelector);
 
-
     const handleNextStage = () => {
         dispatch(nextCount())
     }
@@ -49,21 +48,29 @@ const BasketMenu: React.FC = () => {
                 }}>Выберите способ доставки</Typography><Box sx={{
                     ...checkBoxContentStyle
                 }}>
-                        <Checkbox />
-                        <Typography>Самовывоз</Typography>
-
-                        <Checkbox />
-                        <Typography>Доставка</Typography>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="same"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="same" control={<Radio />} label="Самовывоз" />
+                            <FormControlLabel value="delivery" control={<Radio />} label="Доставка" />
+                        </RadioGroup>
                     </Box><Typography sx={{
                         ...titleStyle
                     }}>Выберите способ оплаты</Typography><Box sx={{
                         ...checkBoxContentStyle
                     }}>
-                        <Checkbox />
-                        <Typography>Наличные</Typography>
-
-                        <Checkbox />
-                        <Typography>Оплата картой</Typography>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="cash"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="cash" control={<Radio />} label="Наличные" />
+                            <FormControlLabel value="card" control={<Radio />} label="Оплата картой" />
+                        </RadioGroup>
                     </Box><Box sx={{
                         ...lineStyle
                     }} /><Box sx={{
@@ -118,6 +125,8 @@ const BasketMenu: React.FC = () => {
                         lineHeight: '34px',
                         textTransform: 'uppercase',
                     }}
+                        className='btn'
+                        disabled
                         variant="contained"
                         onClick={handleNextStage}
                     >Продолжить</Button></>)
