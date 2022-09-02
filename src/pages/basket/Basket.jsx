@@ -1,112 +1,40 @@
-import React, { useEffect } from "react"
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from "react-router-dom";
-import { Typography, Box } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { testSelector } from "../../redux/test/testSlice";
-import { stageSelector } from "../../redux/test/numberOfStage";
+import { Typography, Box, RadioGroup, FormControlLabel, Radio, Checkbox, Button } from "@mui/material";
 import Card from './components/Card';
-import BasketMenu from './components/BasketMenu';
-import Form from './components/Form';
+import BasketNavigation from './components/BasketNavigation';
+import { useNavigate } from "react-router-dom";
 
-const circleStyle = {
-    borderRadius: '50%',
+const titleStyle = {
+    fontFamily: 'PT Sans',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: '18px',
+    lineHeight: '23px',
+    color: '#414141',
+};
+
+const checkBoxContentStyle = {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    bgcolor: '#4675CE',
-    color: 'white',
-    width: '2rem',
-    height: '2rem',
-    ml: '9px',
+    mt: '25px',
+    mb: '15.5px'
 };
 
 const lineStyle = {
-    bgcolor: '#555555',
-    width: '153px',
+    width: '100%',
     height: '1px',
-    ml: '9px',
-};
-
-const navigationStyle = {
-    ml: '7px',
+    bgcolor: '#E2E2E2'
 };
 
 const Basket = () => {
-    const { stage } = useSelector(stageSelector);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-
-        console.log(stage)
-    }, [stage])
+    const handleNextStage = () => {
+        navigate("/basket-order")
+    }
 
     return (
         <Box>
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-            }}>
-                <Typography sx={{
-                    mb: '0',
-                    mr: '31px',
-                    mt: '20px',
-                    mb: '12px',
-                    fontFamily: 'PT Sans',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '26px',
-                    lineHeight: '34px',
-                    color: '#414141',
-                }} variant="h2" gutterBottom>
-                    Корзина
-                </Typography>
-                <Box
-                    sx={{
-                        ...circleStyle,
-                    }}
-                >
-                    1
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
-                    Ваша корзина
-                </Typography>
-                <Box sx={{
-                    ...lineStyle,
-                }} />
-
-                <Box
-                    sx={{
-                        ...circleStyle,
-                        // bgcolor: 'rgba(65, 65, 65, 0.2)',
-                    }}
-                >
-                    2
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
-                    Оформление заказа
-                </Typography>
-                <Box sx={{
-                    ...lineStyle,
-                }} />
-
-                <Box
-                    sx={{
-                        ...circleStyle,
-                        bgcolor: 'rgba(65, 65, 65, 0.2)',
-                    }}
-                >
-                    3
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
-                    Подтверждение
-                </Typography>
-            </Box>
+            <BasketNavigation bgcolor={{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }} />
             <Box sx={{
                 display: 'flex',
             }}>
@@ -114,19 +42,102 @@ const Basket = () => {
                     display: 'flex',
                     flexDirection: 'column'
                 }}>
-                    {
-                        stage === 1 ? (
-                            <><Card /><Card /></>
-                        ) : null
-                    }
-                    {
-                        stage === 2 ? (
-                            <Form />
-                        ) : null
-                    }
-
+                    <><Card /><Card /></>
                 </Box>
-                <BasketMenu />
+                <Box sx={{
+                    width: '396px',
+                    bgcolor: '#FBFBFB',
+                    boxShadow: '2px 2px 10px 1px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '5px',
+                    padding: '20px',
+                }}>
+                    <Typography sx={{
+                        ...titleStyle
+                    }}>Выберите способ доставки</Typography><Box sx={{
+                        ...checkBoxContentStyle
+                    }}>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="same"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="same" control={<Radio />} label="Самовывоз" />
+                            <FormControlLabel value="delivery" control={<Radio />} label="Доставка" />
+                        </RadioGroup>
+                    </Box><Typography sx={{
+                        ...titleStyle
+                    }}>Выберите способ оплаты</Typography><Box sx={{
+                        ...checkBoxContentStyle
+                    }}>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="cash"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="cash" control={<Radio />} label="Наличные" />
+                            <FormControlLabel value="card" control={<Radio />} label="Оплата картой" />
+                        </RadioGroup>
+                    </Box><Box sx={{
+                        ...lineStyle
+                    }} /><Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mt: '15px'
+                    }}>
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>Итого:</Typography>
+
+                        <Typography sx={{
+                            ...titleStyle,
+                        }}>22 600 руб.</Typography>
+                    </Box><Typography sx={{
+                        fontFamily: 'PT Sans',
+                        fontStyle: 'normal',
+                        fontWeight: '400',
+                        fontSize: '14px',
+                        lineHeight: '18px',
+                        color: '#626262',
+                        mt: '2px'
+                    }}>Стоимость указана без учета доставки</Typography><Box sx={{
+                        ...lineStyle,
+                        mt: '34px',
+                        mb: '27px'
+                    }} /><Box sx={{
+                        display: 'flex',
+                        alignItems: 'start',
+                    }}>
+                        <Checkbox id="checkBox" />
+                        <Typography sx={{
+                            fontFamily: 'PT Sans',
+                            fontStyle: 'normal',
+                            fontWeight: '400',
+                            fontSize: '14px',
+                            lineHeight: '18px',
+                            color: '#626262',
+                            width: '327px',
+                        }}>Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.</Typography>
+                    </Box><Button sx={{
+                        bgcolor: '#4675CE',
+                        color: 'white',
+                        mt: '36px',
+                        width: '100%',
+                        height: '50px',
+                        fontFamily: 'PT Sans',
+                        fontStyle: 'normal',
+                        fontWeight: '700',
+                        fontSize: '26px',
+                        lineHeight: '34px',
+                        textTransform: 'uppercase',
+                    }}
+                        className='btn'
+                        variant="contained"
+                        onClick={handleNextStage}
+                    >Продолжить</Button>
+                </Box>
             </Box>
         </Box >
     )

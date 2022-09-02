@@ -1,6 +1,6 @@
 import React from "react"
 import img from '../../../images/card-img.svg';
-import { Typography, Box, Checkbox, Tooltip, Button } from "@mui/material";
+import { Typography, Box, Checkbox } from "@mui/material";
 
 
 const Card: React.FC = () => {
