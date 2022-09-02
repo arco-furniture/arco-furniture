@@ -2,7 +2,7 @@
 
 ![Лендинг](https://i.ibb.co/BBDp0SP/2022-08-26-15-15-36.png)
 
-### <img src="https://cdn-icons-png.flaticon.com/512/7135/7135133.png" width="25" />[ Ссылка на проект](https://kejjero.github.io/mars-food/)
+### <img src="https://cdn-icons-png.flaticon.com/512/7135/7135133.png" width="25" />[ Ссылка на проект](https://arco-furniture.github.io/arco-furniture/)
 
 ## Функциональность
 ....
