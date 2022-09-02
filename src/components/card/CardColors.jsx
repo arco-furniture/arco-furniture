@@ -1,12 +1,11 @@
-const CardColors = () => {
-    const colorPalette = [{color: '#F3E7C6'}, {color: '#6D3D49'}, {color: '#877B6D'}]
+const CardColors = ({colorPalette, visible}) => {
 
     return (
-        <ul className="card__colors">
+        <ul className={`card__colors ${visible ? 'card__active' : 'card__disabled'}`}>
             {
                 colorPalette.map((palette, index) => {
                     return (
-                        <li key={index} style={{backgroundColor: palette.color}}></li>
+                        <li key={index} style={{backgroundColor: `#${palette.color}`}}></li>
                     )
                 })
             }
