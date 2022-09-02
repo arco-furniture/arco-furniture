@@ -1,0 +1,248 @@
+[
+  {
+    "id": 1,
+    "title": "Гостиная модульная Lucido",
+    "advice": 0,
+    "price": 5350,
+    "oldPrice": 7200,
+    "mark": "discount",
+    "colors": [
+      {
+        "color": "F3E7C6"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Кухня модульная Lucido",
+    "advice": 0,
+    "price": 5120,
+    "oldPrice": 6500,
+    "mark": "top",
+    "colors": [
+      {
+        "color": "F3F3F3"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/472ntzK/3.png"
+      },
+      {
+        "image": "https://i.ibb.co/472ntzK/3.png"
+      },
+      {
+        "image": "https://i.ibb.co/472ntzK/3.png"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Диван модульный Lucido",
+    "advice": 0,
+    "price": 34400,
+    "oldPrice": 440,
+    "mark": "eco",
+    "colors": [
+      {
+        "color": "F3E7C6"
+      },
+      {
+        "color": "BC8370"
+      },
+      {
+        "color": "80B098"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      },
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      },
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Спальня модульная Lucido",
+    "advice": 0,
+    "price": 5500,
+    "oldPrice": 7200,
+    "mark": "new",
+    "colors": [
+      {
+        "color": "3B7188"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Гостиная модульная Lucido",
+    "advice": 0,
+    "price": 2350,
+    "oldPrice": 5440,
+    "mark": "new",
+    "colors": [
+      {
+        "color": "F3E7C6"
+      },
+      {
+        "color": "BC8370"
+      },
+      {
+        "color": "80B098"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Диван модульный Lucido",
+    "advice": 0,
+    "price": 2550,
+    "oldPrice": 5440,
+    "mark": "none",
+    "colors": [
+      {
+        "color": "F3E7C6"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      },
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      },
+      {
+        "image": "https://i.ibb.co/dgV5SHB/1.png"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Гостиная модульная Lucido",
+    "advice": 0,
+    "price": 22250,
+    "oldPrice": 35500,
+    "mark": "top",
+    "colors": [
+      {
+        "color": "F3E7C6"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      },
+      {
+        "image": "https://i.ibb.co/5rwYHwb/2.png"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Спальня модульная Lucido",
+    "advice": 0,
+    "price": 52300,
+    "oldPrice": 78200,
+    "mark": "none",
+    "colors": [
+      {
+        "color": "3B7188"
+      },
+      {
+        "color": "6D3D49"
+      },
+      {
+        "color": "877B6D"
+      }
+    ],
+    "images": [
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      },
+      {
+        "image": "https://i.ibb.co/s6RqrDX/4.png"
+      }
+    ]
+  }
+]

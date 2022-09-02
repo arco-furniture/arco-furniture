@@ -1,34 +1,37 @@
-import {useEffect, useState} from "react";
 import SwiperImages from "./SwiperImages";
-import {Button, IconButton, Tooltip} from "@mui/material";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import {Button, IconButton} from "@mui/material";
 import CardColors from "./CardColors";
-import {fetchAdvice, homeSelector} from "../../redux/home/homeSlice"
-import {useDispatch, useSelector} from "react-redux";
+import {Favorite, FavoriteBorder} from "@mui/icons-material";
+import {useState} from "react";
+import CardMark from "./CardMark";
+import CardTooltip from "./CardTooltip";
 
-const Card = () => {
+const Card = ({title, price, oldPrice, colors, images, mark}) => {
+    const [visible, setVisible] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
-    const {adviceData, adviceStatus} = useSelector(homeSelector);
-    const dispatch = useDispatch()
 
     return (
-        <article className="card">
-            <SwiperImages/>
-            <p className="card__title">Гостиная модульная Lucido</p>
+        <article
+            className="card"
+            onMouseEnter={()=>setVisible(true)}
+            onMouseLeave={()=>setVisible(false)}
+        >
+            <CardMark mark={mark}/>
+            <SwiperImages images={images} visible={visible}/>
+            <p className="card__title">{title}</p>
             <div className="card__desc-wrapper">
                 <div className="card__price-wrapper">
-                    <p>7 500 &#8381;</p>
-                    <em>5 990 &#8381;</em>
+                    <p>{oldPrice} &#8381;</p>
+                    <em>{price} &#8381;</em>
                 </div>
-                <CardColors/>
+                <CardColors colorPalette={colors} visible={visible}/>
                 <div className="card__buttons-wrapper">
-                    <Button style={{width: '100%'}} size="medium" variant="outlined">КУПИТЬ</Button>
-                    <Tooltip title="Добавить в избранное" placement="top" arrow>
+                    <Button style={{width: '100%'}} size="medium" variant="outlined">купить</Button>
+                    <CardTooltip>
                         <IconButton color="error" onClick={() => setIsLiked(!isLiked)}>
-                            { isLiked ? <FavoriteIcon/> : <FavoriteBorderIcon/> }
+                            {isLiked ? <Favorite/> : <FavoriteBorder/> }
                         </IconButton>
-                    </Tooltip>
+                    </CardTooltip>
                 </div>
             </div>
         </article>
