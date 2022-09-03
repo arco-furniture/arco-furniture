@@ -1,0 +1,138 @@
+@import "../variables";
+@import "../mixins";
+
+.card {
+  position: relative;
+  padding: 20px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  width: 100%;
+  max-width: 260px;
+  height: 360px;
+  transform: translateY(0);
+  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
+  @include flex-column;
+  @include flex-between;
+  box-sizing: border-box;
+  margin: 10px 0;
+  z-index: 50;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  &__mark {
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+  }
+
+  &__type_active {
+    opacity: 1;
+    display: flex;
+    overflow: visible;
+    transition: opacity ease-in-out 1s;
+  }
+
+  &__swiper {
+    width: 100%;
+    height: 150px;
+  }
+
+  &__image {
+    border-radius: 4px;
+    object-fit: cover;
+    width: 100%;
+    max-height: 150px;
+  }
+
+  &__nav-slide {
+    @include flex-center-between;
+    cursor: pointer;
+    height: 5px;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  &__active {
+    overflow: visible;
+    opacity: 1;
+  }
+
+  &__disabled {
+    transition: opacity ease-in-out 0.2s;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+
+  &__navigation {
+    background-color: #4675ce;
+    opacity: 0.3;
+    width: 100%;
+    height: 5px;
+    border-radius: 7px;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    @include reset;
+    font-size: 14px;
+    padding: 12px 0;
+    text-align: start;
+    color: $secondBlack;
+  }
+
+  &__desc-wrapper {
+    border-top: 1px solid #E2E2E2;
+    position: relative;
+  }
+
+  &__price-wrapper {
+    margin: 10px 0;
+    @include flex-column;
+
+    p {
+      @include reset;
+      opacity: 0.2;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      text-decoration-line: line-through;
+    }
+
+    em {
+      @include reset;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 26px;
+      font-style: normal;
+    }
+  }
+
+  &__buttons-wrapper {
+    gap: 10px;
+    @include flex-center-between;
+  }
+
+  &__colors {
+    @include flex-center;
+    @include reset-list;
+    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    gap: 5px;
+
+    li {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+    }
+  }
+}

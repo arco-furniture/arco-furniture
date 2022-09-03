@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import testReducer from "./test/testSlice";
+import homeReducer from "./home/homeSlice";
+import stageReducer from "./test/numberOfStage";
 
 export const store = configureStore({
     reducer: {
-        testReducer,
+        homeReducer,
+        stageReducer,
+
     },
 })

@@ -2,15 +2,93 @@
 @import "../mixins";
 
 .header {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: 230px;
-  background-color: $gray;
+  width: 100%;
 
   &__wrapper {
-    @include flex-center-center;
-    max-width: 1280px;
+    max-width: 1180px;
     margin: 0 auto;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__place {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__place_city {
+    margin: 0 6px 0 15px;
+    padding: 0;
+    @include text-format (700, 16px, 23px);
+  }
+
+  &__place_arrow {
+    background-image: url(../../images/arrow.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include size(14px,14px);
+    background-position: center;
+    margin-top: 5px;
+  }
+
+  &__nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__middle {
+    @include flex-center-between;
+    margin: 25px 0;
+  }
+
+  &__nav_item {
+    @include text-format (400, 14px, 21px);
+  }
+  &__nav_item:nth-of-type(2) {
+    margin: 0 38px;
+  }
+  &__phone {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  &__phone_number{
+    @include text-format (400, 14px, 21px);
+    text-decoration: none;
+    color: inherit;
+    margin-left: 15px;
+  }
+
+  &__logo {
+    width: 200px;
+  }
+
+  &__phone_logo {
+    background-image: url(../../images/phone_logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include size(19px, 19px);
+  }
+
+  &__middle-item {
+    @include reset;
+    text-decoration: none;
+    color: inherit;
+
+    &-span {
+      @include text-format (400, 16px, 21px);
+      margin-left: 15px;
+    }
   }
 }

@@ -1,0 +1,44 @@
+@import "../variables";
+@import "../mixins";
+
+.advice {
+  width: 100%;
+  max-width: 1180px;
+  @include flex-column;
+  margin-bottom: 100px;
+
+  &__sort {
+    @include reset-list;
+    @include flex-center;
+    gap: 10px;
+  }
+
+  &__cards {
+    position: relative;
+    margin-top: 30px;
+    @include flex-center-between;
+    gap: 30px;
+  }
+
+  &__nav {
+    margin: 0 auto;
+    @include flex-center-between;
+    width: 110%;
+    top: 45%;
+    position: absolute;
+  }
+
+  &__buttons_nav {
+    z-index: 1000;
+  }
+
+  &__swiper {
+    width: 100%;
+    height: 100%;
+    @include flex-center-between;
+
+    &-arrows {
+      @include flex-center-center;
+    }
+  }
+}
