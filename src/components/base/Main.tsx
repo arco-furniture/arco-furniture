@@ -14,8 +14,8 @@ const Main: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/basket" element={<Basket />} />
-                        <Route path="/basket-order" element={<BasketOrder />} />
-                        <Route path="/basket-approval" element={<BasketApproval />} />
+                        <Route path="/basket/order" element={<BasketOrder />} />
+                        <Route path="/basket/order/approval" element={<BasketApproval />} />
                     </Routes>
                 </div>
             </div>

@@ -1,25 +1,11 @@
 @import "../variables";
 @import "../mixins";
 
-@mixin text-format($font-weight, $font-size, $line-height) {
-  font-weight: $font-weight;
-  font-size: $font-size;
-  line-height: $line-height;
-}
-
-@mixin size($height, $width) {
-  height: $height;
-  width: $width;
-}
-
 .header {
   width: 100%;
-  margin-left: calc(50% - 50vw);
-  height: 230px;
-  background-color: $gray;
 
   &__wrapper {
-    max-width: 1280px;
+    max-width: 1180px;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -30,6 +16,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
   }
 
   &__place {
@@ -40,7 +27,7 @@
   &__place_city {
     margin: 0 6px 0 15px;
     padding: 0;
-    @include text-format (700, 18px, 23px);
+    @include text-format (700, 16px, 23px);
   }
 
   &__place_arrow {
@@ -54,14 +41,18 @@
 
   &__nav {
     display: flex;
-    flex-direction: row;
     list-style: none;
-    margin: 0 700px 0 0;
+    margin: 0;
     padding: 0;
   }
 
+  &__middle {
+    @include flex-center-between;
+    margin: 25px 0;
+  }
+
   &__nav_item {
-    @include text-format (400, 16px, 21px);
+    @include text-format (400, 14px, 21px);
   }
   &__nav_item:nth-of-type(2) {
     margin: 0 38px;
@@ -73,10 +64,14 @@
     cursor: pointer;
   }
   &__phone_number{
-    @include text-format (400, 16px, 21px);
+    @include text-format (400, 14px, 21px);
     text-decoration: none;
     color: inherit;
     margin-left: 15px;
+  }
+
+  &__logo {
+    width: 200px;
   }
 
   &__phone_logo {
@@ -84,5 +79,16 @@
     background-repeat: no-repeat;
     background-size: contain;
     @include size(19px, 19px);
+  }
+
+  &__middle-item {
+    @include reset;
+    text-decoration: none;
+    color: inherit;
+
+    &-span {
+      @include text-format (400, 16px, 21px);
+      margin-left: 15px;
+    }
   }
 }

@@ -1,6 +1,10 @@
 import React from "react";
 import logo from "../../images/logo-black.svg";
-const MidleOfHeader = () => {
+import {Badge} from "@mui/material";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import {Link} from "react-router-dom";
+
+const MiddleOfHeader = () => {
   const [search, setSearch] = React.useState("");
 
   function handleSearchChange(e) {
@@ -12,9 +16,11 @@ const MidleOfHeader = () => {
     // props.handlesearch(search);
   }
   return (
-    <div className="header__midle">
-      <img src={logo} alt="Логотип" className="header__logo" />
-      <div className="header__search-conteiner">
+    <div className="header__middle">
+      <Link to="/">
+        <img src={logo} alt="Логотип" className="header__logo" />
+      </Link>
+      <div className="header__search-container">
         <div className="header__search_logo"></div>
         <label className="header__form-field">
           <input
@@ -29,7 +35,13 @@ const MidleOfHeader = () => {
           />
         </label>
       </div>
+      <Link to='/basket' className="header__middle-item">
+        <Badge badgeContent={4} color="error">
+          <ShoppingCartOutlinedIcon/>
+        </Badge>
+        <span className="header__middle-item-span">Корзина</span>
+      </Link>
     </div>
   );
 };
-export default MidleOfHeader;
+export default MiddleOfHeader;

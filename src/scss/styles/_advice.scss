@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 1180px;
   @include flex-column;
-  margin: 100px 0; // убрать после вставки в страницу Home
+  margin-bottom: 100px;
 
   &__sort {
     @include reset-list;

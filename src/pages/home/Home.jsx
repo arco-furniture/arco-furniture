@@ -1,6 +1,9 @@
+import {Advice} from "../../components/index";
+
 const Home = () => {
     return (
         <>
+            <Advice/>
         </>
     )
 }
