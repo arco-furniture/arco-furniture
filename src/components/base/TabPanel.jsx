@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,7 +54,9 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
+      <Link to="/">
           <Tab label="Кухни" {...a11yProps(0)} />
+       </Link>
           <Tab label="Гостинные" {...a11yProps(1)} />
           <Tab label="Спальни" {...a11yProps(2)} />
           <Tab label="Прихожие" {...a11yProps(3)} />
@@ -63,30 +66,6 @@ export default function BasicTabs() {
           <Tab label="Столы и стулья" {...a11yProps(7)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        Кухни
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Гостинные
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Спальни
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Прихожие
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Шкафы-купе
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Детские
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Диваны
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        Столы и стулья
-      </TabPanel>
     </Box>
   );
 }
