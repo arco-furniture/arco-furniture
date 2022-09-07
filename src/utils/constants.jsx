@@ -8,4 +8,4 @@ const initialTabs = {
   sofas:'Диваны',
   tablesAndChairs: 'Столы и стулья',
 };
-export default {initialTabs}
+export default initialTabs;

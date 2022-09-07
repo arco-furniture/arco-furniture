@@ -24,21 +24,6 @@ const MiddleOfHeader = () => {
         <img src={logo} alt="Логотип" className="header__logo" />
       </Link>
       <InputWithIcon />
-      {/* <div className="header__search-container">
-        <div className="header__search_logo"></div>
-        <label className="header__form-field">
-          <input
-            type="text"
-            className="header__input"
-            id="search-input"
-            name="search"
-            required
-            placeholder="Поиск по сайту"
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </label>
-      </div> */}
       <div className="header__middle-nav-content">
         <Link to="/" className="header__middle-item">
           <PermIdentitySharpIcon color="primary" />
