@@ -1,23 +1,8 @@
-import { Typography, Switch, Box, Button } from "@mui/material";
+import { Switch, Button } from "@mui/material";
 import Form from './components/Form';
 import { useNavigate } from "react-router-dom";
 import BasketNavigation from './components/BasketNavigation';
-
-
-const titleStyle = {
-    fontFamily: 'PT Sans',
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: '18px',
-    lineHeight: '23px',
-    color: '#414141',
-};
-
-const lineStyle = {
-    width: '100%',
-    height: '1px',
-    bgcolor: '#E2E2E2'
-};
+import styles from "../../scss/modules/basket-order.module.scss";
 
 const BasketOrder = () => {
     const navigate = useNavigate();
@@ -28,64 +13,39 @@ const BasketOrder = () => {
 
 
     return (
-        <Box>
+        <div>
             <BasketNavigation bgcolor={{ 1: '#4675CE', 2: '#4675CE', 3: 'rgba(65, 65, 65, 0.2)' }} />
             <div style={{ display: 'flex' }}>
                 <Form />
-                <Box sx={{
-                    width: '396px',
-                    bgcolor: '#FBFBFB',
-                    boxShadow: '2px 2px 10px 1px rgba(0, 0, 0, 0.1)',
-                    borderRadius: '5px',
-                    padding: '20px',
-                }}>
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        mt: '98px'
-                    }}>
-                        <Typography sx={{
-                            ...titleStyle,
-                        }}>Итого:</Typography>
-
-                        <Typography sx={{
-                            ...titleStyle,
-                        }}>22 600 руб.</Typography>
-                    </Box>
-                    <Box sx={{
-                        ...lineStyle,
-                        mt: '34px',
-                        mb: '27px'
-                    }} />
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                        <Typography>
+                <div className={styles.info}>
+                    <div className={styles.info__box}>
+                        <p className={styles.info__text}>Стоимость без скидки</p>
+                        <p className={styles.info__text}>24 900 руб.</p>
+                    </div>
+                    <div className={styles.info__box}>
+                        <p className={styles.info__text}>Экономия</p>
+                        <p className={styles.info__text}>87 900 руб.</p>
+                    </div>
+                    <div className={styles.info__box}>
+                        <p className={styles.info__text}>Итого к оплате</p>
+                        <p className={styles.info__text}>22 600 руб.</p>
+                    </div>
+                    <div className={styles.info__line} />
+                    <div className={styles.info__bottom}>
+                        <p>
                             Сборка 2 193 ₽
-                        </Typography>
+                        </p>
                         <Switch defaultChecked />
-                    </Box>
-                    <Button sx={{
-                        bgcolor: '#4675CE',
-                        color: 'white',
-                        mt: '36px',
-                        width: '100%',
-                        height: '50px',
-                        fontFamily: 'PT Sans',
-                        fontStyle: 'normal',
-                        fontWeight: '700',
-                        fontSize: '26px',
-                        lineHeight: '34px',
-                        textTransform: 'uppercase',
-                    }}
+                    </div>
+                    <Button
+                        className={styles.info__button}
                         variant="contained"
                         onClick={handleNextStage}
-                    >Продолжить</Button>
-                </Box>
+                    >Продолжить
+                    </Button>
+                </div>
             </div>
-        </Box>
+        </div>
     )
 }
 
