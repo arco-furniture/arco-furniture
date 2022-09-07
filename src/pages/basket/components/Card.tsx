@@ -2,9 +2,13 @@ import React from "react"
 import img from '../../../images/card-img.svg';
 import { Checkbox } from "@mui/material";
 import styles from "../../../scss/modules/basket-card.module.scss";
+import { nextCount } from "../../../redux/test/numberOfCard";
+import { stageSelector } from "../../../redux/test/numberOfCard";
 
 
 const Card: React.FC = () => {
+
+    console.log(nextCount)
     return (
         <div className={styles.card}>
             <img src={img} alt='img' style={{ width: '188px' }} />
@@ -22,7 +26,14 @@ const Card: React.FC = () => {
                 </div>
 
                 <div className={styles.card__count}>
-                    1
+                    <button className={styles.card__minus}>
+                        <div className={styles.card__line}></div>
+                    </button>
+                    {}
+                    <button className={styles.card__pluse} onClick={() => { nextCount() }}>
+                        <div className={styles.card__line}></div>
+                        <div className={styles.card__line_vertical}></div>
+                    </button>
                 </div>
 
                 <div>
@@ -31,8 +42,9 @@ const Card: React.FC = () => {
                         <p className={styles.card__new}>5 017 руб.</p>
                     </div>
                     <p className={styles.card__prof}>выгода 1 100 ₽</p>
-                    <div>
-                        <p style={{ marginTop: '42.1px' }}>Артикул: 4874678</p>
+                    <div className={styles.card__box}>
+                        <p className={styles.card__artical}>Артикул: 4874678</p>
+                        <button className={styles.card__remove}></button>
                     </div>
                 </div>
             </div>
