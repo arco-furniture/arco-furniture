@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import homeReducer from "./home/homeSlice";
-import stageReducer from "./test/numberOfStage";
-import cardReducer from "./test/numberOfCard";
+import countReducer from "./basket/countOfItems";
+import arrayReducer from "./basket/arrayOfCards";
 
 export const store = configureStore({
     reducer: {
         homeReducer,
-        stageReducer,
-        cardReducer,
+        countReducer,
+        arrayReducer,
     },
 })

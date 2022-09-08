@@ -2,12 +2,16 @@ import { RadioGroup, FormControlLabel, Radio, Checkbox, Button } from "@mui/mate
 import Card from './components/Card';
 import BasketNavigation from './components/BasketNavigation';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../../scss/modules/basket.module.scss";
+import { arraySelector } from '../../redux/basket/arrayOfCards';
 
 const Basket = () => {
     const navigate = useNavigate();
+    const { arrayOfCards, arrayOfCardsStatus } = useSelector(arraySelector);
 
     const handleNextStage = () => {
+        // console.log(arrayOfCards)
         navigate("/basket-order")
     }
 

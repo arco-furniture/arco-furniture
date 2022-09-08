@@ -2,13 +2,11 @@ import React from "react"
 import img from '../../../images/card-img.svg';
 import { Checkbox } from "@mui/material";
 import styles from "../../../scss/modules/basket-card.module.scss";
-import { nextCount } from "../../../redux/test/numberOfCard";
-import { stageSelector } from "../../../redux/test/numberOfCard";
 
 
 const Card: React.FC = () => {
 
-    console.log(nextCount)
+
     return (
         <div className={styles.card}>
             <img src={img} alt='img' style={{ width: '188px' }} />
@@ -30,7 +28,7 @@ const Card: React.FC = () => {
                         <div className={styles.card__line}></div>
                     </button>
                     {}
-                    <button className={styles.card__pluse} onClick={() => { nextCount() }}>
+                    <button className={styles.card__pluse} onClick={() => { console.log('222') }}>
                         <div className={styles.card__line}></div>
                         <div className={styles.card__line_vertical}></div>
                     </button>
