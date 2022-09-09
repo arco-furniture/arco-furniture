@@ -13,8 +13,11 @@ const BasketApproval = () => {
 
     const handleNextStage = () => {
         navigate("/");
-        const popup = document.querySelector('.basket-popup_popup__Pacj3');
-        popup.classList.add('basket-popup_popup_none__3wDjO');
+        const popup = document.getElementById('popup');
+        console.log(popup)
+        popup.style.display = 'flex';
+        // popup.classList.add('basket-popup_popup_none__3wDjO');
+        console.log(popup)
     }
 
     return (

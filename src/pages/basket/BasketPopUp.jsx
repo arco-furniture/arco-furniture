@@ -5,13 +5,13 @@ import popLog from '../../images/poplog.svg';
 const BasketPopUp = () => {
 
     const handleClosePopup = (e) => {
-        if (e.target.className === 'basket-popup_popup__Pacj3 basket-popup_popup_none__3wDjO') {
-            const popup = document.querySelector('.basket-popup_popup__Pacj3');
-            popup.classList.remove('basket-popup_popup_none__3wDjO');
+        if (e.target.id === 'popup') {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
         }
     }
     return (
-        <div className={styles.popup} onClick={(e) => { handleClosePopup(e) }}>
+        <div id='popup' className={styles.popup} onClick={(e) => { handleClosePopup(e) }}>
             <div className={styles.popup__container}>
                 <h2 className={styles.popup__title}>Поздравляем!</h2>
                 <p className={styles.popup__subtitle}>Вы успешно оплатили заказ!</p>
