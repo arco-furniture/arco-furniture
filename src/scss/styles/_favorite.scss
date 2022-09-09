@@ -1,0 +1,13 @@
+@import "../variables";
+@import "../mixins";
+
+.favorite {
+
+  &__items {
+    position: relative;
+    margin: 30px 0;
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+}
