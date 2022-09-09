@@ -1,17 +1,37 @@
+import {useSelector} from "react-redux";
+import {productSelector} from "../../redux/product/productSlice";
+
 const ProductSpecs = () => {
-    return(
+    const {product} = useSelector(productSelector)
+    const specsNames = [
+        {name: "Стиль", specsNameId: "style"},
+        {name: "Материал", specsNameId: "material"},
+        {name: "Размер", specsNameId: "size"}
+    ]
+
+    const {specs} = product;
+
+    return (
         <li className="product__specs product__background">
             <h3 className="subtitle">Характеристики</h3>
             <div className="product__specs-wrapper">
                 <ul>
-                    <li>Стиль:</li>
-                    <li>Материал:</li>
-                    <li>Размер:</li>
+                    {
+                        specsNames.map((item) => {
+                            return (
+                                <li key={item.specsNameId}>{`${item.name}:`}</li>
+                            )
+                        })
+                    }
                 </ul>
                 <ul>
-                    <li>Современный</li>
-                    <li>ЛДСП</li>
-                    <li>200х1400х450</li>
+                    {
+                        specs.map((item) => {
+                            return (
+                                <li key={item.specsId}>{item.value}</li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
         </li>

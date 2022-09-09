@@ -6,7 +6,6 @@ const initialState = {
     currentColor: {},
 }
 
-
 export const productSlice = createSlice({
     name: 'product',
     initialState,
@@ -19,10 +18,10 @@ export const productSlice = createSlice({
         },
         setCurrentColor(state, action) {
             state.currentColor = action.payload
-        }
+        },
     },
 })
 
-export const { setCurrentColor, setProduct, getFirstColor } = productSlice.actions;
+export const { setCurrentColor, setProduct, getFirstColor, addItemForCart} = productSlice.actions;
 export const productSelector = (state) => state.productReducer
 export default productSlice.reducer;

@@ -5,7 +5,6 @@ import ProductParams from "./ProductParams";
 import ProductSpecs from "./ProductSpecs";
 import ProductSlides from "./ProductSlides";
 import ProductPreview from "./ProductPreview";
-import {Alert} from "@mui/material";
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
