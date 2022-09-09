@@ -1,6 +1,6 @@
 import {Tooltip} from "@mui/material";
 
-const WhiteTooltip = ({children, title, placement}) => {
+const BlackTooltip = ({children, title, placement}) => {
 
     const tooltipStyles = {
         tooltip: {
@@ -10,11 +10,11 @@ const WhiteTooltip = ({children, title, placement}) => {
                 justifyContent: 'center',
                 textAlign: 'center',
                 lineHeight: '15px',
-                boxShadow: '3px 3px 5px rgba(0, 0, 0, 0.3)',
-                color: '#4675CE',
-                bgcolor: '#f5f5f5',
+                boxShadow: '5px 5px 8px 2px rgba(0, 0, 0, 0.1)',
+                color: '#fff',
+                bgcolor: '#414141',
                 '& .MuiTooltip-arrow': {
-                    color: '#f5f5f5',
+                    color: '#414141',
                 },
                 minWidth: '75px',
                 padding: '7px 5px'
@@ -29,4 +29,4 @@ const WhiteTooltip = ({children, title, placement}) => {
     )
 }
 
-export default WhiteTooltip;
+export default BlackTooltip;

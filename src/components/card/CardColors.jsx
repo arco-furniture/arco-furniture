@@ -1,5 +1,5 @@
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
-import WhiteTooltip from "../WhiteTooltip/WhiteTooltip";
+import BlackTooltip from "../BlackTooltip/BlackTooltip";
 
 const CardColors = ({colorPalette, visible}) => {
     const filterColors = colorPalette.filter(item => item.exist)
@@ -22,9 +22,9 @@ const CardColors = ({colorPalette, visible}) => {
 
     return (
         <ul className={`card__colors ${visible ? 'card__active' : 'card__disabled'}`}>
-            <WhiteTooltip title={TooltipColors()} placement="top-start">
+            <BlackTooltip title={TooltipColors()} placement="top-start">
                 <AutoAwesomeOutlinedIcon color="primary"/>
-            </WhiteTooltip>
+            </BlackTooltip>
             {
                 colors.map((palette, index) => {
                     return <li key={index} style={{backgroundColor: palette.color}}></li>

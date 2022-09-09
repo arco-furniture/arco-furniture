@@ -4,7 +4,7 @@ import CardColors from "./CardColors";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
 import React, {useEffect, useState} from "react";
 import CardMark from "./CardMark";
-import WhiteTooltip from "../WhiteTooltip/WhiteTooltip";
+import BlackTooltip from "../BlackTooltip/BlackTooltip";
 import {Link} from "react-router-dom";
 import {setProduct, getFirstColor} from "../../redux/product/productSlice"
 import {openAlertBar} from "../../redux/other/otherSlice"
@@ -17,28 +17,39 @@ const Card = ({item}) => {
     const [isLiked, setIsLiked] = useState(false);
     const dispatch = useDispatch();
     const {favoriteData} = useSelector(homeSelector)
+    const isFavorite = favoriteData.some((favorite) => favorite.id === item.id)
 
     useEffect(() => {
-        if (!isLiked) {
-            dispatch(postFavoriteItem(item))
+        if (isFavorite){
+            setIsLiked(true)
         }
-        dispatch(deleteFavoriteItem({item, favoriteData}))
-
-    },[])
+    }, [])
 
     const onClickBuyButton = () => {
         dispatch(setProduct(item))
         dispatch(getFirstColor(item.colors))
     }
 
-    const handleIsFavorite = (id) => {
-        return favoriteData.find((item) => item.id === id)
+    // придется немного покопипастить в Card и Product,
+    // так как тут много манипуляций с диспатчем,
+    // а использовать хуки вне jsx нельзя.
+    // С добавлением TS перепишу в более мобильный вариант
+    const handleIsFavorite = () => {
+        if (!isFavorite) {
+            dispatch(postFavoriteItem(item))
+            return true
+        }
+        const withoutItemsFavorite = favoriteData.filter((favorite) => favorite.id !== item.id)
+        dispatch(deleteFavoriteItem(withoutItemsFavorite))
+        return false
     }
 
-
     const onClickFavoriteButton = () => {
-        setIsLiked(handleIsFavorite(item.id))
-        dispatch(openAlertBar({message: item.title}))
+        setIsLiked(handleIsFavorite())
+        dispatch(openAlertBar({
+            message: item.title,
+            type: 'favorite'
+        }))
     }
 
     return (
@@ -58,14 +69,14 @@ const Card = ({item}) => {
                 </div>
                 <CardColors colorPalette={item.colors} visible={visible}/>
                 <div className="card__buttons-wrapper">
-                    <Link to={`product/${item.id}`} className="card__link-buy" onClick={() => onClickBuyButton()}>
+                    <Link to={`/product/${item.id}`} className="card__link-buy" onClick={() => onClickBuyButton()}>
                         <Button style={{width: '100%'}} size="medium" variant="outlined">купить</Button>
                     </Link>
-                    <WhiteTooltip title="Добавить в избранное" placement="top-start">
+                    <BlackTooltip title="Добавить в избранное" placement="top-start">
                         <IconButton color="error" onClick={() => onClickFavoriteButton()}>
                             {isLiked ? <Favorite/> : <FavoriteBorder/>}
                         </IconButton>
-                    </WhiteTooltip>
+                    </BlackTooltip>
                 </div>
             </div>
         </article>
