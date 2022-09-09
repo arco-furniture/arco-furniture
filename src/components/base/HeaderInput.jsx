@@ -8,20 +8,32 @@ export default function InputWithIcon() {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        border: "1px solid #4675CE",
-        borderRadius: '4px',
-        height: '45px',
+          display: "flex",
+          alignItems: "center",
+          border: "1px solid #4675CE",
+          borderRadius: '4px',
+          boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
+          height: '42px',
+          position: 'relative'
       }}
     >
+        <div style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '40px',
+            height: '100%',
+            backgroundColor: '#4675CE'
+        }}></div>
       <SearchOutlinedIcon
-        sx={{ color: "action.active", mr: 2.6, ml: 1.7, width: 20, height: 20 }}
+          style={{zIndex: '100'}}
+        sx={{ color: "#fff", mr: 1, ml: 1, width: 22, height: 22 }}
       />
       <InputBase
-        sx={{ ml: 1, flex: 1, minWidth: '13em', }}
+        sx={{ ml: 1, flex: 1, minWidth: '17em', paddingRight: '12px', color: '#414141', fontSize: '14px' }}
         placeholder="Поиск по сайту"
         inputProps={{ 'aria-label': 'Поиск по сайту' }}
+        type="search"
       />
     </Box>
   );

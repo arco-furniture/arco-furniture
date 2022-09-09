@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import initialTabs from "../../utils/constants";
+import {Button} from "@mui/material";
 
 export default function TabPanel(props) {
   const location = useLocation();
@@ -9,19 +10,25 @@ export default function TabPanel(props) {
   }
   return (
     <div className="header__tabs">
-      {Object.entries(initialTabs).map((i) => {
-        return (
-          <Link
-            to={i[0]}
-            key={i}
-            className={`header__tab ${
-              isActive(i[0]) ? "header__tab_active" : ""
-            }`}
-          >
-            <span>{i[1].toUpperCase()}</span>
-          </Link>
-        );
-      })}
+      <div className="header__content">
+        <div className="header__tabs-wrapper">
+          {Object.entries(initialTabs).map((i) => {
+            return (
+                <Link
+                    to={i[0]}
+                    key={i}
+                    className={`header__tab ${isActive(i[0]) ? "header__tab_active" : ""}`}
+                >
+                  <Button
+                      style={{color: '#fff', minHeight: '100%', borderRadius: '0', fontSize: '12px'}}
+                  >
+                    {i[1]}
+                  </Button>
+                </Link>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
