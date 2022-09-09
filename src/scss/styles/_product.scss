@@ -96,8 +96,6 @@
     right: -30px;
     font-size: 16px;
     line-height: 21px;
-    /* identical to box height */
-    text-decoration-line: line-through;
     color: #999999;
   }
 
@@ -155,7 +153,7 @@
       @include reset;
       font-weight: 400;
       font-size: 16px;
-      line-height: 21px;
+      line-height: 25px;
       color: #555555;
     }
   }
@@ -187,7 +185,7 @@
     ul {
       @include flex-column;
       @include reset-list;
-      gap: 10px;
+      gap: 5px;
 
       li {
         font-weight: 400;
