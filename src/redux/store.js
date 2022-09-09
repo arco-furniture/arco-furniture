@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import homeReducer from "./home/homeSlice";
+import stageReducer from "./test/numberOfStage";
+import productReducer from "./product/productSlice"
+import otherReducer from "../redux/other/otherSlice"
 import arrayReducer from "./basket/arrayOfCards";
 import statusReducer from "./basket/btnStatus";
 import formDataReducer from "./basket/basketFormInfo";
@@ -7,6 +10,9 @@ import formDataReducer from "./basket/basketFormInfo";
 export const store = configureStore({
     reducer: {
         homeReducer,
+        stageReducer,
+        productReducer,
+        otherReducer,
         arrayReducer,
         statusReducer,
         formDataReducer,

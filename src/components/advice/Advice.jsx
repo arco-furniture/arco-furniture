@@ -22,6 +22,7 @@ const Advice = () => {
         {name: "Экологичные материалы", advice: "eco"}
     ]
 
+    // Получаем данные из mockAPI по заданным фильтрам
     useEffect(() => {
         dispatch(fetchAdvice(filterRequest))
     }, [filterRequest])
@@ -31,18 +32,20 @@ const Advice = () => {
         const requestName = sortArray[index].advice
         setFilterRequest(`?mark=${requestName}`)
     }
-
+    //После того, как разделим Рекомендуемое и Категории товаров, уберем лишние прокидывания данных через карточку в
+    // категорию товара
     const cards = adviceData.map((item) => {
         return (
             <Card
                 key={item.id}
-                title={item.title}
-                price={item.price}
-                oldPrice={item.oldPrice}
-                advice={item.advice}
-                colors={item.colors}
-                images={item.images}
-                mark={item.mark}
+                item={item}
+                // title={item.title}
+                // price={item.price}
+                // oldPrice={item.oldPrice}
+                // advice={item.advice}
+                // colors={item.colors}
+                // images={item.images}
+                // mark={item.mark}
             />
         )
     })

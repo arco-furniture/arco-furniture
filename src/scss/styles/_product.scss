@@ -1,0 +1,200 @@
+@import "../variables";
+@import "../mixins";
+
+.product {
+  width: 100%;
+  margin-bottom: 100px;
+
+  &__wrapper {
+    @include reset-list;
+    display: grid;
+    grid-template-rows:  1fr minmax(200px, auto);
+    grid-template-columns: 666px 1fr;
+    grid-template-areas:
+            "preview params"
+            "slides specs";
+    gap: 30px;
+  }
+
+  &__preview {
+    width: 100%;
+    grid-area: preview;
+
+    img  {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__params {
+    grid-area: params;
+    background-color: #FBFBFB;
+    @include flex-column;
+    @include flex-center-between;
+  }
+
+  &__background {
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  &__slides {
+    grid-area: slides;
+
+    &-wrapper {
+      height: 100px;
+    }
+  }
+
+  &__specs {
+    width: 100%;
+    grid-area: specs;
+  }
+
+  &__image-preview {
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__nav-preview {
+    width: 100%;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  &__top-wrapper {
+    width: 100%;
+    @include flex-center-between;
+
+    h2 {
+      @include reset;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 39px;
+
+      color: #4675CE;
+    }
+  }
+
+  &__price-wrapper {
+    align-self: flex-start;
+    @include flex-column;
+    align-items: flex-start;
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #999999;
+  }
+  &__old-price {
+    position: absolute;
+    @include reset;
+    top: -20px;
+    right: -30px;
+    font-size: 16px;
+    line-height: 21px;
+    color: #999999;
+  }
+
+  &__price {
+    @include reset;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 34px;
+    color: #414141;
+    font-style: normal;
+  }
+
+  &__colors {
+    align-self: flex-start;
+    @include flex-column;
+    align-items: flex-start;
+    gap: 20px;
+
+    ul {
+      @include reset-list;
+      @include flex-center-between;
+      gap: 7px;
+
+      li {
+        width: 30px;
+        height: 30px;
+        border-radius: 2px;
+        position: relative;
+
+        button {
+          width: 30px;
+          height: 30px;
+          min-width: 30px;
+          @include reset;
+        }
+      }
+    }
+  }
+
+  &__title {
+    @include reset;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  &__description {
+
+    span{
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    p {
+      @include reset;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 25px;
+      color: #555555;
+    }
+  }
+
+  &__buttons {
+    width: 100%;
+    @include flex-center-between;
+    gap: 10px;
+  }
+
+  &__submit {
+    width: 100%;
+    height: 64px;
+    font-weight: 700;
+  }
+
+  &__favorite {
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__specs-wrapper {
+    margin-top: 20px;
+    @include flex-center;
+    gap: 25px;
+
+    ul {
+      @include flex-column;
+      @include reset-list;
+      gap: 5px;
+
+      li {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 23px;
+        color: #414141;
+      }
+    }
+  }
+
+}
+
