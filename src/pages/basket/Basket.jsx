@@ -7,7 +7,6 @@ import styles from "../../scss/modules/basket.module.scss";
 import { arraySelector } from '../../redux/basket/arrayOfCards';
 import { statusSelector } from '../../redux/basket/btnStatus';
 import { formDataSelector } from '../../redux/basket/basketFormInfo';
-import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import { positive } from "../../redux/basket/btnStatus";
