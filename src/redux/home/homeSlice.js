@@ -6,7 +6,6 @@ export const fetchAdvice = createAsyncThunk('home/fetchAdvice', async (requestFi
     return data
 })
 
-
 const initialState = {
     adviceData: [],
     adviceStatus: '',
@@ -21,6 +20,7 @@ export const homeSlice = createSlice({
             state.favoriteData = [...state.favoriteData, actions.payload]
         },
         deleteFavoriteItem(state, actions) {
+            state.favoriteData = actions.payload
         }
     },
     extraReducers: (builder) => {
