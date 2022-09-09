@@ -6,13 +6,16 @@ const inputStyle = {
 };
 
 const Form: React.FC = () => {
+const inputs = document.querySelectorAll('TextField');
+console.log(inputs)
     return (
         <div className={styles.form}>
             <p className={styles.form__title}>
                 Оформление заказа
             </p>
             <div className={styles.form__box}>
-                <TextField sx={{
+                <TextField
+                 sx={{
                     ...inputStyle,
                     mr: '22px'
                 }}

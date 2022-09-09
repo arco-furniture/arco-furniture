@@ -2,15 +2,43 @@ import BasketNavigation from './components/BasketNavigation';
 import Card from './components/Card';
 import styles from "../../scss/modules/basket-approval.module.scss";
 import { Button, TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { arraySelector } from '../../redux/basket/arrayOfCards';
+import { useNavigate } from "react-router-dom";
 
 const BasketApproval = () => {
+    const { data } = useSelector(arraySelector);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleNextStage = () => {
+        navigate("/");
+        const popup = document.querySelector('.basket-popup_popup__Pacj3');
+        popup.classList.add('basket-popup_popup_none__3wDjO');
+    }
 
     return (
         <div>
             <BasketNavigation bgcolor={{ 1: '#4675CE', 2: '#4675CE', 3: '#4675CE' }} />
             <div className={styles.approve}>
                 <div className={styles.approve__container}>
-                    <><Card /><Card /></>
+                    {
+                        data ? (
+                            data.map((item, index) => (
+                                <Card
+                                    key={index}
+                                    name={item.name}
+                                    price={item.price}
+                                    benefit={item.benefit}
+                                    articul={item.articul}
+                                    img={item.img}
+                                    id={item.id}
+                                    count={item.count}
+                                />
+                            ))
+                        ) :
+                            null
+                    }
                 </div>
                 <div className={styles.info}>
                     <div className={styles.info__box}>
@@ -48,7 +76,8 @@ const BasketApproval = () => {
                     </div>
                     <Button
                         className={styles.menu__button}
-                        variant="contained">
+                        variant="contained"
+                        onClick={handleNextStage}>
                         Оплатить заказ
                     </Button>
                 </div>

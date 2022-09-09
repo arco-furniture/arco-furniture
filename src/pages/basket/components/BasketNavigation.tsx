@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { arraySelector } from '../../../redux/basket/arrayOfCards';
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../scss/modules/basket-navigation.module.scss";
+import { add } from "../../../redux/basket/arrayOfCards";
+
 
 const BasketNavigation = (bgcolor: any) => {
+    const dispatch = useDispatch();
+    const { data } = useSelector(arraySelector);
 
     const handleAddCard = () => {
-        console.log('222')
+        dispatch(add())
     }
 
     return (
