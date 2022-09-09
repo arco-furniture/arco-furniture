@@ -22,6 +22,7 @@ const Advice = () => {
         {name: "Экологичные материалы", advice: "eco"}
     ]
 
+    // Получаем данные из mockAPI по заданным фильтрам
     useEffect(() => {
         dispatch(fetchAdvice(filterRequest))
     }, [filterRequest])
