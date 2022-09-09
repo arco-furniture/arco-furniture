@@ -2,7 +2,10 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
     statusAlert: false,
-    message: '',
+    alert: {
+        message: '',
+        type: '',
+    }
 }
 
 export const otherSlice = createSlice({
@@ -10,7 +13,7 @@ export const otherSlice = createSlice({
     initialState,
     reducers: {
         openAlertBar(state, actions) {
-            state.message = actions.payload.message;
+            state.alert = actions.payload;
             state.statusAlert = true;
         },
         closeAlertBar(state) {
