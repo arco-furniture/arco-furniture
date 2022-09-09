@@ -103,7 +103,6 @@
       font-weight: 700;
       font-size: 16px;
       line-height: 21px;
-      text-decoration-line: line-through;
     }
 
     em {
@@ -118,6 +117,11 @@
   &__buttons-wrapper {
     gap: 10px;
     @include flex-center-between;
+  }
+
+  &__link-buy {
+    width: 100%;
+    text-decoration: none;
   }
 
   &__colors {
@@ -135,4 +139,24 @@
       border-radius: 2px;
     }
   }
+
+  &__tooltip {
+    @include flex-center;
+    span {
+      margin-right: 5px;
+    }
+    ul {
+      @include reset-list;
+      @include flex-center;
+      gap: 5px;
+
+      li {
+        border-radius: 2px;
+        width: 15px;
+        height: 15px;
+        background-color: #4675ce;
+      }
+    }
+  }
 }
+
