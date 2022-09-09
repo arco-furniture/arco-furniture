@@ -17,7 +17,7 @@ const Card = ({title, price, oldPrice, colors, images, mark}) => {
             onMouseLeave={()=>setVisible(false)}
         >
             <CardMark mark={mark}/>
-            <SwiperImages images={images} visible={visible}/>
+            {/* <SwiperImages images={images} visible={visible}/> */}
             <p className="card__title">{title}</p>
             <div className="card__desc-wrapper">
                 <div className="card__price-wrapper">

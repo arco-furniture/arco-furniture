@@ -30,7 +30,7 @@ git clone git@github.com:arco-furniture/arco-furniture.git
 cd arco-furniture
 npm i webpack --save-dev
 npm run build
-npm run dev
+npm run start
 ```
 ## Задеплоить проект в Github Pages
 ```
