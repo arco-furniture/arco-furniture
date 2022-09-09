@@ -1,10 +1,8 @@
 import React from "react"
 import styles from "../../scss/modules/main.module.scss";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../../pages/index"
-import { Basket } from "../../pages/index"
-import { BasketOrder } from "../../pages/index"
-import { BasketApproval } from "../../pages/index"
+import { Home, Product, Basket, BasketOrder, BasketApproval } from "../../pages/index"
+import AlertFavorite from "../alertFavorite/AlertFavorite";
 
 const Main: React.FC = () => {
     return (
@@ -13,12 +11,14 @@ const Main: React.FC = () => {
                 <div>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/product/:productId" element={<Product />} />
                         <Route path="/basket" element={<Basket />} />
                         <Route path="/basket/order" element={<BasketOrder />} />
                         <Route path="/basket/order/approval" element={<BasketApproval />} />
                     </Routes>
                 </div>
             </div>
+            <AlertFavorite/>
         </main>
     )
 }
