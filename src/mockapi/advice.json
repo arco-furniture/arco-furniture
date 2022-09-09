@@ -6,18 +6,48 @@
     "price": 5350,
     "oldPrice": 7200,
     "mark": "discount",
+    "description": "Гостиная Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "F3E7C6"
+        "color": "#E4E4E4", "exist": true
       },
       {
-        "color": "6D3D49"
+        "color": "#E9D777", "exist": false
       },
       {
-        "color": "877B6D"
+        "color": "#96314A", "exist": true
+      },
+      {
+        "color": "#906F48", "exist": true
+      },
+      {
+        "color": "#58B988", "exist": true
+      },
+      {
+        "color": "#2B7493", "exist": false
+      },
+      {
+        "color": "#1C2537", "exist": true
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/5rwYHwb/2.png"
       },
@@ -36,18 +66,48 @@
     "price": 5120,
     "oldPrice": 6500,
     "mark": "top",
+    "description": "Кухня Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "F3F3F3"
+        "color": "#E4E4E4", "exist": false
       },
       {
-        "color": "6D3D49"
+        "color": "#E9D777", "exist": true
       },
       {
-        "color": "877B6D"
+        "color": "#96314A", "exist": true
+      },
+      {
+        "color": "#906F48", "exist": true
+      },
+      {
+        "color": "#58B988", "exist": true
+      },
+      {
+        "color": "#2B7493", "exist": true
+      },
+      {
+        "color": "#1C2537", "exist": true
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/472ntzK/3.png"
       },
@@ -64,20 +124,50 @@
     "title": "Диван модульный Lucido",
     "advice": 0,
     "price": 34400,
-    "oldPrice": 440,
+    "oldPrice": 4440,
     "mark": "eco",
+    "description": "Диван Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "F3E7C6"
+        "color": "#E4E4E4", "exist": true
       },
       {
-        "color": "BC8370"
+        "color": "#E9D777", "exist": false
       },
       {
-        "color": "80B098"
+        "color": "#96314A", "exist": false
+      },
+      {
+        "color": "#906F48", "exist": false
+      },
+      {
+        "color": "#58B988", "exist": true
+      },
+      {
+        "color": "#2B7493", "exist": true
+      },
+      {
+        "color": "#1C2537", "exist": false
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/dgV5SHB/1.png"
       },
@@ -96,18 +186,48 @@
     "price": 5500,
     "oldPrice": 7200,
     "mark": "new",
+    "description": "Спальня Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "3B7188"
+        "color": "#E4E4E4", "exist": false
       },
       {
-        "color": "6D3D49"
+        "color": "#E9D777", "exist": false
       },
       {
-        "color": "877B6D"
+        "color": "#96314A", "exist": true
+      },
+      {
+        "color": "#906F48", "exist": false
+      },
+      {
+        "color": "#58B988", "exist": true
+      },
+      {
+        "color": "#2B7493", "exist": true
+      },
+      {
+        "color": "#1C2537", "exist": true
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/s6RqrDX/4.png"
       },
@@ -129,18 +249,48 @@
     "price": 2350,
     "oldPrice": 5440,
     "mark": "new",
+    "description": "Гостиная Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "F3E7C6"
+        "color": "#E4E4E4", "exist": true
       },
       {
-        "color": "BC8370"
+        "color": "#E9D777", "exist": true
       },
       {
-        "color": "80B098"
+        "color": "#96314A", "exist": true
+      },
+      {
+        "color": "#906F48", "exist": false
+      },
+      {
+        "color": "#58B988", "exist": true
+      },
+      {
+        "color": "#2B7493", "exist": false
+      },
+      {
+        "color": "#1C2537", "exist": false
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/5rwYHwb/2.png"
       },
@@ -159,18 +309,48 @@
     "price": 2550,
     "oldPrice": 5440,
     "mark": "none",
+    "description": "Гостиная Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {
-        "color": "F3E7C6"
+        "color": "#E4E4E4", "exist": false
       },
       {
-        "color": "6D3D49"
+        "color": "#E9D777", "exist": true
       },
       {
-        "color": "877B6D"
+        "color": "#96314A", "exist": false
+      },
+      {
+        "color": "#906F48", "exist": false
+      },
+      {
+        "color": "#58B988", "exist": false
+      },
+      {
+        "color": "#2B7493", "exist": true
+      },
+      {
+        "color": "#1C2537", "exist": true
       }
     ],
-    "images": [
+    "productImages": [
+      {
+        "image": "https://i.ibb.co/2yCVZTY/image-16.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/yhR2pjb/image-18.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"
+      },
+      {
+        "image": "https://i.ibb.co/gJSMVvM/image-20.jpg"
+      }
+    ],
+    "cardImages": [
       {
         "image": "https://i.ibb.co/dgV5SHB/1.png"
       },
@@ -179,69 +359,6 @@
       },
       {
         "image": "https://i.ibb.co/dgV5SHB/1.png"
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "title": "Гостиная модульная Lucido",
-    "advice": 0,
-    "price": 22250,
-    "oldPrice": 35500,
-    "mark": "top",
-    "colors": [
-      {
-        "color": "F3E7C6"
-      },
-      {
-        "color": "6D3D49"
-      },
-      {
-        "color": "877B6D"
-      }
-    ],
-    "images": [
-      {
-        "image": "https://i.ibb.co/5rwYHwb/2.png"
-      },
-      {
-        "image": "https://i.ibb.co/5rwYHwb/2.png"
-      },
-      {
-        "image": "https://i.ibb.co/5rwYHwb/2.png"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "title": "Спальня модульная Lucido",
-    "advice": 0,
-    "price": 52300,
-    "oldPrice": 78200,
-    "mark": "none",
-    "colors": [
-      {
-        "color": "3B7188"
-      },
-      {
-        "color": "6D3D49"
-      },
-      {
-        "color": "877B6D"
-      }
-    ],
-    "images": [
-      {
-        "image": "https://i.ibb.co/s6RqrDX/4.png"
-      },
-      {
-        "image": "https://i.ibb.co/s6RqrDX/4.png"
-      },
-      {
-        "image": "https://i.ibb.co/s6RqrDX/4.png"
-      },
-      {
-        "image": "https://i.ibb.co/s6RqrDX/4.png"
       }
     ]
   }
