@@ -1,98 +1,47 @@
-import React from "react"
-import { Typography, Box } from "@mui/material";
+import React, { useEffect } from "react"
+import { arraySelector } from '../../../redux/basket/arrayOfCards';
+import { useDispatch, useSelector } from "react-redux";
+import styles from "../../../scss/modules/basket-navigation.module.scss";
+import { add } from "../../../redux/basket/arrayOfCards";
 
-const circleStyle = {
-    borderRadius: '50%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    width: '2rem',
-    height: '2rem',
-    ml: '9px',
-};
-
-const lineStyle = {
-    bgcolor: '#555555',
-    width: '153px',
-    height: '1px',
-    ml: '9px',
-};
-
-const navigationStyle = {
-    ml: '7px',
-};
 
 const BasketNavigation = (bgcolor: any) => {
+    const dispatch = useDispatch();
+    const { data } = useSelector(arraySelector);
+
+    const handleAddCard = () => {
+        dispatch(add())
+    }
 
     return (
-        <Box>
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-            }}>
-                <Typography sx={{
-                    mr: '31px',
-                    mt: '20px',
-                    mb: '12px',
-                    fontFamily: 'PT Sans',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '26px',
-                    lineHeight: '34px',
-                    color: '#414141',
-                }} variant="h2" gutterBottom>
+        <div className={styles.navigation}>
+            <div className={styles.navigation__container}>
+                <p className={styles.navigation__title}>
                     Корзина
-                </Typography>
-                <Box
-                    sx={{
-                        ...circleStyle,
-                        bgcolor: `${bgcolor.bgcolor[1]}`
-                    }}
-                >
+                </p>
+                <button onClick={handleAddCard}>+</button>
+                <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[1]}` }}>
                     1
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
+                </div>
+                <p style={{ marginLeft: '7px' }}>
                     Ваша корзина
-                </Typography>
-                <Box sx={{
-                    ...lineStyle,
-                }} />
-
-                <Box
-                    sx={{
-                        ...circleStyle,
-                        bgcolor: `${bgcolor.bgcolor[2]}`
-                    }}
-                >
+                </p>
+                <div className={styles.navigation__line} />
+                <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[2]}` }}>
                     2
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
+                </div>
+                <p style={{ marginLeft: '7px' }}>
                     Оформление заказа
-                </Typography>
-                <Box sx={{
-                    ...lineStyle,
-                }} />
-
-                <Box
-                    sx={{
-                        ...circleStyle,
-                        bgcolor: `${bgcolor.bgcolor[3]}`
-                    }}
-                >
+                </p>
+                <div className={styles.navigation__line} />
+                <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[3]}` }}>
                     3
-                </Box>
-                <Typography sx={{
-                    ...navigationStyle
-                }}>
+                </div>
+                <p style={{ marginLeft: '7px' }}>
                     Подтверждение
-                </Typography>
-            </Box>
-        </Box >
+                </p>
+            </div>
+        </div >
     )
 }
 

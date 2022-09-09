@@ -1,7 +1,7 @@
 import React from "react"
 import TopOfHeader from "./TopOfHeader";
-import BasicTabs from "./TabPanel";
 import MiddleOfHeader from "./MiddleOfHeader";
+import TabPanel from '../base/TabPanel';
 
 const Header: React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const Header: React.FC = () => {
             <div className="header__wrapper">
                 <TopOfHeader/>
                 <MiddleOfHeader/>
-                <BasicTabs/>
+                <TabPanel />
             </div>
         </header>
     )
