@@ -3,21 +3,19 @@ import Card from './components/Card';
 import styles from "../../scss/modules/basket-approval.module.scss";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { arraySelector } from '../../redux/basket/arrayOfCards';
 import { useNavigate } from "react-router-dom";
+import { productSelector } from '../../redux/product/productSlice';
+import { basketSelector } from '../../redux/basket/basketSlice';
 
 const BasketApproval = () => {
-    const { data } = useSelector(arraySelector);
-    const dispatch = useDispatch();
+    const { dataBasketItems } = useSelector(productSelector);
     const navigate = useNavigate();
+    const { sumOfItems } = useSelector(basketSelector);
 
     const handleNextStage = () => {
         navigate("/");
         const popup = document.getElementById('popup');
-        console.log(popup)
         popup.style.display = 'flex';
-        // popup.classList.add('basket-popup_popup_none__3wDjO');
-        console.log(popup)
     }
 
     return (
@@ -26,17 +24,20 @@ const BasketApproval = () => {
             <div className={styles.approve}>
                 <div className={styles.approve__container}>
                     {
-                        data ? (
-                            data.map((item, index) => (
+                        dataBasketItems ? (
+                            dataBasketItems.map((item, index) => (
                                 <Card
                                     key={index}
-                                    name={item.name}
-                                    price={item.price}
-                                    benefit={item.benefit}
-                                    articul={item.articul}
-                                    img={item.img}
+                                    item={item}
                                     id={item.id}
-                                    count={item.count}
+                                    title={item.title}
+                                    price={item.price}
+                                    oldPrice={item.oldPrice}
+                                    image={item.image}
+                                    specs={item.specs}
+                                    color={item.color}
+                                    article={item.article}
+                                    count={1}
                                 />
                             ))
                         ) :
@@ -75,7 +76,7 @@ const BasketApproval = () => {
                     />
                     <div className={styles.info__bottom}>
                         <p className={styles.info__text}>Итого к оплате</p>
-                        <p className={styles.menu__title}>22 600 руб.</p>
+                        <p className={styles.menu__title}>{sumOfItems} руб.</p>
                     </div>
                     <Button
                         className={styles.menu__button}

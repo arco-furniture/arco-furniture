@@ -1,17 +1,6 @@
-import React, { useEffect } from "react"
-import { arraySelector } from '../../../redux/basket/arrayOfCards';
-import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../scss/modules/basket-navigation.module.scss";
-import { add } from "../../../redux/basket/arrayOfCards";
-
 
 const BasketNavigation = (bgcolor: any) => {
-    const dispatch = useDispatch();
-    const { data } = useSelector(arraySelector);
-
-    const handleAddCard = () => {
-        dispatch(add())
-    }
 
     return (
         <div className={styles.navigation}>
@@ -19,7 +8,6 @@ const BasketNavigation = (bgcolor: any) => {
                 <p className={styles.navigation__title}>
                     Корзина
                 </p>
-                <button onClick={handleAddCard}>+</button>
                 <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[1]}` }}>
                     1
                 </div>

@@ -5,17 +5,20 @@ import BasketNavigation from './components/BasketNavigation';
 import styles from "../../scss/modules/basket-order.module.scss";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
+import { basketSelector } from '../../redux/basket/basketSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 
 const BasketOrder = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const [dataInfo, setDataInfo] = useState(""); // информация с формы(доставка, способ оплаты, согласие)
+    const { sumOfItems } = useSelector(basketSelector);
 
 
     const handleNextStage = () => {
         console.log(dataInfo, 'dataInfo')
-        navigate("/basket-approval")
+        navigate("/basket/order/approval")
     }
 
 
@@ -36,7 +39,7 @@ const BasketOrder = () => {
                         </div>
                         <div className={styles.info__box}>
                             <p className={styles.info__text}>Итого к оплате</p>
-                            <p className={styles.info__text}>22 600 руб.</p>
+                            <p className={styles.info__text}>{sumOfItems} руб.</p>
                         </div>
                         <div className={styles.info__line} />
                         <div className={styles.info__bottom}>

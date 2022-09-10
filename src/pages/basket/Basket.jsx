@@ -5,25 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../scss/modules/basket.module.scss";
 import { arraySelector } from '../../redux/basket/arrayOfCards';
+import { productSelector } from '../../redux/product/productSlice';
 import { statusSelector } from '../../redux/basket/btnStatus';
+import { basketSelector } from '../../redux/basket/basketSlice';
 import { formDataSelector } from '../../redux/basket/basketFormInfo';
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { positive } from "../../redux/basket/btnStatus";
 import { negative } from "../../redux/basket/btnStatus";
+import { getPriceItem } from "../../redux/basket/basketSlice";
+import { isTemplateMiddle } from "typescript";
 
 const Basket = () => {
     const navigate = useNavigate();
-    const { data } = useSelector(arraySelector);
+    const { dataBasketItems } = useSelector(productSelector);
     const { status } = useSelector(statusSelector);
-    const { formData } = useSelector(formDataSelector); 
+    const { sumOfItems } = useSelector(basketSelector);
     const { register, handleSubmit } = useForm();
     const [dataInfo, setDataInfo] = useState(""); // информация с формы(доставка, способ оплаты, согласие)
     const dispatch = useDispatch();
 
     const handleNextStage = () => {
         dispatch(positive(dataInfo));
-        navigate("/basket-order");
+        navigate("/basket/order");
     }
 
     const handleChangeStatus = (e) => {
@@ -34,23 +38,37 @@ const Basket = () => {
         }
     }
 
+    useEffect(() => {
+        console.log(dataBasketItems,'dataBasketItems')
+        if (dataBasketItems.length > 0) {
+            dispatch(getPriceItem(dataBasketItems))
+        }
+    }, [dataBasketItems, dispatch])
+
+    useEffect(() => {
+        console.log(sumOfItems, '[[[[[')
+    }, [sumOfItems])
+
     return (
         <div>
             <BasketNavigation bgcolor={{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }} />
             <div className={styles.basket}>
                 <div className={styles.basket__container}>
                     {
-                        data ? (
-                            data.map((item, index) => (
+                        dataBasketItems ? (
+                            dataBasketItems.map((item, index) => (
                                 <Card
                                     key={index}
-                                    name={item.name}
-                                    price={item.price}
-                                    benefit={item.benefit}
-                                    articul={item.articul}
-                                    img={item.img}
+                                    item={item}
                                     id={item.id}
-                                    count={item.count}
+                                    title={item.title}
+                                    price={item.price}
+                                    oldPrice={item.oldPrice}
+                                    image={item.image}
+                                    specs={item.specs}
+                                    color={item.color}
+                                    article={item.article}
+                                    count={1}
                                 />
                             ))
                         ) :
@@ -86,7 +104,7 @@ const Basket = () => {
                         <div className={styles.menu__line} />
                         <div className={styles.menu__price}>
                             <p className={styles.menu__title}>Итого:</p>
-                            <p className={styles.menu__title}>22 600 руб.</p>
+                            <p className={styles.menu__title}>{sumOfItems} руб.</p>
                         </div>
                         <p className={styles.menu__text}>Стоимость указана без учета доставки</p>
                         <div className={styles.menu__line} />
