@@ -5,7 +5,6 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 
 const PopupTemplate = ({children, status, handleClose}) => {
     const dispatch = useDispatch()
-    const {width, height} = useWindowSize()
     const handleClosePopup = () => {
         dispatch(handleClose())
     }

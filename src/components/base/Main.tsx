@@ -4,9 +4,6 @@ import {Routes, Route} from "react-router-dom";
 import {Home, Product, Basket, BasketOrder, BasketApproval, Favorite} from "../../pages/index"
 import AlertBar from "../alertBar/AlertBar";
 import AuthorsPopup from "../popups/AuthorsPopup";
-import PopupTemplate from "../popups/PopupTemplate";
-import {useSelector} from "react-redux";
-import {otherSelector, closeAuthorsPopup} from "../../redux/other/otherSlice";
 
 const Main: React.FC = () => {
 
@@ -16,6 +13,7 @@ const Main: React.FC = () => {
                 <div>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
+                        <Route path="/arco-furniture" element={<Home/>}/>
                         <Route path="/product/:productId" element={<Product/>}/>
                         <Route path="/favorite" element={<Favorite/>}/>
                         <Route path="/basket" element={<Basket/>}/>

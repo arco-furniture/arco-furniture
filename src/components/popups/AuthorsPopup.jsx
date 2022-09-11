@@ -24,9 +24,9 @@ const AuthorsPopup = () => {
 
     return (
         <Confetti
-            width={width}
+            width={width - 25}
             height={height}
-            style={{zIndex: '10000'}}
+            style={{zIndex: '10000', margin: '0 auto'}}
             numberOfPieces={statusAuthorsPopup ? 150 : 0}
             recycle={statusAuthorsPopup}
             gravity={0.07}
