@@ -58,7 +58,6 @@ const AuthorsPopup = () => {
                                                 icon={<GitHubIcon/>}
                                                 label={item.name}
                                                 variant="outlined"
-                                                onClick={() => console.log('asd')}
                                             />
                                         </a>
                                     )
