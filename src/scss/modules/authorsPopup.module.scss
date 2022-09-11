@@ -2,26 +2,9 @@
 @import "../mixins";
 
 .popup {
-    display: none;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-
     &__container {
         @include flex-column;
         align-items: center;
-        padding: 25px;
-        box-sizing: border-box;
-        width: 626px;
-        height: 652px;
-        border-radius: 11px;
-        background-color: #fff;
     }
 
     &__title {
@@ -43,42 +26,22 @@
     }
 
     &__img {
-        width: 500px;
-        height: 400px;
+        width: 600px;
     }
 
     &__bottom {
-        display: flex;
-        margin-top: 18px;
+        @include flex-center-between;
+        gap: 15px;
+        margin-top: 25px;
     }
 
-    &__box {
-        padding: 0 13px;
-        margin-right: 17px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        width: 178.43px;
-        height: 36px;
-        background: #FFFFFF;
-        border: 1px solid #4675CE;
-        border-radius: 18px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-
-    &__logo {
-        width: 19.66px;
-        height: 21.14px;
-    }
 
     &__name {
-        @include text-format(400, 18px, 23px);
-        color: #000000;
-        @include reset;
-        margin-left: 8px;
+        text-decoration: none;
+        color: $mainBlack;
+        span {
+            color: $mainBlack;
+        }
     }
 
     &_none {
