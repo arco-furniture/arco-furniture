@@ -1,146 +1,149 @@
-import { Typography, Box, RadioGroup, FormControlLabel, Radio, Checkbox, Button } from "@mui/material";
-import Card from './components/Card';
+import {RadioGroup, FormControlLabel, Radio, Checkbox, Button} from "@mui/material";
 import BasketNavigation from './components/BasketNavigation';
-import { useNavigate } from "react-router-dom";
-
-const titleStyle = {
-    fontFamily: 'PT Sans',
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: '18px',
-    lineHeight: '23px',
-    color: '#414141',
-};
-
-const checkBoxContentStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    mt: '25px',
-    mb: '15.5px'
-};
-
-const lineStyle = {
-    width: '100%',
-    height: '1px',
-    bgcolor: '#E2E2E2'
-};
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import styles from "../../scss/modules/basket/basket.module.scss";
+import {basketSelector} from '../../redux/basket/basketSlice';
+import {useForm} from "react-hook-form";
+import {useState} from 'react';
+import {getPriceWithFormat} from "../../utils/getPriceWithFormat";
+import BasketStepper from "./components/BasketStepper";
+import BasketItem from "./components/BasketItem";
 
 const Basket = () => {
     const navigate = useNavigate();
+    const {dataBasketItems, totalPrice} = useSelector(basketSelector);
+    // const {status} = useSelector(statusSelector);
+    const {register, handleSubmit} = useForm();
+    const [dataInfo, setDataInfo] = useState(""); // информация с формы(доставка, способ оплаты, согласие)
+    const dispatch = useDispatch();
 
-    const handleNextStage = () => {
-        navigate("/basket-order")
-    }
+    // const handleNextStage = () => {
+    //     dispatch(positive(dataInfo));
+    //     navigate("/basket/order");
+    // }
+
+    // const handleChangeStatus = (e) => {
+    //     if (e.target.checked === true) {
+    //         dispatch(positive());
+    //     } else {
+    //         dispatch(negative());
+    //     }
+    // }
+
+    // у тебя не идет подсчет суммы, пока не создаться сам компонент Basket.
+    // useEffect будет вызываться при каждом заходе в корзину, каждый раз изменяя сумму.
+
+    // Экшены корзины нужны только на onClick'и без useEffect'ов
+
+    // useEffect(() => {
+    //     console.log(dataBasketItems, 'dataBasketItems')
+    //     if (dataBasketItems.length > 0) {
+    //         dispatch(getPriceItem(dataBasketItems))
+    //     }
+    // }, [dataBasketItems, dispatch])
 
     return (
-        <Box>
-            <BasketNavigation bgcolor={{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }} />
-            <Box sx={{
-                display: 'flex',
-            }}>
-                <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                }}>
-                    <><Card /><Card /></>
-                </Box>
-                <Box sx={{
-                    width: '396px',
-                    bgcolor: '#FBFBFB',
-                    boxShadow: '2px 2px 10px 1px rgba(0, 0, 0, 0.1)',
-                    borderRadius: '5px',
-                    padding: '20px',
-                }}>
-                    <Typography sx={{
-                        ...titleStyle
-                    }}>Выберите способ доставки</Typography><Box sx={{
-                        ...checkBoxContentStyle
-                    }}>
-                        <RadioGroup
-                            row
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="same"
-                            name="radio-buttons-group"
+        <div>
+            {/* это прогрессБар из коробки mui, если хочешь, можешь настроить его вместо своей навигации */}
+            {/*<BasketStepper/>*/}
+            <BasketNavigation bgcolor={{1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)'}}/>
+            <div className={styles.basket}>
+                <div className={styles.basket__container}>
+                    {
+                        dataBasketItems?.map((item) => (
+                                <BasketItem
+                                    key={item.id}
+                                    item={item}
+                                    id={item.id}
+                                    title={item.title}
+                                    price={item.price}
+                                    oldPrice={item.oldPrice}
+                                    image={item.image}
+                                    specs={item.specs}
+                                    color={item.color}
+                                    article={item.article}
+                                />
+                            )
+                        )
+                    }
+                </div>
+                <div className={styles.menu}>
+                    <form onSubmit={handleSubmit((data) => setDataInfo(JSON.stringify(data)))}>
+                        <p className={styles.menu__title}>Выберите способ доставки</p>
+                        <div className={styles.menu__box}>
+                            <RadioGroup
+                                row
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="Самовывоз"
+                                name="radio-buttons-group"
+                            >
+                                <FormControlLabel
+                                    {...register("delivery")}
+                                    value="Самовывоз"
+                                    control={<Radio/>}
+                                    label="Самовывоз"
+                                />
+                                <FormControlLabel
+                                    {...register("delivery")}
+                                    value="Доставка"
+                                    control={<Radio/>}
+                                    label="Доставка"
+                                />
+                            </RadioGroup>
+                        </div>
+                        <p className={styles.menu__title}>Выберите способ оплаты</p>
+                        <div className={styles.menu__box}>
+                            <RadioGroup
+                                row
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="cash"
+                                name="radio-buttons-group"
+                            >
+                                <FormControlLabel
+                                    {...register("payment")}
+                                    value="cash"
+                                    control={<Radio/>}
+                                    label="Наличные"
+                                />
+                                <FormControlLabel
+                                    {...register("payment")}
+                                    value="card"
+                                    control={<Radio/>}
+                                    label="Оплата картой"
+                                />
+                            </RadioGroup>
+                        </div>
+                        <div className={styles.menu__line}/>
+                        <div className={styles.menu__price}>
+                            <p className={styles.menu__title}>Итого:</p>
+                            <p className={styles.menu__title}>{getPriceWithFormat(totalPrice)} &#8381;</p>
+                        </div>
+                        <p className={styles.menu__text}>Стоимость указана без учета доставки</p>
+                        <div className={styles.menu__line}/>
+                        <div style={{display: 'flex', alignItems: 'start'}}>
+                            <Checkbox
+                                {...register("checkBox")}
+                                id="checkBox"
+                                // onChange={(e) => handleChangeStatus(e)}
+                            />
+                            <p className={styles.menu__text} style={{width: '327px'}}>Я подтверждаю, что я ознакомлен и
+                                согласен с условиями политики обработки персональных данных.</p>
+                        </div>
+                        <Button
+                            type="submit"
+                            className={styles.menu__button}
+                            variant="contained"
+                            // onClick={handleNextStage}
                         >
-                            <FormControlLabel value="same" control={<Radio />} label="Самовывоз" />
-                            <FormControlLabel value="delivery" control={<Radio />} label="Доставка" />
-                        </RadioGroup>
-                    </Box><Typography sx={{
-                        ...titleStyle
-                    }}>Выберите способ оплаты</Typography><Box sx={{
-                        ...checkBoxContentStyle
-                    }}>
-                        <RadioGroup
-                            row
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="cash"
-                            name="radio-buttons-group"
-                        >
-                            <FormControlLabel value="cash" control={<Radio />} label="Наличные" />
-                            <FormControlLabel value="card" control={<Radio />} label="Оплата картой" />
-                        </RadioGroup>
-                    </Box><Box sx={{
-                        ...lineStyle
-                    }} /><Box sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        mt: '15px'
-                    }}>
-                        <Typography sx={{
-                            ...titleStyle,
-                        }}>Итого:</Typography>
-
-                        <Typography sx={{
-                            ...titleStyle,
-                        }}>22 600 руб.</Typography>
-                    </Box><Typography sx={{
-                        fontFamily: 'PT Sans',
-                        fontStyle: 'normal',
-                        fontWeight: '400',
-                        fontSize: '14px',
-                        lineHeight: '18px',
-                        color: '#626262',
-                        mt: '2px'
-                    }}>Стоимость указана без учета доставки</Typography><Box sx={{
-                        ...lineStyle,
-                        mt: '34px',
-                        mb: '27px'
-                    }} /><Box sx={{
-                        display: 'flex',
-                        alignItems: 'start',
-                    }}>
-                        <Checkbox id="checkBox" />
-                        <Typography sx={{
-                            fontFamily: 'PT Sans',
-                            fontStyle: 'normal',
-                            fontWeight: '400',
-                            fontSize: '14px',
-                            lineHeight: '18px',
-                            color: '#626262',
-                            width: '327px',
-                        }}>Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.</Typography>
-                    </Box><Button sx={{
-                        bgcolor: '#4675CE',
-                        color: 'white',
-                        mt: '36px',
-                        width: '100%',
-                        height: '50px',
-                        fontFamily: 'PT Sans',
-                        fontStyle: 'normal',
-                        fontWeight: '700',
-                        fontSize: '26px',
-                        lineHeight: '34px',
-                        textTransform: 'uppercase',
-                    }}
-                        className='btn'
-                        variant="contained"
-                        onClick={handleNextStage}
-                    >Продолжить</Button>
-                </Box>
-            </Box>
-        </Box >
+                            Продолжить
+                        </Button>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 
 export default Basket;
+

@@ -5,7 +5,6 @@
   width: 100%;
   max-width: 1180px;
   @include flex-column;
-  margin-bottom: 100px;
 
   &__sort {
     @include reset-list;

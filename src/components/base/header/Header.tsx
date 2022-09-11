@@ -1,15 +1,13 @@
 import React from "react"
-import TopOfHeader from "./TopOfHeader";
-import BasicTabs from "./TabPanel";
-import MiddleOfHeader from "./MiddleOfHeader";
+import {HeaderMiddle, HeaderTop, HeaderNav} from "./index";
 
 const Header: React.FC = () => {
     return (
         <header className="header">
             <div className="header__wrapper">
-                <TopOfHeader/>
-                <MiddleOfHeader/>
-                <BasicTabs/>
+                <HeaderTop/>
+                <HeaderMiddle/>
+                <HeaderNav/>
             </div>
         </header>
     )

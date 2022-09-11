@@ -1,0 +1,31 @@
+@import "../../variables";
+@import "../../mixins";
+
+.navigation {
+
+    &__container {
+        @include flex-center;
+        gap: 20px;
+    }
+
+    &__circle {
+        border-radius: 50%;
+        @include flex-center-center;
+        color: white;
+        width: 24px;
+        height: 24px;
+        margin-left: 9px;
+        @include text-format(400, 14px, 21px);
+    }
+
+    &__wrapper {
+        @include flex-center-between;
+    }
+
+    &__line {
+        background-color: #555555;
+        width: 153px;
+        height: 1px;
+        margin-left: 9px;
+    }
+}

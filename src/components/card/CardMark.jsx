@@ -4,7 +4,6 @@ const CardMark = ({mark}) => {
     const markColors = [{top: '#E13B3F'}, {new: '#4675CE'}, {discount: '#5AB45E'}, {eco: '#9d6e3d'}]
     const markLabels = [{top: 'top'}, {new: 'new'}, {discount: '%'}, {eco: 'eco'}]
 
-
     const handleColorMark = (mark) => {
         const findMark = markColors.find(item => Object.keys(item).join() === mark)
         if (findMark && Object.keys(findMark).join() === mark) {
