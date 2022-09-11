@@ -82,7 +82,7 @@
 
   &__title {
     @include reset;
-    font-size: 14px;
+    @include text-format(400, 14px, 21px);
     padding: 12px 0;
     text-align: start;
     color: $secondBlack;
@@ -100,16 +100,12 @@
     p {
       @include reset;
       opacity: 0.2;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 21px;
+      @include text-format(700, 16px, 21px);
     }
 
     em {
       @include reset;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 26px;
+      @include text-format(700, 20px, 26px);
       font-style: normal;
     }
   }

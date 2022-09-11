@@ -1,8 +1,9 @@
 import React from "react"
 import styles from "../../scss/modules/main.module.scss";
 import { Routes, Route } from "react-router-dom";
-import { Home, Product, Basket, BasketOrder, BasketApproval, Favorite } from "../../pages/index"
+import {Home, Product, Basket, BasketOrder, BasketApproval, Favorite} from "../../pages/index"
 import AlertBar from "../alertBar/AlertBar";
+import AuthorsPopup from "../AuthorsPopup/AuthorsPopup";
 
 const Main: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const Main: React.FC = () => {
                 </div>
             </div>
             <AlertBar/>
+            <AuthorsPopup/>
         </main>
     )
 }

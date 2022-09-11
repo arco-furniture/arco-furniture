@@ -1,23 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { findColor } from "../../utils/findColor"
 
 const initialState = {
-    sumOfItems: 0,
+    totalPrice: 0,
+    dataBasketItems: []
 }
 
 export const basketSlice = createSlice({
-    name: 'sumOfItems',
+    name: 'basket',
     initialState,
     reducers: {
+
         getPriceItem(state, action) {
             action.payload.map(item => {
-                state.sumOfItems = state.sumOfItems + item.price / 2;
+                state.totalPrice = state.totalPrice + item.price / 2;
             })
-
+        },
+        addItemForCart(state, action) {
+            state.dataBasketItems = [...state.dataBasketItems, action.payload]
+        },
+        removeItemForCart(state, action) {
+            state.dataBasketItems = state.dataBasketItems.filter(item => item.id !== action.payload)
         },
     },
 })
 
-export const { getPriceItem } = basketSlice.actions;
+export const { getPriceItem, addItemForCart, removeItemForCart } = basketSlice.actions;
 export const basketSelector = (state) => state.basketReducer
 export default basketSlice.reducer;

@@ -4,7 +4,6 @@ import { findColor } from "../../utils/findColor"
 const initialState = {
     product: {},
     currentColor: {},
-    dataBasketItems: []
 }
 
 export const productSlice = createSlice({
@@ -19,12 +18,6 @@ export const productSlice = createSlice({
         },
         setCurrentColor(state, action) {
             state.currentColor = action.payload
-        },
-        addItemForCart(state, action) {
-            state.dataBasketItems = [...state.dataBasketItems, action.payload]
-        },
-        removeItemForCart(state, action) {
-            state.dataBasketItems = state.dataBasketItems.filter(item => item.id !== action.payload) 
         },
     },
 })

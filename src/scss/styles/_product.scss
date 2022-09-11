@@ -3,7 +3,6 @@
 
 .product {
   width: 100%;
-  margin-bottom: 100px;
 
   &__wrapper {
     @include reset-list;
@@ -84,9 +83,7 @@
     @include flex-column;
     align-items: flex-start;
     position: relative;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
+    @include text-format(400, 16px, 21px);
     color: #999999;
   }
   &__old-price {
@@ -94,16 +91,13 @@
     @include reset;
     top: -20px;
     right: -30px;
-    font-size: 16px;
-    line-height: 21px;
+    @include text-format(400, 16px, 21px);
     color: #999999;
   }
 
   &__price {
     @include reset;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 34px;
+    @include text-format(700, 26px, 34px);
     color: #414141;
     font-style: normal;
   }
@@ -137,23 +131,18 @@
 
   &__title {
     @include reset;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
+    @include text-format(400, 16px, 21px);
   }
 
   &__description {
 
     span{
-      font-size: 18px;
-      font-weight: 700;
+      @include text-format(700, 18px, 24px);
     }
 
     p {
       @include reset;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 25px;
+      @include text-format(400, 16px, 25px);
       color: #555555;
     }
   }
@@ -188,9 +177,7 @@
       gap: 5px;
 
       li {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 23px;
+        @include text-format(400, 16px, 23px);
         color: #414141;
       }
     }

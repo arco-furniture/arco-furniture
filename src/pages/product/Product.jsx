@@ -1,10 +1,7 @@
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {productSelector} from "../../redux/product/productSlice";
-import ProductParams from "./ProductParams";
-import ProductSpecs from "./ProductSpecs";
-import ProductSlides from "./ProductSlides";
-import ProductPreview from "./ProductPreview";
+import {ProductParams, ProductSpecs, ProductSlides, ProductPreview} from "./index"
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);

@@ -24,13 +24,15 @@
   }
 
   &__place {
-    display: flex;
-    flex-direction: row;
+    @include flex-center;
+    border: none;
+    background-color: inherit;
+    gap: 5px;
+    @include flex-center-between;
   }
 
   &__place_city {
-    margin: 0 6px 0 15px;
-    padding: 0;
+    @include reset;
     @include text-format (700, 16px, 23px);
     color: $blue;
   }
@@ -49,7 +51,8 @@
   }
 
   &__nav {
-    display: flex;
+    @include flex-center-between;
+    gap: 20px;
     list-style: none;
     margin: 0 0 0 35px;
     padding: 0;
@@ -68,17 +71,23 @@
 
   &__nav_item {
     @include text-format (400, 14px, 21px);
-  }
+    text-decoration: none;
+    color: $mainBlack;
+    transition: color ease-in-out 0.2s;
 
-  &__nav_item:nth-of-type(2) {
-    margin: 0 38px;
+    &:hover {
+      color: $blue;
+    }
   }
 
   &__phone {
-    display: flex;
-    flex-direction: row;
-    align-self: flex-end;
+    @include flex-center-between;
     cursor: pointer;
+  }
+
+  &__phone-author {
+    @include flex-center-between;
+    gap: 40px;
   }
 
   &__phone_number {
@@ -134,7 +143,7 @@
 
     &:hover{
       cursor: pointer;
-      color: #FFFFFF;
+      color: $white;
     }
     &_active{
       background-color: rgba(255, 255, 255, 0.2);

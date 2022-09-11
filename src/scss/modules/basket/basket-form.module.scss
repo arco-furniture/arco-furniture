@@ -1,3 +1,6 @@
+@import "../../variables";
+@import "../../mixins";
+
 .form {
     background-color: #FBFBFB;
     box-shadow: 2px 10px 1px rgba(0, 0, 0, 0.1);
@@ -5,15 +8,13 @@
     padding: 40px 22px 40px 22px;
     margin-right: 32px;
 
-    .form__box {
+    &__box {
         display: flex;
     }
 
-    .form__title {
+    &__title {
         margin-bottom: 49px;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 23px;
+        @include text-format(700, 18px, 23px);
         color: #414141;
     }
 }

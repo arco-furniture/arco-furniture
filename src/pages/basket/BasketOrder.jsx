@@ -2,11 +2,12 @@ import { Switch, Button } from "@mui/material";
 import Form from './components/Form';
 import { useNavigate } from "react-router-dom";
 import BasketNavigation from './components/BasketNavigation';
-import styles from "../../scss/modules/basket-order.module.scss";
+import styles from "../../scss/modules/basket/basket-order.module.scss";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import { basketSelector } from '../../redux/basket/basketSlice';
 import { useDispatch, useSelector } from "react-redux";
+import {getPriceWithFormat} from "../../utils/getPriceWithFormat";
 
 
 const BasketOrder = () => {
@@ -31,20 +32,20 @@ const BasketOrder = () => {
                     <div className={styles.info}>
                         <div className={styles.info__box}>
                             <p className={styles.info__text}>Стоимость без скидки</p>
-                            <p className={styles.info__text}>24 900 руб.</p>
+                            <p className={styles.info__text}>{getPriceWithFormat(24900)} &#8381;</p>
                         </div>
                         <div className={styles.info__box}>
                             <p className={styles.info__text}>Экономия</p>
-                            <p className={styles.info__text}>87 900 руб.</p>
+                            <p className={styles.info__text}>{getPriceWithFormat(87900)} &#8381;</p>
                         </div>
                         <div className={styles.info__box}>
                             <p className={styles.info__text}>Итого к оплате</p>
-                            <p className={styles.info__text}>{sumOfItems} руб.</p>
+                            <p className={styles.info__text}>{getPriceWithFormat(sumOfItems)} &#8381;</p>
                         </div>
                         <div className={styles.info__line} />
                         <div className={styles.info__bottom}>
                             <p>
-                                Сборка 2 193 ₽
+                                Сборка {getPriceWithFormat(2193)} &#8381;
                             </p>
                             <Switch {...register("Switch")} defaultChecked />
                         </div>

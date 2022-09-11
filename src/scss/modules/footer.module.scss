@@ -2,6 +2,7 @@
 @import "../mixins";
 
 .footer {
+  margin-top: 200px; // потом убрать
   flex: 0 0 auto;
   height: 140px;
   background-color: $blue;

@@ -2,7 +2,7 @@ import styles from "../../scss/modules/basket-popup.module.scss";
 import img from '../../images/Artboard.svg';
 import popLog from '../../images/poplog.svg';
 
-const BasketPopUp = () => {
+const BasketPopup = () => {
 
     const handleClosePopup = (e) => {
         if (e.target.id === 'popup') {
@@ -36,4 +36,4 @@ const BasketPopUp = () => {
     )
 }
 
-export default BasketPopUp;
+export default BasketPopup;

@@ -5,7 +5,8 @@ const initialState = {
     alert: {
         message: '',
         type: '',
-    }
+    },
+    statusAuthorsPopup: false,
 }
 
 export const otherSlice = createSlice({
@@ -19,9 +20,15 @@ export const otherSlice = createSlice({
         closeAlertBar(state) {
             state.statusAlert = false;
         },
+        openAuthorsPopup(state) {
+            state.statusAuthorsPopup = true;
+        },
+        closeAuthorsPopup(state) {
+            state.statusAuthorsPopup = false;
+        },
     },
 })
 
-export const { openAlertBar, closeAlertBar } = otherSlice.actions;
+export const { openAlertBar, closeAlertBar, openAuthorsPopup, closeAuthorsPopup } = otherSlice.actions;
 export const otherSelector = (state) => state.otherReducer
 export default otherSlice.reducer;

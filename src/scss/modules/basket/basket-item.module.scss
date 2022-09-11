@@ -1,0 +1,90 @@
+@import "../../variables";
+@import "../../mixins";
+
+.item {
+    display: flex;
+    background-color: #FBFBFB;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    &__container {
+        padding: 15px 15px 15px 33px;
+        @include flex-center-between;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    &__box {
+        @include flex-center-between;
+    }
+
+    &__contain {
+        height: 100%;
+        @include flex-column;
+        justify-content: space-between;
+    }
+
+    &__title {
+        @include reset;
+        @include text-format(700, 16px, 23px);
+        color: #414141;
+    }
+
+    &__color {
+        width: 15.8px;
+        height: 15.8px;
+        background-color: #2D2D2D;
+        border-radius: 2px;
+    }
+
+    &__button_count {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__artical {
+        @include reset;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    &__text {
+        @include text-format(400, 14px, 18px);
+        margin: 0 5px 0 0;
+        color: #555555;
+    }
+
+    &__price {
+        @include text-format(400, 14px, 18px);
+        @include reset;
+        margin-right: 10px;
+        color: rgba(65, 65, 65, 0.2);
+        text-decoration: line-through;
+        white-space: nowrap;
+    }
+
+    &__new {
+        @include text-format(700, 16px, 21px);
+        @include reset;
+        margin-right: 10px;
+        color: #414141;
+        white-space: nowrap;
+    }
+
+    &__prof {
+        @include text-format(400, 16px, 21px);
+        margin-top: 2.75px;
+        color: #4675CE;
+        text-align: right;
+    }
+
+    &__close {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

@@ -1,28 +1,21 @@
 import React from "react";
-import logo from "../../images/logo-black.svg";
+import logo from "../../../images/logo-black.svg";
 import {Badge} from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {Link} from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PermIdentitySharpIcon from "@mui/icons-material/PermIdentitySharp";
-import InputWithIcon from "./HeaderInput";
+import Search from "./components/Search";
 import {useSelector} from "react-redux";
-import {homeSelector} from "../../redux/home/homeSlice";
-import {arraySelector} from "../../redux/basket/arrayOfCards";
+import {homeSelector} from "../../../redux/home/homeSlice";
+import {basketSelector} from "../../../redux/basket/basketSlice";
+import {getPriceWithFormat} from "../../../utils/getPriceWithFormat";
 
-const MiddleOfHeader = () => {
+const HeaderMiddle = () => {
     const [search, setSearch] = React.useState("");
     const {favoriteData} = useSelector(homeSelector)
-    const {data} = useSelector(arraySelector)
-
-    function handleSearchChange(e) {
-        setSearch(e.target.value);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        // props.handlesearch(search);
-    }
+    const {dataBasketItems, totalPrice} = useSelector(basketSelector);
+    const badgeCartPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина';
 
     return (
         <div className="header__middle">
@@ -30,7 +23,7 @@ const MiddleOfHeader = () => {
                 <Link to="/">
                     <img src={logo} alt="Логотип" className="header__logo"/>
                 </Link>
-                <InputWithIcon />
+                <Search />
                 <div className="header__middle-nav-content">
                     <Link to="/" className="header__middle-item">
                         <PermIdentitySharpIcon color="primary"/>
@@ -43,14 +36,16 @@ const MiddleOfHeader = () => {
                         <span className="header__middle-item-span">Избранное</span>
                     </Link>
                     <Link to="/basket" className="header__middle-item">
-                        <Badge badgeContent={data.length} color="error">
+                        <Badge badgeContent={dataBasketItems.length} color="error">
                             <ShoppingCartOutlinedIcon color="primary"/>
                         </Badge>
-                        <span className="header__middle-item-span">Корзина</span>
+                        <span className="header__middle-item-span">
+                            {badgeCartPrice}
+                        </span>
                     </Link>
                 </div>
             </div>
         </div>
     );
 };
-export default MiddleOfHeader;
+export default HeaderMiddle;

@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import styles from "../../../scss/modules/basket-form.module.scss";
+import styles from "../../../scss/modules/basket/basket-form.module.scss";
 
 const inputStyle = {
     width: '340px'

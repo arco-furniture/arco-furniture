@@ -9,7 +9,7 @@ import {getPriceWithFormat} from "../../utils/getPriceWithFormat";
 import {openAlertBar} from "../../redux/other/otherSlice";
 import BlackTooltip from "../../components/BlackTooltip/BlackTooltip";
 import {deleteFavoriteItem, homeSelector, postFavoriteItem} from "../../redux/home/homeSlice";
-import { addItemForCart } from "../../redux/product/productSlice";
+import { addItemForCart } from "../../redux/basket/basketSlice";
 
 const ProductParams = () => {
     const styleSubmit = {fontSize: '18px', fontWeight: 700};
@@ -69,7 +69,6 @@ const ProductParams = () => {
             type: 'cart'
         }))
 
-        // пример экшена для отправки данных в корзину
         dispatch(addItemForCart(cartItem))
     }
 

@@ -30,10 +30,6 @@ const Card = ({item}) => {
         dispatch(getFirstColor(item.colors))
     }
 
-    // придется немного покопипастить в Card и Product,
-    // так как тут много манипуляций с диспатчем,
-    // а использовать хуки вне jsx нельзя.
-    // С добавлением TS перепишу в более мобильный вариант
     const handleIsFavorite = () => {
         if (!isFavorite) {
             dispatch(postFavoriteItem(item))

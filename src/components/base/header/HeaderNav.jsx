@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import initialTabs from "../../utils/constants";
+import initialTabs from "../../../utils/constants";
 import {Button} from "@mui/material";
 
-export default function TabPanel(props) {
+const HeaderNav = () => {
   const location = useLocation();
+
   function isActive(path) {
     return location.pathname === "/" + path;
   }
+
   return (
     <div className="header__tabs">
       <div className="header__content">
@@ -32,3 +34,5 @@ export default function TabPanel(props) {
     </div>
   );
 }
+
+export default HeaderNav;
