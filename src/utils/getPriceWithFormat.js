@@ -1,3 +1,3 @@
 export const getPriceWithFormat = (value) => {
-    return parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1 ");
+    return parseFloat(value).toFixed(0).replace(/\B(?=(?:\d{3})*$)/g, ' ');
 }

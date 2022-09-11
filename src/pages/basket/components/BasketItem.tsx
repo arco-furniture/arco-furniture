@@ -1,46 +1,61 @@
 import React from "react"
 import img from '../../../images/card-img.svg';
-import {Checkbox} from "@mui/material";
+import { Checkbox } from "@mui/material";
 import styles from "../../../scss/modules/basket/basket-item.module.scss";
-import {useDispatch} from "react-redux";
-import {removeItemForCart} from "../../../redux/product/productSlice";
-import {getPriceWithFormat} from "../../../utils/getPriceWithFormat";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemForCart } from "../../../redux/basket/basketSlice";
+import { getPriceWithFormat } from "../../../utils/getPriceWithFormat";
 import Button from '@mui/material/Button';
-import {ButtonGroup} from '@mui/material';
+import { ButtonGroup } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
+import { basketSelector } from '../../../redux/basket/basketSlice';
+import { moreCoutItem } from "../../../redux/basket/basketSlice";
+import { lessCoutItem } from "../../../redux/basket/basketSlice";
 
 const BasketItem: React.FC = (item: any) => {
     const dispatch = useDispatch();
-    const stylesCountButtons = {border: '1px solid #D9D9D9', minWidth: '26px', padding: '0'}
-    const stylesCountButtonLeft = {...stylesCountButtons, borderRight: 'solid 0 #D9D9D9'}
-    const stylesCountButtonRight = {...stylesCountButtons, borderLeft: 'solid 0 #D9D9D9'}
+    const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
+    const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
+    const stylesCountButtonRight = { ...stylesCountButtons, borderLeft: 'solid 0 #D9D9D9' }
+    const { countItems } = useSelector(basketSelector);
 
     const handleRemoveCard = (item: any) => {
-        dispatch(removeItemForCart(item.id));
+        dispatch(removeItemForCart(item));
     }
 
     return (
         <div className={styles.item}>
-            <img src={item.image} alt='img' style={{width: '188px'}}/>
+            <img src={item.image} alt='img' style={{ width: '188px' }} />
             <div className={styles.item__container}>
-                <div>
+                <div className={styles.item__left}>
                     <div className={styles.item__box}>
-                        <Checkbox defaultChecked/>
+                        <Checkbox sx={{
+                            width: '15px',
+                            height: '15px',
+                        }}
+                            defaultChecked />
                         <p className={styles.item__title}>{item.title}</p>
                     </div>
-                    <div className={styles.item__box} style={{marginTop: '37px'}}>
-                        <p className={styles.item__text}>Цвет:</p>
-                        <div className={styles.item__color}/>
+                    <div>
+                        <div className={styles.item__box} style={{ marginTop: '37px' }}>
+                            <p className={styles.item__text}>Цвет:</p>
+                            <div className={styles.item__color} />
+                        </div>
+                        <p className={styles.item__text}>Характеристики товара</p>
                     </div>
-                    <p className={styles.item__text}>Характеристики товара</p>
                 </div>
-                <ButtonGroup size="small" variant="outlined">
+                <ButtonGroup sx={{
+                    mt: '12px'
+                }}
+                    size="small"
+                    variant="outlined">
                     <Button
                         className={styles.item__button_count}
                         style={stylesCountButtonLeft}
-                    ><RemoveIcon/>
+                        onClick={() => { dispatch(lessCoutItem(item)) }}
+                    ><RemoveIcon />
                     </Button>
                     <Button style={{
                         borderLeft: 'solid 0 #D9D9D9',
@@ -49,23 +64,26 @@ const BasketItem: React.FC = (item: any) => {
                         fontSize: '14px',
                         padding: '0'
                     }} disabled>
-                        1
+                        {item.item.count}
                     </Button>
                     <Button
                         className={styles.item__button_count}
                         style={stylesCountButtonRight}
                         size="small"
-                    ><AddIcon/>
+                        onClick={() => { dispatch(moreCoutItem(item)) }}
+                    ><AddIcon />
                     </Button>
                 </ButtonGroup>
                 <div className={styles.item__contain}>
-                    <div className={styles.item__box}>
-                        <p className={styles.item__price}>{getPriceWithFormat(item.oldPrice)} &#8381;</p>
-                        <p className={styles.item__new}>{getPriceWithFormat(item.price)} &#8381;</p>
+                    <div>
+                        <div style={{ justifyContent: 'space-between' }} className={styles.item__box}>
+                            <p className={styles.item__price}>{getPriceWithFormat(item.item.count * item.oldPrice)} &#8381;</p>
+                            <p className={styles.item__new}>{getPriceWithFormat(item.item.count * item.price)} &#8381;</p>
+                        </div>
+                        <p className={styles.item__prof}>выгода {getPriceWithFormat(item.oldPrice - item.price)} </p>
                     </div>
-                    <p className={styles.item__prof}>выгода {getPriceWithFormat(item.oldPrice - item.price)} </p>
                     <div className={styles.item__box}>
-                        <p className={styles.item__artical}>Артикул: {item.article}</p>
+                        <p style={{ marginRight: '15px' }} className={styles.item__artical}>Артикул: {item.article}</p>
                         <Button
                             className={styles.item__close}
                             onClick={() => handleRemoveCard(item)}
@@ -74,9 +92,10 @@ const BasketItem: React.FC = (item: any) => {
                                 minWidth: '22px',
                                 minHeight: '22px',
                                 padding: '0',
-                                border: '1px solid #D9D9D9'}}
+                                border: '1px solid #D9D9D9'
+                            }}
                         >
-                            <CloseIcon style={{color: '#D9D9D9'}}/>
+                            <CloseIcon style={{ color: '#D9D9D9' }} />
                         </Button>
                     </div>
                 </div>
