@@ -24,8 +24,8 @@ export const basketSlice = createSlice({
         removeItemForCart(state, action) {
             state.dataBasketItems = state.dataBasketItems.filter(item => item.id !== action.payload.id);
             state.totalPrice -= action.payload.item.count * action.payload.item.price;
-            state.totalOldPrice -= action.payload.item.oldPrice;
-            state.totalBenefit -= action.payload.item.oldPrice - action.payload.item.price;
+            state.totalBenefit -= (action.payload.oldPrice - action.payload.item.price) * action.payload.item.count;
+            state.totalOldPrice -= action.payload.oldPrice * action.payload.item.count;
         },
         moreCoutItem(state, action) {
             state.dataBasketItems.map(item => {

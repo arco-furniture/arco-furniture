@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { productSelector } from '../../redux/product/productSlice';
 import { basketSelector } from '../../redux/basket/basketSlice';
 import { getPriceWithFormat } from "../../utils/getPriceWithFormat";
+import tick from '../../images/tick.png';
 
 const BasketApproval = () => {
     const navigate = useNavigate();
@@ -19,8 +20,11 @@ const BasketApproval = () => {
     }
 
     const handleGetPromo = (e) => {
-        e.target.style.backgroundImage = 'none'
-        e.target.style.backgroundColor = '#56B16A'
+        // console.log(e.target.className = 'basket-approval_menu__btn2__jmjND')
+        e.target.className = 'basket-approval_menu__btn2__jmjND';
+        navigator.clipboard.writeText('ACRO10');
+        // e.target.style.backgroundImage = 'none'
+        // e.target.style.backgroundColor = '#56B16A'
     }
 
     return (

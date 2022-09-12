@@ -26,7 +26,7 @@ const Basket = () => {
     }
 
     const handleChangeStatus = (e) => {
-        // console.log(e.target.checked)
+        console.log(e.target.checked)
         dispatch(changeBasketBtnStatus(e.target.checked))
     }
 
@@ -118,12 +118,11 @@ const Basket = () => {
                                 согласен с условиями политики обработки персональных данных.</p>
                         </div>
                         <Button
-                            disabled={basketBtnStatus}
+                            disabled={dataBasketItems.length > 0 ? basketBtnStatus : true}
                             type="submit"
                             className={styles.menu__button}
                             variant="contained"
-                            onClick={handleNextStage}
-                        >
+                            onClick={handleNextStage}>
                             Продолжить
                         </Button>
                     </form>
