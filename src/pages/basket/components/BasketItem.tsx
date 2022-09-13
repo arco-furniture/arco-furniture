@@ -3,8 +3,9 @@ import img from '../../../images/card-img.svg';
 import { Checkbox } from "@mui/material";
 import styles from "../../../scss/modules/basket/basket-item.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItemForCart } from "../../../redux/basket/basketSlice";
+import { removeItemForBasket } from "../../../redux/basket/basketSlice";
 import { getPriceWithFormat } from "../../../utils/getPriceWithFormat";
+import { getBuyStatusItem } from "../../../redux/basket/basketSlice";
 import Button from '@mui/material/Button';
 import { ButtonGroup } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -22,7 +23,7 @@ const BasketItem: React.FC = (item: any) => {
     const { countItems } = useSelector(basketSelector);
 
     const handleRemoveCard = (item: any) => {
-        dispatch(removeItemForCart(item));
+        dispatch(removeItemForBasket(item));
     }
 
     return (
@@ -31,11 +32,14 @@ const BasketItem: React.FC = (item: any) => {
             <div className={styles.item__container}>
                 <div className={styles.item__left}>
                     <div className={styles.item__box}>
-                        <Checkbox sx={{
-                            width: '15px',
-                            height: '15px',
-                        }}
-                            defaultChecked />
+                        <Checkbox
+                            checked={item.item.active}
+                            onClick={()=>{dispatch(getBuyStatusItem(item))}}
+                            sx={{
+                                width: '15px',
+                                height: '15px',
+                                mr: '5px'
+                            }}/>
                         <p className={styles.item__title}>{item.title}</p>
                     </div>
                     <div>

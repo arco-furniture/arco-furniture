@@ -20,11 +20,10 @@ const BasketApproval = () => {
     }
 
     const handleGetPromo = (e) => {
-        // console.log(e.target.className = 'basket-approval_menu__btn2__jmjND')
-        e.target.className = 'basket-approval_menu__btn2__jmjND';
-        navigator.clipboard.writeText('ACRO10');
-        // e.target.style.backgroundImage = 'none'
-        // e.target.style.backgroundColor = '#56B16A'
+        if (e.target.id === 'btn') {
+            navigator.clipboard.writeText('ACRO10');
+            e.target.style.display = 'none'
+        }
     }
 
     return (
@@ -71,7 +70,11 @@ const BasketApproval = () => {
                         <div className={styles.menu__place}>ACRO10</div>
                         <button
                             onClick={(e) => { handleGetPromo(e) }}
-                            className={styles.menu__btn}></button>
+                            className={styles.menu__btn2}></button>
+                        <button
+                            onClick={(e) => { handleGetPromo(e) }}
+                            className={styles.menu__btn}
+                            id="btn"></button>
                     </div>
                     <TextField
                         sx={{ width: '340px', mr: '22px', }}
@@ -84,6 +87,7 @@ const BasketApproval = () => {
                         <p className={styles.menu__title}>{getPriceWithFormat(totalPrice)} &#8381;</p>
                     </div>
                     <Button
+                        disabled={dataBasketItems.length === 0 ? true : false}
                         sx={{
                             mt: '36px'
                         }}

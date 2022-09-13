@@ -14,18 +14,33 @@ export const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        addItemForCart(state, action) {
-            action.payload.count = 1;
-            state.dataBasketItems = [...state.dataBasketItems, action.payload];
-            state.totalPrice += action.payload.price;
-            state.totalOldPrice += action.payload.oldPrice;
-            state.totalBenefit += action.payload.oldPrice - action.payload.price;
+        addItemForBasket(state, action) {
+            let result = state.dataBasketItems.find(item => item.id === action.payload.id);
+            if (result) {
+                console.log(action.payload.count, 'уже есть')
+                let objIndex = state.dataBasketItems.findIndex((item => item.id == action.payload.id));
+                state.dataBasketItems[objIndex].count += 1
+                state.totalPrice += action.payload.price;
+            } else {
+                console.log('добавил')
+                action.payload.count = 1;
+                action.payload.active = true;
+                state.dataBasketItems = [...state.dataBasketItems, action.payload];
+                state.totalPrice += action.payload.price;
+                state.totalOldPrice += action.payload.oldPrice;
+                state.totalBenefit += action.payload.oldPrice - action.payload.price;
+            }
+
         },
-        removeItemForCart(state, action) {
+        removeItemForBasket(state, action) {
+            let objIndex = state.dataBasketItems.findIndex((item => item.id == action.payload.id));
+            if (state.dataBasketItems[objIndex].active) {
+                state.dataBasketItems = state.dataBasketItems.filter(item => item.id !== action.payload.id);
+                state.totalPrice -= action.payload.item.count * action.payload.item.price;
+                state.totalBenefit -= (action.payload.oldPrice - action.payload.item.price) * action.payload.item.count;
+                state.totalOldPrice -= action.payload.oldPrice * action.payload.item.count;
+            }
             state.dataBasketItems = state.dataBasketItems.filter(item => item.id !== action.payload.id);
-            state.totalPrice -= action.payload.item.count * action.payload.item.price;
-            state.totalBenefit -= (action.payload.oldPrice - action.payload.item.price) * action.payload.item.count;
-            state.totalOldPrice -= action.payload.oldPrice * action.payload.item.count;
         },
         moreCoutItem(state, action) {
             state.dataBasketItems.map(item => {
@@ -59,11 +74,21 @@ export const basketSlice = createSlice({
         },
         getBuyInfo(state, action) {
             state.dataBuyInfo = action.payload;
-            // console.log(action.payload, 'ВИТЯ ЖУК')
+        },
+        getBuyStatusItem(state, action) {
+            let objIndex = state.dataBasketItems.findIndex((item => item.id == action.payload.id));
+            state.dataBasketItems[objIndex].active = !state.dataBasketItems[objIndex].active
+            if (state.dataBasketItems[objIndex].active === false) {
+                state.totalPrice -= action.payload.price * action.payload.item.count;
+                state.totalOldPrice -= action.payload.oldPrice * action.payload.item.count;
+                state.totalBenefit -= (action.payload.oldPrice - action.payload.item.price) * action.payload.item.count;
+            } else {
+                state.totalPrice += action.payload.price * action.payload.item.count;
+            }
         },
     },
 })
 
-export const { addItemForCart, removeItemForCart, moreCoutItem, lessCoutItem, changeBasketBtnStatus, getBuyInfo } = basketSlice.actions;
+export const { addItemForBasket, removeItemForBasket, moreCoutItem, lessCoutItem, changeBasketBtnStatus, getBuyInfo, getBuyStatusItem } = basketSlice.actions;
 export const basketSelector = (state) => state.basketReducer
 export default basketSlice.reducer;

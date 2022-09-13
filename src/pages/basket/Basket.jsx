@@ -118,7 +118,7 @@ const Basket = () => {
                                 согласен с условиями политики обработки персональных данных.</p>
                         </div>
                         <Button
-                            disabled={dataBasketItems.length > 0 ? basketBtnStatus : true}
+                            disabled={dataBasketItems.length > 0 && totalPrice !== 0 && basketBtnStatus == false ? false : true}
                             type="submit"
                             className={styles.menu__button}
                             variant="contained"
