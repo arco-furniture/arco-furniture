@@ -1,11 +1,11 @@
 import Chip from '@mui/material/Chip';
-import {Card} from "../index";
 import {useEffect, useState} from "react";
 import {fetchAdvice} from "../../redux/home/homeSlice";
 import {homeSelector} from "../../redux/home/homeSlice"
 import {useDispatch, useSelector} from "react-redux";
-import CardSkeleton from "../card/CardSkeleton"
+import {getSkeletonsCard} from "../../utils/getSkeletonsCard";
 import SwiperCards from "../card/SwiperCards";
+import {getCards} from "../../utils/getCards";
 
 const Advice = () => {
     const {adviceData, adviceStatus} = useSelector(homeSelector);
@@ -32,49 +32,26 @@ const Advice = () => {
         const requestName = sortArray[index].advice
         setFilterRequest(`?mark=${requestName}`)
     }
-    //После того, как разделим Рекомендуемое и Категории товаров, уберем лишние прокидывания данных через карточку в
-    // категорию товара
-    const cards = adviceData.map((item) => {
-        return (
-            <Card
-                key={item.id}
-                item={item}
-                // title={item.title}
-                // price={item.price}
-                // oldPrice={item.oldPrice}
-                // advice={item.advice}
-                // colors={item.colors}
-                // images={item.images}
-                // mark={item.mark}
-            />
-        )
-    })
-
-    const skeletons = new Array(4).fill(null).map((_item, index) => {
-        return <CardSkeleton key={index}/>
-    })
 
     return (
         <section className="advice">
             <h2 className="title">Рекомендуем</h2>
             <ul className="advice__sort">
                 {
-                    sortArray.map((item, currentIndex) => {
-                        return (
-                            <li key={currentIndex}>
-                                <Chip
-                                    style={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
-                                    onClick={() => handleSortItems(currentIndex)}
-                                    label={item.name}
-                                />
-                            </li>
-                        )
-                    })
+                    sortArray.map((item, currentIndex) => (
+                        <li key={currentIndex}>
+                            <Chip
+                                style={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
+                                onClick={() => handleSortItems(currentIndex)}
+                                label={item.name}
+                            />
+                        </li>
+                    ))
                 }
             </ul>
             <div className="advice__cards">
-                {adviceStatus === 'loading' && skeletons}
-                {adviceStatus === 'success' && <SwiperCards>{cards}</SwiperCards>}
+                {adviceStatus === 'loading' && getSkeletonsCard(4)}
+                {adviceStatus === 'success' && <SwiperCards>{getCards(adviceData)}</SwiperCards>}
             </div>
         </section>
     )
