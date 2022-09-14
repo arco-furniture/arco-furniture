@@ -7,11 +7,13 @@
     grid-template-rows: 328px 51px;
     column-gap: 20px;
     row-gap: 15px;
+    margin-bottom: 21px;
 
     &__title {
         @include reset;
         @include text-format(700, 26px, 34px);
         color: $mainBlack;
+        @include flex-center;
     }
 
     &__wraper {
@@ -40,16 +42,25 @@
             min-height: 51px;
             min-width: 272px;
             @include flex-center-center;
+            border: none;
         }
     }
 
 &__container {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     gap: 15px;
     min-height: 89px;
     background-color: #F5F5F5;
     border-radius: 10px;
+}
+&__timer-container {
+    @include flex-center;
+}
+&__timer {
+    @include reset;
+    color: #4675CE;
+    @include text-format(700, 20px, 34px);
+    margin-left: 10px;
 }
 
 &__title-text {
