@@ -39,3 +39,25 @@ body {
 .old-price {
   text-decoration-line: line-through;
 }
+
+.panel {
+  border-radius: 4px;
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+
+  &-filters {
+    padding: 0;
+  }
+}
+
+.tag {
+  position: relative;
+  z-index: 1000;
+}
+
+.card-tag {
+  top: 10px;
+  left: 10px;
+  position: absolute;
+}

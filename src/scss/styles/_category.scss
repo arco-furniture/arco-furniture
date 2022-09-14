@@ -1,0 +1,148 @@
+@import "../variables";
+@import "../mixins";
+
+.category {
+
+  &__wrapper {
+    position: relative;
+    @include flex-center-between;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__content {
+    @include flex-column;
+    width: 100%;
+    gap: 20px;
+    overflow:initial !important;
+  }
+
+  &__sort {
+    height: 65px;
+    background-color: #F5F5F5;
+
+  }
+
+  &__cards {
+    min-height: 400px;
+    @include flex-center-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__pagination {
+    @include flex-center-center;
+    width: 100%;
+    margin-top: 50px;
+  }
+}
+
+.filters {
+  @include flex-column;
+  background-color: #F5F5F5;
+  width: 380px;
+  //position: sticky;
+  //position:-webkit-sticky;
+  //top:0;
+  //left: 0;
+  position: relative;
+
+  &__box-subtitle {
+    display: flex;
+    gap: 12px;
+    min-height: 25px;
+
+    h3 {
+      @include reset;
+      @include text-format(400, 16px, 21px);
+    }
+  }
+
+  &__filter {
+    @include flex-column;
+
+    &-content {
+      padding: 0 20px;
+    }
+
+    &-material {
+      margin: 10px 0;
+    }
+
+    &-title {
+      width: 100%;
+      span {
+        margin-left: 5px;
+        text-align: start;
+        font-weight: 700;
+        color: #414141;
+      }
+    }
+
+    &-box {
+      @include flex-center-between;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    &-price {
+      @include flex-column;
+      gap: 20px;
+      margin: 8px 0;
+    }
+
+    &-color {
+      margin: 8px 0;
+
+      ul {
+        @include reset-list;
+        @include flex-center-between;
+        gap: 3px;
+
+        li {
+          width: 28px;
+          height: 28px;
+          border-radius: 2px;
+          position: relative;
+
+          button {
+            width: 28px;
+            height: 28px;
+            min-width: 20px;
+            @include reset;
+          }
+        }
+      }
+    }
+
+    &-style {
+      margin: 8px 0;
+
+      ul {
+        @include reset-list;
+        @include flex-center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+
+    &-tag {
+      margin: 5px 0;
+
+      ul {
+        @include reset-list;
+        @include flex-center;
+        gap: 7px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+    }
+
+    &-item {
+      @include flex-center;
+      gap: 5px;
+    }
+  }
+}
