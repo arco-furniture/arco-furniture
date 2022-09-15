@@ -22,14 +22,40 @@
   &__sort {
     height: 65px;
     background-color: #F5F5F5;
+    @include flex-center;
+    gap: 15px;
+
+    &-subtitle {
+      @include reset;
+      @include text-format(400, 16px, 21px);
+      color: rgba(65, 65, 65, 0.4);
+    }
+
+    ul {
+      @include reset-list;
+      @include flex-center;
+      gap: 20px;
+
+      li {
+        @include flex-center;
+        gap: 5px;
+
+        p {
+          @include text-format(400, 16px, 21px);
+          color: #555555;
+          cursor: pointer;
+        }
+      }
+    }
 
   }
 
   &__cards {
     min-height: 400px;
-    @include flex-center-between;
+    @include flex-center;
     flex-wrap: wrap;
-    gap: 10px;
+    min-width: 100%;
+    gap: 41px;
   }
 
   &__pagination {
