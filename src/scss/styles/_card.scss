@@ -22,13 +22,6 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  &__mark {
-    z-index: 100;
-    top: 10px;
-    left: 10px;
-    position: absolute;
-  }
-
   &__type_active {
     opacity: 1;
     display: flex;

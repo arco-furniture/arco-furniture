@@ -1,7 +1,6 @@
 import Dialog from "@mui/material/Dialog";
 import {DialogContent} from "@mui/material";
 import {useDispatch} from "react-redux";
-import useWindowSize from 'react-use/lib/useWindowSize'
 
 const PopupTemplate = ({children, status, handleClose}) => {
     const dispatch = useDispatch()

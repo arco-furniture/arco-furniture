@@ -12,8 +12,8 @@ import {otherSelector, closeAuthorsPopup} from "../../redux/other/otherSlice";
 const AuthorsPopup = () => {
     const authorsName = [
         {name: "Петерс Максим", link: 'https://github.com/kejjero'},
-        {name: "Иван Рамзанов", link: 'https://github.com/IvanVideo'},
-        {name: "Илья Илья", link: 'https://github.com/Lionen89'}
+        {name: "Рамзанов Иван", link: 'https://github.com/IvanVideo'},
+        {name: "Трубицин Илья", link: 'https://github.com/Lionen89'}
     ]
     const {width, height} = useWindowSize()
     const {statusAuthorsPopup} = useSelector(otherSelector)
@@ -27,7 +27,7 @@ const AuthorsPopup = () => {
             width={width - 25}
             height={height}
             style={{zIndex: '10000', margin: '0 auto'}}
-            numberOfPieces={statusAuthorsPopup ? 150 : 0}
+            numberOfPieces={statusAuthorsPopup ? 170 : 0}
             recycle={statusAuthorsPopup}
             gravity={0.07}
         >
@@ -58,6 +58,7 @@ const AuthorsPopup = () => {
                                                 icon={<GitHubIcon/>}
                                                 label={item.name}
                                                 variant="outlined"
+                                                style={{cursor: 'pointer'}}
                                             />
                                         </a>
                                     )
@@ -68,8 +69,6 @@ const AuthorsPopup = () => {
                 </DialogContent>
             </Dialog>
         </Confetti>
-
-
     );
 }
 

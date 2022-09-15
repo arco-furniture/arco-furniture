@@ -3,7 +3,7 @@ import {Button, IconButton} from "@mui/material";
 import CardColors from "./CardColors";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
 import React, {useEffect, useState} from "react";
-import CardMark from "./CardMark";
+import Tag from "../tag/Tag";
 import BlackTooltip from "../BlackTooltip/BlackTooltip";
 import {Link} from "react-router-dom";
 import {setProduct, getFirstColor} from "../../redux/product/productSlice"
@@ -54,7 +54,7 @@ const Card = ({item}) => {
             onMouseEnter={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
         >
-            <CardMark mark={item.mark}/>
+            <Tag tag={item.mark} isCard={true}/>
             <SwiperImages images={item.cardImages} visible={visible}/>
             <p className="card__title">{item.title}</p>
             <div className="card__desc-wrapper">
