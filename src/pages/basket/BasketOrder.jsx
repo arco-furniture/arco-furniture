@@ -4,7 +4,7 @@ import BasketNavigation from './components/BasketNavigation';
 import styles from "../../scss/modules/basket/basket-order.module.scss";
 import stylesForm from "../../scss/modules/basket/basket-form.module.scss";
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { basketSelector } from '../../redux/basket/basketSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { getPriceWithFormat } from "../../utils/getPriceWithFormat";
@@ -17,18 +17,35 @@ const inputStyle = {
 const BasketOrder = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
-    const [dataInfo, setDataInfo] = useState(""); // информация с формы(доставка, способ оплаты, согласие)
     const { totalPrice, totalOldPrice, totalBenefit, basketOrderBtnStatus, dataBuyInfo } = useSelector(basketSelector);
 
+    const [values, setValues] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+    const [isValid, setIsValid] = React.useState(false);
 
-    const handleNextStage = () => {
+    const handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+        setValues({ ...values, [name]: value });
+        setErrors({ ...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
+    };
+
+    useEffect(() => {
+        console.log(errors, 'values')
+    }, [errors])
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
+        console.log(values)
         navigate("/basket/order/approval")
     }
 
     return (
         <div>
             <BasketNavigation bgcolor={{ 1: '#4675CE', 2: '#4675CE', 3: 'rgba(65, 65, 65, 0.2)' }} />
-            <form onSubmit={handleSubmit((data) => setDataInfo(JSON.stringify(data)))}>
+            <form onSubmit={handleSubmitForm}>
                 <div style={{ display: 'flex' }}>
                     <div className={stylesForm.form}>
                         <p className={stylesForm.form__title}>
@@ -44,6 +61,7 @@ const BasketOrder = () => {
                                 id="outlined-error"
                                 label="ФИО*"
                                 placeholder="Иванов Иван Иванович"
+                                onChange={handleChange}
                             />
                             <TextField sx={{
                                 ...inputStyle
@@ -52,18 +70,21 @@ const BasketOrder = () => {
                                 id="outlined-error"
                                 label="Город*"
                                 placeholder="Краснодар"
+                                onChange={handleChange}
                             />
                         </div>
                         <div className={stylesForm.form__box}>
-                            <TextField sx={{
-                                ...inputStyle,
-                                mr: '22px',
-                                mt: '75px',
-                            }}
+                            <TextField
+                                sx={{
+                                    ...inputStyle,
+                                    mr: '22px',
+                                    mt: '75px',
+                                }}
                                 {...register("phone")}
                                 id="outlined-error"
                                 label="Телефон*"
                                 placeholder="+7 (000) 000 00 00"
+                                onChange={handleChange}
                             />
                             <TextField sx={{
                                 ...inputStyle,
@@ -73,6 +94,7 @@ const BasketOrder = () => {
                                 id="outlined-error"
                                 label="Адрес*"
                                 placeholder="+7 (000) 000 00 00"
+                                onChange={handleChange}
                             />
                         </div>
                     </div >
@@ -101,7 +123,6 @@ const BasketOrder = () => {
                             type="submit"
                             className={styles.info__button}
                             variant="contained"
-                            onClick={handleNextStage}
                         >Продолжить
                         </Button>
                     </div>

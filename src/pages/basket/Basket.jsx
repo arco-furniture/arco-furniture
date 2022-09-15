@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../scss/modules/basket/basket.module.scss";
 import { basketSelector } from '../../redux/basket/basketSlice';
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPriceWithFormat } from "../../utils/getPriceWithFormat";
 import BasketStepper from "./components/BasketStepper";
 import BasketItem from "./components/BasketItem";
@@ -20,8 +20,25 @@ const Basket = () => {
     const [dataInfo, setDataInfo] = useState(""); // информация с формы(доставка, способ оплаты, согласие)
     const dispatch = useDispatch();
 
-    const handleNextStage = () => {
-        dispatch(getBuyInfo(dataInfo));
+    const [values, setValues] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+    const [isValid, setIsValid] = React.useState(false);
+
+    const handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+        setValues({ ...values, [name]: value });
+        setErrors({ ...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
+    };
+
+    useEffect(() => {
+        console.log(Object.values(values).length, 'values111')
+    }, [values])
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
         navigate("/basket/order");
     }
 
@@ -32,7 +49,6 @@ const Basket = () => {
 
     return (
         <div>
-            {/* это прогрессБар из коробки mui, если хочешь, можешь настроить его вместо своей навигации */}
             {/*<BasketStepper/>*/}
             <BasketNavigation bgcolor={{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }} />
             <div className={styles.basket}>
@@ -56,13 +72,12 @@ const Basket = () => {
                     }
                 </div>
                 <div className={styles.menu}>
-                    <form onSubmit={handleSubmit((data) => setDataInfo(JSON.stringify(data)))}>
+                    <form onSubmit={handleSubmitForm}>
                         <p className={styles.menu__title}>Выберите способ доставки</p>
                         <div className={styles.menu__box}>
                             <RadioGroup
                                 row
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Самовывоз"
                                 name="radio-buttons-group"
                             >
                                 <FormControlLabel
@@ -70,12 +85,14 @@ const Basket = () => {
                                     value="Самовывоз"
                                     control={<Radio />}
                                     label="Самовывоз"
+                                    onChange={handleChange}
                                 />
                                 <FormControlLabel
                                     {...register("delivery")}
                                     value="Доставка"
                                     control={<Radio />}
                                     label="Доставка"
+                                    onChange={handleChange}
                                 />
                             </RadioGroup>
                         </div>
@@ -84,7 +101,6 @@ const Basket = () => {
                             <RadioGroup
                                 row
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="cash"
                                 name="radio-buttons-group"
                             >
                                 <FormControlLabel
@@ -92,12 +108,14 @@ const Basket = () => {
                                     value="cash"
                                     control={<Radio />}
                                     label="Наличные"
+                                    onChange={handleChange}
                                 />
                                 <FormControlLabel
                                     {...register("payment")}
                                     value="card"
                                     control={<Radio />}
                                     label="Оплата картой"
+                                    onChange={handleChange}
                                 />
                             </RadioGroup>
                         </div>
@@ -118,11 +136,10 @@ const Basket = () => {
                                 согласен с условиями политики обработки персональных данных.</p>
                         </div>
                         <Button
-                            disabled={dataBasketItems.length > 0 && totalPrice !== 0 && basketBtnStatus == false ? false : true}
+                            disabled={dataBasketItems.length > 0 && Object.values(values).length > 1 && totalPrice !== 0 && basketBtnStatus == false ? false : true}
                             type="submit"
                             className={styles.menu__button}
-                            variant="contained"
-                            onClick={handleNextStage}>
+                            variant="contained">
                             Продолжить
                         </Button>
                     </form>

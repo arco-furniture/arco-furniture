@@ -17,12 +17,10 @@ export const basketSlice = createSlice({
         addItemForBasket(state, action) {
             let result = state.dataBasketItems.find(item => item.id === action.payload.id);
             if (result) {
-                console.log(action.payload.count, 'уже есть')
                 let objIndex = state.dataBasketItems.findIndex((item => item.id == action.payload.id));
                 state.dataBasketItems[objIndex].count += 1
                 state.totalPrice += action.payload.price;
             } else {
-                console.log('добавил')
                 action.payload.count = 1;
                 action.payload.active = true;
                 state.dataBasketItems = [...state.dataBasketItems, action.payload];
