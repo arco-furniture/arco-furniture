@@ -56,7 +56,6 @@ const Advice = () => {
 
     return (
         <section className="advice">
-            <h2 className="title">Рекомендуем</h2>
             <ul className="advice__sort">
                 {
                     sortArray.map((item, currentIndex) => {
