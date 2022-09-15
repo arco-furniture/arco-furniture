@@ -34,7 +34,7 @@ const HeaderNav = () => {
                       to={`category/${item.link}`}
                       key={item.categoryId}
                       className={`header__tab ${isActiveCategory(item.link) ? "header__tab_active" : ""}`}
-                      onClick={() => dispatch(setCategoryParams({id: item.categoryId, name: item.name}))}
+                      onClick={() => dispatch(setCategoryParams({paramsId: item.categoryId, name: item.name}))}
                   >
                     <Button style={{color: '#fff', minHeight: '100%', borderRadius: '0', fontSize: '12px'}}>
                       {item.name}
