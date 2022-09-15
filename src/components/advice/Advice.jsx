@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {fetchAdvice} from "../../redux/home/homeSlice";
 import {homeSelector} from "../../redux/home/homeSlice"
 import {useDispatch, useSelector} from "react-redux";
-import {getSkeletonsCard} from "../../utils/getSkeletonsCard";
+import {getSkeletonCards} from "../../utils/getSkeletonCards";
 import SwiperCards from "../card/SwiperCards";
 import {getCards} from "../../utils/getCards";
 
@@ -50,7 +50,7 @@ const Advice = () => {
                 }
             </ul>
             <div className="advice__cards">
-                {adviceStatus === 'loading' && getSkeletonsCard(4)}
+                {adviceStatus === 'loading' && getSkeletonCards(4)}
                 {adviceStatus === 'success' && <SwiperCards>{getCards(adviceData)}</SwiperCards>}
             </div>
         </section>

@@ -1,12 +1,14 @@
 import {Collapse, List} from "@mui/material";
 import FilterTemplate from "./FilterTemplate";
-import {useState} from "react";
+import React, {useState} from "react";
 import {FilterColor, FilterPrice, FilterStyle, FilterMaterial, FilterTag} from "./filters/index"
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined';
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import ChairOutlinedIcon from '@mui/icons-material/ChairOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import {useDispatch, useSelector} from "react-redux";
+import {setFilteredData, categorySelector, changeCategoryStatus} from "../../redux/category/categorySlice"
 
 const CategoryFilters = () => {
     const [openPrice, setOpenPrice] = useState(true);
