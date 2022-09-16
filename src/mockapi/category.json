@@ -13,7 +13,7 @@
     ],
     "price": 119000,
     "oldPrice": 160000,
-    "mark": "top",
+    "mark": "none",
     "description": "Кухня DaVita – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
     "colors": [
       {"nameColor": "gray", "color": "#E4E4E4", "exist": false},
@@ -44,7 +44,7 @@
     "rating": 3,
     "article": "487002",
     "title": "Кухня модульная Provence",
-    "advice": 0,
+    "advice": 1,
     "specs": [
       {"value": "Неоклассика", "specsId": "style"},
       {"value": "Массив", "specsId": "material"},
@@ -82,7 +82,6 @@
     "rating": 4,
     "article": "487003",
     "title": "Кухня модульная Modern",
-    "advice": 0,
     "specs": [
       {"value": "Модерн", "specsId": "style"},
       {"value": "Массив", "specsId": "material"},
@@ -100,6 +99,44 @@
       {"nameColor": "green", "color": "#58B988", "exist": true},
       {"nameColor": "blue", "color": "#2B7493", "exist": true},
       {"nameColor": "black", "color": "#1C2537", "exist": false}
+    ],
+    "productImages": [
+      {"image": "https://i.ibb.co/2yCVZTY/image-16.jpg"},
+      {"image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"},
+      {"image": "https://i.ibb.co/yhR2pjb/image-18.jpg"},
+      {"image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"},
+      {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
+    ],
+    "cardImages": [
+      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
+      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
+      {"image": "https://i.ibb.co/5rwYHwb/2.png"}
+    ]
+  },
+  {
+    "id": 4,
+    "category": 2,
+    "rating": 5,
+    "article": "487001",
+    "title": "Гостиная модульная Maria",
+    "advice": 1,
+    "specs": [
+      {"value": "Классический", "specsId": "style"},
+      {"value": "ЛДСП", "specsId": "material"},
+      {"value": "1200х2400х450", "specsId": "size"}
+    ],
+    "price": 155000,
+    "oldPrice": 180000,
+    "mark": "top",
+    "description": "Кухня DaVita – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
+    "colors": [
+      {"nameColor": "gray", "color": "#E4E4E4", "exist": false},
+      {"nameColor": "yellow", "color": "#E9D777", "exist": false},
+      {"nameColor": "vinous", "color": "#96314A", "exist": true},
+      {"nameColor": "brown", "color": "#906F48", "exist": true},
+      {"nameColor": "green", "color": "#58B988", "exist": true},
+      {"nameColor": "blue", "color": "#2B7493", "exist": true},
+      {"nameColor": "black", "color": "#1C2537", "exist": true}
     ],
     "productImages": [
       {"image": "https://i.ibb.co/2yCVZTY/image-16.jpg"},

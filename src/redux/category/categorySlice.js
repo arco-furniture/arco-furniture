@@ -3,7 +3,7 @@ import axios from "axios";
 import {getMinMaxPrice} from "../../utils/getMinMaxPrice"
 
 export const fetchDataCategory = createAsyncThunk('category/fetchDataCategory', async (requestFilter) => {
-    const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/category${requestFilter}`)
+    const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro${requestFilter}`)
     return data
 })
 

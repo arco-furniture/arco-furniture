@@ -4,10 +4,10 @@ import {fetchAdvice} from "../../redux/home/homeSlice";
 import {homeSelector} from "../../redux/home/homeSlice"
 import {useDispatch, useSelector} from "react-redux";
 import {getSkeletonCards} from "../../utils/getSkeletonCards";
-import SwiperCards from "../card/SwiperCards";
+import SwiperCards from "../../components/card/SwiperCards";
 import {getCards} from "../../utils/getCards";
 
-const Advice = () => {
+const HomeAdvice = () => {
     const {adviceData, adviceStatus} = useSelector(homeSelector);
     const [sortIndex, setSortIndex] = useState(0);
     const [filterRequest, setFilterRequest] = useState('')
@@ -30,11 +30,11 @@ const Advice = () => {
     const handleSortItems = (index) => {
         setSortIndex(index)
         const requestName = sortArray[index].advice
-        setFilterRequest(`?mark=${requestName}`)
+        setFilterRequest(`?&mark=${requestName}`)
     }
 
     return (
-        <section className="advice">
+        <article className="advice">
             <ul className="advice__sort">
                 {
                     sortArray.map((item, currentIndex) => (
@@ -52,7 +52,7 @@ const Advice = () => {
                 {adviceStatus === 'loading' && getSkeletonCards(4)}
                 {adviceStatus === 'success' && <SwiperCards>{getCards(adviceData)}</SwiperCards>}
             </div>
-        </section>
+        </article>
     )
 }
-export default Advice;
+export default HomeAdvice;

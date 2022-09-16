@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 
 const initialCategories = [
   {name: 'Кухни', link: 'kitchens', categoryId: 1},
-  {name: 'Гостинные', link: 'living-rooms', categoryId: 2},
+  {name: 'Гостиные', link: 'living-rooms', categoryId: 2},
   {name: 'Спальни', link: 'bed-rooms', categoryId: 3},
   {name: 'Прихожие', link: 'hallways', categoryId: 4},
   {name: 'Шкафы-купе', link: 'wardrobes', categoryId: 5},

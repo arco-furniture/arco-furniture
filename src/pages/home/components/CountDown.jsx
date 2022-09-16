@@ -19,12 +19,6 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
     }
   };
 
-  const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-    setPaused(false);
-    setOver(false);
-  };
-
   React.useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
     return () => clearInterval(timerID);
@@ -32,7 +26,7 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
   return (
     // <div>
-      <p className="home__timer">{`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
+      <p className="preview__timer">{`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
         .toString()
         .padStart(2, "0")}`}</p>
     //   <button onClick={() => setPaused(!paused)}>

@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios";
 
 export const fetchAdvice = createAsyncThunk('home/fetchAdvice', async (requestFilter) => {
-    const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/advice${requestFilter}`)
+    const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro${requestFilter}`)
     return data
 })
 
@@ -29,7 +29,7 @@ export const homeSlice = createSlice({
             state.adviceStatus = 'loading';
         });
         builder.addCase(fetchAdvice.fulfilled, (state, action) => {
-            state.adviceData = action.payload
+            state.adviceData = action.payload.filter((item) => item.advice || item.advice === 0)
             state.adviceStatus = 'success'
         });
         builder.addCase(fetchAdvice.rejected, (state) => {

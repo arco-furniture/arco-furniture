@@ -12,10 +12,13 @@ import {basketSelector} from "../../../redux/basket/basketSlice";
 import {getPriceWithFormat} from "../../../utils/getPriceWithFormat";
 
 const HeaderMiddle = () => {
-    const [search, setSearch] = React.useState("");
     const {favoriteData} = useSelector(homeSelector)
     const {dataBasketItems, totalPrice} = useSelector(basketSelector);
-    const badgeCartPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина';
+    const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина';
+    const countBasketItems =  dataBasketItems.reduce((sum, currentItem) => {
+        return sum + currentItem.count
+    },0)
+
 
     return (
         <div className="header__middle">
@@ -36,11 +39,11 @@ const HeaderMiddle = () => {
                         <span className="header__middle-item-span">Избранное</span>
                     </Link>
                     <Link to="/basket" className="header__middle-item">
-                        <Badge badgeContent={dataBasketItems.length} color="error">
+                        <Badge badgeContent={countBasketItems} color="error">
                             <ShoppingCartOutlinedIcon color="primary"/>
                         </Badge>
                         <span className="header__middle-item-span">
-                            {badgeCartPrice}
+                            {badgeBasketPrice}
                         </span>
                     </Link>
                 </div>
