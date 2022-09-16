@@ -22,6 +22,6 @@ export const productSlice = createSlice({
     },
 })
 
-export const { setCurrentColor, setProduct, getFirstColor, addItemForCart, removeItemForCart } = productSlice.actions;
+export const { setCurrentColor, setProduct, getFirstColor } = productSlice.actions;
 export const productSelector = (state) => state.productReducer
 export default productSlice.reducer;

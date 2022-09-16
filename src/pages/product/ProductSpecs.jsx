@@ -12,7 +12,7 @@ const ProductSpecs = () => {
     const {specs} = product;
 
     return (
-        <li className="product__specs product__background">
+        <li className="product__specs panel">
             <h3 className="subtitle">Характеристики</h3>
             <div className="product__specs-wrapper">
                 <ul>

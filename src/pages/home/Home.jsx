@@ -1,11 +1,14 @@
-import {Advice} from "../../components/index";
+import HomeAdvice from "./HomeAdvice";
+import HomePreview from "./HomePreview";
 
 const Home = () => {
+
     return (
-        <>
-            <Advice/>
-        </>
-    )
-}
+        <div className="home">
+            <HomePreview/>
+            <HomeAdvice/>
+        </div>
+    );
+};
 
 export default Home;

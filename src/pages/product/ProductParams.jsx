@@ -9,7 +9,7 @@ import {getPriceWithFormat} from "../../utils/getPriceWithFormat";
 import {openAlertBar} from "../../redux/other/otherSlice";
 import BlackTooltip from "../../components/BlackTooltip/BlackTooltip";
 import {deleteFavoriteItem, homeSelector, postFavoriteItem} from "../../redux/home/homeSlice";
-import { addItemForCart } from "../../redux/basket/basketSlice";
+import { addItemForBasket } from "../../redux/basket/basketSlice";
 
 const ProductParams = () => {
     const styleSubmit = {fontSize: '18px', fontWeight: 700};
@@ -69,7 +69,7 @@ const ProductParams = () => {
             type: 'cart'
         }))
 
-        dispatch(addItemForCart(cartItem))
+        dispatch(addItemForBasket(cartItem))
     }
 
 
@@ -93,7 +93,7 @@ const ProductParams = () => {
 
     return (
         <form
-            className="product__params product__background"
+            className="product__params panel"
             onSubmit={(evt) => handlerOnSubmit(evt)}
         >
             <div className="product__top-wrapper">

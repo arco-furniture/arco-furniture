@@ -1,0 +1,50 @@
+@import "../variables";
+@import "../mixins";
+
+.popup {
+    &__container {
+        @include flex-column;
+        align-items: center;
+    }
+
+    &__title {
+        @include text-format(700, 26px, 34px);
+        color: #4675CE;
+        margin: 0;
+    }
+
+    &__subtitle {
+        margin: 9px 0 27px 0;
+        @include text-format(400, 22px, 28px);
+        color: #414141;
+    }
+
+    &__text {
+        margin: 16px 0 0;
+        @include text-format(700, 26px, 34px);
+        color: #414141;
+    }
+
+    &__img {
+        width: 600px;
+    }
+
+    &__bottom {
+        @include flex-center-between;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+
+    &__name {
+        text-decoration: none;
+        color: $mainBlack;
+        span {
+            color: $mainBlack;
+        }
+    }
+
+    &_none {
+        display: flex;
+    }
+}
