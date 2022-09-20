@@ -1,6 +1,6 @@
 import React from "react"
 import img from '../../../images/card-img.svg';
-import { Checkbox } from "@mui/material";
+import { Box, Checkbox, Icon, IconButton } from "@mui/material";
 import styles from "../../../scss/modules/basket/basket-item.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItemForBasket } from "../../../redux/basket/basketSlice";
@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { basketSelector } from '../../../redux/basket/basketSlice';
 import { moreCoutItem } from "../../../redux/basket/basketSlice";
 import { lessCoutItem } from "../../../redux/basket/basketSlice";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const BasketItem: React.FC = (item: any) => {
     const dispatch = useDispatch();
@@ -34,20 +35,23 @@ const BasketItem: React.FC = (item: any) => {
                     <div className={styles.item__box}>
                         <Checkbox
                             checked={item.item.active}
-                            onClick={()=>{dispatch(getBuyStatusItem(item))}}
+                            onClick={() => { dispatch(getBuyStatusItem(item)) }}
                             sx={{
                                 width: '15px',
                                 height: '15px',
                                 mr: '5px'
-                            }}/>
+                            }} />
                         <p className={styles.item__title}>{item.title}</p>
                     </div>
                     <div>
                         <div className={styles.item__box} style={{ marginTop: '37px' }}>
                             <p className={styles.item__text}>Цвет:</p>
-                            <div className={styles.item__color} />
+                            <div className={styles.item__color} style={{ backgroundColor: item.color }} />
                         </div>
-                        <p className={styles.item__text}>Характеристики товара</p>
+                        <div className={styles.item__box}>
+                            <p className={styles.item__text}>Характеристики товара</p>
+                            <ArrowDropDownIcon className={styles.item__more} />
+                        </div>
                     </div>
                 </div>
                 <ButtonGroup sx={{
