@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItemForBasket } from "../../../redux/basket/basketSlice";
 import { getPriceWithFormat } from "../../../utils/getPriceWithFormat";
 import { getBuyStatusItem } from "../../../redux/basket/basketSlice";
+import { specificationsStatus } from "../../../redux/basket/basketSlice";
 import Button from '@mui/material/Button';
 import { ButtonGroup } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -15,15 +16,16 @@ import { basketSelector } from '../../../redux/basket/basketSlice';
 import { moreCoutItem } from "../../../redux/basket/basketSlice";
 import { lessCoutItem } from "../../../redux/basket/basketSlice";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import BasketSpecifications from './BasketSpecifications';
 
-const BasketItem: React.FC = (item: any) => {
+const BasketItem = (item) => {
     const dispatch = useDispatch();
     const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
     const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
     const stylesCountButtonRight = { ...stylesCountButtons, borderLeft: 'solid 0 #D9D9D9' }
-    const { countItems } = useSelector(basketSelector);
+    const { specifications } = useSelector(basketSelector);
 
-    const handleRemoveCard = (item: any) => {
+    const handleRemoveCard = (item) => {
         dispatch(removeItemForBasket(item));
     }
 
@@ -48,9 +50,19 @@ const BasketItem: React.FC = (item: any) => {
                             <p className={styles.item__text}>Цвет:</p>
                             <div className={styles.item__color} style={{ backgroundColor: item.color }} />
                         </div>
-                        <div className={styles.item__box}>
-                            <p className={styles.item__text}>Характеристики товара</p>
-                            <ArrowDropDownIcon className={styles.item__more} />
+                        <div className={styles.item__specifications}>
+                            <div className={styles.item__box}>
+                                <p className={styles.item__text}>Характеристики товара</p>
+                                <ArrowDropDownIcon className={styles.item__more} onClick={() => { dispatch(specificationsStatus(item)) }} />
+                            </div>
+                            <div style={{ display: item.item.specifications ? 'block' : 'none' }}>
+                                {item.specs && item.specs.map((item, key) => (
+                                    <BasketSpecifications
+                                        key={key}
+                                        item={item}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,10 @@
         @include flex-center;
     }
 
+    &__specifications {
+        @include flex-column;
+    }
+
     &__left {
         display: flex;
         flex-direction: column;
