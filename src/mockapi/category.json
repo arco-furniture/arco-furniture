@@ -46,7 +46,7 @@
     "title": "Кухня модульная Provence",
     "advice": 1,
     "specs": [
-      {"value": "Неоклассика", "specsId": "style"},
+      {"value": "Скандинавский", "specsId": "style"},
       {"value": "Массив", "specsId": "material"},
       {"value": "1200х2400х450", "specsId": "size"}
     ],
@@ -121,7 +121,7 @@
     "title": "Гостиная модульная Maria",
     "advice": 1,
     "specs": [
-      {"value": "Классический", "specsId": "style"},
+      {"value": "Лофт", "specsId": "style"},
       {"value": "ЛДСП", "specsId": "material"},
       {"value": "1200х2400х450", "specsId": "size"}
     ],
