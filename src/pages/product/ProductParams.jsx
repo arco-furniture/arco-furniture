@@ -55,11 +55,10 @@ const ProductParams = () => {
         title: product.title,
         price: product.price,
         oldPrice: product.oldPrice,
-        image: product.cardImages[0].image,
+        image: product.cardImages?.find((item) => item).image || '',
         specs: product.specs,
         color: currentColor.color,
         article: product.article,
-        count: product.count,
     }
 
     const handlerOnSubmit = (evt) => {
@@ -68,7 +67,6 @@ const ProductParams = () => {
             message: product.title,
             type: 'cart'
         }))
-
         dispatch(addItemForBasket(cartItem))
     }
 
@@ -135,6 +133,10 @@ const ProductParams = () => {
                         })
                     }
                 </ul>
+                {
+                    !currentColor.exist &&
+                    <p className="product__text-error">К сожалению данного цвета нет в наличии</p>
+                }
             </div>
             <div className="product__description">
                 <p><span className="product__title">Описание: </span>

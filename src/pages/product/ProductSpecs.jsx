@@ -17,7 +17,7 @@ const ProductSpecs = () => {
             <div className="product__specs-wrapper">
                 <ul>
                     {
-                        specsNames.map((item) => {
+                        specsNames?.map((item) => {
                             return (
                                 <li key={item.specsNameId}>{`${item.name}:`}</li>
                             )
@@ -26,7 +26,7 @@ const ProductSpecs = () => {
                 </ul>
                 <ul>
                     {
-                        specs.map((item) => {
+                        specs?.map((item) => {
                             return (
                                 <li key={item.specsId}>{item.value}</li>
                             )

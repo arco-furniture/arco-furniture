@@ -9,7 +9,7 @@ const ProductPreview = ({images, thumbsSwiper}) => {
         objectFit: 'cover',
     }
 
-    const slides = images.map((item, index) => {
+    const slides = images?.map((item, index) => {
         return (
             <SwiperSlide key={index}>
                 <img className="product__image-preview" src={item.image} alt="image"/>

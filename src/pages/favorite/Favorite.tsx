@@ -1,8 +1,9 @@
 import {homeSelector} from "../../redux/home/homeSlice"
 import {useSelector} from "react-redux";
 import {getCards} from "../../utils/getCards";
+import React from "react";
 
-const Favorite = () => {
+const Favorite:React.FC = () => {
     const favorites = useSelector(homeSelector)
     const {favoriteData} = favorites
 

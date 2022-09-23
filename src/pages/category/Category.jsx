@@ -1,4 +1,10 @@
-import {paramsSelector, categorySelector, fetchDataCategory, sortSelector,} from "../../redux/category/categorySlice";
+import {
+    paramsSelector,
+    categorySelector,
+    fetchDataCategory,
+    changeCategoryStatus,
+    resetSettingsCategory
+} from "../../redux/category/categorySlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import CategoryFilters from "./CategoryFilters";
@@ -6,23 +12,39 @@ import {Pagination} from "@mui/material";
 import {getSkeletonCards} from "../../utils/getSkeletonCards"
 import {getCards} from "../../utils/getCards"
 import CategorySort from "./CategorySort";
+import {useLocation} from "react-router-dom";
 
 const Category = () => {
     const params = useSelector(paramsSelector)
-    const sort = useSelector(sortSelector)
-    const {categoryData, categoryStatus} = useSelector(categorySelector);
+    const {
+        categoryData,
+        categoryStatus,
+        searchStyles,
+        filterPrice,
+        searchMaterial,
+        searchColors
+    } = useSelector(categorySelector);
     const dispatch = useDispatch();
-
     const requestCategory = `?category=${params.paramsId}`
-    const requestSort = `sortBy=${sort}`
+    const location = useLocation();
 
-    // активация нужной категории и сортировки через mockAPI
     useEffect(() => {
-        dispatch(fetchDataCategory(`${requestCategory}&${requestSort}`))
-    }, [params, sort])
+        dispatch(resetSettingsCategory())
+    }, [location.pathname])
 
+    // Фейковая загрузка, чтобы избежать подергивания карточек при выборе разных фильтров,
+    // Вся фильтрация сделана на фронте
+    useEffect(() => {
+        dispatch(changeCategoryStatus('loading'))
+        setTimeout(() => dispatch(changeCategoryStatus('success')), 700);
+    }, [searchStyles, filterPrice, searchMaterial, searchColors])
 
-    return(
+    // активация нужной категории
+    useEffect(() => {
+        dispatch(fetchDataCategory(requestCategory))
+    }, [params])
+
+    return (
         <section className="category">
             <h2 style={{position: 'sticky'}} className="title">{`${params.name} ${categoryData.length} товаров`}</h2>
             <div className="category__wrapper">
@@ -33,7 +55,7 @@ const Category = () => {
                         {categoryStatus === 'loading' && getSkeletonCards(6)}
                         {categoryStatus === 'success' && getCards(categoryData)}
                         <div className="category__pagination">
-                            <Pagination count={20} color="primary" size="large" />
+                            <Pagination count={5} color="primary" size="large"/>
                         </div>
                     </div>
                 </div>
