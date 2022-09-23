@@ -1,9 +1,11 @@
-import {InputAdornment, MenuItem, TextField} from "@mui/material";
-import {useState} from "react";
-import ParkIcon from '@mui/icons-material/Park';
+import {MenuItem, TextField} from "@mui/material";
+import {useEffect} from "react";
+import {categorySelector, setSearchMaterial, setFilteredData } from "../../../redux/category/categorySlice"
+import {useSelector, useDispatch} from "react-redux";
 
 const FilterMaterial = () => {
-    const [currentMaterial, setCurrentMaterial] = useState("Все");
+    const {searchMaterial, fetchData, searchStyles, searchColors, filterPrice} = useSelector(categorySelector)
+    const dispatch = useDispatch();
 
     const materials = [
         {material: "Все",},
@@ -12,9 +14,17 @@ const FilterMaterial = () => {
         {material: "МДФ",},
     ];
 
-    const handleChange = (event) => {
-        setCurrentMaterial(event.target.value);
-    };
+    useEffect(() => {
+        if (searchMaterial === "Все") {
+            dispatch(setFilteredData(fetchData))
+        } else {
+            const filterDataMaterial = fetchData.filter((data) => {
+                const findSpecs = data.specs.find((item) => item.specsId === "material")
+                return findSpecs.value === searchMaterial
+            })
+            dispatch(setFilteredData(filterDataMaterial))
+        }
+    },[searchMaterial, searchStyles, searchColors, filterPrice])
 
     return (
         <div className="filters__filter-material">
@@ -22,8 +32,8 @@ const FilterMaterial = () => {
                 select
                 size="small"
                 fullWidth
-                value={currentMaterial}
-                onChange={handleChange}
+                value={searchMaterial}
+                onChange={(event) => dispatch(setSearchMaterial(event.target.value))}
                 margin="none"
             >
                 {
