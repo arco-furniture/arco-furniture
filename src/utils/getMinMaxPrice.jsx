@@ -1,5 +1,5 @@
 export const getMinMaxPrice = (items) => {
-    if (!items) return [0, 0]
+    if (!items.length) return [0, 0]
 
     const allPrice = items.map((item) => item.price)
     const minPrice = allPrice.sort((a, b) => (a - b))[0]
