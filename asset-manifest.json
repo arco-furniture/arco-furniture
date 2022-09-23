@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/arco-furniture/static/css/main.fe9803d5.css",
-    "main.js": "/arco-furniture/static/js/main.ff51b8b2.js",
+    "main.css": "/arco-furniture/static/css/main.afb1a1b3.css",
+    "main.js": "/arco-furniture/static/js/main.ce597d0b.js",
     "static/media/Banner.svg": "/arco-furniture/static/media/Banner.4b78ff514cd99d751653f5a5efd5e3f4.svg",
     "static/media/Artboard.svg": "/arco-furniture/static/media/Artboard.4d39a851ac16fceebe739db7f971d9ba.svg",
     "static/media/logo-black.svg": "/arco-furniture/static/media/logo-black.57f102637d59c6d5c15e11dcd2517fc4.svg",
@@ -13,11 +13,11 @@
     "static/media/Group.svg": "/arco-furniture/static/media/Group.6dc86071a5ff28bc3b2d.svg",
     "static/media/arrow.svg": "/arco-furniture/static/media/arrow.07c63c7a5af33b79f946.svg",
     "index.html": "/arco-furniture/index.html",
-    "main.fe9803d5.css.map": "/arco-furniture/static/css/main.fe9803d5.css.map",
-    "main.ff51b8b2.js.map": "/arco-furniture/static/js/main.ff51b8b2.js.map"
+    "main.afb1a1b3.css.map": "/arco-furniture/static/css/main.afb1a1b3.css.map",
+    "main.ce597d0b.js.map": "/arco-furniture/static/js/main.ce597d0b.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe9803d5.css",
-    "static/js/main.ff51b8b2.js"
+    "static/css/main.afb1a1b3.css",
+    "static/js/main.ce597d0b.js"
   ]
 }
