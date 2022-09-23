@@ -23,6 +23,7 @@ export const basketSlice = createSlice({
             } else {
                 action.payload.count = 1;
                 action.payload.active = true;
+                action.payload.specifications = false;
                 state.dataBasketItems = [...state.dataBasketItems, action.payload];
                 state.totalPrice += action.payload.price;
                 state.totalOldPrice += action.payload.oldPrice;
@@ -84,9 +85,16 @@ export const basketSlice = createSlice({
                 state.totalPrice += action.payload.price * action.payload.item.count;
             }
         },
+        specificationsStatus(state, action) {
+            state.dataBasketItems.map(item => {
+                if (item.id === action.payload.id) {
+                    item.specifications = !item.specifications
+                }
+            })
+        }
     },
 })
 
-export const { addItemForBasket, removeItemForBasket, moreCoutItem, lessCoutItem, changeBasketBtnStatus, getBuyInfo, getBuyStatusItem } = basketSlice.actions;
+export const { addItemForBasket, removeItemForBasket, moreCoutItem, lessCoutItem, changeBasketBtnStatus, getBuyInfo, getBuyStatusItem, specificationsStatus } = basketSlice.actions;
 export const basketSelector = (state) => state.basketReducer
 export default basketSlice.reducer;

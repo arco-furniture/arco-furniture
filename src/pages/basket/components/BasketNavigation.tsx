@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../../../scss/modules/basket/basket-navigation.module.scss";
 
 const BasketNavigation = (bgcolor: any) => {
@@ -9,23 +10,29 @@ const BasketNavigation = (bgcolor: any) => {
                     Корзина
                 </p>
                 <div className={styles.navigation__wrapper}>
-                    <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[1]}` }}>
-                        1
-                    </div>
+                    <Link style={{ textDecoration: 'none' }} to='/basket'>
+                        <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[1]}` }}>
+                            1
+                        </div>
+                    </Link>
                     <p style={{ marginLeft: '10px', fontSize: '16px' }}>
                         Ваша корзина
                     </p>
                     <div className={styles.navigation__line} />
-                    <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[2]}` }}>
-                        2
-                    </div>
+                    <Link style={{ textDecoration: 'none' }} to='/basket/order/'>
+                        <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[2]}` }}>
+                            2
+                        </div>
+                    </Link>
                     <p style={{ marginLeft: '10px', fontSize: '16px' }}>
                         Оформление заказа
                     </p>
                     <div className={styles.navigation__line} />
-                    <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[3]}` }}>
-                        3
-                    </div>
+                    <Link style={{ textDecoration: 'none' }} to='/basket/order/approval'>
+                        <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor.bgcolor[3]}` }}>
+                            3
+                        </div>
+                    </Link>
                     <p style={{ marginLeft: '10px', fontSize: '16px' }}>
                         Подтверждение
                     </p>

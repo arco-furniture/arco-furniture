@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "font-awesome": "^4.7.0",
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",

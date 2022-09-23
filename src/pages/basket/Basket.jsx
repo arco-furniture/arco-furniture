@@ -43,7 +43,6 @@ const Basket = () => {
     }
 
     const handleChangeStatus = (e) => {
-        console.log(e.target.checked)
         dispatch(changeBasketBtnStatus(e.target.checked))
     }
 
