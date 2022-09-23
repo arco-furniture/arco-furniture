@@ -1,14 +1,24 @@
-import {useState} from "react";
-import {useSelector} from "react-redux";
-import {productSelector} from "../../redux/product/productSlice";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProduct, getFirstColor, productSelector, setCurrentColor} from "../../redux/product/productSlice";
 import {ProductParams, ProductSpecs, ProductSlides, ProductPreview} from "./index"
+import {useLocation} from "react-router-dom";
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const {product} = useSelector(productSelector)
     const {productImages} = product;
+    const location = useLocation();
+    const dispatch = useDispatch();
+    const idProduct = location.pathname.split('/').reverse()[0]
 
-    return(
+    useEffect(() => {
+        if (!product.id) {
+            dispatch(fetchProduct(idProduct))
+        }
+    },[])
+
+    return (
         <section className="product">
             <ul className="product__wrapper">
                 <ProductPreview

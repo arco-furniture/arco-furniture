@@ -1,9 +1,18 @@
 import {Button} from "@mui/material";
-import {useState} from "react";
 import CheckIcon from '@mui/icons-material/Check';
+import {
+    setSearchColors,
+    searchColorSelector,
+    setFilteredData,
+    categorySelector
+} from "../../../redux/category/categorySlice"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 
 const FilterColor = () => {
-    const [searchColors, setSearchColors] = useState([]);
+    const searchColors = useSelector(searchColorSelector);
+    const {categoryData} = useSelector(categorySelector)
+    const dispatch = useDispatch();
     const colors = [
         {nameColor: "gray", color: "#E4E4E4"},
         {nameColor: "yellow", color: "#E9D777"},
@@ -14,18 +23,23 @@ const FilterColor = () => {
         {nameColor: "black", color: "#1C2537"}
     ]
 
-    const handleSearchColors = (currentColorName) => {
-        const findColor = searchColors.find((item) => item.nameColor === currentColorName);
-
-        if (findColor) {
-            const filterColor = searchColors.filter((item) => item.nameColor !== currentColorName)
-            setSearchColors(filterColor)
-        } else {
-            setSearchColors([...searchColors, {nameColor: currentColorName}])
+    useEffect(() => {
+        const limitColors = searchColors.length !== colors.length;
+        if (searchColors.length || !limitColors) {
+            const filterData = categoryData.filter((item) =>
+                filterColorForData({
+                    color: item.nameColor,
+                    exist: item.exist
+                })
+            )
         }
-    }
+        // console.log(searchColors) nameColor: "green"
 
-    console.log(searchColors)
+    }, [searchColors, ])
+
+    const filterColorForData = (obj) => {
+        return searchColors.filter((item) => item.nameColor === obj.nameColor && obj.exist)
+    }
 
     return (
         <div className="filters__filter-color">
@@ -37,7 +51,7 @@ const FilterColor = () => {
                             <li key={obj.nameColor}>
                                 <Button
                                     style={{backgroundColor: obj.color}}
-                                    onClick={() => handleSearchColors(obj.nameColor)}
+                                    onClick={() => dispatch(setSearchColors(obj.nameColor))}
                                     variant="contained">
                                     {
                                         isSearch &&

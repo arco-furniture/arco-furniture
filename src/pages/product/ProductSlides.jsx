@@ -2,7 +2,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Thumbs} from "swiper";
 
 const ProductSlides = ({setThumbsSwiper, images}) => {
-    const navSlides = images.map((item, index) => {
+    const navSlides = images?.map((item, index) => {
         return (
             <SwiperSlide key={index}>
                 <img className="product__nav-preview" src={item.image} alt="image"/>

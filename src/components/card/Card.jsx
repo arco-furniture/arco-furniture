@@ -11,6 +11,7 @@ import {openAlertBar} from "../../redux/other/otherSlice"
 import {useDispatch, useSelector} from "react-redux";
 import {getPriceWithFormat} from "../../utils/getPriceWithFormat"
 import {homeSelector, postFavoriteItem, deleteFavoriteItem} from "../../redux/home/homeSlice";
+import {addItemForBasket} from "../../redux/basket/basketSlice";
 
 const Card = ({item}) => {
     const [visible, setVisible] = useState(false);
@@ -18,6 +19,7 @@ const Card = ({item}) => {
     const dispatch = useDispatch();
     const {favoriteData} = useSelector(homeSelector)
     const isFavorite = favoriteData.some((favorite) => favorite.id === item.id)
+    const [selectedColor, setSelectedColor] = useState('');
 
     useEffect(() => {
         if (isFavorite){
@@ -48,6 +50,27 @@ const Card = ({item}) => {
         }))
     }
 
+    const basketItem = {
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        oldPrice: item.oldPrice,
+        image: item.cardImages.find((item) => item).image || '',
+        specs: item.specs,
+        color: selectedColor,
+        article: item.article,
+    }
+
+    const handlerOnSubmit = () => {
+        dispatch(openAlertBar({
+            message: item.title,
+            type: 'cart'
+        }))
+
+        console.log(basketItem)
+        dispatch(addItemForBasket(basketItem))
+    }
+
     return (
         <article
             className="card"
@@ -63,17 +86,37 @@ const Card = ({item}) => {
                     <p><span className="old-price">{getPriceWithFormat(item.oldPrice)}</span> &#8381;</p>
                     <em>{getPriceWithFormat(item.price)} &#8381;</em>
                 </div>
-                <CardColors colorPalette={item.colors} visible={visible}/>
-                <div className="card__buttons-wrapper">
-                    <Link to={`/product/${item.id}`} className="card__link-buy" onClick={() => onClickBuyButton()}>
-                        <Button style={{width: '100%'}} size="medium" variant="outlined">купить</Button>
-                    </Link>
-                    <BlackTooltip title="Добавить в избранное" placement="top-start">
-                        <IconButton color="error" onClick={() => onClickFavoriteButton()}>
-                            {isLiked ? <Favorite/> : <FavoriteBorder/>}
-                        </IconButton>
-                    </BlackTooltip>
-                </div>
+                <CardColors
+                    colorPalette={item.colors}
+                    visible={visible}
+                    selectedColor={selectedColor}
+                    setSelectedColor={setSelectedColor}
+                    setVisible={setVisible}
+                />
+                <form className="card__buttons-wrapper">
+                    {
+                        selectedColor ?
+                            <Button
+                                style={{width: '100%'}}
+                                size="medium"
+                                variant="contained"
+                                onClick={() => handlerOnSubmit()}
+                            >
+                                в корзину
+                            </Button>
+                            :
+                            <>
+                                <Link to={`/product/${item.id}`} className="card__link-buy" onClick={() => onClickBuyButton()}>
+                                    <Button style={{width: '100%'}} size="medium" variant="outlined">купить</Button>
+                                </Link>
+                                <BlackTooltip title="Добавить в избранное" placement="top-start">
+                                    <IconButton color="error" onClick={() => onClickFavoriteButton()}>
+                                        {isLiked ? <Favorite/> : <FavoriteBorder/>}
+                                    </IconButton>
+                                </BlackTooltip>
+                            </>
+                    }
+                </form>
             </div>
         </article>
     )

@@ -125,9 +125,18 @@
     li {
       width: 20px;
       height: 20px;
-      border-radius: 2px;
+      cursor: pointer;
+
+      button {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        @include reset;
+        position: relative;
+      }
     }
   }
+
 
   &__tooltip {
     @include flex-center;
