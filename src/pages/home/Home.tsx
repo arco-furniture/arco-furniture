@@ -1,7 +1,8 @@
 import HomeAdvice from "./HomeAdvice";
 import HomePreview from "./HomePreview";
+import React from "react";
 
-const Home = () => {
+const Home: React.FC = () => {
 
     return (
         <div className="home">

@@ -2,19 +2,23 @@ import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import BlackTooltip from "../BlackTooltip/BlackTooltip";
 import {Button} from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
+import {ICardColors} from "./types"
 
-const CardColors = ({colorPalette, visible, setVisible, selectedColor, setSelectedColor}) => {
+const CardColors: React.FC<ICardColors> = (props) => {
+    const {colorPalette, visible, setVisible, selectedColor, setSelectedColor, isTop} = props
     const filterColors = colorPalette.filter(item => item.exist)
     const colors = filterColors.filter((_item, index) => index < 3)
 
-    const handleCurrentColor = (color) => {
-        selectedColor !== color ? setSelectedColor(color) : setSelectedColor('')
+    const handleCurrentColor = (color: string) => {
+        if (!isTop) {
+            selectedColor !== color ? setSelectedColor(color) : setSelectedColor('')
+        }
     }
 
     useEffect(() => {
         selectedColor && setVisible(true)
-    },[selectedColor, visible])
+    }, [selectedColor, visible])
 
     const TooltipColors = () => {
         return (
@@ -22,14 +26,7 @@ const CardColors = ({colorPalette, visible, setVisible, selectedColor, setSelect
                 <span>В наличии:</span>
                 <ul>
                     {
-                        filterColors.map((obj, index) => {
-                            return (
-                                <li
-                                    key={index}
-                                    style={{backgroundColor: obj.color}}
-                                />
-                            )
-                        })
+                        filterColors.map((obj, index) => <li key={index} style={{backgroundColor: obj.color}}/>)
                     }
                 </ul>
             </div>
@@ -38,28 +35,27 @@ const CardColors = ({colorPalette, visible, setVisible, selectedColor, setSelect
 
     return (
         <ul className={`card__colors ${visible ? 'card__active' : 'card__disabled'}`}>
-            <BlackTooltip title={TooltipColors()} placement="top-start">
-                <AutoAwesomeOutlinedIcon color="primary"/>
-            </BlackTooltip>
+            {
+                !isTop &&
+                <BlackTooltip title={TooltipColors()} placement="top-start">
+                    <AutoAwesomeOutlinedIcon color="primary"/>
+                </BlackTooltip>
+            }
             {
                 colors.map((palette, index) => {
                     const isCurrentColor = selectedColor === palette.color
+                    const styleButton = {backgroundColor: palette.color, top: isCurrentColor ? '-3px' : '0'}
+                    const styleIcon = {position: 'absolute', bottom: '-20px', zIndex: '1000'}
                     return (
                         <li key={index}>
                             <Button
-                                style={{backgroundColor: palette.color, top: isCurrentColor ? '-3px' : '0'}}
+                                disabled={isTop}
+                                style={styleButton}
                                 onClick={() => handleCurrentColor(palette.color)}
                                 variant="contained">
                                 {
-                                    isCurrentColor &&
-                                    <ExpandLessIcon
-                                        color="primary"
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: '-20px',
-                                            zIndex: '1000'
-                                        }}
-                                    />
+                                    isCurrentColor && !isTop &&
+                                    <ExpandLessIcon color="primary" sx={styleIcon}/>
                                 }
                             </Button>
                         </li>

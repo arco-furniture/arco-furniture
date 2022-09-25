@@ -4,8 +4,9 @@ import CodeIcon from '@mui/icons-material/Code';
 import Button from "@mui/material/Button";
 import {openAuthorsPopup} from "../../../redux/other/otherSlice"
 import {useDispatch} from "react-redux";
+import React from "react";
 
-const HeaderTop = () => {
+const HeaderTop: React.FC = () => {
     const dispatch = useDispatch();
     const topNavItems = [{name: 'Сборка', link: '/'}, {name: 'Оплата', link: '/'}, {name: 'Доставка', link: '/'}]
 
@@ -20,13 +21,11 @@ const HeaderTop = () => {
                     </button>
                     <ul className="header__nav">
                         {
-                            topNavItems.map((item, index) => {
-                                return (
-                                    <Link className="header__nav_item" key={index} to={item.link}>
-                                        <li>{item.name}</li>
-                                    </Link>
-                                )
-                            })
+                            topNavItems.map((item, index) => (
+                                <Link className="header__nav_item" key={index} to={item.link}>
+                                    <li>{item.name}</li>
+                                </Link>
+                            ))
                         }
                     </ul>
                 </div>
