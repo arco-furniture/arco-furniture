@@ -23,6 +23,11 @@
     @include flex-center-between;
   }
 
+  &__contain {
+    @include flex-center-between;
+    gap: 50px;
+  }
+
   &__place {
     @include flex-center;
     border: none;
@@ -67,6 +72,10 @@
     margin: 0 auto;
     width: 100%;
     @include flex-center-center;
+  }
+
+  &__tooltip-title {
+    max-width: 90px;
   }
 
   &__nav_item {

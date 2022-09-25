@@ -3,11 +3,11 @@ import {otherSelector} from "../../redux/other/otherSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Alert} from "@mui/material";
 import {closeAlertBar} from "../../redux/other/otherSlice"
-// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import React from "react";
 
-const AlertBar = () => {
+const AlertBar: React.FC = () => {
     const dispatch = useDispatch();
     const {statusAlert, alert} = useSelector(otherSelector);
     const {type, message} = alert
@@ -17,7 +17,8 @@ const AlertBar = () => {
         color: '#fff'
     }
 
-    const handleClose = (event, reason) => {
+
+    const handleClose: any = (event: any, reason: any) => {
         if (reason === 'clickaway') {
             return;
         }

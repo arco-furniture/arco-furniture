@@ -12,7 +12,6 @@ import BasketItem from "./components/BasketItem";
 import { changeBasketBtnStatus } from "../../redux/basket/basketSlice";
 import { getBuyInfo } from "../../redux/basket/basketSlice";
 
-
 const Basket = () => {
     const navigate = useNavigate();
     const { dataBasketItems, totalPrice, basketBtnStatus } = useSelector(basketSelector);
@@ -32,10 +31,6 @@ const Basket = () => {
         setErrors({ ...errors, [name]: target.validationMessage });
         setIsValid(target.closest("form").checkValidity());
     };
-
-    useEffect(() => {
-        console.log(Object.values(values).length, 'values111')
-    }, [values])
 
     const handleSubmitForm = (e) => {
         e.preventDefault();

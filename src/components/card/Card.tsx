@@ -12,13 +12,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {getPriceWithFormat} from "../../utils/getPriceWithFormat"
 import {homeSelector, postFavoriteItem, deleteFavoriteItem} from "../../redux/home/homeSlice";
 import {addItemForBasket} from "../../redux/basket/basketSlice";
+import {IBasketItem, ICard} from "./types";
+import {colorsTypes, IItem, imagesTypes} from "../../types/itemTypes";
 
-const Card = ({item}) => {
-    const [visible, setVisible] = useState(false);
-    const [isLiked, setIsLiked] = useState(false);
+const Card: React.FC<ICard> = ({item, isTop = false}) => {
+    const [visible, setVisible] = useState<boolean>(false);
+    const [isLiked, setIsLiked] = useState<boolean>(false);
     const dispatch = useDispatch();
     const {favoriteData} = useSelector(homeSelector)
-    const isFavorite = favoriteData.some((favorite) => favorite.id === item.id)
+    const isFavorite = favoriteData.some((favorite: IItem) => favorite.id === item.id)
     const [selectedColor, setSelectedColor] = useState('');
 
     useEffect(() => {
@@ -26,6 +28,13 @@ const Card = ({item}) => {
             setIsLiked(true)
         }
     }, [])
+
+    useEffect(() => {
+        if(isTop) {
+            const findItem: any = item.colors.find((item: colorsTypes) => item.color) || ''
+            setSelectedColor(findItem)
+        }
+    }, [isTop])
 
     const onClickBuyButton = () => {
         dispatch(setProduct(item))
@@ -37,7 +46,7 @@ const Card = ({item}) => {
             dispatch(postFavoriteItem(item))
             return true
         }
-        const withoutItemsFavorite = favoriteData.filter((favorite) => favorite.id !== item.id)
+        const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite.id !== item.id)
         dispatch(deleteFavoriteItem(withoutItemsFavorite))
         return false
     }
@@ -50,12 +59,16 @@ const Card = ({item}) => {
         }))
     }
 
-    const basketItem = {
+    const getCardImages = (images: any) => {
+            return images.find((item: imagesTypes) => item).image || ''
+    }
+
+    const basketItem: IBasketItem = {
         id: item.id,
         title: item.title,
         price: item.price,
         oldPrice: item.oldPrice,
-        image: item.cardImages.find((item) => item).image || '',
+        image: getCardImages(item.cardImages),
         specs: item.specs,
         color: selectedColor,
         article: item.article,
@@ -66,8 +79,6 @@ const Card = ({item}) => {
             message: item.title,
             type: 'cart'
         }))
-
-        console.log(basketItem)
         dispatch(addItemForBasket(basketItem))
     }
 
@@ -77,7 +88,7 @@ const Card = ({item}) => {
             onMouseEnter={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
         >
-            <Tag tag={item.mark} isCard={true}/>
+            <Tag tag={item.mark} isCard={true} price={item.price} oldPrice={item.oldPrice}/>
             <SwiperImages images={item.cardImages} visible={visible}/>
             <p className="card__title">{item.title}</p>
             <div className="card__desc-wrapper">
@@ -87,6 +98,7 @@ const Card = ({item}) => {
                     <em>{getPriceWithFormat(item.price)} &#8381;</em>
                 </div>
                 <CardColors
+                    isTop={isTop}
                     colorPalette={item.colors}
                     visible={visible}
                     selectedColor={selectedColor}

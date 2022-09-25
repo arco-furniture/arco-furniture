@@ -16,7 +16,7 @@ const initialState = {
         name: ''
     },
     categorySort: 'rating',
-    filterPrice: [10000, 100000],
+    filterPrice: [0, 0],
     searchColors: [],
     searchStyles: [],
     searchMaterial: "Все"
@@ -63,7 +63,7 @@ export const categorySlice = createSlice({
             state.searchMaterial = action.payload
         },
         resetSettingsCategory(state) {
-            state.filterPrice = [10000, 100000]
+            state.filterPrice = [0, 0]
             state.searchColors = []
             state.searchStyles = []
             state.searchMaterial = "Все"

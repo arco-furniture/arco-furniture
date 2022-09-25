@@ -26,20 +26,18 @@ const FilterColor = () => {
     useEffect(() => {
         const limitColors = searchColors.length !== colors.length;
         if (searchColors.length || !limitColors) {
-            const filterData = categoryData.filter((item) =>
-                filterColorForData({
-                    color: item.nameColor,
-                    exist: item.exist
+            const filterData = categoryData.filter((item) => {
+                categoryData.colors.filter((color) => {
+
                 })
-            )
+
+            })
+
+            console.log(filterData)
         }
-        // console.log(searchColors) nameColor: "green"
 
-    }, [searchColors, ])
+    }, [searchColors])
 
-    const filterColorForData = (obj) => {
-        return searchColors.filter((item) => item.nameColor === obj.nameColor && obj.exist)
-    }
 
     return (
         <div className="filters__filter-color">

@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchProduct, getFirstColor, productSelector, setCurrentColor} from "../../redux/product/productSlice";
+import {fetchProduct, productSelector} from "../../redux/product/productSlice";
 import {ProductParams, ProductSpecs, ProductSlides, ProductPreview} from "./index"
 import {useLocation} from "react-router-dom";
 

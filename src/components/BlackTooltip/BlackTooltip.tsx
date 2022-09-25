@@ -1,6 +1,8 @@
 import {Tooltip} from "@mui/material";
+import React from "react";
+import {IBlackTooltip} from "./types"
 
-const BlackTooltip = ({children, title, placement}) => {
+const BlackTooltip: React.FC <IBlackTooltip> = ({children, title, placement}) => {
 
     const tooltipStyles = {
         tooltip: {
