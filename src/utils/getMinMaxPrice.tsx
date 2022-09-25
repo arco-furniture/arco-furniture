@@ -1,4 +1,7 @@
-export const getMinMaxPrice = (items) => {
+import React from "react";
+import {IItem} from "../types/itemTypes";
+
+export const getMinMaxPrice = (items: IItem[]) => {
     if (!items.length) return [0, 0]
 
     const allPrice = items.map((item) => item.price)
@@ -8,7 +11,7 @@ export const getMinMaxPrice = (items) => {
     return getRoundingPrice(minPrice, maxPrice)
 }
 
-const getRoundingPrice = (min, max) => {
+const getRoundingPrice = (min: number, max: number) => {
     const minLastValue = min % 5000
     const maxLastValue = max % 5000
 
