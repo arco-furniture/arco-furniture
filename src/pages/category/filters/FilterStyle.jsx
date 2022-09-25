@@ -1,13 +1,14 @@
 import Chip from "@mui/material/Chip";
-import {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {categorySelector, setSearchStyles, setFilteredData} from "../../../redux/category/categorySlice"
 import {useDispatch, useSelector} from "react-redux";
 
 const FilterStyle = () => {
     const activeStyles = {backgroundColor: '#4675CE', opacity: 0.6, color: '#fff'}
     const defaultStyles = {backgroundColor: '#F5F5F5', color: '#555'}
-    const {searchStyles, fetchData, filterPrice, searchColors, searchMaterial} = useSelector(categorySelector);
+    const {searchStyles, fetchData, searchMaterial} = useSelector(categorySelector);
     const dispatch = useDispatch();
+    // const [activeMaterial, setActiveMaterial] = useState(searchMaterial);
     const styles = [
         {style: "Классический"},
         {style: "Прованс"},
@@ -27,7 +28,7 @@ const FilterStyle = () => {
         } else {
             dispatch(setFilteredData(fetchData))
         }
-    },[searchMaterial, searchStyles, searchColors, filterPrice])
+    },[searchStyles])
 
     return(
         <div className="filters__filter-style">

@@ -4,7 +4,7 @@ import {categorySelector, setSearchMaterial, setFilteredData } from "../../../re
 import {useSelector, useDispatch} from "react-redux";
 
 const FilterMaterial = () => {
-    const {searchMaterial, fetchData, searchStyles, searchColors, filterPrice} = useSelector(categorySelector)
+    const {searchMaterial, fetchData, searchStyles, searchColors, filterPrice, categoryData} = useSelector(categorySelector)
     const dispatch = useDispatch();
 
     const materials = [
@@ -15,16 +15,16 @@ const FilterMaterial = () => {
     ];
 
     useEffect(() => {
-        if (searchMaterial === "Все") {
-            dispatch(setFilteredData(fetchData))
-        } else {
+        if (searchMaterial !== "Все") {
             const filterDataMaterial = fetchData.filter((data) => {
                 const findSpecs = data.specs.find((item) => item.specsId === "material")
                 return findSpecs.value === searchMaterial
             })
             dispatch(setFilteredData(filterDataMaterial))
+        } else {
+            dispatch(setFilteredData(fetchData))
         }
-    },[searchMaterial, searchStyles, searchColors, filterPrice])
+    },[searchMaterial])
 
     return (
         <div className="filters__filter-material">
