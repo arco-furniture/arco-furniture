@@ -14,6 +14,7 @@ export interface IItem {
     "productImages": imagesTypes[],
     "cardImages": imagesTypes[],
     count?: number,
+    isTop?: boolean,
 }
 
 export type specsTypes = {
