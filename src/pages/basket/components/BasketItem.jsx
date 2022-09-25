@@ -31,7 +31,7 @@ const BasketItem = (item) => {
 
     return (
         <div className={styles.item}>
-            <img src={item.image} alt='img' style={{ width: '188px' }} />
+            <img className={styles.item__image} src={item.image} alt='img' style={{ width: '188px' }} />
             <div className={styles.item__container}>
                 <div className={styles.item__left}>
                     <div className={styles.item__box}>
@@ -57,20 +57,13 @@ const BasketItem = (item) => {
                             </div>
                             <div style={{ display: item.item.specifications ? 'block' : 'none' }}>
                                 {item.specs && item.specs.map((item, key) => (
-                                    <BasketSpecifications
-                                        key={key}
-                                        item={item}
-                                    />
+                                    <BasketSpecifications key={key} item={item}/>
                                 ))}
                             </div>
                         </div>
                     </div>
                 </div>
-                <ButtonGroup sx={{
-                    mt: '12px'
-                }}
-                    size="small"
-                    variant="outlined">
+                <ButtonGroup sx={{mt: '12px'}} size="small" variant="outlined" className={styles.item__button_group}>
                     <Button
                         className={styles.item__button_count}
                         style={stylesCountButtonLeft}

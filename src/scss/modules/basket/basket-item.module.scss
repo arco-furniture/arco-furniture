@@ -16,6 +16,13 @@
         position: relative;
     }
 
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px 0 0 4px;
+    }
+
     &__box {
         @include flex-center;
     }
@@ -39,6 +46,7 @@
         height: 100%;
         @include flex-column;
         justify-content: space-between;
+        align-items: flex-end;
     }
 
     &__title {
@@ -52,6 +60,12 @@
         height: 15.8px;
         background-color: #2D2D2D;
         border-radius: 2px;
+    }
+
+    &__button_group {
+        position: absolute;
+        left: 50%;
+        top: 17%;
     }
 
     &__button_count {

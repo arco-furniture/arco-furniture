@@ -1,10 +1,22 @@
 import Chip from "@mui/material/Chip";
+import React from "react";
+import {ITag} from "./types";
 
-const Tag = ({tag, isCard = false}) => {
+const Tag: React.FC<ITag> = ({tag, isCard = false, price, oldPrice}) => {
     const tagColors = [{top: '#E13B3F'}, {new: '#4675CE'}, {discount: '#5AB45E'}, {eco: '#9d6e3d'}]
     const tagLabels = [{top: 'top'}, {new: 'new'}, {discount: '%'}, {eco: 'eco'}]
 
-    const handleColorTag = (tag) => {
+    const handleCheckDiscount = (findTag: any) => {
+        findTag = Object.values(findTag).join().toUpperCase()
+        if (findTag === '%') {
+            let discount = Math.abs((price / oldPrice * 100) - 100)
+            discount = Math.round(discount)
+            return `${discount}%`
+        }
+        return findTag
+    }
+
+    const handleColorTag = (tag: any) => {
         const findTag = tagColors.find(item => Object.keys(item).join() === tag)
         if (findTag && Object.keys(findTag).join() === tag) {
             const colorTag = Object.values(findTag).join()
@@ -13,12 +25,11 @@ const Tag = ({tag, isCard = false}) => {
         return {opacity: 0, overflow: 'hidden'}
     }
 
-    const handleLabelTag = (tag) => {
+    const handleLabelTag = (tag: any) => {
         const findTag = tagLabels.find(item => Object.keys(item).join() === tag)
         if (findTag && Object.keys(findTag).join() === tag) {
-            return Object.values(findTag).join().toUpperCase()
+            return handleCheckDiscount(findTag)
         }
-        return ''
     }
 
     return(

@@ -1,7 +1,9 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Thumbs} from "swiper";
+import {IProductSlides} from "./types";
+import React from "react";
 
-const ProductSlides = ({setThumbsSwiper, images}) => {
+const ProductSlides: React.FC<IProductSlides> = ({setThumbsSwiper, images}) => {
     const navSlides = images?.map((item, index) => {
         return (
             <SwiperSlide key={index}>

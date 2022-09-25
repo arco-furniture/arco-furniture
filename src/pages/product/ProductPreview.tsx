@@ -1,14 +1,9 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from "swiper";
+import React from "react";
+import {IProductPreview} from "./types";
 
-const ProductPreview = ({images, thumbsSwiper}) => {
-    const swiperStyles = {
-        borderRadius: '4px',
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-    }
-
+const ProductPreview: React.FC<IProductPreview> = ({images, thumbsSwiper}) => {
     const slides = images?.map((item, index) => {
         return (
             <SwiperSlide key={index}>
@@ -20,7 +15,6 @@ const ProductPreview = ({images, thumbsSwiper}) => {
     return (
         <li className="product__preview">
             <Swiper
-                style={swiperStyles}
                 loop={true}
                 spaceBetween={40}
                 navigation={true}

@@ -1,8 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-const SkeletonCard = () => {
-
+const SkeletonCard:React.FC = () => {
     return (
         <ContentLoader
             style={{

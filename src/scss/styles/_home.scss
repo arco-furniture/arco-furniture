@@ -28,21 +28,22 @@
   }
 
   &__swiper {
-    max-width: 570px;
+    max-width: 556px;
     border-radius: 10px;
+    @include reset;
   }
 
   &__wrapper {
     @include flex-column;
     gap: 12px;
+  }
 
-    ul {
-      @include reset-list;
-      @include flex-column;
-      box-sizing: border-box;
-      justify-content: space-between;
-      height: 100%;
-    }
+  &__cards-wrapper {
+    @include reset-list;
+    @include flex-column;
+    box-sizing: border-box;
+    justify-content: space-between;
+    height: 100%;
   }
 
   &__banner {
@@ -54,17 +55,17 @@
   &__info {
     grid-column-start: 2;
     grid-column-end: 3;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+    @include flex-center-center;
+    gap: 35px;
+    max-width: 556px;
 
     &-text {
       @include text-format(700, 14px, 18px);
       @include reset;
       background-color: #E7E7E7;
-      border-radius: 10px;
-      min-height: 51px;
-      min-width: 272px;
+      border-radius: 7px;
+      height: 50px;
+      width: 100%;
       @include flex-center-center;
       border: none;
     }
@@ -75,7 +76,7 @@
     gap: 10px;
     padding: 10px;
     background-color: #F5F5F5;
-    border-radius: 10px;
+    border-radius: 4px;
   }
 
   &__timer-container {
@@ -89,15 +90,18 @@
     margin-left: 10px;
   }
 
+  &__grout-text {
+    @include flex-column;
+  }
+
   &__title-text {
-    @include text-format(700, 18px, 23px);
+    @include text-format(700, 16px, 23px);
     @include reset;
   }
 
   &__text {
-    @include text-format(400, 16px, 21px);
+    @include text-format(400, 14px, 21px);
     @include reset;
-    margin-top: 5px;
   }
 
   &__icon {

@@ -1,5 +1,5 @@
 const item = {
-  id: 2,
+  id: 0,
   article: "487002",
   title: "Кухня модульная Lucido",
   advice: 0,
@@ -9,37 +9,13 @@ const item = {
     { value: "1200х2400х450", specsId: "size" },
   ],
   price: 78000,
-  oldPrice: 110000,
-  mark: "top",
+  oldPrice: 180000,
+  mark: "discount",
   description:
     "Кухня Lucido – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
   colors: [
     {
-      color: "#E4E4E4",
-      exist: false,
-    },
-    {
       color: "#E9D777",
-      exist: true,
-    },
-    {
-      color: "#96314A",
-      exist: true,
-    },
-    {
-      color: "#906F48",
-      exist: true,
-    },
-    {
-      color: "#58B988",
-      exist: true,
-    },
-    {
-      color: "#2B7493",
-      exist: true,
-    },
-    {
-      color: "#1C2537",
       exist: true,
     },
   ],

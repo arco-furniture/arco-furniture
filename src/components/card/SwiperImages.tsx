@@ -1,11 +1,12 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from "swiper";
-import {useState} from "react";
+import React, {useState} from "react";
 import 'swiper/scss';
+import {ISwiperImages} from "./types";
 
-const SwiperImages = ({images, visible}) => {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const [indexActive, setIndexActive] = useState(0);
+const SwiperImages: React.FC<ISwiperImages> = ({images, visible}) => {
+    const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+    const [indexActive, setIndexActive] = useState<number>(0);
 
     const slides = images.map((item, index) => {
         return (

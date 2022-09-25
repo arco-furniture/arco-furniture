@@ -9,12 +9,7 @@ const PopupTemplate = ({children, status, handleClose}) => {
     }
 
     return (
-        <Dialog
-            open={status}
-            onClose={() => dispatch(handleClosePopup)}
-            minWidth="200px"
-            fullWidth
-        >
+        <Dialog open={status} onClose={() => dispatch(handleClosePopup)} minWidth="200px">
             <DialogContent>
                 {children}
             </DialogContent>

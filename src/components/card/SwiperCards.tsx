@@ -1,21 +1,19 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper";
 import 'swiper/css';
-import {useRef} from "react";
+import React, {useRef} from "react";
 import {IconButton} from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import {ISwiperCards} from "./types";
 
-const SwiperCards = ({children}) => {
+const SwiperCards: React.FC<ISwiperCards> = ({children}) => {
     const prevRef = useRef(null)
     const nextRef = useRef(null)
 
     const slides = children.map((card, index) => {
         return (
-            <SwiperSlide
-                key={index}
-                style={{display: 'flex', justifyContent: 'space-between'}}
-            >
+            <SwiperSlide key={index} style={{display: 'flex', justifyContent: 'space-between'}}>
                 {card}
             </SwiperSlide>
         )
@@ -36,7 +34,7 @@ const SwiperCards = ({children}) => {
                     prevEl: prevRef.current,
                     nextEl: nextRef.current,
                 }}
-                onBeforeInit={(swiper) => {
+                onBeforeInit={(swiper: any) => {
                     swiper.params.navigation.prevEl = prevRef.current;
                     swiper.params.navigation.nextEl = nextRef.current;
                 }}

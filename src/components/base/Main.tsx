@@ -4,8 +4,14 @@ import {Routes, Route} from "react-router-dom";
 import {Home, Product, Basket, BasketOrder, BasketApproval, Favorite, Category} from "../../pages/index"
 import AlertBar from "../alertBar/AlertBar";
 import AuthorsPopup from "../popups/AuthorsPopup";
+import {ProtectedRoute} from "../index";
+import {homeSelector} from "../../redux/home/homeSlice"
+import {basketSelector} from "../../redux/basket/basketSlice";
+import {useSelector} from "react-redux";
 
 const Main: React.FC = () => {
+    const {favoriteData} = useSelector(homeSelector);
+    const {dataBasketItems} = useSelector(basketSelector);
 
     return (
         <main className={styles.main}>
@@ -16,10 +22,26 @@ const Main: React.FC = () => {
                         <Route path="/arco-furniture" element={<Home/>}/>
                         <Route path="/category/:categoryName" element={<Category/>}/>
                         <Route path="/product/:productId" element={<Product/>}/>
-                        <Route path="/favorite" element={<Favorite/>}/>
-                        <Route path="/basket" element={<Basket/>}/>
-                        <Route path="/basket/order" element={<BasketOrder/>}/>
-                        <Route path="/basket/order/approval" element={<BasketApproval/>}/>
+                        <Route path="/favorite" element={
+                            <ProtectedRoute existData={favoriteData.length}>
+                                <Favorite/>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path="/basket" element={
+                            <ProtectedRoute existData={dataBasketItems.length}>
+                                <Basket/>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path="/basket/order" element={
+                            <ProtectedRoute existData={dataBasketItems.length}>
+                                <BasketOrder/>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path="/basket/order/approval" element={
+                            <ProtectedRoute existData={dataBasketItems.length}>
+                                <BasketApproval/>
+                            </ProtectedRoute>
+                        }/>
                     </Routes>
                 </div>
             </div>

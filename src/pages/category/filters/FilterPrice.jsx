@@ -16,7 +16,7 @@ const FilterPrice = () => {
     const minMaxPrice = useSelector(filterPriceSelector);
     const [value, setValue] = useState(minMaxPrice);
     const dispatch = useDispatch();
-    const {categoryData, searchStyles} = useSelector(categorySelector);
+    const {categoryData, searchStyles, fetchData} = useSelector(categorySelector);
     const isMounted = useRef(false);
 
     const inputPropsTextField = (text) => {
@@ -40,8 +40,8 @@ const FilterPrice = () => {
     );
 
     const getCardsForPrice = (value) => {
-        if (categoryData.length) {
-            const filteredCards = categoryData.filter((item) => item.price >= value[0] && item.price <= value[1])
+        if (fetchData.length) {
+            const filteredCards = fetchData.filter((item) => item.price >= value[0] && item.price <= value[1])
             dispatch(setFilteredData(filteredCards))
         }
     }

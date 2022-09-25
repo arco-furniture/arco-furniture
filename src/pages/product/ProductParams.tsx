@@ -1,7 +1,7 @@
 import Chip from "@mui/material/Chip";
 import {Button, IconButton} from "@mui/material";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {productSelector, setCurrentColor} from "../../redux/product/productSlice";
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -10,13 +10,14 @@ import {openAlertBar} from "../../redux/other/otherSlice";
 import BlackTooltip from "../../components/BlackTooltip/BlackTooltip";
 import {deleteFavoriteItem, homeSelector, postFavoriteItem} from "../../redux/home/homeSlice";
 import { addItemForBasket } from "../../redux/basket/basketSlice";
+import {IItem, imagesTypes, colorsTypes} from "../../types/itemTypes";
 
-const ProductParams = () => {
+const ProductParams: React.FC = () => {
     const styleSubmit = {fontSize: '18px', fontWeight: 700};
     const [isLiked, setIsLiked] = useState(false);
-    const {product, currentColor} = useSelector(productSelector)
+    const {product, currentColor}: any = useSelector(productSelector)
     const {favoriteData} = useSelector(homeSelector)
-    const isFavorite = favoriteData.some((favorite) => favorite.id === product.id)
+    const isFavorite = favoriteData.some((favorite: IItem) => favorite.id === product.id)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const ProductParams = () => {
         }
     }, [])
 
-    const handleCurrentColor = (obj, index) => {
+    const handleCurrentColor = (obj: colorsTypes, index: number) => {
         const notExistColor = {
             backgroundColor: 'rgba(0, 0, 0, 0)',
             border: `2px solid ${obj.color}`
@@ -55,13 +56,13 @@ const ProductParams = () => {
         title: product.title,
         price: product.price,
         oldPrice: product.oldPrice,
-        image: product.cardImages?.find((item) => item).image || '',
+        image: product.cardImages?.find((item: imagesTypes) => item).image || '',
         specs: product.specs,
         color: currentColor.color,
         article: product.article,
     }
 
-    const handlerOnSubmit = (evt) => {
+    const handlerOnSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
         dispatch(openAlertBar({
             message: product.title,
@@ -76,7 +77,7 @@ const ProductParams = () => {
             dispatch(postFavoriteItem(product))
             return true
         }
-        const withoutItemsFavorite = favoriteData.filter((favorite) => favorite.id !== product.id)
+        const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite.id !== product.id)
         dispatch(deleteFavoriteItem(withoutItemsFavorite))
         return false
     }
@@ -106,7 +107,7 @@ const ProductParams = () => {
                 <h3 className="product__title">Цвета исполнения:</h3>
                 <ul>
                     {
-                        product.colors?.map((item, index) => {
+                        product.colors?.map((item: colorsTypes, index: number) => {
                             return (
                                 <li key={index}>
                                     <Button

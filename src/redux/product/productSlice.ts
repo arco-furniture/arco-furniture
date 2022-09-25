@@ -1,16 +1,23 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import { findColor } from "../../utils/findColor"
 import axios from "axios";
+import {RootState} from "../store";
+import {IItem} from "../../types/itemTypes"
 
-
-export const fetchProduct = createAsyncThunk('product/fetchDataProduct', async (id) => {
+export const fetchProduct: any = createAsyncThunk('product/fetchDataProduct', async (id) => {
     const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro?id=${id}`)
     return data
 })
 
+// interface IProductState {
+//     product: IItem | {},
+//     productStatus: "loading" | "success" | "error",
+//     currentColor: any
+// }
+
 const initialState = {
     product: {},
-    productStatus: '',
+    productStatus: 'loading',
     currentColor: {},
 }
 
@@ -19,6 +26,7 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         getFirstColor(state, action) {
+            console.log(action.payload)
             state.currentColor = findColor(action.payload)
         },
         setProduct(state, action) {
@@ -45,5 +53,5 @@ export const productSlice = createSlice({
 })
 
 export const { setCurrentColor, setProduct, getFirstColor } = productSlice.actions;
-export const productSelector = (state) => state.productReducer
+export const productSelector = (state: RootState) => state.productReducer
 export default productSlice.reducer;
