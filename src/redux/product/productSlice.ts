@@ -3,19 +3,15 @@ import { findColor } from "../../utils/findColor"
 import axios from "axios";
 import {RootState} from "../store";
 import {IItem} from "../../types/itemTypes"
+import {IProductState} from "../types";
 
 export const fetchProduct: any = createAsyncThunk('product/fetchDataProduct', async (id) => {
     const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro?id=${id}`)
     return data
 })
 
-// interface IProductState {
-//     product: IItem | {},
-//     productStatus: "loading" | "success" | "error",
-//     currentColor: any
-// }
 
-const initialState = {
+const initialState: IProductState = {
     product: {},
     productStatus: 'loading',
     currentColor: {},
@@ -26,7 +22,6 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         getFirstColor(state, action) {
-            console.log(action.payload)
             state.currentColor = findColor(action.payload)
         },
         setProduct(state, action) {
@@ -42,7 +37,7 @@ export const productSlice = createSlice({
             state.productStatus = 'loading';
         });
         builder.addCase(fetchProduct.fulfilled, (state, action) => {
-            state.product = action.payload[0]
+            state.product = action.payload.find((item: IItem) => item)
             state.productStatus = 'success'
         });
         builder.addCase(fetchProduct.rejected, (state) => {
