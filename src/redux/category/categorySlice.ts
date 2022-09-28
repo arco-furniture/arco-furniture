@@ -1,16 +1,18 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios";
 import {getMinMaxPrice} from "../../utils/getMinMaxPrice";
+import {RootState} from "../store";
+import {ICategoryState} from "../types";
 
-export const fetchDataCategory = createAsyncThunk('category/fetchDataCategory', async (requestFilter) => {
+export const fetchDataCategory: any = createAsyncThunk('category/fetchDataCategory', async (requestFilter) => {
     const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro${requestFilter}`)
     return data
 })
 
-const initialState = {
+const initialState: ICategoryState = {
     fetchData: [],
     categoryData: [],
-    categoryStatus: '',
+    categoryStatus: 'loading',
     categoryParams: {
         paramsId: null,
         name: ''
@@ -100,8 +102,8 @@ export const {
     setSearchMaterial,
     resetSettingsCategory
 } = categorySlice.actions;
-export const categorySelector = (state) => state.categoryReducer
-export const paramsSelector = (state) => state.categoryReducer.categoryParams
-export const filterPriceSelector = (state) => state.categoryReducer.filterPrice
-export const searchColorSelector = (state) => state.categoryReducer.searchColors
+export const categorySelector = (state: RootState) => state.categoryReducer
+export const paramsSelector = (state: RootState) => state.categoryReducer.categoryParams
+export const filterPriceSelector = (state: RootState) => state.categoryReducer.filterPrice
+export const searchColorSelector = (state: RootState) => state.categoryReducer.searchColors
 export default categorySlice.reducer;
