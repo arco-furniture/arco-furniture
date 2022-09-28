@@ -8,7 +8,7 @@ const Tag: React.FC<ITag> = ({tag, isCard = false, price, oldPrice}) => {
 
     const handleCheckDiscount = (findTag: any) => {
         findTag = Object.values(findTag).join().toUpperCase()
-        if (findTag === '%') {
+        if (findTag === '%' && price && oldPrice) {
             let discount = Math.abs((price / oldPrice * 100) - 100)
             discount = Math.round(discount)
             return `${discount}%`

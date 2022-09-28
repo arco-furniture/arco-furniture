@@ -8,7 +8,7 @@
 
     &__container {
         @include flex-column;
-        gap: 30px;
+        gap: 25px;
         width: 100%;
     }
 }
@@ -20,6 +20,13 @@
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 20px;
+    max-height: 440px;
+
+    &__label {
+        span {
+            font-size: 14px;
+        }
+    }
 
     &__title {
         @include reset;
@@ -40,7 +47,7 @@
     &__text {
         @include text-format(400, 14px, 18px);
         color: #626262;
-        margin-top: 2px;
+        margin-top: 10px;
     }
 
     &__price {
@@ -49,12 +56,9 @@
     }
 
     &__button {
-        background-color: #4675CE;
-        color: white;
-        margin-top: 36px;
         width: 100%;
         height: 50px;
-        @include text-format(700, 26px, 34px);
         text-transform: uppercase;
+        @include text-format(700, 18px, 34px);
     }
 }

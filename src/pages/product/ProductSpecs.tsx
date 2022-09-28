@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {productSelector} from "../../redux/product/productSlice";
 import React from "react";
 import {specsNamesTypes} from "./types";
-import {specsTypes} from "../../types/itemTypes";
+import {specsTypes} from "../../types/basketTypes";
 
 const ProductSpecs: React.FC = () => {
     const {product} = useSelector(productSelector)

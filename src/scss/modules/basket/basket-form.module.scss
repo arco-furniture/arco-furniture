@@ -1,19 +1,36 @@
 @import "../../variables";
 @import "../../mixins";
 
+
+.order {
+    display: flex;
+    gap: 25px;
+}
+
 .form {
     background-color: #FBFBFB;
-    box-shadow: 2px 10px 1px rgba(0, 0, 0, 0.1);
+    width: 100%;
     border-radius: 5px;
-    padding: 40px 22px 40px 22px;
-    margin-right: 32px;
+    padding: 20px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+
+    &__input {
+        width: 100%;
+    }
+
+    &__wrapper {
+        @include flex-column;
+        gap: 25px;
+    }
 
     &__box {
         display: flex;
+        gap: 30px;
     }
 
     &__title {
-        margin-bottom: 49px;
+        @include reset;
+        margin-bottom: 15px;
         @include text-format(700, 18px, 23px);
         color: #414141;
     }
