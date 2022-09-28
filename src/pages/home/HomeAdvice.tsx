@@ -13,7 +13,7 @@ const HomeAdvice: React.FC = () => {
     const [filterRequest, setFilterRequest] = useState('')
     const dispatch = useDispatch()
     const sortActiveStyles = {backgroundColor: '#4675CE', opacity: 0.6, color: '#fff'}
-    const sortDefaultStyles = {backgroundColor: '#F5F5F5', color: '#555'}
+    const sortDefaultStyles = {backgroundColor: '#F5F5F5', color: '#555', boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)'}
     const sortArray = [
         {name: "Все", advice: ""},
         {name: "Хиты продаж", advice: "top"},

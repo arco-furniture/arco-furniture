@@ -10,7 +10,7 @@ export const getBasketItem = (item: IItem, currentColor: any) => {
             oldPrice: item.oldPrice,
             image: getCardImages(item.cardImages),
             specs: item.specs,
-            color: currentColor.color,
+            color: currentColor,
             article: item.article,
         }
     )
