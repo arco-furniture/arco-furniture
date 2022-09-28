@@ -28,8 +28,8 @@ const FilterColor: React.FC = () => {
     useEffect(() => {
         const limitColors = searchColors.length !== colors.length;
         if (searchColors.length || !limitColors) {
-            // const filterData = categoryData.filter((item: IItem) => {
-            //     categoryData.colors.filter((color: colorsTypes) => {
+            // const filterData = categoryData.filter((item: any) => {
+            //     categoryData.colors.filter((color: any) => {
             //
             //     })
             //
