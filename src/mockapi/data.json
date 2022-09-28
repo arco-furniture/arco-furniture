@@ -32,9 +32,9 @@
       {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
     ],
     "cardImages": [
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"}
+      {"image": "https://clck.ru/32BeQ7"},
+      {"image": "https://clck.ru/32BeQ7"},
+      {"image": "https://clck.ru/32BeQ7"}
     ]
   },
 
@@ -105,16 +105,16 @@
       {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
     ],
     "cardImages": [
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"}
+      {"image": "https://clck.ru/32BeT7"},
+      {"image": "https://clck.ru/32BeT7"},
+      {"image": "https://clck.ru/32BeT7"}
     ]
   },
   {
     "id": 4,
     "category": 2,
     "rating": 5,
-    "article": "487001",
+    "article": "487004",
     "title": "Гостиная модульная Maria",
     "advice": 1,
     "specs": [
@@ -143,9 +143,125 @@
       {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
     ],
     "cardImages": [
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"},
-      {"image": "https://i.ibb.co/5rwYHwb/2.png"}
+      {"image": "https://clck.ru/32BeeP"},
+      {"image": "https://clck.ru/32BeeP"},
+      {"image": "https://clck.ru/32BeeP"}
+    ]
+  },
+  {
+    "id": 5,
+    "category": 1,
+    "rating": 1,
+    "article": "487005",
+    "title": "Кухня модульная Mirage",
+    "advice": 2,
+    "specs": [
+      {"value": "Лофт", "specsId": "style"},
+      {"value": "МДФ", "specsId": "material"},
+      {"value": "1200х2400х450", "specsId": "size"}
+    ],
+    "price": 125000,
+    "oldPrice": 180000,
+    "mark": "new",
+    "description": "Кухня Mirage – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
+    "colors": [
+      {"nameColor": "gray", "color": "#E4E4E4", "exist": true},
+      {"nameColor": "yellow", "color": "#E9D777", "exist": false},
+      {"nameColor": "vinous", "color": "#96314A", "exist": true},
+      {"nameColor": "brown", "color": "#906F48", "exist": true},
+      {"nameColor": "green", "color": "#58B988", "exist": true},
+      {"nameColor": "blue", "color": "#2B7493", "exist": true},
+      {"nameColor": "black", "color": "#1C2537", "exist": false}
+    ],
+    "productImages": [
+      {"image": "https://i.ibb.co/2yCVZTY/image-16.jpg"},
+      {"image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"},
+      {"image": "https://i.ibb.co/yhR2pjb/image-18.jpg"},
+      {"image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"},
+      {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
+    ],
+    "cardImages": [
+      {"image": "https://clck.ru/32BeXi"},
+      {"image": "https://clck.ru/32BeXi"},
+      {"image": "https://clck.ru/32BeXi"},
+      {"image": "https://clck.ru/32BeXi"},
+      {"image": "https://clck.ru/32BeXi"}
+    ]
+  },
+  {
+    "id": 6,
+    "category": 1,
+    "rating": 4,
+    "article": "487006",
+    "title": "Кухня модульная Avrora",
+    "advice": 4,
+    "specs": [
+      {"value": "Прованс", "specsId": "style"},
+      {"value": "МДФ", "specsId": "material"},
+      {"value": "1200х2400х450", "specsId": "size"}
+    ],
+    "price": 175000,
+    "oldPrice": 190000,
+    "mark": "eco",
+    "description": "Кухня Avrora – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
+    "colors": [
+      {"nameColor": "gray", "color": "#E4E4E4", "exist": false},
+      {"nameColor": "yellow", "color": "#E9D777", "exist": true},
+      {"nameColor": "vinous", "color": "#96314A", "exist": false},
+      {"nameColor": "brown", "color": "#906F48", "exist": false},
+      {"nameColor": "green", "color": "#58B988", "exist": true},
+      {"nameColor": "blue", "color": "#2B7493", "exist": true},
+      {"nameColor": "black", "color": "#1C2537", "exist": true}
+    ],
+    "productImages": [
+      {"image": "https://i.ibb.co/2yCVZTY/image-16.jpg"},
+      {"image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"},
+      {"image": "https://i.ibb.co/yhR2pjb/image-18.jpg"},
+      {"image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"},
+      {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
+    ],
+    "cardImages": [
+      {"image": "https://clck.ru/32BeZJ"},
+      {"image": "https://clck.ru/32BeZJ"}
+    ]
+  },
+  {
+    "id": 7,
+    "category": 1,
+    "rating": 5,
+    "article": "487007",
+    "title": "Кухня модульная Inferno",
+    "advice": 3,
+    "specs": [
+      {"value": "Скандинавский", "specsId": "style"},
+      {"value": "Массив", "specsId": "material"},
+      {"value": "1200х2400х450", "specsId": "size"}
+    ],
+    "price": 98000,
+    "oldPrice": 190000,
+    "mark": "discount",
+    "description": "Кухня Inferno – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
+    "colors": [
+      {"nameColor": "gray", "color": "#E4E4E4", "exist": true},
+      {"nameColor": "yellow", "color": "#E9D777", "exist": false},
+      {"nameColor": "vinous", "color": "#96314A", "exist": true},
+      {"nameColor": "brown", "color": "#906F48", "exist": false},
+      {"nameColor": "green", "color": "#58B988", "exist": true},
+      {"nameColor": "blue", "color": "#2B7493", "exist": true},
+      {"nameColor": "black", "color": "#1C2537", "exist": true}
+    ],
+    "productImages": [
+      {"image": "https://i.ibb.co/2yCVZTY/image-16.jpg"},
+      {"image": "https://i.ibb.co/ypt4Jg1/image-17.jpg"},
+      {"image": "https://i.ibb.co/yhR2pjb/image-18.jpg"},
+      {"image": "https://i.ibb.co/mcrn2Sx/image-19.jpg"},
+      {"image": "https://i.ibb.co/gJSMVvM/image-20.jpg"}
+    ],
+    "cardImages": [
+      {"image": "https://clck.ru/32Beaw"},
+      {"image": "https://clck.ru/32Beaw"},
+      {"image": "https://clck.ru/32Beaw"},
+      {"image": "https://clck.ru/32Beaw"}
     ]
   }
 ]

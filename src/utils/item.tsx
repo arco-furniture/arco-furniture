@@ -3,7 +3,7 @@ const item =   {
   "category": 1,
   "rating": 5,
   "article": "487001",
-  "title": "Кухня модульная DaVita",
+  "title": "Гостиная модульная DaVita",
   "advice": 0,
   "specs": [
     {"value": "Классический", "specsId": "style"},
@@ -11,8 +11,8 @@ const item =   {
     {"value": "1200х2400х450", "specsId": "size"}
   ],
   "price": 119000,
-  "oldPrice": 160000,
-  "mark": "none",
+  "oldPrice": 230000,
+  "mark": "discount",
   "description": "Кухня DaVita – модель, которая позволит владельцу обустроить пространство с пользой и со вкусом. Модель, которая позволит владельцу обустроить пространство с пользой и со вкусом.",
   "colors": [
     {"nameColor": "yellow", "color": "#E9D777", "exist": true},

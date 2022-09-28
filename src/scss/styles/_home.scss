@@ -28,9 +28,15 @@
     @include flex-center;
   }
 
+  &__contain {
+    position: relative;
+    width: 100%;
+    @include flex-center-center;
+  }
+
   &__swiper {
     max-width: 556px;
-    border-radius: 10px;
+    border-radius: 5px;
     @include reset;
   }
 
@@ -48,7 +54,7 @@
   }
 
   &__banner {
-    border-radius: 10px;
+    border-radius: 5px;
     box-sizing: border-box;
     max-width: 100%;
   }
@@ -152,18 +158,6 @@
     gap: 30px;
   }
 
-  &__nav {
-    margin: 0 auto;
-    @include flex-center-between;
-    width: 110%;
-    top: 45%;
-    position: absolute;
-  }
-
-  &__buttons_nav {
-    z-index: 1000;
-  }
-
   &__swiper {
     width: 100%;
     height: 100%;
@@ -171,6 +165,26 @@
 
     &-arrows {
       @include flex-center-center;
+    }
+  }
+}
+
+.arrows {
+  &__nav {
+    margin: 0 auto;
+    @include flex-center-between;
+    top: 45%;
+    position: absolute;
+  }
+
+  &__buttons_nav {
+    z-index: 1000;
+    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255,255,255, 0.7) !important;
+
+    &:hover {
+      background-color: rgba(255,255,255, 1) !important;
+      transition: background-color ease-in-out 0.2s;
     }
   }
 }

@@ -10,8 +10,7 @@ import {openAlertBar} from "../../redux/other/otherSlice";
 import BlackTooltip from "../../components/BlackTooltip/BlackTooltip";
 import {deleteFavoriteItem, homeSelector, postFavoriteItem} from "../../redux/home/homeSlice";
 import { addItemForBasket } from "../../redux/basket/basketSlice";
-import {IItem, imagesTypes, colorsTypes} from "../../types/itemTypes";
-import {IBasketItem} from "../../types/basketTypes"
+import {IItem, colorsTypes} from "../../types/itemTypes";
 import {getBasketItem} from "../../utils/getBasketItem";
 
 const ProductParams: React.FC = () => {
@@ -58,7 +57,7 @@ const ProductParams: React.FC = () => {
             message: product.title,
             type: 'cart'
         }))
-        const basketItem = getBasketItem(product, currentColor)
+        const basketItem = getBasketItem(product, currentColor.color)
         dispatch(addItemForBasket(basketItem))
     }
 
@@ -81,10 +80,7 @@ const ProductParams: React.FC = () => {
     }
 
     return (
-        <form
-            className="product__params panel"
-            onSubmit={(evt) => handlerOnSubmit(evt)}
-        >
+        <form className="product__params panel" onSubmit={(evt) => handlerOnSubmit(evt)}>
             <div className="product__top-wrapper">
                 <h2>{product.title}</h2>
                 { currentColor.exist ? <ChipSuccess/> : <ChipError/> }

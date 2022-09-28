@@ -1,15 +1,14 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper";
 import 'swiper/css';
-import React, {useRef} from "react";
-import {IconButton} from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import React, {useEffect, useRef, useState} from "react";
 import {ISwiperCards} from "./types";
+import {SwiperArrows} from "../index"
 
 const SwiperCards: React.FC<ISwiperCards> = ({children}) => {
     const prevRef = useRef(null)
     const nextRef = useRef(null)
+    const [reset, setReset] =useState(37)
 
     const slides = children.map((card, index) => {
         return (
@@ -19,6 +18,11 @@ const SwiperCards: React.FC<ISwiperCards> = ({children}) => {
         )
     })
 
+    // временный костыль
+    useEffect(() => {
+        setReset(36)
+    },[])
+
     return (
         <div className={`advice__swiper ${slides.length >= 4 && 'advice__swiper-arrows'}`}>
             <Swiper
@@ -27,7 +31,7 @@ const SwiperCards: React.FC<ISwiperCards> = ({children}) => {
                 cssMode={true}
                 mousewheel={true}
                 keyboard={true}
-                spaceBetween={37}
+                spaceBetween={reset}
                 slidesPerGroup={4}
                 slidesPerView={4}
                 navigation={{
@@ -43,25 +47,7 @@ const SwiperCards: React.FC<ISwiperCards> = ({children}) => {
                 {slides}
             </Swiper>
             {
-                slides.length >= 4 &&
-                <div className="advice__nav">
-                    <IconButton
-                        ref={prevRef}
-                        className="advice__buttons_nav"
-                        color="primary"
-                        size="large"
-                    >
-                        <ChevronLeftIcon/>
-                    </IconButton>
-                    <IconButton
-                        ref={nextRef}
-                        className="advice__buttons_nav"
-                        color="primary"
-                        size="large"
-                    >
-                        <ChevronRightIcon/>
-                    </IconButton>
-                </div>
+                slides.length >= 4 && <SwiperArrows prevRef={prevRef} nextRef={nextRef} widthValue={102} />
             }
         </div>
     )
