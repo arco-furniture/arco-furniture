@@ -11,6 +11,8 @@ import BlackTooltip from "../../components/BlackTooltip/BlackTooltip";
 import {deleteFavoriteItem, homeSelector, postFavoriteItem} from "../../redux/home/homeSlice";
 import { addItemForBasket } from "../../redux/basket/basketSlice";
 import {IItem, imagesTypes, colorsTypes} from "../../types/itemTypes";
+import {IBasketItem} from "../../types/basketTypes"
+import {getBasketItem} from "../../utils/getBasketItem";
 
 const ProductParams: React.FC = () => {
     const styleSubmit = {fontSize: '18px', fontWeight: 700};
@@ -50,27 +52,15 @@ const ProductParams: React.FC = () => {
         return <Chip label="Под заказ" color="error" variant="filled"></Chip>
     }
 
-    // объект для отправки данных в корзину
-    const cartItem = {
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        oldPrice: product.oldPrice,
-        image: product.cardImages?.find((item: imagesTypes) => item).image || '',
-        specs: product.specs,
-        color: currentColor.color,
-        article: product.article,
-    }
-
     const handlerOnSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
         dispatch(openAlertBar({
             message: product.title,
             type: 'cart'
         }))
-        dispatch(addItemForBasket(cartItem))
+        const basketItem = getBasketItem(product, currentColor)
+        dispatch(addItemForBasket(basketItem))
     }
-
 
     const handleIsFavorite = () => {
         if (!isFavorite) {
