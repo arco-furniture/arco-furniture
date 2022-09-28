@@ -42,15 +42,6 @@
     color: $blue;
   }
 
-  &__place_arrow {
-    background-image: url(../../images/arrow.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    @include size(14px, 14px);
-    background-position: center;
-    margin-top: 5px;
-  }
-
   &__nav-container {
     @include flex-center-between;
   }
