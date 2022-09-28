@@ -1,3 +1,5 @@
+import {specsTypes} from "./basketTypes"
+
 export interface IItem {
     id: number,
     category: number,
@@ -15,11 +17,6 @@ export interface IItem {
     "cardImages": imagesTypes[],
     count?: number,
     isTop?: boolean,
-}
-
-export type specsTypes = {
-    value: string;
-    specsId: string;
 }
 
 export type colorsTypes = {

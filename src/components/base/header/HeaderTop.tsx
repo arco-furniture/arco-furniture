@@ -17,7 +17,6 @@ const HeaderTop: React.FC = () => {
                     <button className="header__place" style={{cursor: 'pointer'}}>
                         <PlaceOutlinedIcon color="primary"/>
                         <p className="header__place_city">Москва</p>
-                        <div className="header__place_arrow"></div>
                     </button>
                     <ul className="header__nav">
                         {
