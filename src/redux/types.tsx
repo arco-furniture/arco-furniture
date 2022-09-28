@@ -42,6 +42,11 @@ export interface IOtherState {
     statusAuthorsPopup: boolean
 }
 
+export interface IProductState  {
+    product: any
+    productStatus: 'success' | 'error' | 'loading'
+    currentColor: object
+}
 
 type searchColorType = {
     nameColor?: string
