@@ -4,10 +4,11 @@ import {IProductSlides} from "./types";
 import React from "react";
 
 const ProductSlides: React.FC<IProductSlides> = ({setThumbsSwiper, images}) => {
+
     const navSlides = images?.map((item, index) => {
         return (
             <SwiperSlide key={index}>
-                <img className="product__nav-preview" src={item.image} alt="image"/>
+                <img className="product__nav-preview" src={item.image} alt="slide"/>
             </SwiperSlide>
         )
     })
