@@ -18,6 +18,8 @@
   &__preview {
     width: 100%;
     grid-area: preview;
+    position: relative;
+    @include flex-center-center;
 
     img  {
       width: 100%;
@@ -36,6 +38,8 @@
     grid-area: slides;
 
     &-wrapper {
+      position: relative;
+      @include flex-center-center;
       height: 100px;
     }
   }
