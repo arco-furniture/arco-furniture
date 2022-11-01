@@ -9,6 +9,7 @@ import {homeSelector} from "../../redux/home/homeSlice"
 import {basketSelector} from "../../redux/basket/basketSlice";
 import {useSelector} from "react-redux";
 import Loadable from "react-loadable"
+import PageNotFound from "../../pages/PageNotFound";
 
 const Main: React.FC = () => {
     const {favoriteData} = useSelector(homeSelector);
@@ -69,6 +70,7 @@ const Main: React.FC = () => {
                                 <BasketApproval/>
                             </ProtectedRoute>
                         }/>
+                        <Route path="*" element={<PageNotFound/>}/>
                     </Routes>
                 </div>
             </div>
