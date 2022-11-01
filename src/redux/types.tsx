@@ -29,8 +29,10 @@ export interface ICategoryState {
 
 export interface IHomeState  {
     adviceData: IItem[]
+    searchData: IItem[]
     adviceStatus: 'success' | 'error' | 'loading'
-    favoriteData: IItem[]
+    searchStatus:  'success' | 'error' | 'loading'
+    favoriteData: IItem[] | []
 }
 
 export interface IOtherState {

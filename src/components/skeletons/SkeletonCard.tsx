@@ -8,7 +8,8 @@ const SkeletonCard:React.FC = () => {
                 border: '1px solid #f5f5f5',
                 borderRadius: '7px',
                 boxShadow: '1px 1px 5px rgb(0 0 0 / 5%)',
-                margin: '10px 0'
+                margin: '10px 0',
+                backgroundColor: "#fff",
             }}
             speed={2}
             width={260}
