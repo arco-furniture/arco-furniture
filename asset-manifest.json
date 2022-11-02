@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/arco-furniture/static/css/main.5a39f48a.css",
-    "main.js": "/arco-furniture/static/js/main.8c50d074.js",
+    "main.css": "/arco-furniture/static/css/main.a7cb855b.css",
+    "main.js": "/arco-furniture/static/js/main.eba4b95b.js",
     "Category.js": "/arco-furniture/static/js/Category.100410c5.chunk.js",
-    "Product.js": "/arco-furniture/static/js/Product.99d7dfb6.chunk.js",
-    "static/js/811.7c1d0354.chunk.js": "/arco-furniture/static/js/811.7c1d0354.chunk.js",
+    "Product.js": "/arco-furniture/static/js/Product.f74c9eb6.chunk.js",
+    "static/js/294.33c5598c.chunk.js": "/arco-furniture/static/js/294.33c5598c.chunk.js",
     "static/media/home__banner.jpg": "/arco-furniture/static/media/home__banner.d389817aabc8e5bfa639.jpg",
     "static/media/Artboard.svg": "/arco-furniture/static/media/Artboard.4d39a851ac16fceebe739db7f971d9ba.svg",
     "static/media/logo-black.svg": "/arco-furniture/static/media/logo-black.57f102637d59c6d5c15e11dcd2517fc4.svg",
@@ -14,14 +14,14 @@
     "static/media/warranty.svg": "/arco-furniture/static/media/warranty.8354c8bf3f714f4991f7.svg",
     "static/media/phone_logo.svg": "/arco-furniture/static/media/phone_logo.c4665664d77f9933608f.svg",
     "index.html": "/arco-furniture/index.html",
-    "main.5a39f48a.css.map": "/arco-furniture/static/css/main.5a39f48a.css.map",
-    "main.8c50d074.js.map": "/arco-furniture/static/js/main.8c50d074.js.map",
+    "main.a7cb855b.css.map": "/arco-furniture/static/css/main.a7cb855b.css.map",
+    "main.eba4b95b.js.map": "/arco-furniture/static/js/main.eba4b95b.js.map",
     "Category.100410c5.chunk.js.map": "/arco-furniture/static/js/Category.100410c5.chunk.js.map",
-    "Product.99d7dfb6.chunk.js.map": "/arco-furniture/static/js/Product.99d7dfb6.chunk.js.map",
-    "811.7c1d0354.chunk.js.map": "/arco-furniture/static/js/811.7c1d0354.chunk.js.map"
+    "Product.f74c9eb6.chunk.js.map": "/arco-furniture/static/js/Product.f74c9eb6.chunk.js.map",
+    "294.33c5598c.chunk.js.map": "/arco-furniture/static/js/294.33c5598c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a39f48a.css",
-    "static/js/main.8c50d074.js"
+    "static/css/main.a7cb855b.css",
+    "static/js/main.eba4b95b.js"
   ]
 }
