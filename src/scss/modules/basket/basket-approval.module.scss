@@ -51,6 +51,16 @@
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     }
 
+    &__listItemIcon {
+        min-width: auto !important;
+        color: #4675CE !important;
+    }
+
+    &__listItemText {
+        opacity: 0.5 !important;
+        margin-left: 15px !important;
+    }
+
     &__copy {
         padding: 0 !important;
         min-width: 45px;
