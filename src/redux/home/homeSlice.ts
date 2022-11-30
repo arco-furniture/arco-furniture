@@ -1,47 +1,50 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import axios from "axios";
-import {RootState} from "../store";
-import {IHomeState} from "../types";
-import {IItem} from "../../types/itemTypes";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { RootState } from '../store'
+import { IHomeState } from '../types'
+import { IItem } from '../../types/itemTypes'
+import { MAIN_API } from '../../api/constants'
 
 export const fetchAdvice: any = createAsyncThunk('home/fetchAdvice', async (requestFilter) => {
-    const {data} = await axios.get(`https://6291e4289d159855f081d72e.mockapi.io/acro${requestFilter}`)
-    return data
+  const { data } = await axios.get(`${MAIN_API}/acro${requestFilter}`)
+  return data
 })
 
 const initialState: IHomeState = {
-    adviceData: [],
-    adviceStatus: 'loading',
-    favoriteData: [],
+  adviceData: [],
+  adviceStatus: 'loading',
+  favoriteData: [],
+  searchStatus: 'loading',
+  searchData: [],
 }
 
 export const homeSlice = createSlice({
-    name: 'home',
-    initialState,
-    reducers: {
-        postFavoriteItem(state, actions) {
-            state.favoriteData = [...state.favoriteData, actions.payload]
-        },
-        deleteFavoriteItem(state, actions) {
-            state.favoriteData = actions.payload
-        }
+  name: 'home',
+  initialState,
+  reducers: {
+    postFavoriteItem(state, actions) {
+      state.favoriteData = [...state.favoriteData, actions.payload]
     },
-    extraReducers: (builder) => {
-        builder.addCase(fetchAdvice.pending, (state) => {
-            state.adviceData = [];
-            state.adviceStatus = 'loading';
-        });
-        builder.addCase(fetchAdvice.fulfilled, (state, action) => {
-            state.adviceData = action.payload.filter((item: IItem) => item.advice || item.advice === 0)
-            state.adviceStatus = 'success'
-        });
-        builder.addCase(fetchAdvice.rejected, (state) => {
-            state.adviceStatus = 'error'
-            state.adviceData = [];
-        });
+    deleteFavoriteItem(state, actions) {
+      state.favoriteData = actions.payload
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAdvice.pending, (state) => {
+      state.adviceData = []
+      state.adviceStatus = 'loading'
+    })
+    builder.addCase(fetchAdvice.fulfilled, (state, action) => {
+      state.adviceData = action.payload.filter((item: IItem) => item.advice || item.advice === 0)
+      state.adviceStatus = 'success'
+    })
+    builder.addCase(fetchAdvice.rejected, (state) => {
+      state.adviceStatus = 'error'
+      state.adviceData = []
+    })
+  },
 })
 
-export const { postFavoriteItem, deleteFavoriteItem } = homeSlice.actions;
+export const { postFavoriteItem, deleteFavoriteItem } = homeSlice.actions
 export const homeSelector = (state: RootState) => state.homeReducer
-export default homeSlice.reducer;
+export default homeSlice.reducer

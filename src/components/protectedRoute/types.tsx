@@ -1,5 +1,4 @@
-
 export interface IProtectedRoute {
-    existData: number,
-    children: JSX.Element,
+  existData: number
+  children: JSX.Element
 }

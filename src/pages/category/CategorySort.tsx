@@ -1,38 +1,34 @@
-import React, {useState} from "react";
-import {setCategorySort} from "../../redux/category/categorySlice"
-import {useDispatch} from "react-redux";
+import React, { useState } from 'react'
+import { setCategorySort } from '../../redux/category/categorySlice'
+import { useDispatch } from 'react-redux'
 
 const CategorySort: React.FC = () => {
-    const [sortIndex, setSortIndex] = useState(0)
-    const dispatch = useDispatch()
+  const [sortIndex, setSortIndex] = useState(0)
+  const dispatch = useDispatch()
 
-    const sortItems = [
-        {name: "По рейтингу", sortId: "rating"},
-        {name: "По цене", sortId: "price"},
-        {name: "По наименованию", sortId: "title"}
-    ]
+  const sortItems = [
+    { name: 'По рейтингу', sortId: 'rating' },
+    { name: 'По цене', sortId: 'price' },
+    { name: 'По наименованию', sortId: 'title' },
+  ]
 
-    const handleSort = (index: number) => {
-        setSortIndex(index)
-        dispatch(setCategorySort(sortItems[index].sortId))
-    }
+  const handleSort = (index: number) => {
+    setSortIndex(index)
+    dispatch(setCategorySort(sortItems[index].sortId))
+  }
 
-    return(
-        <div className="category__sort panel">
-            <h3 className="category__sort-subtitle">Сортировать: </h3>
-            <ul>
-                {
-                    sortItems.map((item, index) =>
-                        (
-                            <li key={index} onClick={() => handleSort(index)}>
-                                <p style={{color: sortIndex === index ? '#4675CE' : '#555555'}}>{item.name}</p>
-                            </li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
-    )
+  return (
+    <div className='category__sort panel'>
+      <h3 className='category__sort-subtitle'>Сортировать: </h3>
+      <ul>
+        {sortItems.map((item, index) => (
+          <li key={index} onClick={() => handleSort(index)}>
+            <p style={{ color: sortIndex === index ? '#4675CE' : '#555555' }}>{item.name}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
-export default CategorySort;
+export default CategorySort

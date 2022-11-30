@@ -1,16 +1,15 @@
-import {describe, it, expect} from '@jest/globals';
-import {shallow, render} from "enzyme";
-import {getPriceWithFormat} from "../utils/getPriceWithFormat"
+import { describe, it, expect } from '@jest/globals'
+import { shallow, render } from 'enzyme'
+import { getPriceWithFormat } from '../utils/getPriceWithFormat'
 
 describe('Testing function getPriceWithFormat', () => {
-    it('get type string', () => {
-        const component = getPriceWithFormat(10)
-        expect(component).toBe("10");
-    });
+  it('get type string', () => {
+    const component = getPriceWithFormat(10)
+    expect(component).toBe('10')
+  })
 
-    it('get true format price', () => {
-        const component = getPriceWithFormat(100000)
-        expect(component).toBe("100 000");
-    });
-});
-
+  it('get true format price', () => {
+    const component = getPriceWithFormat(100000)
+    expect(component).toBe('100 000')
+  })
+})

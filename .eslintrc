@@ -1,0 +1,155 @@
+{
+  "extends": [
+    "standard",
+    "standard-react",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:import/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src", "swiper"],
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "alias": {
+        "map": [
+          ["/*", "src"],
+          ["components", "./src/components"],
+          ["app", "./src/app"],
+          ["helpers", "./src/helpers"],
+          ["assets", "./src/assets/"],
+          ["icons", "./src/assets/icons"],
+          ["images", "./src/assets/images"],
+          ["lib", "./src/lib"],
+          ["hooks", "./src/lib/hooks"],
+          ["pages", "./src/pages/"]
+        ],
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
+    }
+  },
+  "plugins": ["react-hooks", "import", "react", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "curly": ["error", "all"],
+    "dot-notation": [
+      "error",
+      {
+        "allowPattern": "^catch$"
+      }
+    ],
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "import/no-named-as-default": 0,
+    "guard-for-in": "error",
+    "no-caller": "error",
+    "no-eq-null": "error",
+    "no-extra-bind": "error",
+    "no-loop-func": "error",
+    "no-new-wrappers": "error",
+    "no-proto": "error",
+    "no-redeclare": "error",
+    "no-return-assign": ["error", "always"],
+    "no-sequences": "error",
+    "no-useless-call": "warn",
+    "no-with": "error",
+    "import/no-unresolved": [
+      2,
+      {
+        "commonjs": false,
+        "caseSensitive": false
+      }
+    ],
+    "no-new-require": "error",
+    "no-class-assign": "error",
+    "no-const-assign": "error",
+    "no-var": "error",
+    "object-shorthand": [
+      "error",
+      "always",
+      {
+        "ignoreConstructors": false,
+        "avoidQuotes": true
+      }
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": true
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "strict": ["error", "never"],
+    "new-cap": [
+      "error",
+      {
+        "newIsCap": true,
+        "capIsNew": false
+      }
+    ],
+    "max-nested-callbacks": ["error", 5],
+    "eqeqeq": ["error", "smart"],
+    "consistent-this": 0,
+    "require-await": 0,
+    "react/jsx-indent": 0,
+    "max-statements": 0,
+    "react/prop-types": 0,
+    "react/jsx-handler-names": 0,
+    "line-comment-position": 0,
+    "lines-around-comment": 0,
+    "linebreak-style": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "no-use-before-define": "off",
+    "react-hooks/exhaustive-deps": 0,
+    "react/no-unused-prop-types": 0,
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off"
+  }
+}
