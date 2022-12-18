@@ -1,0 +1,37 @@
+@import "../variables";
+@import "../mixins";
+
+.homeSub {
+  width: 100%;
+  margin: 20px 0;
+  min-height: 160px;
+  background-color: $blue;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  @include flex-center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper {
+  @include flex-center-between;
+  width: 100%;
+  z-index: 2;
+}
+
+.text {
+  @include reset;
+  @include text-format(400, 25px, 32px);
+  color: $white;
+}
+
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  left: 0;
+  right: 0;
+}
