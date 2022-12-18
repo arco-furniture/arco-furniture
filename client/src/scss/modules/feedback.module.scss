@@ -1,0 +1,24 @@
+@import "../variables";
+@import "../mixins";
+
+.feedback {
+  @include flex-column;
+  gap: 10px;
+}
+
+.wrapper {
+  @include flex-center;
+  gap: 10px;
+}
+
+.title {
+  @include reset;
+  @include text-format(700, 16px, 21px);
+  color: $mainBlack;
+}
+
+.paragraph {
+  @include reset;
+  @include text-format(400, 16px, 24px);
+  color: $secondBlack;
+}
