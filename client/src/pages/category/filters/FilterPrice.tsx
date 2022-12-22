@@ -1,18 +1,16 @@
 import { InputAdornment, Slider, TextField } from '@mui/material'
-import React, { SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
-import { categorySelector, filterPriceSelector, setFilteredData } from '../../../redux/category/categorySlice'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import debounce from 'lodash/debounce'
 import { getMinMaxPrice } from '../../../utils/getMinMaxPrice'
 import { IItem } from '../../../types/itemTypes'
 
 const FilterPrice: React.FC = () => {
-  const minMaxPrice = useAppSelector(filterPriceSelector)
+  const minMaxPrice = useAppSelector((state) => state.category.dataFilter.minMaxPrice)
   const [value, setValue] = useState(minMaxPrice)
   const dispatch = useAppDispatch()
-  const { categoryData, searchStyles, fetchData } = useAppSelector(categorySelector)
-  const isMounted = useRef(false)
+  const searchStyles = useAppSelector((state) => state.category.searchStyles)
 
   const inputPropsTextField = (text: string) => {
     return {
@@ -34,17 +32,17 @@ const FilterPrice: React.FC = () => {
 
   const updateDebouncePrice = useCallback(
     debounce((value) => {
-      getCardsForPrice(value)
+      // getCardsForPrice(value)
     }, 500),
     [],
   )
 
-  const getCardsForPrice = (value: number[]) => {
-    if (fetchData.length) {
-      const filteredCards = fetchData.filter((item: IItem) => item.price >= value[0] && item.price <= value[1])
-      dispatch(setFilteredData(filteredCards))
-    }
-  }
+  // const getCardsForPrice = (value: number[]) => {
+  //   if (fetchData.length) {
+  //     const filteredCards = fetchData.filter((item: IItem) => item.price >= value[0] && item.price <= value[1])
+  //     dispatch(setFilteredData(filteredCards))
+  //   }
+  // }
 
   const handleChangeValue = (evt: any, newValue: any) => {
     setValue(newValue)

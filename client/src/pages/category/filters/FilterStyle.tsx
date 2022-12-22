@@ -1,50 +1,40 @@
 import Chip from '@mui/material/Chip'
-import React, { useEffect, useState } from 'react'
-import { categorySelector, setSearchStyles, setFilteredData } from '../../../redux/category/categorySlice'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { IItem } from '../../../types/itemTypes'
 import { specsTypes } from '../../../types/basketTypes'
-import { searchStyleType } from '../types'
+import { setStyles } from '../../../redux/category/categorySlice'
+import { styles } from 'app/constants'
 
 const FilterStyle: React.FC = () => {
+  const searchStyles = useAppSelector((state) => state.category.dataFilter.styles)
   const activeStyles = { backgroundColor: '#4675CE', opacity: 0.6, color: '#fff' }
   const defaultStyles = { backgroundColor: '#F5F5F5', color: '#555' }
-  const { searchStyles, fetchData, searchMaterial } = useAppSelector(categorySelector)
   const dispatch = useAppDispatch()
-  // const [activeMaterial, setActiveMaterial] = useState(searchMaterial);
-  const styles = [
-    { style: 'Классический' },
-    { style: 'Прованс' },
-    { style: 'Модерн' },
-    { style: 'Лофт' },
-    { style: 'Скандинавский' },
-  ]
 
-  useEffect(() => {
-    const limitStyle = searchStyles.length !== styles.length
-    if (searchStyles.length || !limitStyle) {
-      const filterDataStyles = fetchData.filter((item: IItem) => {
-        const findSpecs = item.specs.find((item: specsTypes) => item.specsId === 'style')
-        return searchStyles.some((item: searchStyleType) => item.style === findSpecs?.value)
-      })
-      dispatch(setFilteredData(filterDataStyles))
+  const onClickButtonStyle = (style: string) => {
+    const findAlreadyAdded = searchStyles.find((str) => str === style)
+    if (findAlreadyAdded) {
+      const removeAlreadyAdded = searchStyles.filter((str) => str !== findAlreadyAdded)
+      dispatch(setStyles(removeAlreadyAdded))
     } else {
-      dispatch(setFilteredData(fetchData))
+      const isExcess = searchStyles.length + 1 >= styles.length
+      dispatch(setStyles(isExcess ? [] : [...searchStyles, style]))
     }
-  }, [searchStyles])
+  }
 
   return (
     <div className='filters__filter-style'>
       <ul>
-        {styles.map((item, index) => {
-          const findStyle = searchStyles.find((searchItem: searchStyleType) => searchItem.style === item.style)
+        {styles.map((item) => {
+          const findStyle = searchStyles.find((str) => str === item.style)
           return (
-            <li key={index}>
+            <li key={item.style}>
               <Chip
                 variant='outlined'
                 style={findStyle ? activeStyles : defaultStyles}
                 label={item.style}
-                onClick={() => dispatch(setSearchStyles(item.style))}
+                onClick={() => onClickButtonStyle(item.style)}
               />
             </li>
           )

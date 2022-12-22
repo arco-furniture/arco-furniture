@@ -1,6 +1,5 @@
 import { IBasketItem } from '../types/basketTypes'
 import { IItem } from '../types/itemTypes'
-import { searchStyleType } from '../pages/category/types'
 
 export interface IBasketState {
   totalPrice: number
@@ -10,21 +9,6 @@ export interface IBasketState {
   basketOrderBtnStatus: boolean
   dataBuyInfo: []
   dataBasketItems: IBasketItem[]
-}
-
-export interface ICategoryState {
-  fetchData: IItem[]
-  categoryData: IItem[]
-  categoryStatus: 'success' | 'error' | 'loading'
-  categoryParams: {
-    paramsId: null | number
-    name: string
-  }
-  categorySort: string // с переносом сортировки на фронт, переделать по аналогии как с categoryStatus
-  filterPrice: number[]
-  searchColors: searchColorType[]
-  searchStyles: searchStyleType[]
-  searchMaterial: 'Все' | 'Массив' | 'ЛДСП' | 'МДФ'
 }
 
 export interface IHomeState {
@@ -45,11 +29,9 @@ export interface IOtherState {
 }
 
 export interface IProductState {
-  product: any
+  productData: any
   productStatus: 'success' | 'error' | 'loading'
-  currentColor: object
+  currentColor: any
 }
 
-type searchColorType = {
-  nameColor?: string
-}
+export type adviceFilterParam = 'all' | 'discount' | 'eco' | 'top' | 'new'

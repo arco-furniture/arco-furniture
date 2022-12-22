@@ -7,11 +7,11 @@ import categoryReducer from './category/categorySlice'
 
 export const store = configureStore({
   reducer: {
-    homeReducer,
-    productReducer,
-    otherReducer,
-    basketReducer,
-    categoryReducer,
+    home: homeReducer,
+    product: productReducer,
+    other: otherReducer,
+    basket: basketReducer,
+    category: categoryReducer,
   },
 })
 

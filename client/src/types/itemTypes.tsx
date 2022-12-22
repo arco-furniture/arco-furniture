@@ -1,7 +1,7 @@
 import { specsTypes } from './basketTypes'
 
 export interface IItem {
-  id: number
+  _id: string
   category: number
   rating: number
   article: string
