@@ -7,8 +7,8 @@ import { ICardColors } from './types'
 
 const CardColors: React.FC<ICardColors> = (props) => {
   const { colorPalette, visible, setVisible, selectedColor, setSelectedColor, isTop } = props
-  const filterColors = colorPalette.filter((item) => item.exist)
-  const colors = filterColors.filter((_item, index) => index < 3)
+
+  const colors = colorPalette.filter((_item, index) => index < 3)
 
   const handleCurrentColor = (color: string) => {
     if (!isTop) {
@@ -25,7 +25,7 @@ const CardColors: React.FC<ICardColors> = (props) => {
       <div className='card__tooltip'>
         <span>В наличии:</span>
         <ul>
-          {filterColors.map((obj, index) => (
+          {colorPalette.map((obj, index) => (
             <li key={index} style={{ backgroundColor: obj.color }} />
           ))}
         </ul>

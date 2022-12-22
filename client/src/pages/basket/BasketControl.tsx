@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { basketSelector, changeBasketBtnStatus } from '../../redux/basket/basketSlice'
+import { changeBasketBtnStatus } from '../../redux/basket/basketSlice'
 import { useForm } from 'react-hook-form'
 import BasketNavigation from './components/BasketNavigation'
 import styles from '../../scss/modules/basket/basket.module.scss'
@@ -12,7 +12,9 @@ import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 
 const BasketControl: React.FC = () => {
   const navigate = useNavigate()
-  const { dataBasketItems, totalPrice, basketBtnStatus } = useAppSelector(basketSelector)
+  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
+  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
+  const basketBtnStatus = useAppSelector((state) => state.basket.basketBtnStatus)
   const { register, handleSubmit } = useForm()
   const [dataInfo, setDataInfo] = useState('')
   const dispatch = useAppDispatch()

@@ -1,24 +1,35 @@
+import React, { useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip'
 import { Button, IconButton } from '@mui/material'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { productSelector, setCurrentColor } from '../../redux/product/productSlice'
+import { setCurrentColor } from '../../redux/product/productSlice'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { openAlertBar } from '../../redux/other/otherSlice'
 import BlackTooltip from '../../components/BlackTooltip/BlackTooltip'
-import { deleteFavoriteItem, homeSelector, postFavoriteItem } from '../../redux/home/homeSlice'
+import { deleteFavoriteItem, postFavoriteItem } from '../../redux/home/homeSlice'
 import { addItemForBasket } from '../../redux/basket/basketSlice'
 import { IItem, colorsTypes } from '../../types/itemTypes'
 import { getBasketItem } from '../../utils/getBasketItem'
+import { colors } from 'app/constants'
 
 const ProductParams: React.FC = () => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
   const [isLiked, setIsLiked] = useState(false)
-  const { product, currentColor }: any = useAppSelector(productSelector)
-  const { favoriteData } = useAppSelector(homeSelector)
-  const isFavorite = favoriteData.some((favorite: IItem) => favorite.id === product.id)
+  const productData = useAppSelector((state) => state.product.productData)
+  const currentColor = useAppSelector((state) => state.product.currentColor)
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === productData._id)
+  const existColors = colors.map((item) => {
+    const isExist = productData?.colors?.some((color) => color.nameColor === item.nameColor)
+    return {
+      nameColor: item.nameColor,
+      color: item.color,
+      exist: isExist,
+    }
+  })
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -37,7 +48,7 @@ const ProductParams: React.FC = () => {
       transition: 'transform ease-in-out 0.1s',
       transform: currentColor.index === index ? 'translateY(-4px)' : 'translateY(0)',
     }
-    if (!obj.exist) {
+    if (!obj?.exist) {
       return Object.assign({}, defaultStylesColor, notExistColor)
     }
     return defaultStylesColor
@@ -55,20 +66,20 @@ const ProductParams: React.FC = () => {
     evt.preventDefault()
     dispatch(
       openAlertBar({
-        message: product.title,
+        message: productData.title,
         type: 'cart',
       }),
     )
-    const basketItem = getBasketItem(product, currentColor.color)
+    const basketItem = getBasketItem(productData, currentColor.color)
     dispatch(addItemForBasket(basketItem))
   }
 
   const handleIsFavorite = () => {
     if (!isFavorite) {
-      dispatch(postFavoriteItem(product))
+      dispatch(postFavoriteItem(productData))
       return true
     }
-    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite.id !== product.id)
+    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== productData._id)
     dispatch(deleteFavoriteItem(withoutItemsFavorite))
     return false
   }
@@ -77,7 +88,7 @@ const ProductParams: React.FC = () => {
     setIsLiked(handleIsFavorite())
     dispatch(
       openAlertBar({
-        message: product.title,
+        message: productData.title,
         type: 'favorite',
       }),
     )
@@ -86,19 +97,19 @@ const ProductParams: React.FC = () => {
   return (
     <form className='product__params panel' onSubmit={(evt) => handlerOnSubmit(evt)}>
       <div className='product__top-wrapper'>
-        <h2>{product.title}</h2>
+        <h2>{productData.title}</h2>
         {currentColor.exist ? <ChipSuccess /> : <ChipError />}
       </div>
       <div className='product__price-wrapper'>
         <p className='product__old-price'>
-          <span className='old-price'>{getPriceWithFormat(product.oldPrice)}</span> &#8381;
+          <span className='old-price'>{getPriceWithFormat(productData.oldPrice)}</span> &#8381;
         </p>
-        <em className='product__price'>{getPriceWithFormat(product.price)} &#8381;</em>
+        <em className='product__price'>{getPriceWithFormat(productData.price)} &#8381;</em>
       </div>
       <div className='product__colors'>
         <h3 className='product__title'>Цвета исполнения:</h3>
         <ul>
-          {product.colors?.map((item: colorsTypes, index: number) => {
+          {existColors?.map((item: colorsTypes, index: number) => {
             return (
               <li key={index}>
                 <Button
@@ -107,6 +118,7 @@ const ProductParams: React.FC = () => {
                       setCurrentColor({
                         index,
                         color: item.color,
+                        nameColor: item.nameColor,
                         exist: item.exist,
                       }),
                     )
@@ -133,7 +145,7 @@ const ProductParams: React.FC = () => {
       <div className='product__description'>
         <p>
           <span className='product__title'>Описание: </span>
-          {product.description}
+          {productData.description}
         </p>
       </div>
       <div className='product__buttons'>

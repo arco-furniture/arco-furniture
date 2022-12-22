@@ -80,5 +80,4 @@ export const basketSlice = createSlice({
 
 export const { addItemForBasket, removeItemForBasket, handleCountItem, changeBasketBtnStatus, checkBasketItems } =
   basketSlice.actions
-export const basketSelector = (state: RootState) => state.basketReducer
 export default basketSlice.reducer

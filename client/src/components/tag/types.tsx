@@ -3,4 +3,6 @@ export interface ITag {
   isCard?: boolean
   price?: number
   oldPrice?: number
+  isFilter?: boolean
+  addedInFilter?: boolean
 }

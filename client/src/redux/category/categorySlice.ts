@@ -1,28 +1,22 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { getMinMaxPrice } from '../../utils/getMinMaxPrice'
-import { RootState } from '../store'
-import { ICategoryState } from '../types'
-import { MAIN_API } from '../../api/constants'
+import { createSlice } from '@reduxjs/toolkit'
+import { filterCategory } from './asyncActions'
 
-export const fetchDataCategory: any = createAsyncThunk('category/fetchDataCategory', async (requestFilter) => {
-  const { data } = await axios.get(`${MAIN_API}/acro${requestFilter}`)
-  return data
-})
-
-const initialState: ICategoryState = {
-  fetchData: [],
+const initialState: any = {
   categoryData: [],
+  minMaxPrice: [0, 0],
   categoryStatus: 'loading',
+  categorySort: 'rating',
   categoryParams: {
     paramsId: null,
     name: '',
   },
-  categorySort: 'rating',
-  filterPrice: [0, 0],
-  searchColors: [],
-  searchStyles: [],
-  searchMaterial: 'Все',
+  dataFilter: {
+    minMaxPrice: [0, 0], // [min, max]
+    colors: [], // ['gray', 'yellow', 'vinous', 'brown', 'green', 'blue', 'black']
+    styles: [], // ['классический', 'прованс'....]
+    material: '', // '' | 'массив' | 'лдлп' | 'мдф'
+    tags: [], // ['классический', 'прованс'....]
+  },
 }
 
 export const categorySlice = createSlice({
@@ -44,65 +38,35 @@ export const categorySlice = createSlice({
     changeCategoryStatus(state, action) {
       state.categoryStatus = action.payload
     },
-    setSearchColors(state, action) {
-      const currentColorName = action.payload
-      const findColor = state.searchColors.find((item) => item.nameColor === currentColorName)
-      if (findColor) {
-        state.searchColors = state.searchColors.filter((item) => item.nameColor !== currentColorName)
-      } else {
-        state.searchColors = [...state.searchColors, { nameColor: currentColorName }]
-      }
+    setMaterial(state, action) {
+      state.dataFilter.material = action.payload
     },
-    setSearchStyles(state, action) {
-      const currentStyleName = action.payload
-      const findStyle = state.searchStyles.find((item) => item.style === currentStyleName)
-      if (findStyle) {
-        state.searchStyles = state.searchStyles.filter((item) => item.style !== currentStyleName)
-      } else {
-        state.searchStyles = [...state.searchStyles, { style: currentStyleName }]
-      }
+    setColors(state, action) {
+      state.dataFilter.colors = [...action.payload]
     },
-    setSearchMaterial(state, action) {
-      state.searchMaterial = action.payload
+    setStyles(state, action) {
+      state.dataFilter.styles = [...action.payload]
     },
-    resetSettingsCategory(state) {
-      state.filterPrice = [0, 0]
-      state.searchColors = []
-      state.searchStyles = []
-      state.searchMaterial = 'Все'
+    setTags(state, action) {
+      state.dataFilter.tags = [...action.payload]
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchDataCategory.pending, (state) => {
+    builder.addCase(filterCategory.pending, (state) => {
       state.categoryStatus = 'loading'
-      state.fetchData = []
+      state.categoryData = []
     })
-    builder.addCase(fetchDataCategory.fulfilled, (state, action) => {
-      state.fetchData = action.payload
-      state.categoryData = action.payload
-      state.filterPrice = getMinMaxPrice(action.payload)
+    builder.addCase(filterCategory.fulfilled, (state, action) => {
+      // console.log(action.payload)
       state.categoryStatus = 'success'
+      state.categoryData = action.payload
     })
-    builder.addCase(fetchDataCategory.rejected, (state) => {
+    builder.addCase(filterCategory.rejected, (state) => {
       state.categoryStatus = 'error'
-      state.fetchData = []
+      state.categoryData = []
     })
   },
 })
 
-export const {
-  setCategoryParams,
-  setCategorySort,
-  setFilteredData,
-  changeCategoryStatus,
-  setCategoryPrice,
-  setSearchColors,
-  setSearchStyles,
-  setSearchMaterial,
-  resetSettingsCategory,
-} = categorySlice.actions
-export const categorySelector = (state: RootState) => state.categoryReducer
-export const paramsSelector = (state: RootState) => state.categoryReducer.categoryParams
-export const filterPriceSelector = (state: RootState) => state.categoryReducer.filterPrice
-export const searchColorSelector = (state: RootState) => state.categoryReducer.searchColors
+export const { setCategoryParams, setCategorySort, setStyles, setMaterial, setColors, setTags } = categorySlice.actions
 export default categorySlice.reducer

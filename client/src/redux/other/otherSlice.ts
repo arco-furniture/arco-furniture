@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../store'
 import { IOtherState } from '../types'
 
 const initialState: IOtherState = {
@@ -32,5 +31,4 @@ export const otherSlice = createSlice({
 })
 
 export const { openAlertBar, closeAlertBar, openAuthorsPopup, closeAuthorsPopup } = otherSlice.actions
-export const otherSelector = (state: RootState) => state.otherReducer
 export default otherSlice.reducer

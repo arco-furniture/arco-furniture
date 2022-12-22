@@ -29,6 +29,9 @@
     "sourceType": "module"
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
       "node": {
         "moduleDirectory": ["node_modules", "src", "swiper"],

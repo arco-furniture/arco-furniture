@@ -1,27 +1,17 @@
 import { MenuItem, TextField } from '@mui/material'
-import React, { useEffect } from 'react'
-import { categorySelector, setSearchMaterial, setFilteredData } from '../../../redux/category/categorySlice'
+import React, { useEffect, useRef } from 'react'
+import { setMaterial } from '../../../redux/category/categorySlice'
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux'
-import { specsTypes } from '../../../types/basketTypes'
-import { IItem } from '../../../types/itemTypes'
 
 const FilterMaterial: React.FC = () => {
-  const { searchMaterial, fetchData } = useAppSelector(categorySelector)
+  const searchMaterial = useAppSelector((state) => state.category.dataFilter.material)
   const dispatch = useAppDispatch()
-
   const materials = [{ material: 'Все' }, { material: 'Массив' }, { material: 'ЛДСП' }, { material: 'МДФ' }]
 
-  useEffect(() => {
-    if (searchMaterial !== 'Все') {
-      const filterDataMaterial = fetchData.filter((data: IItem) => {
-        const findSpecs = data.specs.find((item: specsTypes) => item.specsId === 'material')
-        return findSpecs?.value === searchMaterial
-      })
-      dispatch(setFilteredData(filterDataMaterial))
-    } else {
-      dispatch(setFilteredData(fetchData))
-    }
-  }, [searchMaterial])
+  const onChangeInputValue = (value) => {
+    const isAll = value.toLowerCase() === 'все'
+    dispatch(setMaterial(isAll ? '' : value))
+  }
 
   return (
     <div className='filters__filter-material'>
@@ -29,8 +19,8 @@ const FilterMaterial: React.FC = () => {
         select
         size='small'
         fullWidth
-        value={searchMaterial}
-        onChange={(event) => dispatch(setSearchMaterial(event.target.value))}
+        value={searchMaterial === '' ? 'Все' : searchMaterial}
+        onChange={(event) => onChangeInputValue(event.target.value)}
         margin='none'
       >
         {materials.map((item) => {

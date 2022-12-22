@@ -1,18 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { findColor } from '../../utils/findColor'
-import axios from 'axios'
-import { RootState } from '../store'
 import { IItem } from '../../types/itemTypes'
 import { IProductState } from '../types'
-import { MAIN_API } from '../../api/constants'
-
-export const fetchProduct: any = createAsyncThunk('product/fetchDataProduct', async (id) => {
-  const { data } = await axios.get(`${MAIN_API}/acro?id=${id}`)
-  return data
-})
+import { fetchProduct } from './asyncActions'
 
 const initialState: IProductState = {
-  product: {},
+  productData: {},
   productStatus: 'loading',
   currentColor: {},
 }
@@ -25,7 +18,7 @@ export const productSlice = createSlice({
       state.currentColor = findColor(action.payload)
     },
     setProduct(state, action) {
-      state.product = action.payload
+      state.productData = action.payload
     },
     setCurrentColor(state, action) {
       state.currentColor = action.payload
@@ -33,20 +26,19 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProduct.pending, (state) => {
-      state.product = {}
+      state.productData = {}
       state.productStatus = 'loading'
     })
     builder.addCase(fetchProduct.fulfilled, (state, action) => {
-      state.product = action.payload.find((item: IItem) => item)
+      state.productData = action.payload
       state.productStatus = 'success'
     })
     builder.addCase(fetchProduct.rejected, (state) => {
-      state.product = {}
+      state.productData = {}
       state.productStatus = 'error'
     })
   },
 })
 
 export const { setCurrentColor, setProduct, getFirstColor } = productSlice.actions
-export const productSelector = (state: RootState) => state.productReducer
 export default productSlice.reducer

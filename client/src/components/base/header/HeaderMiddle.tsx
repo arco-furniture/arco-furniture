@@ -7,15 +7,14 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import PermIdentitySharpIcon from '@mui/icons-material/PermIdentitySharp'
 import Search from './components/Search'
 import { useAppSelector } from '../../../hooks/redux'
-import { homeSelector } from '../../../redux/home/homeSlice'
-import { basketSelector } from '../../../redux/basket/basketSlice'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import BlackTooltip from '../../BlackTooltip/BlackTooltip'
 import { ITitleTooltip } from './types'
 
 const HeaderMiddle: React.FC = () => {
-  const { favoriteData } = useAppSelector(homeSelector)
-  const { dataBasketItems, totalPrice } = useAppSelector(basketSelector)
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
+  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
   const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
   const countBasketItems = dataBasketItems.reduce((sum: number, currentItem: any) => {
     return sum + currentItem.count

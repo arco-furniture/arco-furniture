@@ -10,7 +10,7 @@ import { setProduct, getFirstColor } from '../../redux/product/productSlice'
 import { openAlertBar } from '../../redux/other/otherSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { homeSelector, postFavoriteItem, deleteFavoriteItem } from '../../redux/home/homeSlice'
+import { postFavoriteItem, deleteFavoriteItem } from '../../redux/home/homeSlice'
 import { addItemForBasket } from '../../redux/basket/basketSlice'
 import { ICard } from './types'
 import { colorsTypes, IItem, imagesTypes } from '../../types/itemTypes'
@@ -21,8 +21,8 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   const [visible, setVisible] = useState<boolean>(false)
   const [isLiked, setIsLiked] = useState<boolean>(false)
   const dispatch = useAppDispatch()
-  const { favoriteData } = useAppSelector(homeSelector)
-  const isFavorite = favoriteData.some((favorite: IItem) => favorite.id === item.id)
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === item._id)
   const [selectedColor, setSelectedColor] = useState('')
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
       dispatch(postFavoriteItem(item))
       return true
     }
-    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite.id !== item.id)
+    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== item._id)
     dispatch(deleteFavoriteItem(withoutItemsFavorite))
     return false
   }
@@ -109,7 +109,7 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
             </Button>
           ) : (
             <>
-              <Link to={`/product/${item.id}`} className='card__link-buy' onClick={() => onClickBuyButton()}>
+              <Link to={`/product/${item._id}`} className='card__link-buy' onClick={() => onClickBuyButton()}>
                 <Button style={{ width: '100%' }} size='medium' variant='outlined'>
                   купить
                 </Button>
