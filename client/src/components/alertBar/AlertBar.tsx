@@ -1,14 +1,15 @@
+import React from 'react'
 import Snackbar from '@mui/material/Snackbar'
-import { otherSelector, closeAlertBar } from '../../redux/other/otherSlice'
+import { closeAlertBar } from '../../redux/other/otherSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Alert } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
-import React from 'react'
 
 const AlertBar: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { alert, statusAlert } = useAppSelector(otherSelector)
+  const alert = useAppSelector((state) => state.other.alert)
+  const statusAlert = useAppSelector((state) => state.other.statusAlert)
   const { type, message } = alert
   const stylesAlert = {
     backgroundColor: '#414141',

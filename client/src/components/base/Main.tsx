@@ -5,15 +5,13 @@ import { Home, Favorite } from '../../pages'
 import AlertBar from '../alertBar/AlertBar'
 import AuthorsPopup from '../popups/AuthorsPopup'
 import { Preloader, ProtectedRoute } from '../index'
-import { homeSelector } from '../../redux/home/homeSlice'
-import { basketSelector } from '../../redux/basket/basketSlice'
 import { useAppSelector } from '../../hooks/redux'
 import Loadable from 'react-loadable'
 import PageNotFound from '../../pages/PageNotFound'
 
 const Main: React.FC = () => {
-  const { favoriteData } = useAppSelector(homeSelector)
-  const { dataBasketItems } = useAppSelector(basketSelector)
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
 
   const Category = Loadable({
     loader: () => import(/* webpackChunkName: "Category" */ '../../pages/category/Category'),

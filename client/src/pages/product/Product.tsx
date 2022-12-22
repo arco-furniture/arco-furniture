@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { fetchProduct, productSelector } from '../../redux/product/productSlice'
 import { ProductParams, ProductSpecs, ProductSlides, ProductPreview } from './index'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { fetchProduct } from '../../redux/product/asyncActions'
 
 const Product = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const { product } = useAppSelector(productSelector)
+  const product = useAppSelector((state) => state.product.productData)
   const { productImages } = product
-  const location = useLocation()
   const dispatch = useAppDispatch()
-  const idProduct = location.pathname.split('/').reverse()[0]
+  const { productId } = useParams()
 
   useEffect(() => {
-    if (!product.id) {
-      dispatch(fetchProduct(idProduct))
-    }
+    dispatch(fetchProduct(productId))
   }, [])
 
   return (

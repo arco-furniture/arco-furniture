@@ -1,11 +1,9 @@
-import { homeSelector } from '../../redux/home/homeSlice'
 import { useAppSelector } from '../../hooks/redux'
 import { getCards } from '../../utils/getCards'
 import React from 'react'
 
 const Favorite: React.FC = () => {
-  const favorites = useAppSelector(homeSelector)
-  const { favoriteData } = favorites
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
 
   return (
     <section className='favorite'>

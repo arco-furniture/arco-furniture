@@ -6,10 +6,6 @@ export interface IFilterTemplate {
   icon: JSX.Element
 }
 
-export type searchStyleType = {
-  style: string
-}
-
 export type searchColorType = {
   nameColor: string
   color: string

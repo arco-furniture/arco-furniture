@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { store } from './redux/store'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { App } from './components'
+import App from './app/App'
 
 const root = document.getElementById('root')
 

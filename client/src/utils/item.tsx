@@ -1,5 +1,5 @@
 const item = {
-  id: 0,
+  _id: '0',
   category: 1,
   rating: 5,
   article: '487001',

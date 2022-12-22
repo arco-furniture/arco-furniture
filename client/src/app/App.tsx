@@ -1,14 +1,13 @@
-import '../../scss/vendor/normalize.scss'
-import '../../scss/app.scss'
-import { Header, Main, Footer } from '../index'
+import '../scss/vendor/normalize.scss'
+import '../scss/app.scss'
+import { Header, Main, Footer } from 'components/index'
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { homeSelector } from '../../redux/home/homeSlice'
-import { basketSelector, checkBasketItems } from '../../redux/basket/basketSlice'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { checkBasketItems } from '../redux/basket/basketSlice'
 
 const App: React.FC = () => {
-  const { favoriteData } = useAppSelector(homeSelector)
-  const { dataBasketItems } = useAppSelector(basketSelector)
+  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
