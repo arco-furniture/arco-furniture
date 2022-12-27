@@ -8,7 +8,7 @@ import {CategoryModule} from "../category/category.module";
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/mestodb'),
+    MongooseModule.forRoot('mongodb://localhost:27017/arco'),
     AdviceModule,
     ProductsModule,
     CategoryModule,
