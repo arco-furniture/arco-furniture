@@ -4,12 +4,12 @@ import { Badge } from '@mui/material'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import { Link } from 'react-router-dom'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import PermIdentitySharpIcon from '@mui/icons-material/PermIdentitySharp'
 import Search from './components/Search'
 import { useAppSelector } from '../../../hooks/redux'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import BlackTooltip from '../../BlackTooltip/BlackTooltip'
 import { ITitleTooltip } from './types'
+import ListIcon from '@mui/icons-material/List'
 
 const HeaderMiddle: React.FC = () => {
   const favoriteData = useAppSelector((state) => state.home.favoriteData)
@@ -35,8 +35,8 @@ const HeaderMiddle: React.FC = () => {
         </div>
         <div className='header__middle-nav-content'>
           <Link to='/' className='header__middle-item'>
-            <PermIdentitySharpIcon color='primary' />
-            <span className='header__middle-item-span'>Личный кабинет</span>
+            <ListIcon color='primary' />
+            <span className='header__middle-item-span'>Витрина заказов</span>
           </Link>
           {favoriteData.length ? (
             <Link to='/favorite' className='header__middle-item'>

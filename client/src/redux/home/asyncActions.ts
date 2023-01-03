@@ -7,3 +7,8 @@ export const filterAdvice: any = createAsyncThunk('home/filterAdvice', async (qu
   const { data } = await axios.get(`${MAIN_API}/advice/filter?value=${queryParam}`)
   return data
 })
+
+export const getSearchItems: any = createAsyncThunk('home/getSearchItems', async (value) => {
+  const { data } = await axios.get(`${MAIN_API}/search/${value}`)
+  return data
+})

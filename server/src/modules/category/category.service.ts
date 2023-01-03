@@ -7,12 +7,12 @@ import {Model} from "mongoose";
 export class CategoryService {
   constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
 
-  async filterCategory(value, data) {
+  async filterCategory(value, page, data) {
     const categoryItems = await this.productModel.find({category: value})
-    return this.mainFilters([...categoryItems], data) // фильтрая
+    return this.getAllFilters([...categoryItems], data, page) // фильтрая
   }
 
-  private async mainFilters(data, filters) {
+  private async getAllFilters(data, filters, page) {
     const { minMaxPrice, colors, styles, material, tags } = filters
 
     const findPrice = await this.filterPrice(data, minMaxPrice)
@@ -21,8 +21,27 @@ export class CategoryService {
     const findMaterial = await this.filterMaterial(findStyles, material)
     const resultAllFilters = await this.filterTags(findMaterial, tags)
 
-    return { data: resultAllFilters, minMaxPrice: this.getFormatPrice(resultAllFilters) }
+    return {
+      data: resultAllFilters,
+      minMaxPrice: this.getFormatPrice(resultAllFilters),
+      allPages: this.getPages(resultAllFilters, page),
+    }
   }
+
+  private getPages (data, currentPage) {
+    const itemsForPage = 2
+    const countPages = Math.round(data.length / itemsForPage)
+    const items = []
+
+    // const skipItems = data.filter((obj, index) => {
+    //   if () {
+    //     return true
+    //   }
+    // })
+
+    return items
+  }
+
 
   private async filterPrice(data, minMaxPrice) {
     const minPrice = minMaxPrice[0]

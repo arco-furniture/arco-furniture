@@ -7,29 +7,37 @@ import { IItem } from '../../../types/itemTypes'
 import { setPrice } from '../../../redux/category/categorySlice'
 
 const FilterPrice: React.FC = () => {
-  const minMaxPrice = useAppSelector((state) => state.category.minMaxPrice)
   const categoryData = useAppSelector((state) => state.category.categoryData)
-  const [value, setValue] = useState(minMaxPrice)
+  const price = useAppSelector((state) => state.category.price)
+  const searchPrice = useAppSelector((state) => state.category.searchPrice)
+  const [value, setValue] = useState(searchPrice)
+  const [changeValue, setChangeValue] = useState(false)
   const dispatch = useAppDispatch()
 
   const isMounted = useRef<boolean>(false)
 
+  // minMax определение должно быть на стороне фронта
+
   useEffect(() => {
-    setValue(minMaxPrice)
+    setChangeValue(false)
+    setValue(searchPrice)
   }, [categoryData])
 
   useEffect(() => {
-    updateDebouncePrice(value)
+    if (changeValue) {
+      updateDebouncePrice(value)
+    }
   }, [value])
 
   const updateDebouncePrice = useCallback(
     debounce((value) => {
-      // setPushValue(value)
+      dispatch(setPrice(value))
     }, 500),
     [],
   )
 
   const handleChangeValue = (evt: any, newValue: any) => {
+    setChangeValue(true)
     setValue(newValue)
   }
 
@@ -65,9 +73,9 @@ const FilterPrice: React.FC = () => {
         value={value}
         onChange={handleChangeValue}
         size='small'
-        step={5000}
-        min={minMaxPrice[0]}
-        max={minMaxPrice[1]}
+        step={price[0]}
+        min={0}
+        max={price[1]}
       />
     </div>
   )

@@ -3,13 +3,15 @@ import { filterCategory } from './asyncActions'
 
 const initialState: any = {
   categoryData: [],
-  minMaxPrice: [0, 0],
+  price: [0, 250000],
+  searchPrice: [0, 0],
   categoryStatus: 'loading',
   categorySort: 'rating',
   categoryParams: {
     paramsId: null,
     name: '',
   },
+  currentPage: 1,
   dataFilter: {
     minMaxPrice: [0, 0], // [min, max]
     colors: [], // ['gray', 'yellow', 'vinous', 'brown', 'green', 'blue', 'black']
@@ -60,10 +62,10 @@ export const categorySlice = createSlice({
       state.categoryData = []
     })
     builder.addCase(filterCategory.fulfilled, (state, { payload }) => {
-      console.log(payload)
+      // console.log(payload)
       state.categoryStatus = 'success'
       state.categoryData = payload.data
-      state.minMaxPrice = payload.minMaxPrice
+      // state.searchPrice = payload.minMaxPrice
     })
     builder.addCase(filterCategory.rejected, (state) => {
       state.categoryStatus = 'error'

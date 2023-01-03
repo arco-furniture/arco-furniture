@@ -8,11 +8,6 @@ import React from 'react'
 
 const HeaderTop: React.FC = () => {
   const dispatch = useAppDispatch()
-  const topNavItems = [
-    { name: 'Сборка', link: '/' },
-    { name: 'Оплата', link: '/' },
-    { name: 'Доставка', link: '/' },
-  ]
 
   return (
     <div className='header__top'>
@@ -22,25 +17,12 @@ const HeaderTop: React.FC = () => {
             <PlaceOutlinedIcon color='primary' />
             <p className='header__place_city'>Москва</p>
           </button>
-          <ul className='header__nav'>
-            {topNavItems.map((item, index) => (
-              <Link className='header__nav_item' key={index} to={item.link}>
-                <li>{item.name}</li>
-              </Link>
-            ))}
-          </ul>
         </div>
         <div className='header__phone-author'>
           <Button size='small' style={{ display: 'flex', gap: '7px' }} onClick={() => dispatch(openAuthorsPopup())}>
             <CodeIcon />
             Авторы проекта
           </Button>
-          <div className='header__phone'>
-            <div className='header__phone_logo' />
-            <a href='tel: +79615259191' className='header__phone_number'>
-              8 (961) 525 91 91
-            </a>
-          </div>
         </div>
       </div>
     </div>
