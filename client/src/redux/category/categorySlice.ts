@@ -3,13 +3,15 @@ import { filterCategory } from './asyncActions'
 
 const initialState: any = {
   categoryData: [],
-  minMaxPrice: [0, 0],
+  price: [0, 250000],
+  searchPrice: [0, 0],
   categoryStatus: 'loading',
   categorySort: 'rating',
   categoryParams: {
     paramsId: null,
     name: '',
   },
+  currentPage: 1,
   dataFilter: {
     minMaxPrice: [0, 0], // [min, max]
     colors: [], // ['gray', 'yellow', 'vinous', 'brown', 'green', 'blue', 'black']
@@ -50,16 +52,20 @@ export const categorySlice = createSlice({
     setTags(state, action) {
       state.dataFilter.tags = [...action.payload]
     },
+    setPrice(state, action) {
+      state.dataFilter.minMaxPrice = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(filterCategory.pending, (state) => {
       state.categoryStatus = 'loading'
       state.categoryData = []
     })
-    builder.addCase(filterCategory.fulfilled, (state, action) => {
-      // console.log(action.payload)
+    builder.addCase(filterCategory.fulfilled, (state, { payload }) => {
+      // console.log(payload)
       state.categoryStatus = 'success'
-      state.categoryData = action.payload
+      state.categoryData = payload.data
+      // state.searchPrice = payload.minMaxPrice
     })
     builder.addCase(filterCategory.rejected, (state) => {
       state.categoryStatus = 'error'
@@ -68,5 +74,6 @@ export const categorySlice = createSlice({
   },
 })
 
-export const { setCategoryParams, setCategorySort, setStyles, setMaterial, setColors, setTags } = categorySlice.actions
+export const { setCategoryParams, setCategorySort, setStyles, setMaterial, setColors, setTags, setPrice } =
+  categorySlice.actions
 export default categorySlice.reducer

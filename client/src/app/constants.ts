@@ -1,4 +1,5 @@
 import { searchColorType } from 'pages/category/types'
+import { IInitialCategories } from 'components/base/header/types'
 
 export const MAIN_API = process.env.REACT_APP_API
 
@@ -18,4 +19,15 @@ export const styles = [
   { style: 'Модерн' },
   { style: 'Лофт' },
   { style: 'Скандинавский' },
+]
+
+export const initialCategories: IInitialCategories[] = [
+  { name: 'Кухни', link: 'kitchens', categoryId: 1 },
+  { name: 'Гостиные', link: 'living-rooms', categoryId: 2 },
+  { name: 'Спальни', link: 'bed-rooms', categoryId: 3 },
+  { name: 'Прихожие', link: 'hallways', categoryId: 4 },
+  { name: 'Шкафы-купе', link: 'wardrobes', categoryId: 5 },
+  { name: 'Детские', link: 'childish', categoryId: 6 },
+  { name: 'Диваны', link: 'sofas', categoryId: 7 },
+  { name: 'Столы и стулья', link: 'tables-and-chairs', categoryId: 8 },
 ]

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IHomeState } from '../types'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
-import { filterAdvice } from './asyncActions'
+import { filterAdvice, getSearchItems } from './asyncActions'
 
 const { favorites } = getFavoriteFromLS()
 
@@ -23,6 +23,9 @@ export const homeSlice = createSlice({
     deleteFavoriteItem(state, actions) {
       state.favoriteData = actions.payload
     },
+    setClearSearchData(state) {
+      state.searchData = []
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(filterAdvice.pending, (state) => {
@@ -37,8 +40,20 @@ export const homeSlice = createSlice({
       state.adviceStatus = 'error'
       state.adviceData = []
     })
+    builder.addCase(getSearchItems.pending, (state) => {
+      state.searchData = []
+      state.searchStatus = 'loading'
+    })
+    builder.addCase(getSearchItems.fulfilled, (state, action) => {
+      state.searchData = action.payload
+      state.searchStatus = 'success'
+    })
+    builder.addCase(getSearchItems.rejected, (state) => {
+      state.searchStatus = 'error'
+      state.searchData = []
+    })
   },
 })
 
-export const { postFavoriteItem, deleteFavoriteItem } = homeSlice.actions
+export const { postFavoriteItem, deleteFavoriteItem, setClearSearchData } = homeSlice.actions
 export default homeSlice.reducer

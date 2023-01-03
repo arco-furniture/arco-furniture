@@ -13,7 +13,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(fetchProduct(productId))
-  }, [])
+  }, [productId])
 
   return (
     <section className='product'>

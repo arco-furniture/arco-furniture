@@ -46,7 +46,7 @@ const Main: React.FC = () => {
             <Route path='/' element={<Home />} />
             <Route path='/arco-furniture' element={<Home />} />
             <Route path='/category/:categoryName' element={<Category />} />
-            <Route path='/product/:productId' element={<Product />} />
+            <Route path='/category/:categoryName/product/:productId' element={<Product />} />
             <Route
               path='/favorite'
               element={

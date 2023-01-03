@@ -23,7 +23,7 @@ const CategoryFilters: React.FC = () => {
             <FilterPrice />
           </Collapse>
         </FilterTemplate>
-        <FilterTemplate title='Цвет исполнения' setOpen={setOpenColor} open={openColor} icon={<ColorizeOutlinedIcon />}>
+        <FilterTemplate title='Цвет' setOpen={setOpenColor} open={openColor} icon={<ColorizeOutlinedIcon />}>
           <Collapse in={openColor} timeout='auto' unmountOnExit>
             <FilterColor />
           </Collapse>

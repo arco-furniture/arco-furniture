@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeaderMiddle, HeaderTop, HeaderNav } from './index'
+import { HeaderMiddle, HeaderTop, HeaderNav, HeaderLocation } from './index'
 
 const Header: React.FC = () => {
   return (
@@ -8,6 +8,7 @@ const Header: React.FC = () => {
         <HeaderTop />
         <HeaderMiddle />
         <HeaderNav />
+        <HeaderLocation />
       </div>
     </header>
   )

@@ -12,12 +12,13 @@ const Category: React.FC = () => {
   const categoryData = useAppSelector((state) => state.category.categoryData)
   const categoryStatus = useAppSelector((state) => state.category.categoryStatus)
   const dataFilter = useAppSelector((state) => state.category.dataFilter)
+  const currentPage = useAppSelector((state) => state.category.currentPage)
   const dispatch = useAppDispatch()
   const { categoryName } = useParams()
 
   // запрос на изменение
   useEffect(() => {
-    dispatch(filterCategory({ data: dataFilter, filter: categoryName }))
+    dispatch(filterCategory({ data: dataFilter, filter: categoryName, page: currentPage }))
   }, [dataFilter, categoryName])
 
   return (
@@ -31,7 +32,13 @@ const Category: React.FC = () => {
             {categoryStatus === 'loading' && getSkeletonCards(6)}
             {categoryStatus === 'success' && getCards(categoryData)}
             <div className='category__pagination'>
-              <Pagination count={5} color='primary' size='large' />
+              <Pagination
+                // onChange={(evt, page) => console.log(page)}
+                shape='rounded'
+                count={5}
+                color='primary'
+                size='large'
+              />
             </div>
           </div>
         </div>
