@@ -1,16 +1,45 @@
 import { InputAdornment, Slider, TextField } from '@mui/material'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import debounce from 'lodash/debounce'
-import { getMinMaxPrice } from '../../../utils/getMinMaxPrice'
 import { IItem } from '../../../types/itemTypes'
+import { setPrice } from '../../../redux/category/categorySlice'
 
 const FilterPrice: React.FC = () => {
-  const minMaxPrice = useAppSelector((state) => state.category.dataFilter.minMaxPrice)
-  const [value, setValue] = useState(minMaxPrice)
+  const categoryData = useAppSelector((state) => state.category.categoryData)
+  const price = useAppSelector((state) => state.category.price)
+  const searchPrice = useAppSelector((state) => state.category.searchPrice)
+  const [value, setValue] = useState(searchPrice)
+  const [changeValue, setChangeValue] = useState(false)
   const dispatch = useAppDispatch()
-  const searchStyles = useAppSelector((state) => state.category.searchStyles)
+
+  const isMounted = useRef<boolean>(false)
+
+  // minMax определение должно быть на стороне фронта
+
+  useEffect(() => {
+    setChangeValue(false)
+    setValue(searchPrice)
+  }, [categoryData])
+
+  useEffect(() => {
+    if (changeValue) {
+      updateDebouncePrice(value)
+    }
+  }, [value])
+
+  const updateDebouncePrice = useCallback(
+    debounce((value) => {
+      dispatch(setPrice(value))
+    }, 500),
+    [],
+  )
+
+  const handleChangeValue = (evt: any, newValue: any) => {
+    setChangeValue(true)
+    setValue(newValue)
+  }
 
   const inputPropsTextField = (text: string) => {
     return {
@@ -20,32 +49,6 @@ const FilterPrice: React.FC = () => {
         </InputAdornment>
       ),
     }
-  }
-
-  useEffect(() => {
-    setValue(minMaxPrice)
-  }, [minMaxPrice])
-
-  useEffect(() => {
-    updateDebouncePrice(value)
-  }, [value, searchStyles])
-
-  const updateDebouncePrice = useCallback(
-    debounce((value) => {
-      // getCardsForPrice(value)
-    }, 500),
-    [],
-  )
-
-  // const getCardsForPrice = (value: number[]) => {
-  //   if (fetchData.length) {
-  //     const filteredCards = fetchData.filter((item: IItem) => item.price >= value[0] && item.price <= value[1])
-  //     dispatch(setFilteredData(filteredCards))
-  //   }
-  // }
-
-  const handleChangeValue = (evt: any, newValue: any) => {
-    setValue(newValue)
   }
 
   return (
@@ -70,12 +73,12 @@ const FilterPrice: React.FC = () => {
         value={value}
         onChange={handleChangeValue}
         size='small'
-        step={5000}
-        min={minMaxPrice[0]}
-        max={minMaxPrice[1]}
+        step={price[0]}
+        min={0}
+        max={price[1]}
       />
     </div>
   )
 }
 
-export default React.memo(FilterPrice)
+export default FilterPrice

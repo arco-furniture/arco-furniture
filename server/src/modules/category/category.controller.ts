@@ -6,8 +6,9 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-  getCategoryItems(@Query('value') value, @Body() data) {
-   return this.categoryService.filterCategory(value, data);
+  async getCategoryItems(@Query('value') value, @Query('page') page, @Body() data) {
+
+    return this.categoryService.filterCategory(value, page, data);
   }
 }
 

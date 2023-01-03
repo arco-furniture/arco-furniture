@@ -109,7 +109,11 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
             </Button>
           ) : (
             <>
-              <Link to={`/product/${item._id}`} className='card__link-buy' onClick={() => onClickBuyButton()}>
+              <Link
+                to={`/category/${item.category}/product/${item._id}`}
+                className='card__link-buy'
+                onClick={() => onClickBuyButton()}
+              >
                 <Button style={{ width: '100%' }} size='medium' variant='outlined'>
                   купить
                 </Button>

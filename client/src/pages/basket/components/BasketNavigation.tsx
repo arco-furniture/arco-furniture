@@ -13,7 +13,7 @@ const BasketNavigation: React.FC<any> = ({ bgcolor }) => {
               1
             </div>
           </Link>
-          <p style={{ marginLeft: '10px', fontSize: '16px' }}>Ваша корзина</p>
+          <p style={{ marginLeft: '10px', fontSize: '16px' }}>Корзина</p>
           <div className={styles.navigation__line} />
           <Link style={{ textDecoration: 'none' }} to='/basket/order/'>
             <div className={styles.navigation__circle} style={{ backgroundColor: `${bgcolor[1]}` }}>

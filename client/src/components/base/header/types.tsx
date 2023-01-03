@@ -5,5 +5,5 @@ export interface ITitleTooltip {
 export interface IInitialCategories {
   name: string
   link: string
-  categoryId: number
+  categoryId: number | null
 }

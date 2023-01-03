@@ -4,23 +4,14 @@ import { Button } from '@mui/material'
 import { setCategoryParams } from '../../../redux/category/categorySlice'
 import { useAppDispatch } from '../../../hooks/redux'
 import { IInitialCategories } from './types'
+import { initialCategories } from 'app/constants'
 
 const HeaderNav: React.FC = () => {
   const location = useLocation()
   const dispatch = useAppDispatch()
-  const initialCategories: IInitialCategories[] = [
-    { name: 'Кухни', link: 'kitchens', categoryId: 1 },
-    { name: 'Гостиные', link: 'living-rooms', categoryId: 2 },
-    { name: 'Спальни', link: 'bed-rooms', categoryId: 3 },
-    { name: 'Прихожие', link: 'hallways', categoryId: 4 },
-    { name: 'Шкафы-купе', link: 'wardrobes', categoryId: 5 },
-    { name: 'Детские', link: 'childish', categoryId: 6 },
-    { name: 'Диваны', link: 'sofas', categoryId: 7 },
-    { name: 'Столы и стулья', link: 'tables-and-chairs', categoryId: 8 },
-  ]
 
   const isActiveCategory = (path: string) => {
-    return location.pathname === `/category/${path}`
+    return location.pathname.indexOf(`/category/${path}`) !== -1
   }
 
   useEffect(() => {
@@ -28,7 +19,7 @@ const HeaderNav: React.FC = () => {
     if (findCategory) {
       pushItemParams(findCategory)
     }
-  }, [])
+  }, [location.pathname])
 
   const pushItemParams = (item: IInitialCategories) => {
     dispatch(setCategoryParams({ paramsId: item.categoryId, name: item.name }))
