@@ -9,10 +9,8 @@ const Footer: React.FC = () => {
         <div className={styles.container}>
           <img src={logo} alt='' />
           <em>
-            Выполнено командой
-            <a href='https://github.com/arco-furniture' target='_blank' rel='noreferrer'>
-              {' '}
-              @yandex-team
+            <a href='https://github.com/arco-furniture/arco-furniture' target='_blank' rel='noreferrer'>
+              @Arco-furniture
             </a>
           </em>
         </div>

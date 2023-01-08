@@ -1,11 +1,11 @@
 import Button from '@mui/material/Button'
 import React from 'react'
 import welcome from '../../images/welcome.jpg'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Rating from '@mui/material/Rating'
 import Feedback from '../../components/feedback/Feedback'
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt'
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
+import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined'
 
 const HomeWelcome: React.FC = () => {
   return (
@@ -32,9 +32,9 @@ const HomeWelcome: React.FC = () => {
               boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
             }}
             variant='text'
-            endIcon={<KeyboardArrowRightIcon />}
+            endIcon={<RateReviewOutlinedIcon />}
           >
-            Все отзывы
+            Оставить отзыв
           </Button>
         </div>
         <article className='review'>

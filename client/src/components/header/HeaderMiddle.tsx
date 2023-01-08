@@ -1,13 +1,13 @@
 import React from 'react'
-import logo from '../../../images/logo-black.svg'
+import logo from '../../images/logo-black.svg'
 import { Badge } from '@mui/material'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import { Link } from 'react-router-dom'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import Search from './components/Search'
-import { useAppSelector } from '../../../hooks/redux'
-import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
-import BlackTooltip from '../../BlackTooltip/BlackTooltip'
+import Search from './Search'
+import { useAppSelector } from '../../hooks/redux'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import { ITitleTooltip } from './types'
 import ListIcon from '@mui/icons-material/List'
 
@@ -36,7 +36,7 @@ const HeaderMiddle: React.FC = () => {
         <div className='header__middle-nav-content'>
           <Link to='/' className='header__middle-item'>
             <ListIcon color='primary' />
-            <span className='header__middle-item-span'>Витрина заказов</span>
+            <span className='header__middle-item-span'>Лента заказов</span>
           </Link>
           {favoriteData.length ? (
             <Link to='/favorite' className='header__middle-item'>

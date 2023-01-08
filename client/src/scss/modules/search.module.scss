@@ -4,10 +4,10 @@
 .search {
   z-index: 100;
   @include flex-column;
-  //border: 1px solid #4675CE;
   border: 1px solid $gray;
   border-radius: 4px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow ease-in-out 0.2s, transform ease-in-out 0.2s;
   background-color: #FBFBFB;
   width: 310px;
   padding: 5px 7px 5px 19px;

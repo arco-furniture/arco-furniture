@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import {InjectModel} from "@nestjs/mongoose";
-import {Product, ProductDocument} from "../../schemas/product.schema";
-import {Model} from "mongoose";
+import {ProductModel} from "../../models/product.model";
+import {ModelType} from "@typegoose/typegoose/lib/types";
+import {InjectModel} from "nestjs-typegoose";
 
 @Injectable()
 export class SearchService {
-  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  constructor(@InjectModel(ProductModel) private readonly productModel: ModelType<ProductModel>) {}
 
   async findItemsForSearch(value) {
     const items = await this.productModel.find()

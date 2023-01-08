@@ -1,49 +1,50 @@
-import { Document } from "mongoose";
-import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
+import {Base, TimeStamps} from "@typegoose/typegoose/lib/defaultClasses";
+import {prop} from "@typegoose/typegoose";
 
-export type ProductDocument = Product & Document
+export interface ProductModel extends Base {}
 
-@Schema()
-export class Product {
+export class ProductModel extends TimeStamps{
+  @prop({ required: true })
+  id: string
 
-  @Prop()
+  @prop()
   title: string // "Кухня модульная DaVita"
 
-  @Prop()
+  @prop()
   description: string
 
-  @Prop()
+  @prop()
   price: number // 55000
 
-  @Prop()
+  @prop()
   oldPrice: number | null
 
-  @Prop()
+  @prop()
   category: string
 
-  @Prop()
+  @prop()
   rating: number // 5.2
 
-  @Prop()
+  @prop()
   article: string // 487001
 
-  @Prop({ type: Object})
+  @prop({ type: Object})
   advice?: {
     status?: boolean
     value?: string
   }
 
-  @Prop()
+  @prop()
   mark: string | null
 
-  @Prop({ type: Object })
+  @prop({ type: Object })
   specs: {
     style: string // Классический / ЛДСП....
     material: string // Массив
     size: string // 1200х2400х450
   }
 
-  @Prop({ type: Array })
+  @prop({ type: Array })
   colors: [
     {
       nameColor: string
@@ -52,13 +53,9 @@ export class Product {
     }
   ]
 
-  @Prop()
+  @prop()
   productImages: string[]
 
-  @Prop()
+  @prop()
   cardImages: string[]
 }
-
-
-
-export const ProductSchema = SchemaFactory.createForClass(Product)

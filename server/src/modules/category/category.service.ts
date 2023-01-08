@@ -1,15 +1,15 @@
 import {Injectable} from '@nestjs/common';
-import {InjectModel} from "@nestjs/mongoose";
-import {Product, ProductDocument} from "../../schemas/product.schema";
-import {Model} from "mongoose";
+import {ModelType} from "@typegoose/typegoose/lib/types";
+import {ProductModel} from "../../models/product.model";
+import {InjectModel} from "nestjs-typegoose";
 
 @Injectable()
 export class CategoryService {
-  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
   async filterCategory(value, page, data) {
     const categoryItems = await this.productModel.find({category: value})
-    return this.getAllFilters([...categoryItems], data, page) // фильтрая
+    return this.getAllFilters([...categoryItems], data, page)
   }
 
   private async getAllFilters(data, filters, page) {
@@ -22,25 +22,26 @@ export class CategoryService {
     const resultAllFilters = await this.filterTags(findMaterial, tags)
 
     return {
-      data: resultAllFilters,
-      minMaxPrice: this.getFormatPrice(resultAllFilters),
-      allPages: this.getPages(resultAllFilters, page),
+      data: this.getResultPage(resultAllFilters, page),
+      // minMaxPrice: this.getFormatPrice(resultAllFilters),
+      allPages: this.getCountAllPages(resultAllFilters),
     }
   }
 
-  private getPages (data, currentPage) {
-    const itemsForPage = 2
-    const countPages = Math.round(data.length / itemsForPage)
-    const items = []
-
-    // const skipItems = data.filter((obj, index) => {
-    //   if () {
-    //     return true
-    //   }
-    // })
-
-    return items
+  private getResultPage (data, currentPage) {
+    const itemsForPage = 6; // вынести в енв
+    const result = [];
+    for (let i = 0; i <data.length; i += itemsForPage) {
+      result.push(data.slice(i, i + itemsForPage));
+    }
+    return result[currentPage - 1] || []
   }
+
+  private getCountAllPages(data) {
+    const itemsForPage = 6; // вынести в енв
+    return Math.round(data.length / itemsForPage) || 1
+  }
+
 
 
   private async filterPrice(data, minMaxPrice) {

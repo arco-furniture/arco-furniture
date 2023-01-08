@@ -1,5 +1,5 @@
 import { searchColorType } from 'pages/category/types'
-import { IInitialCategories } from 'components/base/header/types'
+import { IInitialCategories } from 'components/header/types'
 
 export const MAIN_API = process.env.REACT_APP_API
 

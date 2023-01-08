@@ -1,0 +1,8 @@
+@import "../variables";
+@import "../mixins";
+
+.authButtons {
+  @include flex-center-between;
+  gap: 10px;
+  margin: 5px 0;
+}
