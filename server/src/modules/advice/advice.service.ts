@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import {InjectModel} from "@nestjs/mongoose";
-import {Product, ProductDocument} from "../../schemas/product.schema";
-import {Model} from "mongoose";
+import {ModelType} from "@typegoose/typegoose/lib/types";
+import {ProductModel} from "../../models/product.model";
+import {InjectModel} from "nestjs-typegoose";
 
 @Injectable()
 export class AdviceService {
-  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
   getAll() {
     return this.productModel.find({"advice.status": true})

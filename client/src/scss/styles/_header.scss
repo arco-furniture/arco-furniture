@@ -13,7 +13,7 @@
     width: 100%;
     @include flex-column;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #E0E0E0;
   }
 
@@ -64,6 +64,12 @@
 
   &__logo {
     width: 200px;
+    transform: scale(1);
+    transition: transform ease-in-out 0.2s;
+
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 
   &__phone_logo {

@@ -196,7 +196,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 50px;
-  margin: 60px 0 20px 0;
+  margin: 60px 0 0;
 
   &__column {
     width: 100%;
@@ -260,5 +260,76 @@
   &__subtitle {
     @include reset;
     @include text-format(400, 16px, 21px);
+  }
+}
+
+// map
+
+.map {
+  @include flex-column;
+
+  &__textWrapper {
+    @include flex-column;
+    margin-top: 10px;
+  }
+
+  &_text {
+    @include reset;
+    @include text-format(700, 25px, 32px);
+  }
+
+  &__title {
+    color: $mainBlack;
+  }
+
+  &__subtitle {
+    color: $blue;
+  }
+
+  &__blocksWrapper {
+    @include flex-center-between;
+    width: 100%;
+    gap: 50px;
+    margin-top: 25px;
+  }
+
+  &__cards {
+    @include flex-center-between;
+    width: 100%;
+    gap: 20px;
+  }
+
+  &_card {
+    justify-content: flex-start;
+  }
+
+  &__cardContainer {
+    @include flex-column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  &__cardMainTitle {
+    @include reset;
+    @include text-format(700, 18px, 23px);
+    color: $blue;
+    margin-bottom: 8px;
+  }
+
+  &__cardBlock {
+    @include flex-column;
+    gap: 6px;
+  }
+
+  &__cardTitle {
+    @include reset;
+    @include text-format(400, 16px, 21px);
+    color: rgba(117, 117, 117, 0.6);
+  }
+
+  &__paragraph {
+    @include reset;
+    @include text-format(400, 14px, 20px);
+    color: $secondBlack;
   }
 }

@@ -1,40 +1,42 @@
 import React from 'react'
 import styles from '../../scss/modules/main.module.scss'
 import { Routes, Route } from 'react-router-dom'
-import { Home, Favorite } from '../../pages'
+import { Home, Favorite } from 'pages/index'
 import AlertBar from '../alertBar/AlertBar'
 import AuthorsPopup from '../popups/AuthorsPopup'
 import { Preloader, ProtectedRoute } from '../index'
 import { useAppSelector } from '../../hooks/redux'
 import Loadable from 'react-loadable'
-import PageNotFound from '../../pages/PageNotFound'
+import PageNotFound from 'pages/notFound/PageNotFound'
+import RegisterPopup from 'components/popups/auth/RegisterPopup'
+import AuthPopup from 'components/popups/auth/AuthPopup'
 
 const Main: React.FC = () => {
   const favoriteData = useAppSelector((state) => state.home.favoriteData)
   const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
 
   const Category = Loadable({
-    loader: () => import(/* webpackChunkName: "Category" */ '../../pages/category/Category'),
+    loader: () => import(/* webpackChunkName: "Category" */ 'pages/category/Category'),
     loading: () => <Preloader />,
   })
 
   const Product = Loadable({
-    loader: () => import(/* webpackChunkName: "Product" */ '../../pages/product/Product'),
+    loader: () => import(/* webpackChunkName: "Product" */ 'pages/product/Product'),
     loading: () => <Preloader />,
   })
 
   const BasketControl = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketControl" */ '../../pages/basket/BasketControl'),
+    loader: () => import(/* webpackChunkName: "BasketControl" */ 'pages/basket/BasketControl'),
     loading: () => <Preloader />,
   })
 
   const BasketOrder = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketOrder" */ '../../pages/basket/BasketOrder'),
+    loader: () => import(/* webpackChunkName: "BasketOrder" */ 'pages/basket/BasketOrder'),
     loading: () => <Preloader />,
   })
 
   const BasketApproval = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketApproval" */ '../../pages/basket/BasketApproval'),
+    loader: () => import(/* webpackChunkName: "BasketApproval" */ 'pages/basket/BasketApproval'),
     loading: () => <Preloader />,
   })
 
@@ -44,7 +46,6 @@ const Main: React.FC = () => {
         <div>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/arco-furniture' element={<Home />} />
             <Route path='/category/:categoryName' element={<Category />} />
             <Route path='/category/:categoryName/product/:productId' element={<Product />} />
             <Route
@@ -85,6 +86,8 @@ const Main: React.FC = () => {
       </div>
       <AlertBar />
       <AuthorsPopup />
+      <RegisterPopup />
+      <AuthPopup />
     </main>
   )
 }

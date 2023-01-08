@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@mui/material'
-import { setCategoryParams } from '../../../redux/category/categorySlice'
-import { useAppDispatch } from '../../../hooks/redux'
+import { setCategoryParams } from '../../redux/category/categorySlice'
+import { useAppDispatch } from '../../hooks/redux'
 import { IInitialCategories } from './types'
 import { initialCategories } from 'app/constants'
 

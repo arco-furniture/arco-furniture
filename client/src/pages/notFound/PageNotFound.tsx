@@ -1,4 +1,4 @@
-import s from '../scss/modules/notFound.module.scss'
+import s from '../../scss/modules/notFound.module.scss'
 import React from 'react'
 
 const PageNotFound: React.FC = () => {

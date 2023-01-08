@@ -1,13 +1,12 @@
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
-import { Link } from 'react-router-dom'
-import CodeIcon from '@mui/icons-material/Code'
-import Button from '@mui/material/Button'
-import { openAuthorsPopup } from '../../../redux/other/otherSlice'
-import { useAppDispatch } from '../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import React from 'react'
+import { Profile } from 'components/index'
+import AuthButtons from './AuthButtons'
 
 const HeaderTop: React.FC = () => {
   const dispatch = useAppDispatch()
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
   return (
     <div className='header__top'>
@@ -18,12 +17,7 @@ const HeaderTop: React.FC = () => {
             <p className='header__place_city'>Москва</p>
           </button>
         </div>
-        <div className='header__phone-author'>
-          <Button size='small' style={{ display: 'flex', gap: '7px' }} onClick={() => dispatch(openAuthorsPopup())}>
-            <CodeIcon />
-            Авторы проекта
-          </Button>
-        </div>
+        {isLoggedIn ? <Profile /> : <AuthButtons />}
       </div>
     </div>
   )

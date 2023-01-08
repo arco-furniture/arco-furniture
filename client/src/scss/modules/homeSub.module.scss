@@ -35,3 +35,8 @@
   left: 0;
   right: 0;
 }
+
+.form {
+  @include flex-center-between;
+  gap: 20px;
+}
