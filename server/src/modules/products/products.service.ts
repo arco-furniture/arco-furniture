@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import {createProductDto} from "../../dto/createProduct.dto";
-import {InjectModel} from "@nestjs/mongoose";
-import {Product, ProductDocument} from "../../schemas/product.schema";
-import {Model} from "mongoose";
+import {ProductModel} from "../../models/product.model";
+import {ModelType} from "@typegoose/typegoose/lib/types";
+import {InjectModel} from "nestjs-typegoose";
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
-  async getAll(): Promise<Product[]> {
+  async getAll(): Promise<ProductModel[]> {
     return this.productModel.find().exec()
   }
 
-  async getProductItem(id: string): Promise<Product[]> {
+  async getProductItem(id: string): Promise<ProductModel[]> {
     return this.productModel.findById(id)
   }
 
-  async createProduct(productDto: createProductDto): Promise<Product> {
+  async createProduct(productDto: ProductModel): Promise<ProductModel> {
     const newProduct = new this.productModel(productDto)
     return newProduct.save()
   }

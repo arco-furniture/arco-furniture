@@ -11,6 +11,7 @@ const initialState: any = {
     paramsId: null,
     name: '',
   },
+  allPages: 1,
   currentPage: 1,
   dataFilter: {
     minMaxPrice: [0, 0], // [min, max]
@@ -55,6 +56,9 @@ export const categorySlice = createSlice({
     setPrice(state, action) {
       state.dataFilter.minMaxPrice = action.payload
     },
+    setChangePage(state, action) {
+      state.currentPage = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(filterCategory.pending, (state) => {
@@ -62,9 +66,10 @@ export const categorySlice = createSlice({
       state.categoryData = []
     })
     builder.addCase(filterCategory.fulfilled, (state, { payload }) => {
-      // console.log(payload)
+      console.log(payload)
       state.categoryStatus = 'success'
       state.categoryData = payload.data
+      state.allPages = payload.allPages
       // state.searchPrice = payload.minMaxPrice
     })
     builder.addCase(filterCategory.rejected, (state) => {
@@ -74,6 +79,14 @@ export const categorySlice = createSlice({
   },
 })
 
-export const { setCategoryParams, setCategorySort, setStyles, setMaterial, setColors, setTags, setPrice } =
-  categorySlice.actions
+export const {
+  setCategoryParams,
+  setCategorySort,
+  setStyles,
+  setMaterial,
+  setColors,
+  setTags,
+  setPrice,
+  setChangePage,
+} = categorySlice.actions
 export default categorySlice.reducer

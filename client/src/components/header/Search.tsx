@@ -1,20 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import s from '../../../../scss/modules/search.module.scss'
+import s from '../../scss/modules/search.module.scss'
 import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import debounce from 'lodash/debounce'
-import { getSearchItems } from '../../../../redux/home/asyncActions'
+import { getSearchItems } from '../../redux/home/asyncActions'
 import { useNavigate } from 'react-router-dom'
 // eslint-disable-next-line import/named
-import { setClearSearchData } from '../../../../redux/home/homeSlice'
+import { setClearSearchData } from '../../redux/home/homeSlice'
 
 const Search: React.FC = () => {
   const dispatch = useAppDispatch()
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
   const searchData = useAppSelector((state) => state.home.searchData)
+  const styleSearch = { boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.10)', transform: 'scale(1.03)' }
   const filterData = searchData.filter((_item, i) => i < 4)
   const inputRef = useRef(null)
   const navigate = useNavigate()
@@ -60,7 +61,7 @@ const Search: React.FC = () => {
   }
 
   return (
-    <div className={s.search}>
+    <div className={s.search} style={isFocus ? styleSearch : {}}>
       <div className={s.search__top}>
         <input
           className={s.search__input}

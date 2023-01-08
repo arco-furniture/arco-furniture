@@ -1,14 +1,28 @@
 import { Module } from '@nestjs/common';
 import {ProductsService} from "./products.service";
 import {ProductsController} from "./products.controller";
-import {MongooseModule} from "@nestjs/mongoose";
-import { Product, ProductSchema } from '../../schemas/product.schema';
+import {TypegooseModule} from "nestjs-typegoose";
+import {ConfigModule, ConfigService} from "@nestjs/config";
+import {JwtModule} from "@nestjs/jwt";
+import {getJwtConfig} from "../../config/jwt.config";
+import {ProductModel} from "../../models/product.model";
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      {name: Product.name, schema: ProductSchema}
-    ])
+    TypegooseModule.forFeature([
+      {
+        typegooseClass: ProductModel,
+        schemaOptions: {
+          collection: 'products',
+        }
+      }
+    ]),
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getJwtConfig
+    })
   ],
   providers: [ProductsService],
   controllers: [ProductsController]

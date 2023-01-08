@@ -6,7 +6,7 @@ import React from 'react'
 
 const PopupTemplate: React.FC<IPopupTemplate> = ({ children, status, handleClose }) => {
   const dispatch = useAppDispatch()
-  const handleClosePopup: any = () => {
+  const handleClosePopup = () => {
     dispatch(handleClose())
   }
 

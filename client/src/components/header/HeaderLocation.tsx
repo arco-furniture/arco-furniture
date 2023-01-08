@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { initialCategories } from 'app/constants'
-import { IInitialCategories } from 'components/base/header/types'
+import { IInitialCategories } from 'components/header/types'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import { useAppSelector } from '../../../hooks/redux'
+import { useAppSelector } from '../../hooks/redux'
 
 const HeaderLocation: React.FC = () => {
   const location = useLocation()

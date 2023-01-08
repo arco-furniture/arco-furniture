@@ -3,6 +3,7 @@ import HomeAdvice from './HomeAdvice'
 import HomePreview from './HomePreview'
 import HomeWelcome from './HomeWelcome'
 import HomeSub from './HomeSub'
+import HomeMap from './HomeMap'
 
 const Home: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const Home: React.FC = () => {
       <HomeAdvice />
       <HomeWelcome />
       <HomeSub />
+      <HomeMap />
     </div>
   )
 }

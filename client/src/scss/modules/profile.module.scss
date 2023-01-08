@@ -1,0 +1,31 @@
+@import "../mixins";
+@import "../variables";
+
+.headerProfile {
+  @include flex-center-between;
+  gap: 10px;
+
+  &__wrapper {
+    @include flex-column;
+    text-align: end;
+  }
+
+  &__name {
+    @include reset;
+    @include text-format(700, 14px, 18px);
+    color: $blue;
+  }
+
+  &__balance {
+    @include reset;
+    @include text-format(700, 14px, 18px);
+    color: $mainBlack;
+    font-style: normal;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
