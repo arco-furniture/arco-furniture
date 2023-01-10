@@ -1,10 +1,11 @@
-import { useAppSelector } from '../../hooks/redux'
 import React from 'react'
 import { specsNamesTypes } from './types'
 import { specsTypes } from '../../types/basketTypes'
+import { useProduct } from '../../hooks/useStateSelectors'
 
 const ProductSpecs: React.FC = () => {
-  const specs = useAppSelector((state) => state.product.productData.specs)
+  const { productData } = useProduct()
+  const { specs } = productData
   const specsNames: specsNamesTypes[] = [
     { name: 'Стиль', specsNameId: 'style' },
     { name: 'Материал', specsNameId: 'material' },

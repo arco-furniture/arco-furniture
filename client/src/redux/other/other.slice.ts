@@ -30,5 +30,4 @@ export const otherSlice = createSlice({
   },
 })
 
-export const { openAlertBar, closeAlertBar, openAuthorsPopup, closeAuthorsPopup } = otherSlice.actions
-export default otherSlice.reducer
+export const { reducer, actions } = otherSlice

@@ -6,10 +6,10 @@ import Confetti from 'react-confetti'
 import Dialog from '@mui/material/Dialog'
 import { DialogContent } from '@mui/material'
 import useWindowSize from 'react-use/lib/useWindowSize'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { closeAuthorsPopup } from '../../redux/other/otherSlice'
 import React from 'react'
 import { authorsNameTypes } from './types'
+import { useOther } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const AuthorsPopup: React.FC = () => {
   const authorsName: authorsNameTypes[] = [
@@ -18,10 +18,10 @@ const AuthorsPopup: React.FC = () => {
     { name: 'Трубицин Илья', link: 'https://github.com/Lionen89' },
   ]
   const { width, height } = useWindowSize()
-  const statusAuthorsPopup = useAppSelector((state) => state.other.statusAuthorsPopup)
-  const dispatch = useAppDispatch()
+  const { statusAuthorsPopup } = useOther()
+  const { closeAuthorsPopup } = useActions()
   const handleClosePopup = () => {
-    dispatch(closeAuthorsPopup())
+    closeAuthorsPopup()
   }
 
   const ChipPerson: React.FC<any> = ({ item }) => {

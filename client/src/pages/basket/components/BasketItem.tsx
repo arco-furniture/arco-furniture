@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Checkbox, ButtonGroup, Button } from '@mui/material'
 import styles from '../../../scss/modules/basket/basket-item.module.scss'
-import { useAppDispatch } from '../../../hooks/redux'
-import { removeItemForBasket, handleCountItem } from '../../../redux/basket/basketSlice'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import CloseIcon from '@mui/icons-material/Close'
 import { IBasketItem } from '../../../types/basketTypes'
+import { useActions } from '../../../hooks/useActions'
 
 const BasketItem: React.FC<IBasketItem> = (item) => {
   const [benefit, setBenefit] = useState<any>(0)
   const { article, color, count, image, oldPrice, price, title, id, isControl } = item
-  const dispatch = useAppDispatch()
+  const { removeItemForBasket, handleCountItem } = useActions()
   const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
   const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
   const stylesCountButtonRight = { ...stylesCountButtons, borderLeft: 'solid 0 #D9D9D9' }
@@ -25,7 +24,7 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
   }
 
   const handleRemoveCard = () => {
-    dispatch(removeItemForBasket(item))
+    removeItemForBasket(item)
   }
 
   const handleBenefitItem = () => {
@@ -62,7 +61,7 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
             <Button
               className={styles.item__button_count}
               style={stylesCountButtonLeft}
-              onClick={() => dispatch(handleCountItem({ id, status: false }))}
+              onClick={() => handleCountItem({ id, status: false })}
               disabled={item.count <= 1}
             >
               <RemoveIcon />
@@ -74,7 +73,7 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
               className={styles.item__button_count}
               style={stylesCountButtonRight}
               size='small'
-              onClick={() => dispatch(handleCountItem({ id, status: true }))}
+              onClick={() => handleCountItem({ id, status: true })}
             >
               <AddIcon />
             </Button>

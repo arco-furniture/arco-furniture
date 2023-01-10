@@ -1,12 +1,15 @@
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import React from 'react'
 import { Profile } from 'components/index'
 import AuthButtons from './AuthButtons'
+import { useAuth } from '../../hooks/useStateSelectors'
 
 const HeaderTop: React.FC = () => {
-  const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+  const { user, isLoadingAuth } = useAuth()
+
+  const CheckAuth = () => {
+    return user ? <Profile /> : <AuthButtons />
+  }
 
   return (
     <div className='header__top'>
@@ -17,7 +20,7 @@ const HeaderTop: React.FC = () => {
             <p className='header__place_city'>Москва</p>
           </button>
         </div>
-        {isLoggedIn ? <Profile /> : <AuthButtons />}
+        {isLoadingAuth ? <CheckAuth /> : <></>}
       </div>
     </div>
   )

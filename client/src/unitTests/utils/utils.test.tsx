@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals'
 import { shallow, render } from 'enzyme'
-import { getPriceWithFormat } from '../utils/getPriceWithFormat'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 
 describe('Testing function getPriceWithFormat', () => {
   it('get type string', () => {

@@ -26,6 +26,7 @@
 ![nest](https://img.shields.io/badge/-nest.js-0d1117?style=for-the-badge&logo=nestjs)
 ![mongodb](https://img.shields.io/badge/-mongo_db-0d1117?style=for-the-badge&logo=mongodb)
 ![jwt](https://img.shields.io/badge/-jwt-0d1117?style=for-the-badge&logo=jwt)
+![cookie](https://img.shields.io/badge/-cookie-0d1117?style=for-the-badge&logo=cookie)
 
 ## Команда разработки
 ![Максим](https://img.shields.io/badge/-Петерс_Максим-0d1117?style=for-the-badge&logo=github)

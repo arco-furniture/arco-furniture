@@ -1,25 +1,26 @@
 import Chip from '@mui/material/Chip'
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { IItem } from '../../../types/itemTypes'
 import { specsTypes } from '../../../types/basketTypes'
-import { setStyles } from '../../../redux/category/categorySlice'
 import { styles } from 'app/constants'
+import { useCategory } from '../../../hooks/useStateSelectors'
+import { useActions } from '../../../hooks/useActions'
 
 const FilterStyle: React.FC = () => {
-  const searchStyles = useAppSelector((state) => state.category.dataFilter.styles)
+  const { dataFilter } = useCategory()
+  const { setStyles } = useActions()
+  const searchStyles = dataFilter.styles
   const activeStyles = { backgroundColor: '#4675CE', opacity: 0.6, color: '#fff' }
   const defaultStyles = { backgroundColor: '#F5F5F5', color: '#555' }
-  const dispatch = useAppDispatch()
 
   const onClickButtonStyle = (style: string) => {
     const findAlreadyAdded = searchStyles.find((str) => str === style)
     if (findAlreadyAdded) {
       const removeAlreadyAdded = searchStyles.filter((str) => str !== findAlreadyAdded)
-      dispatch(setStyles(removeAlreadyAdded))
+      setStyles(removeAlreadyAdded)
     } else {
       const isExcess = searchStyles.length + 1 >= styles.length
-      dispatch(setStyles(isExcess ? [] : [...searchStyles, style]))
+      setStyles(isExcess ? [] : [...searchStyles, style])
     }
   }
 

@@ -1,15 +1,15 @@
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar'
-import { closeAlertBar } from '../../redux/other/otherSlice'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Alert } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
+import { useActions } from '../../hooks/useActions'
+import { useOther } from '../../hooks/useStateSelectors'
 
 const AlertBar: React.FC = () => {
-  const dispatch = useAppDispatch()
-  const alert = useAppSelector((state) => state.other.alert)
-  const statusAlert = useAppSelector((state) => state.other.statusAlert)
+  const { alert, statusAlert } = useOther()
+  const { closeAlertBar } = useActions()
+
   const { type, message } = alert
   const stylesAlert = {
     backgroundColor: '#414141',
@@ -21,7 +21,7 @@ const AlertBar: React.FC = () => {
     if (reason === 'clickaway') {
       return
     }
-    dispatch(closeAlertBar())
+    closeAlertBar()
   }
 
   return (

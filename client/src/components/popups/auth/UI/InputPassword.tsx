@@ -1,18 +1,18 @@
 import React, { forwardRef, memo } from 'react'
-import { setEyeStatus } from '../../../../redux/auth/AuthSlice'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
+import { useAuth } from '../../../../hooks/useStateSelectors'
+import { useActions } from '../../../../hooks/useActions'
 
 // eslint-disable-next-line react/display-name
 const InputPassword: React.FC<any> = forwardRef((props, ref) => {
   const { error, textError, placeholder = '******', onChange } = props
-  const eyeStatus = useAppSelector((state) => state.auth.eyeStatus)
-  const dispatch = useAppDispatch()
+  const { eyeStatus } = useAuth()
+  const { setEyeStatus } = useActions()
   const styleEye = { color: '#555' }
 
   const onClickEye = (): void => {
-    dispatch(setEyeStatus())
+    setEyeStatus()
   }
 
   // избавляемся от ререндера компонента во время клика по кнопке

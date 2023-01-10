@@ -1,21 +1,22 @@
 import Tag from '../../../components/tag/Tag'
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
-import { setTags } from '../../../redux/category/categorySlice'
+import { useActions } from '../../../hooks/useActions'
+import { useCategory } from '../../../hooks/useStateSelectors'
 
 const FilterTag: React.FC = () => {
+  const { setTags } = useActions()
+  const { dataFilter } = useCategory()
+  const searchTags = dataFilter.tags
   const tags = [{ tag: 'discount' }, { tag: 'top' }, { tag: 'eco' }, { tag: 'new' }]
-  const searchTags = useAppSelector((state) => state.category.dataFilter.tags)
-  const dispatch = useAppDispatch()
   const isExcess = searchTags.length + 1 >= tags.length
 
   const onClickButtonStyle = (tag: string) => {
     const findAlreadyAdded = searchTags.find((str) => str === tag)
     if (findAlreadyAdded) {
       const removeAlreadyAdded = searchTags.filter((str) => str !== findAlreadyAdded)
-      dispatch(setTags(removeAlreadyAdded))
+      setTags(removeAlreadyAdded)
     } else {
-      dispatch(setTags(isExcess ? [] : [...searchTags, tag]))
+      setTags(isExcess ? [] : [...searchTags, tag])
     }
   }
 

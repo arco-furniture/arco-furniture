@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@mui/material'
-import { setCategoryParams } from '../../redux/category/categorySlice'
-import { useAppDispatch } from '../../hooks/redux'
 import { IInitialCategories } from './types'
 import { initialCategories } from 'app/constants'
+import { useActions } from '../../hooks/useActions'
 
 const HeaderNav: React.FC = () => {
   const location = useLocation()
-  const dispatch = useAppDispatch()
+  const { setCategoryParams } = useActions()
 
   const isActiveCategory = (path: string) => {
     return location.pathname.indexOf(`/category/${path}`) !== -1
@@ -22,7 +21,7 @@ const HeaderNav: React.FC = () => {
   }, [location.pathname])
 
   const pushItemParams = (item: IInitialCategories) => {
-    dispatch(setCategoryParams({ paramsId: item.categoryId, name: item.name }))
+    setCategoryParams({ paramsId: item.categoryId, name: item.name })
   }
 
   return (

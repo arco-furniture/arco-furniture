@@ -19,6 +19,7 @@
 
   &__content {
     max-width: 1180px;
+    min-height: 40px;
     width: 100%;
     @include flex-center-between;
   }

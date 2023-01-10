@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
-import { useAppSelector } from '../../../hooks/redux'
+import { useCategory } from '../../../hooks/useStateSelectors'
 
 const ButtonColor: React.FC<any> = ({ objColor, onClick }) => {
-  const searchColors = useAppSelector((state) => state.category.dataFilter.colors)
-  const isSearch = searchColors.some((item) => item === objColor.nameColor)
+  const { dataFilter } = useCategory()
+  const isSearch = dataFilter.colors.some((item) => item === objColor.nameColor)
 
   return (
     <li key={objColor.nameColor}>

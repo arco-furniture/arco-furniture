@@ -5,14 +5,13 @@ import item from '../../utils/item'
 // eslint-disable-next-line import/named
 import Button, { ButtonProps } from '@mui/material/Button'
 import React from 'react'
-import { openAuthorsPopup } from '../../redux/other/otherSlice'
 import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import { useAppDispatch } from '../../hooks/redux'
 import styled from '@emotion/styled'
+import { useActions } from '../../hooks/useActions'
 
 const HomePreview: React.FC = () => {
-  const dispatch = useAppDispatch()
+  const { openAuthorsPopup } = useActions()
   const styleButtons = { display: 'flex', gap: '7px', boxShadow: '4px 4px 10px rgb(0 0 0 / 10%)' }
 
   const cards = [
@@ -76,7 +75,7 @@ const HomePreview: React.FC = () => {
           className='preview__info-text'
           variant='contained'
           style={styleButtons}
-          onClick={() => dispatch(openAuthorsPopup())}
+          onClick={() => openAuthorsPopup()}
         >
           <CodeIcon color='primary' />
           Авторы проекта
