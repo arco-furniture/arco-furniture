@@ -1,21 +1,22 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import React from 'react'
-import { setColors } from '../../../redux/category/categorySlice'
 import ButtonColor from 'pages/category/components/ButtonColor'
 import { colors } from 'app/constants'
+import { useActions } from '../../../hooks/useActions'
+import { useCategory } from '../../../hooks/useStateSelectors'
 
 const FilterColor: React.FC = () => {
-  const searchColors = useAppSelector((state) => state.category.dataFilter.colors)
-  const dispatch = useAppDispatch()
+  const { setColors } = useActions()
+  const { dataFilter } = useCategory()
+  const searchColors = dataFilter.colors
 
   const onClickButtonColor = (color: string) => {
     const findAlreadyAdded = searchColors.find((str) => str === color)
     if (findAlreadyAdded) {
       const removeAlreadyAdded = searchColors.filter((str) => str !== findAlreadyAdded)
-      dispatch(setColors(removeAlreadyAdded))
+      setColors(removeAlreadyAdded)
     } else {
       const isExcess = searchColors.length + 1 >= colors.length
-      dispatch(setColors(isExcess ? [] : [...searchColors, color]))
+      setColors(isExcess ? [] : [...searchColors, color])
     }
   }
 

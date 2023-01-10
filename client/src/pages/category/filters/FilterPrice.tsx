@@ -1,18 +1,16 @@
 import { InputAdornment, Slider, TextField } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import debounce from 'lodash/debounce'
 import { IItem } from '../../../types/itemTypes'
-import { setPrice } from '../../../redux/category/categorySlice'
+import { useCategory } from '../../../hooks/useStateSelectors'
+import { useActions } from '../../../hooks/useActions'
 
 const FilterPrice: React.FC = () => {
-  const categoryData = useAppSelector((state) => state.category.categoryData)
-  const price = useAppSelector((state) => state.category.price)
-  const searchPrice = useAppSelector((state) => state.category.searchPrice)
+  const { categoryData, price, searchPrice } = useCategory()
+  const { setPrice } = useActions()
   const [value, setValue] = useState(searchPrice)
   const [changeValue, setChangeValue] = useState(false)
-  const dispatch = useAppDispatch()
 
   const isMounted = useRef<boolean>(false)
 
@@ -31,7 +29,7 @@ const FilterPrice: React.FC = () => {
 
   const updateDebouncePrice = useCallback(
     debounce((value) => {
-      dispatch(setPrice(value))
+      setPrice(value)
     }, 500),
     [],
   )

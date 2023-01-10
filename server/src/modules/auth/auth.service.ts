@@ -78,10 +78,10 @@ export class AuthService {
     }
   }
 
-  async getNewTokens(refreshToken: string) {
-    if (!refreshToken) throw new UnauthorizedException('Пожалуйста, авторизуйтесь')
+  async getNewTokens(token: RefreshTokenDto) {
+    if (!token.refreshToken) throw new UnauthorizedException('Пожалуйста, авторизуйтесь')
 
-    const result = await this.jwtService.verifyAsync(refreshToken)
+    const result = await this.jwtService.verifyAsync(token.refreshToken)
     if (!result) throw new UnauthorizedException('Неверный token')
 
     const user = await this.UserModel.findById(result._id)

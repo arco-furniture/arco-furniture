@@ -3,18 +3,16 @@ import s from '../../scss/modules/search.module.scss'
 import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import debounce from 'lodash/debounce'
-import { getSearchItems } from '../../redux/home/asyncActions'
 import { useNavigate } from 'react-router-dom'
-// eslint-disable-next-line import/named
-import { setClearSearchData } from '../../redux/home/homeSlice'
+import { useHome } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const Search: React.FC = () => {
-  const dispatch = useAppDispatch()
+  const { searchData } = useHome()
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
-  const searchData = useAppSelector((state) => state.home.searchData)
+  const { getSearchItems, setClearSearchData } = useActions()
   const styleSearch = { boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.10)', transform: 'scale(1.03)' }
   const filterData = searchData.filter((_item, i) => i < 4)
   const inputRef = useRef(null)
@@ -30,7 +28,7 @@ const Search: React.FC = () => {
   }
 
   const onClickSearchButton = () => {
-    dispatch(getSearchItems(searchValue))
+    getSearchItems(searchValue)
     inputRef.current.focus()
   }
 
@@ -42,7 +40,7 @@ const Search: React.FC = () => {
 
   const updateDebounceSearch = useCallback(
     debounce((value) => {
-      dispatch(getSearchItems(value))
+      getSearchItems(value)
     }, 700),
     [],
   )
@@ -57,7 +55,7 @@ const Search: React.FC = () => {
   const onClickSearchItem = (item) => {
     navigate(`/category/${item.category}/product/${item._id}`)
     setSearchValue('')
-    dispatch(setClearSearchData())
+    setClearSearchData()
   }
 
   return (

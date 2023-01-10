@@ -1,0 +1,79 @@
+@import "../variables";
+@import "../mixins";
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 35px;
+}
+
+.profileAbout {
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  @include flex-column;
+  box-sizing: border-box;
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+
+  &__wallpaper {
+    position: relative;
+    min-height: 180px;
+    background-color: $blue;
+
+    &-image {
+      overflow: hidden;
+      position: absolute;
+      bottom: -7px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    @include flex-column;
+    @include flex-center-center;
+    padding: 20px;
+  }
+
+  &__avatarWrapper {
+    position: absolute;
+    overflow: hidden;
+    margin-bottom: auto;
+    margin-top: auto;
+    bottom: 70px;
+    top: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  &__avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  &__firstName {
+    @include reset;
+    @include text-format(700, 28px, 38px);
+    text-align: center;
+    color: $blue;
+    margin-top: 60px;
+  }
+
+  &__money {
+    @include reset;
+    font-style: normal;
+    @include text-format(400, 22px, 28px);
+    text-align: center;
+    @include flex-center-center;
+    margin: 7px 0 20px;
+  }
+}
+
+.profileHistory {
+  width: 100%;
+  background-color: #2D2D2D;
+}

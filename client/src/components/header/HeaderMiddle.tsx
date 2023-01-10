@@ -5,16 +5,15 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import { Link } from 'react-router-dom'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Search from './Search'
-import { useAppSelector } from '../../hooks/redux'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import { ITitleTooltip } from './types'
 import ListIcon from '@mui/icons-material/List'
+import { useBasket, useHome } from '../../hooks/useStateSelectors'
 
 const HeaderMiddle: React.FC = () => {
-  const favoriteData = useAppSelector((state) => state.home.favoriteData)
-  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
-  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
+  const { dataBasketItems, totalPrice } = useBasket()
+  const { favoriteData } = useHome()
   const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
   const countBasketItems = dataBasketItems.reduce((sum: number, currentItem: any) => {
     return sum + currentItem.count

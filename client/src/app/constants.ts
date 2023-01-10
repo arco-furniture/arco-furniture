@@ -1,8 +1,6 @@
 import { searchColorType } from 'pages/category/types'
 import { IInitialCategories } from 'components/header/types'
 
-export const MAIN_API = process.env.REACT_APP_API
-
 export const colors: searchColorType[] = [
   { nameColor: 'gray', color: '#E4E4E4' },
   { nameColor: 'yellow', color: '#E9D777' },

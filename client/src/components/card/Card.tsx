@@ -6,24 +6,22 @@ import React, { useEffect, useState } from 'react'
 import Tag from '../tag/Tag'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import { Link } from 'react-router-dom'
-import { setProduct, getFirstColor } from '../../redux/product/productSlice'
-import { openAlertBar } from '../../redux/other/otherSlice'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { postFavoriteItem, deleteFavoriteItem } from '../../redux/home/homeSlice'
-import { addItemForBasket } from '../../redux/basket/basketSlice'
 import { ICard } from './types'
 import { colorsTypes, IItem, imagesTypes } from '../../types/itemTypes'
 import { getBasketItem } from '../../utils/getBasketItem'
 import imageNotFound from '../../images/notFound.png'
+import { useActions } from '../../hooks/useActions'
+import { useHome } from '../../hooks/useStateSelectors'
 
 const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   const [visible, setVisible] = useState<boolean>(false)
   const [isLiked, setIsLiked] = useState<boolean>(false)
-  const dispatch = useAppDispatch()
-  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const { favoriteData } = useHome()
   const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === item._id)
   const [selectedColor, setSelectedColor] = useState('')
+  const { addItemForBasket, postFavoriteItem, deleteFavoriteItem, openAlertBar, setProduct, getFirstColor } =
+    useActions()
 
   useEffect(() => {
     if (isFavorite) {
@@ -39,39 +37,35 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   }, [isTop])
 
   const onClickBuyButton = () => {
-    dispatch(setProduct(item))
-    dispatch(getFirstColor(item.colors))
+    setProduct(item)
+    getFirstColor(item.colors)
   }
 
   const handleIsFavorite = () => {
     if (!isFavorite) {
-      dispatch(postFavoriteItem(item))
+      postFavoriteItem(item)
       return true
     }
     const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== item._id)
-    dispatch(deleteFavoriteItem(withoutItemsFavorite))
+    deleteFavoriteItem(withoutItemsFavorite)
     return false
   }
 
   const onClickFavoriteButton = () => {
     setIsLiked(handleIsFavorite())
-    dispatch(
-      openAlertBar({
-        message: item.title,
-        type: 'favorite',
-      }),
-    )
+    openAlertBar({
+      message: item.title,
+      type: 'favorite',
+    })
   }
 
   const handlerOnSubmit = () => {
-    dispatch(
-      openAlertBar({
-        message: item.title,
-        type: 'cart',
-      }),
-    )
+    openAlertBar({
+      message: item.title,
+      type: 'cart',
+    })
     const basketItem = getBasketItem(item, selectedColor)
-    dispatch(addItemForBasket(basketItem))
+    addItemForBasket(basketItem)
   }
 
   const checkImages = (images: imagesTypes[]) => {

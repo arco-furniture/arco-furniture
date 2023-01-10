@@ -2,24 +2,21 @@ import React, { useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip'
 import { Button, IconButton } from '@mui/material'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setCurrentColor } from '../../redux/product/productSlice'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { openAlertBar } from '../../redux/other/otherSlice'
 import BlackTooltip from '../../components/BlackTooltip/BlackTooltip'
-import { deleteFavoriteItem, postFavoriteItem } from '../../redux/home/homeSlice'
-import { addItemForBasket } from '../../redux/basket/basketSlice'
 import { IItem, colorsTypes } from '../../types/itemTypes'
 import { getBasketItem } from '../../utils/getBasketItem'
 import { colors } from 'app/constants'
+import { useHome, useProduct } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const ProductParams: React.FC = () => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
   const [isLiked, setIsLiked] = useState(false)
-  const productData = useAppSelector((state) => state.product.productData)
-  const currentColor = useAppSelector((state) => state.product.currentColor)
-  const favoriteData = useAppSelector((state) => state.home.favoriteData)
+  const { productData, currentColor } = useProduct()
+  const { favoriteData } = useHome()
+  const { addItemForBasket, deleteFavoriteItem, postFavoriteItem, openAlertBar, setCurrentColor } = useActions()
   const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === productData._id)
   const existColors = colors.map((item) => {
     const isExist = productData?.colors?.some((color) => color.nameColor === item.nameColor)
@@ -29,8 +26,6 @@ const ProductParams: React.FC = () => {
       exist: isExist,
     }
   })
-
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (isFavorite) {
@@ -64,34 +59,30 @@ const ProductParams: React.FC = () => {
 
   const handlerOnSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
-    dispatch(
-      openAlertBar({
-        message: productData.title,
-        type: 'cart',
-      }),
-    )
+    openAlertBar({
+      message: productData.title,
+      type: 'cart',
+    })
     const basketItem = getBasketItem(productData, currentColor.color)
-    dispatch(addItemForBasket(basketItem))
+    addItemForBasket(basketItem)
   }
 
   const handleIsFavorite = () => {
     if (!isFavorite) {
-      dispatch(postFavoriteItem(productData))
+      postFavoriteItem(productData)
       return true
     }
     const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== productData._id)
-    dispatch(deleteFavoriteItem(withoutItemsFavorite))
+    deleteFavoriteItem(withoutItemsFavorite)
     return false
   }
 
   const onClickFavoriteButton = () => {
     setIsLiked(handleIsFavorite())
-    dispatch(
-      openAlertBar({
-        message: productData.title,
-        type: 'favorite',
-      }),
-    )
+    openAlertBar({
+      message: productData.title,
+      type: 'favorite',
+    })
   }
 
   return (
@@ -114,14 +105,12 @@ const ProductParams: React.FC = () => {
               <li key={index}>
                 <Button
                   onClick={() =>
-                    dispatch(
-                      setCurrentColor({
-                        index,
-                        color: item.color,
-                        nameColor: item.nameColor,
-                        exist: item.exist,
-                      }),
-                    )
+                    setCurrentColor({
+                      index,
+                      color: item.color,
+                      nameColor: item.nameColor,
+                      exist: item.exist,
+                    })
                   }
                   style={handleCurrentColor(item, index)}
                   variant='contained'

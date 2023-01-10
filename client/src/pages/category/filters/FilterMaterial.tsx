@@ -1,16 +1,17 @@
 import { MenuItem, TextField } from '@mui/material'
-import React, { useEffect, useRef } from 'react'
-import { setMaterial } from '../../../redux/category/categorySlice'
-import { useAppSelector, useAppDispatch } from '../../../hooks/redux'
+import React from 'react'
+import { useCategory } from '../../../hooks/useStateSelectors'
+import { useActions } from '../../../hooks/useActions'
 
 const FilterMaterial: React.FC = () => {
-  const searchMaterial = useAppSelector((state) => state.category.dataFilter.material)
-  const dispatch = useAppDispatch()
+  const { dataFilter } = useCategory()
+  const { setMaterial } = useActions()
+  const searchMaterial = dataFilter.material
   const materials = [{ material: 'Все' }, { material: 'Массив' }, { material: 'ЛДСП' }, { material: 'МДФ' }]
 
   const onChangeInputValue = (value) => {
     const isAll = value.toLowerCase() === 'все'
-    dispatch(setMaterial(isAll ? '' : value))
+    setMaterial(isAll ? '' : value)
   }
 
   return (

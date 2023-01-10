@@ -2,18 +2,17 @@ import BasketNavigation from './components/BasketNavigation'
 import BasketItem from './components/BasketItem'
 import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import { Button, ListItemButton, ListItemIcon, ListItemText, TextField } from '@mui/material'
-import { useAppSelector } from '../../hooks/redux'
 import { useNavigate } from 'react-router-dom'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { IBasketItem } from '../../types/basketTypes'
 import React from 'react'
 import { BlackTooltip } from '../../components'
 import CopyAllOutlinedIcon from '@mui/icons-material/CopyAllOutlined'
+import { useBasket } from '../../hooks/useStateSelectors'
 
 const BasketApproval: React.FC = () => {
   const navigate = useNavigate()
-  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
-  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
+  const { dataBasketItems, totalPrice } = useBasket()
 
   const handleNextStage = () => {
     navigate('/')

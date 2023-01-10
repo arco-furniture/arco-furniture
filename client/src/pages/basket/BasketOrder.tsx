@@ -5,16 +5,13 @@ import BasketNavigation from './components/BasketNavigation'
 import styles from '../../scss/modules/basket/basket-order.module.scss'
 import stylesForm from '../../scss/modules/basket/basket-form.module.scss'
 import { useForm } from 'react-hook-form'
-import { useAppSelector } from '../../hooks/redux'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import { useBasket } from '../../hooks/useStateSelectors'
 
 const BasketOrder: React.FC = () => {
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
-  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
-  const totalOldPrice = useAppSelector((state) => state.basket.totalOldPrice)
-  const totalBenefit = useAppSelector((state) => state.basket.totalBenefit)
-
+  const { totalPrice, totalOldPrice, totalBenefit } = useBasket()
   const [values, setValues] = React.useState({})
   const [errors, setErrors] = React.useState({})
   const [isValid, setIsValid] = React.useState(false)

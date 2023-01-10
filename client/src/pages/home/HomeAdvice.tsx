@@ -1,16 +1,15 @@
 import Chip from '@mui/material/Chip'
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { getSkeletonCards } from '../../utils/getSkeletonCards'
 import SwiperCards from '../../components/card/SwiperCards'
 import { getCards } from '../../utils/getCards'
-import { filterAdvice } from '../../redux/home/asyncActions'
+import { useHome } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const HomeAdvice: React.FC = () => {
-  const adviceData = useAppSelector((state) => state.home.adviceData)
-  const adviceStatus = useAppSelector((state) => state.home.adviceStatus)
+  const { adviceData, adviceStatus } = useHome()
+  const { filterAdvice } = useActions()
   const [sortIndex, setSortIndex] = useState(0)
-  const dispatch = useAppDispatch()
   const sortActiveStyles = { backgroundColor: '#4675CE', opacity: 0.6, color: '#fff' }
   const sortDefaultStyles = { backgroundColor: '#F5F5F5', color: '#555', boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)' }
   const sortArray = [
@@ -23,13 +22,13 @@ const HomeAdvice: React.FC = () => {
 
   // Получаем данные из mockAPI по заданным фильтрам
   useEffect(() => {
-    dispatch(filterAdvice('all'))
+    filterAdvice('all')
   }, [])
 
   const handleSortItems = (index: number) => {
     setSortIndex(index)
     const request = sortArray[index].advice
-    dispatch(filterAdvice(request))
+    filterAdvice(request)
   }
 
   return (

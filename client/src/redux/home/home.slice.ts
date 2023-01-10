@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IHomeState } from '../types'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
-import { filterAdvice, getSearchItems } from './asyncActions'
+import { filterAdvice, getSearchItems } from './home.actions'
 
 const { favorites } = getFavoriteFromLS()
 
@@ -55,5 +55,4 @@ export const homeSlice = createSlice({
   },
 })
 
-export const { postFavoriteItem, deleteFavoriteItem, setClearSearchData } = homeSlice.actions
-export default homeSlice.reducer
+export const { reducer, actions } = homeSlice

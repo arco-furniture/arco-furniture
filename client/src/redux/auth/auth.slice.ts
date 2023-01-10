@@ -1,21 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { registerUser } from './asyncActions'
+import { checkAuth, registerUser } from './auth.actions'
 
 const initialState: any = {
   eyeStatus: false,
-  isLoading: false,
+  isLoadingAuth: false,
   popupRegister: false,
   popupAuth: false,
-  isLoggedIn: false,
   statusRegister: false,
-  user: {
-    firstName: '',
-    email: '',
-  },
+  user: null,
 }
 
 export const authSlice = createSlice({
-  name: 'category',
+  name: 'auth',
   initialState,
   reducers: {
     setEyeStatus(state) {
@@ -29,21 +25,23 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(registerUser.pending, (state) => {
-      state.isLoading = true
-      state.user = {}
-    })
     builder.addCase(registerUser.fulfilled, (state, { payload }) => {
-      state.isLoading = false
-      state.user.firstName = payload.user.firstName
-      state.user.email = payload.user.email
+      state.isLoadingAuth = false
+      state.user = payload.user
     })
     builder.addCase(registerUser.rejected, (state) => {
-      state.isLoading = false
-      state.user = {}
+      state.isLoadingAuth = false
+      state.user = null
+    })
+    builder.addCase(registerUser.pending, (state) => {
+      state.isLoadingAuth = true
+      state.user = null
+    })
+    builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
+      state.user = payload.user
+      state.isLoadingAuth = true
     })
   },
 })
 
-export const { setEyeStatus, setPopupRegister, setPopupAuth } = authSlice.actions
-export default authSlice.reducer
+export const { reducer, actions } = authSlice

@@ -1,20 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { store } from './redux/store'
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import App from './app/App'
+import MainProvider from './providers/MainProvider'
 
 const root = document.getElementById('root')
 
 if (root) {
   ReactDOM.render(
     <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>
+      <MainProvider>
+        <App />
+      </MainProvider>
     </React.StrictMode>,
     root,
   )
