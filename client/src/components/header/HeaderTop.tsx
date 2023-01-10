@@ -1,6 +1,6 @@
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
 import React from 'react'
-import { Profile } from 'components/index'
+import HeaderProfile from './HeaderProfile'
 import AuthButtons from './AuthButtons'
 import { useAuth } from '../../hooks/useStateSelectors'
 
@@ -8,7 +8,7 @@ const HeaderTop: React.FC = () => {
   const { user, isLoadingAuth } = useAuth()
 
   const CheckAuth = () => {
-    return user ? <Profile /> : <AuthButtons />
+    return user ? <HeaderProfile /> : <AuthButtons />
   }
 
   return (

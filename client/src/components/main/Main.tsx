@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../scss/modules/main.module.scss'
 import { Routes, Route } from 'react-router-dom'
-import { Home, Favorite } from 'pages/index'
+import { Home, Favorite, Profile } from 'pages/index'
 import AlertBar from '../alertBar/AlertBar'
 import AuthorsPopup from '../popups/AuthorsPopup'
 import { Preloader, ProtectedRoute } from '../index'
@@ -46,6 +46,7 @@ const Main: React.FC = () => {
         <div>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/profile/:profileId' element={<Profile />} />
             <Route path='/category/:categoryName' element={<Category />} />
             <Route path='/category/:categoryName/product/:productId' element={<Product />} />
             <Route

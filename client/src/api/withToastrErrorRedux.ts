@@ -1,4 +1,4 @@
-import { errorCatch } from 'app/api.helpers'
+import { errorCatch } from './api.helpers'
 import { toastr } from 'react-redux-toastr'
 
 export const toastError = (error: any, title?: string) => {

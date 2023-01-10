@@ -9,10 +9,11 @@ import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import styled from '@emotion/styled'
 import { useActions } from '../../hooks/useActions'
+import { ThemeProvider } from '@mui/material'
+import { adviceButtonTheme } from '../../themes'
 
 const HomePreview: React.FC = () => {
   const { openAuthorsPopup } = useActions()
-  const styleButtons = { display: 'flex', gap: '7px', boxShadow: '4px 4px 10px rgb(0 0 0 / 10%)' }
 
   const cards = [
     {
@@ -31,16 +32,6 @@ const HomePreview: React.FC = () => {
       text: 'Легкие способы',
     },
   ]
-
-  // #F5F5F5;
-
-  const ColorButton = styled(Button)<ButtonProps>(() => ({
-    color: '#414141',
-    backgroundColor: '#F5F5F5',
-    '&:hover': {
-      backgroundColor: '#eaeaea',
-    },
-  }))
 
   return (
     <section className='preview'>
@@ -71,19 +62,16 @@ const HomePreview: React.FC = () => {
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>
       <div className='preview__info'>
-        <ColorButton
-          className='preview__info-text'
-          variant='contained'
-          style={styleButtons}
-          onClick={() => openAuthorsPopup()}
-        >
-          <CodeIcon color='primary' />
-          Авторы проекта
-        </ColorButton>
-        <ColorButton className='preview__info-text' variant='contained' style={styleButtons}>
-          <SettingsOutlinedIcon color='primary' />
-          Коротко о проекте
-        </ColorButton>
+        <ThemeProvider theme={adviceButtonTheme}>
+          <Button className='preview__info-text' variant='contained' onClick={() => openAuthorsPopup()}>
+            <CodeIcon color='primary' />
+            Авторы проекта
+          </Button>
+          <Button className='preview__info-text' variant='contained'>
+            <SettingsOutlinedIcon color='primary' />
+            Коротко о проекте
+          </Button>
+        </ThemeProvider>
       </div>
     </section>
   )
