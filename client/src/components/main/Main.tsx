@@ -7,8 +7,8 @@ import AuthorsPopup from '../popups/AuthorsPopup'
 import { Preloader, ProtectedRoute } from '../index'
 import Loadable from 'react-loadable'
 import PageNotFound from 'pages/notFound/PageNotFound'
-import RegisterPopup from 'components/popups/auth/RegisterPopup'
-import AuthPopup from 'components/popups/auth/AuthPopup'
+import RegisterPopup from 'components/popups/RegisterPopup'
+import AuthPopup from 'components/popups/AuthPopup'
 import { useBasket, useHome } from '../../hooks/useStateSelectors'
 
 const Main: React.FC = () => {

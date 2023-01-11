@@ -1,8 +1,8 @@
 import React, { forwardRef, memo } from 'react'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
-import { useAuth } from '../../../../hooks/useStateSelectors'
-import { useActions } from '../../../../hooks/useActions'
+import { useAuth } from '../hooks/useStateSelectors'
+import { useActions } from '../hooks/useActions'
 
 // eslint-disable-next-line react/display-name
 const InputPassword: React.FC<any> = forwardRef((props, ref) => {
