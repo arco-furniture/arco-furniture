@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { findColor } from '../../utils/findColor'
 import { IItem } from '../../types/itemTypes'
 import { IProductState } from '../types'
-import { fetchProduct } from './asyncActions'
+import { fetchProduct } from './product.actions'
 
 const initialState: IProductState = {
   productData: {},
@@ -40,5 +40,4 @@ export const productSlice = createSlice({
   },
 })
 
-export const { setCurrentColor, setProduct, getFirstColor } = productSlice.actions
-export default productSlice.reducer
+export const { reducer, actions } = productSlice

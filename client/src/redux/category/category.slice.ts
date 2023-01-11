@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { filterCategory } from './asyncActions'
+import { filterCategory } from './category.actions'
 
 const initialState: any = {
   categoryData: [],
@@ -79,14 +79,4 @@ export const categorySlice = createSlice({
   },
 })
 
-export const {
-  setCategoryParams,
-  setCategorySort,
-  setStyles,
-  setMaterial,
-  setColors,
-  setTags,
-  setPrice,
-  setChangePage,
-} = categorySlice.actions
-export default categorySlice.reducer
+export const { reducer, actions } = categorySlice

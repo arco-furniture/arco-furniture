@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { checkPriceBasket } from '../../utils/checkPriceBasket'
 import { checkOldPriceBasket } from '../../utils/checkOldPriceBasket'
 import { IBasketItem } from '../../types/basketTypes'
-import { RootState } from '../store'
 import { IBasketState } from '../types'
 import { getBasketFromLS } from '../../utils/getBasketFromLS'
 
@@ -78,6 +77,4 @@ export const basketSlice = createSlice({
   },
 })
 
-export const { addItemForBasket, removeItemForBasket, handleCountItem, changeBasketBtnStatus, checkBasketItems } =
-  basketSlice.actions
-export default basketSlice.reducer
+export const { reducer, actions } = basketSlice

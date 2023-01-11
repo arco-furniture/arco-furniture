@@ -1,20 +1,19 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
 import Form from 'components/popups/auth/UI/Form'
 import InputForm from 'components/popups/auth/UI/InputForm'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
-import { setPopupRegister } from '../../../redux/auth/AuthSlice'
-import { registerUser } from '../../../redux/auth/asyncActions'
+// eslint-disable-next-line import/named
+import { registerUser } from '../../../redux/auth/auth.actions'
+import { useAuth } from '../../../hooks/useStateSelectors'
+import { useActions } from '../../../hooks/useActions'
 
 const RegisterPopup = () => {
-  const dispatch = useAppDispatch()
   const [isErrors, setIsErrors] = useState<boolean>(false)
-  const isLoading = useAppSelector((state) => state.auth.isLoading)
-  const popupRegister = useAppSelector((state) => state.auth.popupRegister)
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+  const { isLoading, popupRegister } = useAuth()
+  const { setPopupRegister } = useActions()
 
   const Schema = yup.object().shape({
     firstName: yup
@@ -28,10 +27,6 @@ const RegisterPopup = () => {
       .required('Вы не заполнили')
       .oneOf([yup.ref('password')], 'Пароли не совпадают'),
   })
-
-  useEffect(() => {
-    checkToken()
-  }, [])
 
   // хук валидации формы
   const {
@@ -49,24 +44,18 @@ const RegisterPopup = () => {
     setIsErrors(existErrors !== 0)
   }, [existErrors])
 
+  const { login, registerUser } = useActions()
+
   const onSubmit = (data) => {
-    if (!isErrors && !isLoggedIn) {
+    if (!isErrors) {
       const userData = {
         password: data.password,
         email: data.email,
         firstName: data.firstName,
       }
-      dispatch(registerUser(userData))
-        .then((res) => setTokenUser(res.payload.token))
-        .catch((err) => console.error(err))
+      registerUser(userData)
     }
   }
-
-  const setTokenUser = (token) => {
-    localStorage.setItem('token', token)
-  }
-
-  const checkToken = () => {}
 
   return (
     <PopupTemplate status={popupRegister} handleClose={setPopupRegister}>

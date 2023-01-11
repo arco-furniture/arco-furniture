@@ -3,12 +3,12 @@ import { Link, useLocation } from 'react-router-dom'
 import { initialCategories } from 'app/constants'
 import { IInitialCategories } from 'components/header/types'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import { useAppSelector } from '../../hooks/redux'
+import { useProduct } from '../../hooks/useStateSelectors'
 
 const HeaderLocation: React.FC = () => {
   const location = useLocation()
   const locationArray = location.pathname.split('/').filter((item) => item)
-  const productData = useAppSelector((state) => state.product.productData)
+  const { productData } = useProduct()
 
   const isCategory = locationArray.indexOf('category') !== -1
   const [category, setCategory] = useState<IInitialCategories | null>({ name: '', link: '', categoryId: null })

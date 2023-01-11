@@ -5,15 +5,13 @@ import InputForm from 'components/popups/auth/UI/InputForm'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
-// eslint-disable-next-line import/named
-import { setPopupAuth } from '../../../redux/auth/AuthSlice'
+import { useAuth } from '../../../hooks/useStateSelectors'
+import { useActions } from '../../../hooks/useActions'
 
 const AuthPopup = () => {
-  const dispatch = useAppDispatch()
   const [isErrors, setIsErrors] = useState<boolean>(false)
-  const isLoading = useAppSelector((state) => state.auth.isLoading)
-  const popupAuth = useAppSelector((state) => state.auth.popupAuth)
+  const { isLoading, popupAuth } = useAuth()
+  const { setPopupAuth } = useActions()
 
   const Schema = yup.object().shape({
     email: yup.string().required('Вы не заполнили').email('Некорректная электронная почта'),
@@ -38,7 +36,7 @@ const AuthPopup = () => {
 
   return (
     <PopupTemplate status={popupAuth} handleClose={setPopupAuth}>
-      <Form title='Авторизация'>
+      <Form title='Авторизация' submit={handleSubmit}>
         <InputForm
           label='Электронная почта'
           placeholder='example@mail.ru'

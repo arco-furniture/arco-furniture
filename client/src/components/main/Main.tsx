@@ -1,19 +1,19 @@
 import React from 'react'
 import styles from '../../scss/modules/main.module.scss'
 import { Routes, Route } from 'react-router-dom'
-import { Home, Favorite } from 'pages/index'
+import { Home, Favorite, Profile } from 'pages/index'
 import AlertBar from '../alertBar/AlertBar'
 import AuthorsPopup from '../popups/AuthorsPopup'
 import { Preloader, ProtectedRoute } from '../index'
-import { useAppSelector } from '../../hooks/redux'
 import Loadable from 'react-loadable'
 import PageNotFound from 'pages/notFound/PageNotFound'
 import RegisterPopup from 'components/popups/auth/RegisterPopup'
 import AuthPopup from 'components/popups/auth/AuthPopup'
+import { useBasket, useHome } from '../../hooks/useStateSelectors'
 
 const Main: React.FC = () => {
-  const favoriteData = useAppSelector((state) => state.home.favoriteData)
-  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
+  const { favoriteData } = useHome()
+  const { dataBasketItems } = useBasket()
 
   const Category = Loadable({
     loader: () => import(/* webpackChunkName: "Category" */ 'pages/category/Category'),
@@ -46,6 +46,7 @@ const Main: React.FC = () => {
         <div>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/profile/:profileId' element={<Profile />} />
             <Route path='/category/:categoryName' element={<Category />} />
             <Route path='/category/:categoryName/product/:productId' element={<Product />} />
             <Route

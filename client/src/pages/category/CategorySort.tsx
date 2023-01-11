@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { setCategorySort } from '../../redux/category/categorySlice'
-import { useAppDispatch } from '../../hooks/redux'
+import { useActions } from '../../hooks/useActions'
 
 const CategorySort: React.FC = () => {
+  const { setCategorySort } = useActions()
   const [sortIndex, setSortIndex] = useState(0)
-  const dispatch = useAppDispatch()
 
   const sortItems = [
     { name: 'По рейтингу', sortId: 'rating' },
@@ -14,7 +13,7 @@ const CategorySort: React.FC = () => {
 
   const handleSort = (index: number) => {
     setSortIndex(index)
-    dispatch(setCategorySort(sortItems[index].sortId))
+    setCategorySort(sortItems[index].sortId)
   }
 
   return (

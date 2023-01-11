@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { changeBasketBtnStatus } from '../../redux/basket/basketSlice'
 import { useForm } from 'react-hook-form'
 import BasketNavigation from './components/BasketNavigation'
 import styles from '../../scss/modules/basket/basket.module.scss'
@@ -9,15 +7,15 @@ import { IBasketItem } from '../../types/basketTypes'
 import BasketItem from './components/BasketItem'
 import { Button, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import { useBasket } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const BasketControl: React.FC = () => {
   const navigate = useNavigate()
-  const dataBasketItems = useAppSelector((state) => state.basket.dataBasketItems)
-  const totalPrice = useAppSelector((state) => state.basket.totalPrice)
-  const basketBtnStatus = useAppSelector((state) => state.basket.basketBtnStatus)
+  const { dataBasketItems, totalPrice, basketBtnStatus } = useBasket()
+  const { changeBasketBtnStatus } = useActions()
   const { register, handleSubmit } = useForm()
   const [dataInfo, setDataInfo] = useState('')
-  const dispatch = useAppDispatch()
   const styleNavigation = [{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }]
 
   const [values, setValues] = React.useState({})
@@ -38,7 +36,7 @@ const BasketControl: React.FC = () => {
   }
 
   const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeBasketBtnStatus(e.target.checked))
+    changeBasketBtnStatus(e.target.checked)
   }
 
   return (

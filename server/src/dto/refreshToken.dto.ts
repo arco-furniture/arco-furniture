@@ -1,9 +1,7 @@
-import {IsString} from "class-validator";
+import { IsString } from 'class-validator'
 
 export class RefreshTokenDto {
 
-  @IsString({
-    message: 'Is not refresh token'
-  })
+  @IsString({message: 'Вы не передали токен обновления, или это не строка!'})
   refreshToken: string
 }

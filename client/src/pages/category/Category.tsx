@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import React, { useEffect } from 'react'
 import CategoryFilters from './CategoryFilters'
 import { Pagination } from '@mui/material'
@@ -6,22 +5,17 @@ import { getSkeletonCards } from '../../utils/getSkeletonCards'
 import { getCards } from '../../utils/getCards'
 import CategorySort from './CategorySort'
 import { useParams } from 'react-router-dom'
-import { filterCategory } from '../../redux/category/asyncActions'
-// eslint-disable-next-line import/named
-import { setChangePage } from '../../redux/category/categorySlice'
+import { useCategory } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const Category: React.FC = () => {
-  const categoryData = useAppSelector((state) => state.category.categoryData)
-  const categoryStatus = useAppSelector((state) => state.category.categoryStatus)
-  const dataFilter = useAppSelector((state) => state.category.dataFilter)
-  const currentPage = useAppSelector((state) => state.category.currentPage)
-  const allPages = useAppSelector((state) => state.category.allPages)
-  const dispatch = useAppDispatch()
+  const { categoryData, categoryStatus, dataFilter, currentPage, allPages } = useCategory()
+  const { setChangePage, filterCategory } = useActions()
   const { categoryName } = useParams()
 
   // запрос на изменение
   useEffect(() => {
-    dispatch(filterCategory({ data: dataFilter, filter: categoryName, page: currentPage }))
+    filterCategory({ data: dataFilter, filter: categoryName, page: currentPage })
   }, [dataFilter, categoryName, currentPage])
 
   return (
@@ -36,7 +30,7 @@ const Category: React.FC = () => {
             {categoryStatus === 'success' && getCards(categoryData)}
             <div className='category__pagination'>
               <Pagination
-                onChange={(_evt, page) => dispatch(setChangePage(page))}
+                onChange={(_evt, page) => setChangePage(page)}
                 shape='rounded'
                 count={allPages}
                 color='primary'

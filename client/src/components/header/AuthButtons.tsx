@@ -1,18 +1,17 @@
 import React from 'react'
 import styles from '../../scss/modules/authButtons.module.scss'
 import { Button } from '@mui/material'
-import { useDispatch } from 'react-redux'
-import { setPopupAuth, setPopupRegister } from '../../redux/auth/AuthSlice'
+import { useActions } from '../../hooks/useActions'
 
 const AuthButtons: React.FC<any> = () => {
-  const dispatch = useDispatch()
+  const { setPopupAuth, setPopupRegister } = useActions()
 
   const onClickRegister = () => {
-    dispatch(setPopupRegister())
+    setPopupRegister()
   }
 
   const onClickAuth = () => {
-    dispatch(setPopupAuth())
+    setPopupAuth()
   }
 
   return (
