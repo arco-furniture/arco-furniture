@@ -1,14 +1,12 @@
 import React, { memo, useEffect, useState } from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
-import Form from 'components/popups/auth/UI/Form'
-import InputForm from 'components/popups/auth/UI/InputForm'
+import Form from 'ui/Form'
+import InputForm from 'ui/InputForm'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-// eslint-disable-next-line import/named
-import { registerUser } from '../../../redux/auth/auth.actions'
-import { useAuth } from '../../../hooks/useStateSelectors'
-import { useActions } from '../../../hooks/useActions'
+import { useAuth } from '../../hooks/useStateSelectors'
+import { useActions } from '../../hooks/useActions'
 
 const RegisterPopup = () => {
   const [isErrors, setIsErrors] = useState<boolean>(false)
