@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react'
-import InputPassword from 'components/popups/auth/UI/InputPassword'
-import InputDefault from 'components/popups/auth/UI/InputDefault'
+import InputPassword from './InputPassword'
+import InputDefault from './InputDefault'
 
 // eslint-disable-next-line react/display-name
 const InputForm: React.FC<any> = forwardRef((props, ref) => {
