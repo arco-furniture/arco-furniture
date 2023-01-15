@@ -1,0 +1,30 @@
+@import "../variables";
+@import "../mixins";
+
+.moneyWrapper {
+  @include flex-column;
+}
+
+.title {
+  @include reset;
+  @include text-format(700, 10px, 14px);
+  letter-spacing: 0.04px;
+  color: #c9c9c9;
+  text-transform: uppercase;
+  margin-left: 15px;
+}
+
+.money {
+  @include reset;
+  font-style: normal;
+  @include text-format(700, 22px, 28px);
+  color: $mainBlack;
+  margin: 5px 15px;
+  text-align: center;
+  padding-left: -10px;
+}
+
+.themeWrapper {
+  @include flex-column;
+}
+

@@ -23,8 +23,6 @@ const AuthProvider: React.FC<any> = ({ children }) => {
     }
   }, [pathname])
 
-  console.log(user)
-
   return <>{children}</>
 }
 

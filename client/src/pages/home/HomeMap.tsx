@@ -23,7 +23,7 @@ const HomeMap = () => {
 
   const defaultState = {
     center: [55.751574, 37.573856],
-    zoom: 5,
+    zoom: 9,
   }
 
   return (
@@ -62,7 +62,6 @@ const HomeMap = () => {
             <Placemark geometry={[55.684758, 37.738521]} />
           </Map>
         </YMaps>
-        <div id='map' className='map__mapBlock' />
       </div>
     </section>
   )

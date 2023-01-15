@@ -7,9 +7,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Search from './Search'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
-import { ITitleTooltip } from './types'
 import ListIcon from '@mui/icons-material/List'
 import { useBasket, useHome } from '../../hooks/useStateSelectors'
+import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 
 const HeaderMiddle: React.FC = () => {
   const { dataBasketItems, totalPrice } = useBasket()
@@ -19,24 +19,22 @@ const HeaderMiddle: React.FC = () => {
     return sum + currentItem.count
   }, 0)
 
-  const TitleTooltip: React.FC<ITitleTooltip> = ({ title }) => {
-    return <span className='header__tooltip-title'>{title}</span>
-  }
-
   return (
     <div className='header__middle'>
       <div className='header__content'>
         <div className='header__contain'>
           <Link to='/'>
-            <img src={logo} alt='Логотип' className='header__logo' />
+            <img draggable={false} src={logo} alt='Логотип' className='header__logo' />
           </Link>
           <Search />
         </div>
         <div className='header__middle-nav-content'>
-          <Link to='/' className='header__middle-item'>
-            <ListIcon color='primary' />
-            <span className='header__middle-item-span'>Лента заказов</span>
-          </Link>
+          <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
+            <Link to='/' className='header__middle-item'>
+              <ListIcon color='primary' />
+              <span className='header__middle-item-span'>Лента заказов</span>
+            </Link>
+          </BlackTooltip>
           {favoriteData.length ? (
             <Link to='/favorite' className='header__middle-item'>
               <Badge badgeContent={favoriteData.length} color='error'>

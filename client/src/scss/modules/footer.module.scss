@@ -2,45 +2,94 @@
 @import "../mixins";
 
 .footer {
-  margin-top: 20px;
+  margin-top: 60px;
   flex: 0 0 auto;
-  height: 140px;
-  background-color: $blue;
   width: 100%;
-  color: $white;
+  background: #fafafb;
   @include flex-center-center;
+  padding: 72px 0 25px;
+}
 
-  .wrapper {
-    @include flex-column-center;
-    max-width: 1280px;
-    margin: 0 auto;
+.wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+}
 
-    .container {
-      @include flex-column-center;
-      gap: 10px;
+.middle {
+  display: grid;
+  gap: 35px;
+  width: 100%;
+  grid-template-columns: minmax(200px, 250px) minmax(150px, 230px) auto auto;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'about developers backend frontend';
+  border-bottom: 1px solid #e7e7e9;
+  padding-bottom: 30px;
+}
 
-      img {
-        width: 238px;
-        height: 43px;
-      }
+.about {
+  @include flex-column;
+  gap: 20px;
+  grid-area: about;
+}
 
-      em {
-        @include reset;
-        font-style: normal;
+.aboutText {
+  @include reset;
+  @include text-format(400, 14px, 20px);
+  color: $mainBlack;
+  letter-spacing: 0.02em;
 
-        a {
-          @include reset;
-          text-decoration: none;
-          color: $white;
-          opacity: 0.6;
-          transition: opacity ease-in-out 0.2s;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-      }
-    }
+  span {
+    @include text-format(700, 14px, 20px);
+    color: $blue;
   }
+}
+
+.logo {
+  width: 185px;
+  margin-bottom: 20px;
+}
+
+.developers {
+  grid-area: developers;
+  @include flex-column;
+}
+
+.devContain {
+  @include flex-column;
+  gap: 12px;
+}
+
+.title {
+  @include reset;
+  @include text-format(700, 14px, 20px);
+  letter-spacing: 0.05em;
+  color: $blue;
+  margin-bottom: 15px;
+}
+
+.skills {
+  @include flex-center;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  column-gap: 20px;
+}
+
+.backend {
+  grid-area: backend;
+}
+
+.frontend {
+  grid-area: frontend;
+}
+
+.bottom {
+  margin-top: 30px;
+  @include flex-center-between;
+}
+
+.copy {
+  @include reset;
+  font-style: normal;
+  @include text-format(400, 14px, 20px);
+  color: $grayDark;
 }

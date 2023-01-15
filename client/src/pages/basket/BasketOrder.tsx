@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Button, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import BasketNavigation from './components/BasketNavigation'
+import BasketNavigation from './BasketNavigation'
 import styles from '../../scss/modules/basket/basket-order.module.scss'
 import stylesForm from '../../scss/modules/basket/basket-form.module.scss'
 import { useForm } from 'react-hook-form'

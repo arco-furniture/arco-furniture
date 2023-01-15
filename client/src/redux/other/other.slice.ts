@@ -8,6 +8,8 @@ const initialState: IOtherState = {
     type: '',
   },
   statusAuthorsPopup: false,
+  height: null,
+  width: null,
 }
 
 export const otherSlice = createSlice({
@@ -26,6 +28,10 @@ export const otherSlice = createSlice({
     },
     closeAuthorsPopup(state) {
       state.statusAuthorsPopup = false
+    },
+    setSizeBody(state, { payload }) {
+      state.width = payload.width
+      state.height = payload.height
     },
   },
 })

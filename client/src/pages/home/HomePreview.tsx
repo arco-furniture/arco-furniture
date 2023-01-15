@@ -1,19 +1,19 @@
 import HomeBanner from './Banner'
-import CountDown from './components/CountDown'
+import CountDown from 'components/countDown/CountDown'
 import Card from '../../components/card/Card'
 import item from '../../utils/item'
 // eslint-disable-next-line import/named
-import Button, { ButtonProps } from '@mui/material/Button'
+import Button from '@mui/material/Button'
 import React from 'react'
 import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import styled from '@emotion/styled'
 import { useActions } from '../../hooks/useActions'
 import { ThemeProvider } from '@mui/material'
-import { adviceButtonTheme } from '../../themes'
+import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
 
 const HomePreview: React.FC = () => {
   const { openAuthorsPopup } = useActions()
+  const stylesButton = { color: '#414141' }
 
   const cards = [
     {
@@ -63,12 +63,17 @@ const HomePreview: React.FC = () => {
       <h2 className='preview__title'>Рекомендуем</h2>
       <div className='preview__info'>
         <ThemeProvider theme={adviceButtonTheme}>
-          <Button className='preview__info-text' variant='contained' onClick={() => openAuthorsPopup()}>
-            <CodeIcon color='primary' />
+          <Button
+            color='primary'
+            style={stylesButton}
+            className='preview__info-text'
+            onClick={() => openAuthorsPopup()}
+          >
+            <CodeIcon style={{ color: '#4675CE' }} />
             Авторы проекта
           </Button>
-          <Button className='preview__info-text' variant='contained'>
-            <SettingsOutlinedIcon color='primary' />
+          <Button style={stylesButton} className='preview__info-text'>
+            <SettingsOutlinedIcon style={{ color: '#4675CE' }} />
             Коротко о проекте
           </Button>
         </ThemeProvider>

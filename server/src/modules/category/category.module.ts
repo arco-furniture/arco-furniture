@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import {MongooseModule} from "@nestjs/mongoose";
 import {CategoryController} from "./category.controller";
 import {TypegooseModule} from "nestjs-typegoose";
 import {ProductModel} from "../../models/product.model";
