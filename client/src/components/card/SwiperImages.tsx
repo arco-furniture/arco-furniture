@@ -11,7 +11,7 @@ const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
   const slides = images.map((item, index) => {
     return (
       <SwiperSlide key={index}>
-        <img className='card__image' src={item.image} alt='image' />
+        <img draggable={false} className='card__image' src={item.image} alt='image' />
       </SwiperSlide>
     )
   })

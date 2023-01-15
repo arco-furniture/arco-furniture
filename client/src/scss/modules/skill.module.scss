@@ -1,0 +1,18 @@
+@import "../mixins";
+@import "../variables";
+
+.skill {
+  @include flex-center;
+  gap: 6px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.name {
+  @include reset;
+  @include text-format(400, 14px, 16px);
+  color: $mainBlack;
+}

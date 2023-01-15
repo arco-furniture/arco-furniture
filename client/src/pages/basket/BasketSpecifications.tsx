@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import styles from '../../../scss/modules/basket/basket-specifications.module.scss'
-import { specsTypes } from '../../../types/basketTypes'
+import { specsTypes } from '../../types/basketTypes'
 import React from 'react'
 
 const BasketSpecifications: React.FC<specsTypes> = (props) => {

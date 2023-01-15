@@ -6,6 +6,9 @@ import Feedback from '../../components/feedback/Feedback'
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt'
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined'
+import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
+import { BlackTooltip } from 'components/index'
+import { Link } from 'react-router-dom'
 
 const HomeWelcome: React.FC = () => {
   return (
@@ -17,25 +20,31 @@ const HomeWelcome: React.FC = () => {
           занимается продажей кухонной и корпусной мебели, вернее даже будет сказать что в первую очередь мы не продаем,
           а стараемся помочь нашим клиентам с выбором.
         </p>
-        <img className='welcome__image' src={welcome} alt='welcome' />
+        <img draggable={false} className='welcome__image' src={welcome} alt='welcome' />
       </div>
       <div className='welcome__column'>
         <div className='welcome__top'>
           <h2 className='title' style={{ marginTop: 0 }}>
             Отзывы
           </h2>
-          <Button
-            style={{
-              textTransform: 'none',
-              color: '#4675ce',
-              fontWeight: 700,
-              boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
-            }}
-            variant='text'
-            endIcon={<RateReviewOutlinedIcon />}
-          >
-            Оставить отзыв
-          </Button>
+          <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
+            <Link to='/' style={{ textDecoration: 'none' }}>
+              <Button
+                style={{
+                  textTransform: 'none',
+                  color: '#4675ce',
+                  fontWeight: 700,
+                  boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
+                  paddingRight: '12px',
+                }}
+                disabled
+                variant='text'
+                endIcon={<RateReviewOutlinedIcon />}
+              >
+                Оставить отзыв
+              </Button>
+            </Link>
+          </BlackTooltip>
         </div>
         <article className='review'>
           <h3 className='review__name'>Олег</h3>

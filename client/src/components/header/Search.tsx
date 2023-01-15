@@ -13,7 +13,7 @@ const Search: React.FC = () => {
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
   const { getSearchItems, setClearSearchData } = useActions()
-  const styleSearch = { boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.10)', transform: 'scale(1.03)' }
+  const styleSearch = { boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.15)', backgroundColor: '#f7f7f7' }
   const filterData = searchData.filter((_item, i) => i < 4)
   const inputRef = useRef(null)
   const navigate = useNavigate()

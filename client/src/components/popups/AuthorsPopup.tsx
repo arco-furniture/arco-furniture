@@ -1,40 +1,20 @@
 import styles from '../../scss/modules/authorsPopup.module.scss'
 import authors from '../../images/Artboard.svg'
-import Chip from '@mui/material/Chip'
-import GitHubIcon from '@mui/icons-material/GitHub'
+import React from 'react'
 import Confetti from 'react-confetti'
 import Dialog from '@mui/material/Dialog'
 import { DialogContent } from '@mui/material'
-import useWindowSize from 'react-use/lib/useWindowSize'
-import React from 'react'
-import { authorsNameTypes } from './types'
 import { useOther } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import ChipDeveloper from '../../ui/ChipDeveloper'
+import { authorsName } from 'app/constants'
 
 const AuthorsPopup: React.FC = () => {
-  const authorsName: authorsNameTypes[] = [
-    { name: 'Петерс Максим', link: 'https://github.com/kejjero' },
-    { name: 'Рамзанов Иван', link: 'https://github.com/IvanVideo' },
-    { name: 'Трубицин Илья', link: 'https://github.com/Lionen89' },
-  ]
-  const { width, height } = useWindowSize()
-  const { statusAuthorsPopup } = useOther()
+  const { statusAuthorsPopup, height, width } = useOther()
   const { closeAuthorsPopup } = useActions()
+
   const handleClosePopup = () => {
     closeAuthorsPopup()
-  }
-
-  const ChipPerson: React.FC<any> = ({ item }) => {
-    return (
-      <Chip
-        className={styles.popup__name}
-        color='primary'
-        icon={<GitHubIcon />}
-        label={item.name}
-        variant='outlined'
-        style={{ cursor: 'pointer' }}
-      />
-    )
   }
 
   return (
@@ -53,16 +33,7 @@ const AuthorsPopup: React.FC = () => {
             <p className={styles.popup__text}>Над проектом работали</p>
             <div className={styles.popup__bottom}>
               {authorsName.map((item, index) => (
-                <a
-                  className={styles.popup__name}
-                  key={index}
-                  href={item.link}
-                  target='_blank'
-                  style={{ textDecoration: 'none' }}
-                  rel='noreferrer'
-                >
-                  <ChipPerson item={item} />
-                </a>
+                <ChipDeveloper item={item} size='medium' key={index} />
               ))}
             </div>
           </div>

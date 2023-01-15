@@ -3,6 +3,8 @@ import React from 'react'
 import HeaderProfile from './HeaderProfile'
 import AuthButtons from './AuthButtons'
 import { useAuth } from '../../hooks/useStateSelectors'
+import { BlackTooltip } from 'components/index'
+import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 
 const HeaderTop: React.FC = () => {
   const { user, isLoadingAuth } = useAuth()
@@ -15,12 +17,14 @@ const HeaderTop: React.FC = () => {
     <div className='header__top'>
       <div className='header__content'>
         <div className='header__nav-container'>
-          <button className='header__place' style={{ cursor: 'pointer' }}>
-            <PlaceOutlinedIcon color='primary' />
-            <p className='header__place_city'>Москва</p>
-          </button>
+          <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
+            <button disabled className='header__place'>
+              <PlaceOutlinedIcon color='primary' />
+              <p className='header__place_city'>Москва</p>
+            </button>
+          </BlackTooltip>
         </div>
-        {isLoadingAuth ? <CheckAuth /> : <></>}
+        <CheckAuth />
       </div>
     </div>
   )

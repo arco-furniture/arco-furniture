@@ -66,7 +66,6 @@ export const categorySlice = createSlice({
       state.categoryData = []
     })
     builder.addCase(filterCategory.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.categoryStatus = 'success'
       state.categoryData = payload.data
       state.allPages = payload.allPages

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from '../../../scss/modules/basket/basket-navigation.module.scss'
+import styles from '../../scss/modules/basket/basket-navigation.module.scss'
 import React from 'react'
 
 const BasketNavigation: React.FC<any> = ({ bgcolor }) => {

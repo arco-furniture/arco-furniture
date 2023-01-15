@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {ProductModel} from "../../models/product.model";
 import {ModelType} from "@typegoose/typegoose/lib/types";
 import {InjectModel} from "nestjs-typegoose";
@@ -11,7 +11,10 @@ export class SearchService {
     const items = await this.productModel.find()
     return await items.filter((obj) => {
       const res = obj.title.toLowerCase().indexOf(value.toLowerCase())
-      return res !== -1;
+      if(res !== -1) return res
+      return []
     })
   }
 }
+
+// throw new UnauthorizedException
