@@ -14,7 +14,7 @@
     @include flex-column;
     align-items: center;
     padding: 5px 0;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #e7e7e9;
   }
 
   &__content {
@@ -59,18 +59,8 @@
     position: relative;
   }
 
-  &__tooltip-title {
-    max-width: 90px;
-  }
-
   &__logo {
     width: 200px;
-    transform: scale(1);
-    transition: transform ease-in-out 0.2s;
-
-    &:hover {
-      transform: scale(1.03);
-    }
   }
 
   &__phone_logo {
@@ -102,6 +92,7 @@
     width: 100%;
     gap: 20px;
     letter-spacing: 0.05em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
   }
   &__tab {
     color: rgba(255, 255, 255, 0.6);

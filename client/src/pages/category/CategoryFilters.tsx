@@ -9,7 +9,7 @@ import ChairOutlinedIcon from '@mui/icons-material/ChairOutlined'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined'
 
 const CategoryFilters: React.FC = () => {
-  const [openPrice, setOpenPrice] = useState(true)
+  const [openPrice, setOpenPrice] = useState(true) // когда исправлю прайс
   const [openColor, setOpenColor] = useState(true)
   const [openStyle, setOpenStyle] = useState(true)
   const [openMaterial, setOpenMaterial] = useState(true)
@@ -18,8 +18,8 @@ const CategoryFilters: React.FC = () => {
   return (
     <article className='filters panel panel-filters'>
       <List>
-        <FilterTemplate title='Цена' setOpen={setOpenPrice} open={openPrice} icon={<LocalOfferOutlinedIcon />}>
-          <Collapse in={openPrice} timeout='auto' unmountOnExit>
+        <FilterTemplate title='Цена' setOpen={setOpenPrice} open={false} icon={<LocalOfferOutlinedIcon />}>
+          <Collapse in={false} timeout='auto' unmountOnExit>
             <FilterPrice />
           </Collapse>
         </FilterTemplate>

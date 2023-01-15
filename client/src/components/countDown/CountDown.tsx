@@ -1,5 +1,5 @@
 import React from 'react'
-import { CountDownType } from '../types'
+import { CountDownType } from 'pages/home/types'
 
 const CountDown: React.FC<CountDownType> = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   const [over, setOver] = React.useState(false)

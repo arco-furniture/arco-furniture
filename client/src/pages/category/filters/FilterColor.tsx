@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonColor from 'pages/category/components/ButtonColor'
+import ButtonColor from 'components/buttonColor/ButtonColor'
 import { colors } from 'app/constants'
 import { useActions } from '../../../hooks/useActions'
 import { useCategory } from '../../../hooks/useStateSelectors'

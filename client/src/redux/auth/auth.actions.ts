@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-// import { IAuthResponse, InterfaceEmailPassword } from './user.interface'
 import { errorCatch } from '../../api/api.helpers'
 import { AuthService } from 'services/auth.service'
 import { toastr } from 'react-redux-toastr'
@@ -22,10 +21,10 @@ export const registerUser = createAsyncThunk<any, any>(
 export const login = createAsyncThunk<any, any>('auth/login', async ({ email, password }, thunkAPI) => {
   try {
     const response = await AuthService.login(email, password)
-    // toaster.success('Login', 'Completed successfully')
+    toastr.success('Login', 'Completed successfully')
     return response.data
   } catch (error) {
-    // toastError(error)
+    toastError(error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -40,7 +39,7 @@ export const checkAuth = createAsyncThunk<any>('auth/check-auth', async (_, thun
     return response.data
   } catch (error) {
     if (errorCatch(error) === 'jwt expired') {
-      // toaster.error('Logout', 'Your authorizaiton is finished, plz sign in again')
+      toastr.error('Авторизация', 'Ваша авторизация завершена, пожалуйста, войдите в систему еще раз.')
       thunkAPI.dispatch(logout())
     }
     return thunkAPI.rejectWithValue(error)

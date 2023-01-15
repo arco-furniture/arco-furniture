@@ -26,11 +26,11 @@ export interface IOtherState {
     type: string
   }
   statusAuthorsPopup: boolean
+  height: number | null
+  width: number | null
 }
 
 export interface IProductState {
-  productData: any
-  productStatus: 'success' | 'error' | 'loading'
   currentColor: any
 }
 

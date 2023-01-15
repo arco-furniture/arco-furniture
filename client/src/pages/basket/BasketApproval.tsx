@@ -1,5 +1,5 @@
-import BasketNavigation from './components/BasketNavigation'
-import BasketItem from './components/BasketItem'
+import BasketNavigation from './BasketNavigation'
+import BasketItem from './BasketItem'
 import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import { Button, ListItemButton, ListItemIcon, ListItemText, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'

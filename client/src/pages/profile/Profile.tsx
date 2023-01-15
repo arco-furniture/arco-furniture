@@ -1,12 +1,15 @@
 import React from 'react'
 // eslint-disable-next-line import/named
-import { ProfileAbout, ProfileHistory } from './index'
+import { ProfileAbout, ProfileBuy, ProfileReviews, ProfileMonies } from './index'
 
 const Profile = () => {
   return (
     <section className='profile'>
+      <h2 className='title profile__title'>Личный профиль</h2>
       <ProfileAbout />
-      <ProfileHistory />
+      <ProfileBuy />
+      <ProfileMonies />
+      <ProfileReviews />
     </section>
   )
 }

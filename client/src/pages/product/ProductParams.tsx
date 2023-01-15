@@ -11,15 +11,15 @@ import { colors } from 'app/constants'
 import { useHome, useProduct } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 
-const ProductParams: React.FC = () => {
+const ProductParams: React.FC<any> = ({ product }) => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
   const [isLiked, setIsLiked] = useState(false)
-  const { productData, currentColor } = useProduct()
+  const { currentColor } = useProduct()
   const { favoriteData } = useHome()
   const { addItemForBasket, deleteFavoriteItem, postFavoriteItem, openAlertBar, setCurrentColor } = useActions()
-  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === productData._id)
+  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === product._id)
   const existColors = colors.map((item) => {
-    const isExist = productData?.colors?.some((color) => color.nameColor === item.nameColor)
+    const isExist = product?.colors?.some((color) => color.nameColor === item.nameColor)
     return {
       nameColor: item.nameColor,
       color: item.color,
@@ -60,19 +60,19 @@ const ProductParams: React.FC = () => {
   const handlerOnSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
     openAlertBar({
-      message: productData.title,
+      message: product.title,
       type: 'cart',
     })
-    const basketItem = getBasketItem(productData, currentColor.color)
+    const basketItem = getBasketItem(product, currentColor.color)
     addItemForBasket(basketItem)
   }
 
   const handleIsFavorite = () => {
     if (!isFavorite) {
-      postFavoriteItem(productData)
+      postFavoriteItem(product)
       return true
     }
-    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== productData._id)
+    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== product._id)
     deleteFavoriteItem(withoutItemsFavorite)
     return false
   }
@@ -80,7 +80,7 @@ const ProductParams: React.FC = () => {
   const onClickFavoriteButton = () => {
     setIsLiked(handleIsFavorite())
     openAlertBar({
-      message: productData.title,
+      message: product.title,
       type: 'favorite',
     })
   }
@@ -88,14 +88,14 @@ const ProductParams: React.FC = () => {
   return (
     <form className='product__params panel' onSubmit={(evt) => handlerOnSubmit(evt)}>
       <div className='product__top-wrapper'>
-        <h2>{productData.title}</h2>
+        <h2>{product.title}</h2>
         {currentColor.exist ? <ChipSuccess /> : <ChipError />}
       </div>
       <div className='product__price-wrapper'>
         <p className='product__old-price'>
-          <span className='old-price'>{getPriceWithFormat(productData.oldPrice)}</span> &#8381;
+          <span className='old-price'>{getPriceWithFormat(product.oldPrice)}</span> &#8381;
         </p>
-        <em className='product__price'>{getPriceWithFormat(productData.price)} &#8381;</em>
+        <em className='product__price'>{getPriceWithFormat(product.price)} &#8381;</em>
       </div>
       <div className='product__colors'>
         <h3 className='product__title'>Цвета исполнения:</h3>
@@ -134,7 +134,7 @@ const ProductParams: React.FC = () => {
       <div className='product__description'>
         <p>
           <span className='product__title'>Описание: </span>
-          {productData.description}
+          {product.description}
         </p>
       </div>
       <div className='product__buttons'>

@@ -7,32 +7,27 @@
   background-color: inherit;
   cursor: pointer;
   @include flex-center-between;
-  gap: 10px;
+  gap: 30px;
+  position: relative;
+}
 
-  &__wrapper {
-    @include flex-column;
-    text-align: end;
-  }
+.notify {
+  margin-top: 10px;
+}
 
-  &__name {
-    @include reset;
-    @include text-format(700, 14px, 18px);
-    color: $blue;
-  }
+.buttonProfile {
+  cursor: pointer;
+  @include reset;
+  border: none;
+  background-color: inherit;
+  @include flex-center-between;
+  position: relative;
+}
 
-  &__balance {
-    @include reset;
-    @include text-format(700, 14px, 18px);
-    color: $mainBlack;
-    font-style: normal;
-  }
-
-  &__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid $blue;
-    transition: border ease-in-out 0.2s;
-    padding: 2px;
-  }
+.name {
+  @include reset;
+  @include text-format(700, 16px, 20px);
+  color: $mainBlack;
+  letter-spacing: 0.02em;
+  margin-right: 10px;
 }

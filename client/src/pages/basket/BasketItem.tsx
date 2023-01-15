@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Checkbox, ButtonGroup, Button } from '@mui/material'
-import styles from '../../../scss/modules/basket/basket-item.module.scss'
-import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
+import styles from '../../scss/modules/basket/basket-item.module.scss'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import CloseIcon from '@mui/icons-material/Close'
-import { IBasketItem } from '../../../types/basketTypes'
-import { useActions } from '../../../hooks/useActions'
+import { IBasketItem } from '../../types/basketTypes'
+import { useActions } from '../../hooks/useActions'
 
 const BasketItem: React.FC<IBasketItem> = (item) => {
   const [benefit, setBenefit] = useState<any>(0)
