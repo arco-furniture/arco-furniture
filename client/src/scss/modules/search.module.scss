@@ -40,30 +40,57 @@
     @include flex-column;
     @include reset-list;
     gap: 5px;
-    border-top: 1px solid $gray;
     margin-right: 12px;
   }
 
-  &__itemButton {
-    @include reset;
-    @include text-format(700, 16px, 21px);
-    text-align: start;
-    padding: 5px 0;
+  &__itemContent {
+    border-top: 1px solid $gray;
+    @include flex-center-between;
+    padding: 10px 0;
     background-color: inherit;
-    border: none;
     color: $mainBlack;
-    cursor: pointer;
     transition: color ease-in-out 0.2s;
+    cursor: pointer;
 
-    &:hover {
-      color: $blue;
-    }
-
-    &:first-child {
+    &:first-child{
+      padding-top: 10px;
       margin-top: 5px;
     }
-    &:last-child {
-      margin-bottom: 5px;
+
+    &:hover .search__item {
+      color: #4675ce;
     }
+  }
+
+  &__leftContent {
+    @include flex-center;
+  }
+
+  &__error {
+    @include flex-column;
+    border-top: 1px solid $gray;
+    padding: 12px 0;
+    margin-top: 5px;
+  }
+
+  &__message {
+    @include text-format(400, 16px, 18px);
+    text-align: center;
+    color: $grayDark;
+  }
+
+  &__item {
+    @include reset;
+    @include text-format(400, 16px, 21px);
+    margin-left: 10px;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  &__price {
+    @include reset;
+    @include text-format(400, 14px, 18px);
+    color: #555;
+    justify-self: flex-end;
   }
 }

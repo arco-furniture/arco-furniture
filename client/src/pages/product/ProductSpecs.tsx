@@ -1,11 +1,8 @@
 import React from 'react'
 import { specsNamesTypes } from './types'
 import { specsTypes } from '../../types/basketTypes'
-import { useProduct } from '../../hooks/useStateSelectors'
 
-const ProductSpecs: React.FC = () => {
-  const { productData } = useProduct()
-  const { specs } = productData
+const ProductSpecs: React.FC<any> = ({ specs }) => {
   const specsNames: specsNamesTypes[] = [
     { name: 'Стиль', specsNameId: 'style' },
     { name: 'Материал', specsNameId: 'material' },
@@ -22,8 +19,8 @@ const ProductSpecs: React.FC = () => {
           ))}
         </ul>
         <ul>
-          {specs?.map((item: specsTypes) => (
-            <li key={item.specsId}>{item.value}</li>
+          {specs?.map((item, index) => (
+            <li key={index}>{Object.values(item)}</li>
           ))}
         </ul>
       </div>

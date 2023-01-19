@@ -8,12 +8,12 @@ export class UserModel extends TimeStamps{
   @prop({ minlength: 2 })
   firstName: string
 
-  @prop({ minlength: 2 })
-  lastName: string
-
   @prop({ unique: true })
   email: string
 
   @prop({ minlength: 6 })
   password: string
+
+  @prop()
+  avatar: string | null
 }

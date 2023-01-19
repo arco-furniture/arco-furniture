@@ -45,7 +45,7 @@
   &__nav-slide {
     @include flex-center-between;
     cursor: pointer;
-    height: 5px;
+    height: 7px;
     width: 100%;
     margin-top: 5px;
   }
@@ -76,8 +76,8 @@
 
   &__title {
     @include reset;
-    @include text-format(400, 14px, 21px);
-    padding: 12px 0;
+    @include text-format(400, 16px, 21px);
+    padding: 15px 0 12px;
     text-align: start;
     color: $secondBlack;
   }
@@ -107,6 +107,7 @@
   &__buttons-wrapper {
     gap: 10px;
     @include flex-center-between;
+    min-height: 40px;
   }
 
   &__link-buy {
@@ -128,6 +129,7 @@
       height: 20px;
 
       button {
+        border-radius: 3px;
         width: 20px;
         height: 20px;
         min-width: 20px;
@@ -149,12 +151,16 @@
       gap: 5px;
 
       li {
-        border-radius: 2px;
+        border-radius: 3px;
         width: 15px;
         height: 15px;
         background-color: #4675ce;
       }
     }
+  }
+
+  &__colors {
+    padding-bottom: 3px;
   }
 }
 

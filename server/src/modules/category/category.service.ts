@@ -7,12 +7,13 @@ import {InjectModel} from "nestjs-typegoose";
 export class CategoryService {
   constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
-  async filterCategory(value, page, data) {
+  async filterCategory(filters) {
+    const { value, page, data, sort } = filters
     const categoryItems = await this.productModel.find({category: value})
-    return this.getAllFilters([...categoryItems], data, page)
+    return this.getAllFilters([...categoryItems], data, page, sort)
   }
 
-  private async getAllFilters(data, filters, page) {
+  private async getAllFilters(data, filters, page, sort) {
     const { minMaxPrice, colors, styles, material, tags } = filters
 
     const findPrice = await this.filterPrice(data, minMaxPrice)
@@ -20,13 +21,34 @@ export class CategoryService {
     const findStyles = await this.filterStyles(findColors, styles)
     const findMaterial = await this.filterMaterial(findStyles, material)
     const resultAllFilters = await this.filterTags(findMaterial, tags)
+    const sortItems = await this.getSortItems(resultAllFilters, sort)
 
     return {
-      data: this.getResultPage(resultAllFilters, page),
-      // minMaxPrice: this.getFormatPrice(resultAllFilters),
+      data: this.getResultPage(sortItems, page),
       allPages: this.getCountAllPages(resultAllFilters),
+      // minMaxPrice: this.getFormatPrice(resultAllFilters),
     }
   }
+
+  private async getSortItems(data, sort) {
+    const isTitle = sort === 'title'
+    const result = isTitle ? this.sortTitle(data) : this.sortNumbers(data, sort)
+    return await result
+  }
+
+  private async sortTitle(data) {
+    return data.sort((a, b) => {
+      if (a.title < b.title) return -1
+      if (a.title > b.title) return 1
+      return 0
+    })
+  }
+  private async sortNumbers(data, sort) {
+    return data.sort((a, b) => {
+      return a[sort] - b[sort]
+    })
+  }
+
 
   private getResultPage (data, currentPage) {
     const itemsForPage = 6; // вынести в енв

@@ -42,7 +42,7 @@ const RegisterPopup = () => {
     setIsErrors(existErrors !== 0)
   }, [existErrors])
 
-  const { login, registerUser } = useActions()
+  const { registerUser } = useActions()
 
   const onSubmit = (data) => {
     if (!isErrors) {
@@ -51,6 +51,7 @@ const RegisterPopup = () => {
         email: data.email,
         firstName: data.firstName,
       }
+      setPopupRegister()
       registerUser(userData)
     }
   }

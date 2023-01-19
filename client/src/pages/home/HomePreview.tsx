@@ -72,7 +72,7 @@ const HomePreview: React.FC = () => {
             <CodeIcon style={{ color: '#4675CE' }} />
             Авторы проекта
           </Button>
-          <Button style={stylesButton} className='preview__info-text'>
+          <Button style={stylesButton} className='preview__info-text' disabled>
             <SettingsOutlinedIcon style={{ color: '#4675CE' }} />
             Коротко о проекте
           </Button>

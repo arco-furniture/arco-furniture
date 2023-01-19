@@ -2,6 +2,7 @@ import { searchColorType } from 'pages/category/types'
 import { IInitialCategories } from 'components/header/types'
 import { authorsNameTypes } from 'components/popups/types'
 import Skill from '../images/skills/index'
+import Category from '../images/category/index'
 
 export const colors: searchColorType[] = [
   { nameColor: 'gray', color: '#E4E4E4' },
@@ -56,4 +57,9 @@ export const frontendSkills = [
   { name: 'SCSS', icon: Skill.scss },
   { name: 'React Router', icon: Skill.reactRouter },
   { name: 'React Hook Form', icon: Skill.reactHookForm },
+]
+
+export const iconsCategory = [
+  { name: 'Кухня', icon: Category.kitchen, category: 'kitchens' },
+  { name: 'Гостиная', icon: Category.livingRooms, category: 'living-rooms' },
 ]

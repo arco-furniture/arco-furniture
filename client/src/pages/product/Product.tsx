@@ -1,30 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ProductParams, ProductSpecs, ProductSlides, ProductPreview } from './index'
 import { useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { ProductService } from '../../services/product.service'
+import { useActions } from '../../hooks/useActions'
+import { useProduct } from '../../hooks/useStateSelectors'
 
 const Product = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const { productId } = useParams()
-  const { isLoading, data, isError } = useQuery('get product', () => ProductService.getProduct(productId))
+  const { getProduct } = useActions()
+  const { productData } = useProduct()
+
+  useEffect(() => {
+    getProduct(productId)
+  }, [])
 
   return (
-    <section className='product'>
-      <ul className='product__wrapper'>
-        {isLoading ? (
-          <span>Идет загрузка</span>
-        ) : (
-          <>
-            <ProductPreview thumbsSwiper={thumbsSwiper} images={data.productImages} />
-            <ProductParams product={data} />
-            <ProductSlides setThumbsSwiper={setThumbsSwiper} images={data.productImages} />
-            <ProductSpecs />
-          </>
-        )}
-      </ul>
-    </section>
+    productData && (
+      <section className='product'>
+        <ul className='product__wrapper'>
+          <ProductPreview thumbsSwiper={thumbsSwiper} images={productData.productImages} />
+          <ProductParams product={productData} />
+          <ProductSlides setThumbsSwiper={setThumbsSwiper} images={productData.productImages} />
+          <ProductSpecs specs={productData.specs} />
+        </ul>
+      </section>
+    )
   )
 }
 
-export default React.memo(Product)
+export default Product

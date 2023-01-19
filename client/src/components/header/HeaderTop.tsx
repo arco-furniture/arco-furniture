@@ -5,12 +5,13 @@ import AuthButtons from './AuthButtons'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { BlackTooltip } from 'components/index'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
+import Cookies from 'js-cookie'
 
 const HeaderTop: React.FC = () => {
   const { user, isLoadingAuth } = useAuth()
 
   const CheckAuth = () => {
-    return user ? <HeaderProfile /> : <AuthButtons />
+    return isLoadingAuth ? <HeaderProfile /> : <AuthButtons />
   }
 
   return (

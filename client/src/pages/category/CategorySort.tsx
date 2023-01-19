@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useActions } from '../../hooks/useActions'
+import { useCategory } from '../../hooks/useStateSelectors'
 
 const CategorySort: React.FC = () => {
-  const { setCategorySort } = useActions()
   const [sortIndex, setSortIndex] = useState(0)
+  const { setChangeSort } = useActions()
+  const { sort } = useCategory()
 
   const sortItems = [
     { name: 'По рейтингу', sortId: 'rating' },
@@ -13,7 +15,9 @@ const CategorySort: React.FC = () => {
 
   const handleSort = (index: number) => {
     setSortIndex(index)
-    setCategorySort(sortItems[index].sortId)
+    if (sort !== sortItems[index].sortId) {
+      setChangeSort(sortItems[index].sortId)
+    }
   }
 
   return (

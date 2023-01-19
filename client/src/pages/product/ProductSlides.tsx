@@ -7,7 +7,10 @@ const ProductSlides: React.FC<IProductSlides> = ({ setThumbsSwiper, images }) =>
   const navSlides = images?.map((item, index) => {
     return (
       <SwiperSlide key={index}>
-        <img className='product__nav-preview' src={item.image} alt='slide' />
+        <div className='product__nav'>
+          <span className='product__background' />
+          <img className='product__nav-preview' src={item.image} alt='slide' />
+        </div>
       </SwiperSlide>
     )
   })

@@ -9,6 +9,7 @@ import { actions as productActions } from './product/product.slice'
 import * as categoryAsyncActions from './category/category.actions'
 import * as authAsyncActions from './auth/auth.actions'
 import * as homeAsyncActions from './home/home.actions'
+import * as productAsyncActions from './product/product.actions'
 
 export const allActions = {
   ...categoryActions,
@@ -21,4 +22,5 @@ export const allActions = {
   ...categoryAsyncActions,
   ...authAsyncActions,
   ...homeAsyncActions,
+  ...productAsyncActions,
 }

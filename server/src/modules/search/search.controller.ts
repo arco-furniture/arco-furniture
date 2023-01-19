@@ -8,7 +8,7 @@ export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Get(':value')
-  getSearchItems(@Param('value') value: string ): Promise<ProductModel[]> {
+  getSearchItems(@Param('value') value: string ) {
     return this.searchService.findItemsForSearch(value)
   }
 }
