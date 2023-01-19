@@ -326,9 +326,17 @@
     color: rgba(117, 117, 117, 0.6);
   }
 
-  &__paragraph {
+  &__text {
     @include reset;
     @include text-format(400, 14px, 20px);
-    color: $secondBlack;
+    text-decoration: none;
+
+    &_paragraph {
+      color: $secondBlack;
+    }
+
+    &_link {
+      color: $blue;
+    }
   }
 }

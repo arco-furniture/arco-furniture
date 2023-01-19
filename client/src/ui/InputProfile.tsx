@@ -3,7 +3,7 @@ import { TextField, ThemeProvider } from '@mui/material'
 // eslint-disable-next-line import/named
 import { profileInputTheme } from '../themes/profileInputTheme'
 
-const InputProfile: React.FC<any> = ({ label, defaultValue, disabled = false, type = 'text' }) => {
+const InputProfile: React.FC<any> = ({ label, defaultValue, disabled = false, type = 'text', placeholder = '' }) => {
   return (
     <ThemeProvider theme={profileInputTheme}>
       <TextField
@@ -14,6 +14,7 @@ const InputProfile: React.FC<any> = ({ label, defaultValue, disabled = false, ty
         sx={{ width: '100%' }}
         disabled={disabled}
         type={type}
+        placeholder={placeholder}
       />
     </ThemeProvider>
   )

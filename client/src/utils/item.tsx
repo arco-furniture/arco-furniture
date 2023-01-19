@@ -3,7 +3,7 @@ const item = {
   category: 1,
   rating: 5,
   article: '487001',
-  title: 'Гостиная модульная DaVita',
+  title: 'DaVita',
   advice: 0,
   specs: [
     { value: 'Классический', specsId: 'style' },

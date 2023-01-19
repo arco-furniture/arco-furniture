@@ -19,7 +19,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
   const { addItemForBasket, deleteFavoriteItem, postFavoriteItem, openAlertBar, setCurrentColor } = useActions()
   const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === product._id)
   const existColors = colors.map((item) => {
-    const isExist = product?.colors?.some((color) => color.nameColor === item.nameColor)
+    const isExist = product.colors?.some((color) => color.nameColor === item.nameColor)
     return {
       nameColor: item.nameColor,
       color: item.color,
@@ -33,15 +33,16 @@ const ProductParams: React.FC<any> = ({ product }) => {
     }
   }, [])
 
-  const handleCurrentColor = (obj: colorsTypes, index: number) => {
+  const handleCurrentColor = (obj: colorsTypes, currentIndex, index) => {
     const notExistColor = {
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-      border: `2px solid ${obj.color}`,
+      backgroundColor: 'inherit',
+      border: `3px solid ${obj.color}`,
     }
     const defaultStylesColor = {
+      borderRadius: '5px',
       backgroundColor: obj.color,
       transition: 'transform ease-in-out 0.1s',
-      transform: currentColor.index === index ? 'translateY(-4px)' : 'translateY(0)',
+      opacity: 1,
     }
     if (!obj?.exist) {
       return Object.assign({}, defaultStylesColor, notExistColor)
@@ -100,7 +101,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
       <div className='product__colors'>
         <h3 className='product__title'>Цвета исполнения:</h3>
         <ul>
-          {existColors?.map((item: colorsTypes, index: number) => {
+          {existColors.map((item: colorsTypes, index: number) => {
             return (
               <li key={index}>
                 <Button
@@ -112,19 +113,10 @@ const ProductParams: React.FC<any> = ({ product }) => {
                       exist: item.exist,
                     })
                   }
-                  style={handleCurrentColor(item, index)}
+                  style={handleCurrentColor(item, currentColor.index, index)}
                   variant='contained'
                 />
-                {currentColor.index === index && (
-                  <ExpandLessIcon
-                    color='primary'
-                    style={{
-                      position: 'absolute',
-                      bottom: '-17px',
-                      left: '3px',
-                    }}
-                  />
-                )}
+                {/* {currentColor.index === index && <span className='product__circle' />} */}
               </li>
             )
           })}

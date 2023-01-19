@@ -15,7 +15,7 @@ export interface IHomeState {
   adviceData: IItem[]
   searchData: IItem[]
   adviceStatus: 'success' | 'error' | 'loading'
-  searchStatus: 'success' | 'error' | 'loading'
+  searchStatus: 'initial' | 'success' | 'error' | 'loading'
   favoriteData: any
 }
 
@@ -32,6 +32,8 @@ export interface IOtherState {
 
 export interface IProductState {
   currentColor: any
+  productData: any
+  productStatus: string
 }
 
 export type adviceFilterParam = 'all' | 'discount' | 'eco' | 'top' | 'new'

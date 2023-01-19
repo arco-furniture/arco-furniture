@@ -7,8 +7,13 @@ export class CategoryController {
 
   @HttpCode(200)
   @Post()
-  async getCategoryItems(@Query('value') value, @Query('page') page, @Body() data) {
-    return this.categoryService.filterCategory(value, page, data);
+  async getCategoryItems(
+    @Query('value') value,
+    @Query('page') page,
+    @Query('sort') sort,
+    @Body() data
+  ) {
+    return this.categoryService.filterCategory({ value, page, data, sort });
   }
 }
 

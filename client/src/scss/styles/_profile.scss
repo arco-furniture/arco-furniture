@@ -10,6 +10,15 @@
           'title title title'
           'about buy buy'
           'about monies reviews';
+
+  &__audioPicker {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    overflow: hidden;
+    @include reset;
+  }
 }
 
 .box {
@@ -59,6 +68,7 @@
 
   &__btnWrapper {
     width: auto;
+    @include flex-center-between;
   }
 
   &__form {

@@ -9,7 +9,7 @@ export const registerUser = createAsyncThunk<any, any>(
   async ({ email, password, firstName }, thunkAPI) => {
     try {
       const response = await AuthService.register(email, password, firstName)
-      toastr.success('Регистрация', 'Регистрация прошла успешно!')
+      toastr.success('Регистрация', 'прошла успешно!')
       return response.data
     } catch (error) {
       toastError(error)
@@ -18,10 +18,10 @@ export const registerUser = createAsyncThunk<any, any>(
   },
 )
 
-export const login = createAsyncThunk<any, any>('auth/login', async ({ email, password }, thunkAPI) => {
+export const loginUser = createAsyncThunk<any, any>('auth/login', async ({ email, password }, thunkAPI) => {
   try {
     const response = await AuthService.login(email, password)
-    toastr.success('Login', 'Completed successfully')
+    toastr.success('Авторизация', 'прошла успешно!')
     return response.data
   } catch (error) {
     toastError(error)
@@ -29,9 +29,9 @@ export const login = createAsyncThunk<any, any>('auth/login', async ({ email, pa
   }
 })
 
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await AuthService.logout()
-})
+export const logout = () => {
+  AuthService.logout()
+}
 
 export const checkAuth = createAsyncThunk<any>('auth/check-auth', async (_, thunkAPI) => {
   try {
@@ -39,8 +39,8 @@ export const checkAuth = createAsyncThunk<any>('auth/check-auth', async (_, thun
     return response.data
   } catch (error) {
     if (errorCatch(error) === 'jwt expired') {
-      toastr.error('Авторизация', 'Ваша авторизация завершена, пожалуйста, войдите в систему еще раз.')
-      thunkAPI.dispatch(logout())
+      toastr.error('Авторизация', 'Ваша авторизация завершена, пожалуйста, войдите в систему еще раз')
+      logout()
     }
     return thunkAPI.rejectWithValue(error)
   }

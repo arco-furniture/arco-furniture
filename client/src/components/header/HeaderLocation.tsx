@@ -67,7 +67,7 @@ const HeaderLocation: React.FC = () => {
             </Link>
           </li>
         )}
-        {isProduct && (
+        {isProduct && productData && (
           <li className='header__paramsItem'>
             <span className='header__arrow'>
               <KeyboardArrowRightIcon fontSize='small' />
@@ -77,7 +77,7 @@ const HeaderLocation: React.FC = () => {
             </Link>
           </li>
         )}
-        {isProfile && (
+        {isProfile && user && (
           <li className='header__paramsItem'>
             <span className='header__arrow'>
               <KeyboardArrowRightIcon fontSize='small' />

@@ -4,19 +4,17 @@ import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
 import debounce from 'lodash/debounce'
-import { useNavigate } from 'react-router-dom'
-import { useHome } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import { useHome } from '../../hooks/useStateSelectors'
+import SearchContent from 'components/search/SearchContent'
 
 const Search: React.FC = () => {
   const { searchData } = useHome()
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
-  const { getSearchItems, setClearSearchData } = useActions()
+  const { getSearchItems, setClearSearchStatus } = useActions()
   const styleSearch = { boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.15)', backgroundColor: '#f7f7f7' }
-  const filterData = searchData.filter((_item, i) => i < 4)
   const inputRef = useRef(null)
-  const navigate = useNavigate()
 
   const handleSearchValue = (value) => {
     setSearchValue(value)
@@ -27,14 +25,11 @@ const Search: React.FC = () => {
     inputRef.current.focus()
   }
 
-  const onClickSearchButton = () => {
-    getSearchItems(searchValue)
-    inputRef.current.focus()
-  }
-
   useEffect(() => {
     if (searchValue.length) {
       updateDebounceSearch(searchValue)
+    } else {
+      setClearSearchStatus()
     }
   }, [searchValue])
 
@@ -51,12 +46,6 @@ const Search: React.FC = () => {
     }, 100),
     [],
   )
-
-  const onClickSearchItem = (item) => {
-    navigate(`/category/${item.category}/product/${item._id}`)
-    setSearchValue('')
-    setClearSearchData()
-  }
 
   return (
     <div className={s.search} style={isFocus ? styleSearch : {}}>
@@ -77,22 +66,14 @@ const Search: React.FC = () => {
               <CloseIcon />
             </IconButton>
           )}
-          <IconButton disabled={!searchValue.length} size='small' color='primary' onClick={() => onClickSearchButton()}>
+          <IconButton disabled={!searchValue.length} size='small' color='primary'>
             <SearchIcon />
           </IconButton>
         </div>
       </div>
-      {searchData.length >= 1 && isFocus && (
-        <div className={s.search__content}>
-          {filterData.map((item) => (
-            <button key={item._id} className={s.search__itemButton} onClick={() => onClickSearchItem(item)}>
-              {item.title}
-            </button>
-          ))}
-        </div>
-      )}
+      {isFocus && <SearchContent setSearchValue={setSearchValue} searchData={searchData} />}
     </div>
   )
 }
 
-export default Search
+export default React.memo(Search)

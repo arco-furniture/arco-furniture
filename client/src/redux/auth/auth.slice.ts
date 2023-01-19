@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { checkAuth, registerUser } from './auth.actions'
+import { checkAuth, loginUser, registerUser } from './auth.actions'
 
 const initialState: any = {
   eyeStatus: false,
@@ -37,6 +37,20 @@ export const authSlice = createSlice({
       state.isLoadingAuth = true
       state.user = null
     })
+
+    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.isLoadingAuth = false
+      state.user = payload.user
+    })
+    builder.addCase(loginUser.rejected, (state) => {
+      state.isLoadingAuth = false
+      state.user = null
+    })
+    builder.addCase(loginUser.pending, (state) => {
+      state.isLoadingAuth = true
+      state.user = null
+    })
+
     builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
       state.user = payload.user
       state.isLoadingAuth = true

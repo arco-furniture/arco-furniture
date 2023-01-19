@@ -9,6 +9,7 @@ import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined'
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useStateSelectors'
+import { logout } from '../../redux/auth/auth.actions'
 
 const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
   const navigate = useNavigate()
@@ -24,8 +25,13 @@ const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
     }
   }
 
+  const onClickLogout = () => {
+    logout()
+  }
+
   return (
     <Menu
+      style={{ position: 'absolute' }}
       anchorEl={anchorEl}
       id='account-menu'
       open={open}
@@ -87,7 +93,7 @@ const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
         Темная
       </MenuItem>
       <Divider />
-      <MenuItem sx={{ padding: '10px 15px' }}>
+      <MenuItem sx={{ padding: '10px 15px' }} onClick={() => onClickLogout()}>
         <ListItemIcon>
           <ExitToAppOutlinedIcon color='primary' />
         </ListItemIcon>

@@ -17,12 +17,16 @@ const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
   })
 
   const navItems = images.map((_item, index) => {
+    // if (images.length <= 1) {
+    //   return <></>
+    // }
     return (
-      <SwiperSlide className={`card__nav-slide ${visible ? 'card__active' : 'card__disabled'}`} key={index}>
-        <span
-          onClick={() => setIndexActive(index)}
-          className={`card__navigation ${indexActive === index && 'card__navigation_active'}`}
-        />
+      <SwiperSlide
+        key={index}
+        onClick={() => setIndexActive(index)}
+        className={`card__nav-slide ${visible ? 'card__active' : 'card__disabled'}`}
+      >
+        <span className={`card__navigation ${indexActive === index && 'card__navigation_active'}`} />
       </SwiperSlide>
     )
   })
