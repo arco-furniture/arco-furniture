@@ -13,6 +13,7 @@ import { getBasketItem } from '../../utils/getBasketItem'
 import imageNotFound from '../../images/notFound.png'
 import { useActions } from '../../hooks/useActions'
 import { useHome } from '../../hooks/useStateSelectors'
+import { iconsCategory } from 'app/constants'
 
 const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   const [visible, setVisible] = useState<boolean>(false)
@@ -75,11 +76,21 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
     return images.filter((item) => item.image)
   }
 
+  const getPrefixTitle = (obj) => {
+    const prefix = iconsCategory.find((item) => item.category === obj?.category)
+    return (
+      <>
+        {prefix?.name + ' '}
+        <b>{obj.title}</b>
+      </>
+    )
+  }
+
   return (
     <article className='card' onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
       <Tag tag={item.mark} isCard price={item.price} oldPrice={item.oldPrice} />
       <SwiperImages images={checkImages(item.cardImages)} visible={visible} />
-      <p className='card__title'>{item.title}</p>
+      <p className='card__title'>{getPrefixTitle(item)}</p>
       <div className='card__desc-wrapper'>
         <div className='card__price-wrapper'>
           <div />

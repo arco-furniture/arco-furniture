@@ -5,3 +5,4 @@ export const getAdviceUrl = (string: string) => `/advice${string}`
 export const getCategoryUrl = (string: string) => `/category${string}`
 export const getProductUrl = (string: string) => `/products${string}`
 export const getSearchUrl = (string: string) => `/search${string}`
+export const getProfileUrl = (string: string) => `/profile${string}`

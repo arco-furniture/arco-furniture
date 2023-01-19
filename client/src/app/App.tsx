@@ -7,7 +7,8 @@ import Cookies from 'js-cookie'
 import { checkAuth } from '../redux/auth/auth.actions'
 import { useBasket, useHome } from '../hooks/useStateSelectors'
 import { useActions } from '../hooks/useActions'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
+import AuthPopup from 'components/popups/AuthPopup'
 
 const App: React.FC = () => {
   const { dataBasketItems } = useBasket()

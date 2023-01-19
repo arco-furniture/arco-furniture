@@ -32,7 +32,8 @@ export class AuthService {
       {
         firstName: dto.firstName,
         email: dto.email,
-        password: await hash(dto.password, salt)
+        password: await hash(dto.password, salt),
+        avatar: null
       })
 
     const user = await newUser.save()
@@ -75,6 +76,7 @@ export class AuthService {
       _id: user._id,
       email: user.email,
       firstName: user.firstName,
+      avatar: user.avatar
     }
   }
 

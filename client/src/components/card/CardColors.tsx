@@ -1,7 +1,6 @@
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import { Button } from '@mui/material'
-import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import React, { useEffect } from 'react'
 import { ICardColors } from './types'
 
@@ -37,13 +36,15 @@ const CardColors: React.FC<ICardColors> = (props) => {
     <ul className={`card__colors ${visible ? 'card__active' : 'card__disabled'}`}>
       {!isTop && (
         <BlackTooltip title={TooltipColors()} placement='top-start'>
-          <AutoAwesomeOutlinedIcon color='primary' />
+          <AutoAwesomeOutlinedIcon color='primary' style={{ marginRight: '5px' }} />
         </BlackTooltip>
       )}
       {colors.map((palette, index) => {
         const isCurrentColor = selectedColor === palette.color
-        const styleButton = { backgroundColor: palette.color, top: isCurrentColor ? '-3px' : '0' }
-        const styleIcon = { position: 'absolute', bottom: '-20px', zIndex: '1000' }
+        const styleButton = {
+          backgroundColor: palette.color,
+          opacity: isCurrentColor || selectedColor === '' ? 1 : 0.1,
+        }
         return (
           <li key={index}>
             <Button
@@ -51,9 +52,7 @@ const CardColors: React.FC<ICardColors> = (props) => {
               style={styleButton}
               onClick={() => handleCurrentColor(palette.color)}
               variant='contained'
-            >
-              {isCurrentColor && !isTop && <ExpandLessIcon color='primary' sx={styleIcon} />}
-            </Button>
+            />
           </li>
         )
       })}

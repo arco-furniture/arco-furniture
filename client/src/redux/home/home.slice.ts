@@ -9,7 +9,7 @@ const initialState: IHomeState = {
   adviceData: [],
   adviceStatus: 'loading',
   favoriteData: favorites,
-  searchStatus: 'loading',
+  searchStatus: 'initial',
   searchData: [],
 }
 
@@ -25,6 +25,9 @@ export const homeSlice = createSlice({
     },
     setClearSearchData(state) {
       state.searchData = []
+    },
+    setClearSearchStatus(state) {
+      state.searchStatus = 'initial'
     },
   },
   extraReducers: (builder) => {

@@ -6,26 +6,26 @@ import {RefreshTokenDto} from "../../dto/refreshToken.dto";
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly AuthService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('login')
   async login (@Body() dto: AuthDto) {
-    return this.AuthService.login(dto)
+    return this.authService.login(dto)
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('register')
   async register (@Body() dto: UserDto) {
-    return this.AuthService.register(dto)
+    return this.authService.register(dto)
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('login/access-token')
   async getNewTokens (@Body() refreshToken: RefreshTokenDto) {
-    return this.AuthService.getNewTokens(refreshToken)
+    return this.authService.getNewTokens(refreshToken)
   }
 }

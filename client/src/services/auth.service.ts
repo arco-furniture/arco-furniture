@@ -35,6 +35,7 @@ export const AuthService = {
   logout() {
     removeTokensStorage()
     localStorage.removeItem('user')
+    window.location.reload()
   },
 
   async getNewTokens() {

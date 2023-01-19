@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
 import Form from 'ui/Form'
 import InputForm from 'ui/InputForm'
@@ -34,9 +34,22 @@ const AuthPopup = () => {
     setIsErrors(existErrors !== 0)
   }, [existErrors])
 
+  const { loginUser } = useActions()
+
+  const onSubmit = (data) => {
+    if (!isErrors) {
+      const userData = {
+        email: data.email,
+        password: data.password,
+      }
+      setPopupAuth()
+      loginUser(userData)
+    }
+  }
+
   return (
     <PopupTemplate status={popupAuth} handleClose={setPopupAuth}>
-      <Form title='Авторизация' submit={handleSubmit}>
+      <Form title='Авторизация' onSubmit={handleSubmit(onSubmit)}>
         <InputForm
           label='Электронная почта'
           placeholder='example@mail.ru'
@@ -60,4 +73,4 @@ const AuthPopup = () => {
   )
 }
 
-export default AuthPopup
+export default memo(AuthPopup)
