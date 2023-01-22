@@ -66,3 +66,11 @@ body {
 .tooltip-title {
   max-width: 90px;
 }
+
+.input {
+  margin: 5px 0 !important;
+  p {
+    position: absolute;
+    bottom: -22px;
+  }
+}

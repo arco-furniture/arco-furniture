@@ -11,6 +11,7 @@ const AuthProvider: React.FC<any> = ({ children }) => {
 
   useEffect(() => {
     const accessToken = Cookies.get('accessToken')
+    console.log(accessToken)
     if (accessToken) {
       checkAuth()
     }

@@ -5,7 +5,7 @@
   display: grid;
   gap: 30px;
   grid-template-columns: minmax(280px, 330px) 1fr 1fr;
-  grid-template-rows: auto minmax(300px, 315px) minmax(200px, 270px);
+  grid-template-rows: auto minmax(300px, 350px) minmax(200px, 270px);
   grid-template-areas:
           'title title title'
           'about buy buy'
@@ -18,6 +18,21 @@
     line-height: 0;
     overflow: hidden;
     @include reset;
+  }
+
+  &__develop {
+    @include flex-center-center;
+    height: 60%;
+    width: 100%;
+
+    h4 {
+      @include reset;
+      @include text-format(700, 22px, 28px);
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $grayDark;
+    }
   }
 }
 
@@ -76,6 +91,20 @@
     @include flex-column;
     gap: 20px;
   }
+
+  &__emailItem {
+    background-color: #fff !important;
+    border-radius: 5px !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding: 0 !important;
+    min-height: 45px;
+    margin-top: 17px !important;
+
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 0.8) !important;
+    }
+  }
+
 }
 
 .profileBuy {

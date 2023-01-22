@@ -17,6 +17,8 @@ const HeaderProfile = () => {
     setAnchorEl(event.currentTarget)
   }
 
+  console.log(user)
+
   return (
     <div className={styles.headerProfile}>
       <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
@@ -26,7 +28,7 @@ const HeaderProfile = () => {
       </BlackTooltip>
       <button className={styles.buttonProfile} onClick={handleClick}>
         <h2 className={styles.name}>{user?.firstName}</h2>
-        <Avatar sx={stylesAvatar} variant='rounded' />
+        <Avatar sx={stylesAvatar} variant='rounded' src={user ? user.avatar : null} />
       </button>
       <ProfileMenu open={open} setAnchorEl={setAnchorEl} anchorEl={anchorEl} />
     </div>

@@ -3,8 +3,10 @@ import { profileButtonTheme } from '../../../themes/profileButtonTheme'
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import React, { useRef } from 'react'
+import { useAuth } from '../../../hooks/useStateSelectors'
 
-const ProfileAvatar: React.FC<any> = ({ data }) => {
+const ProfileAvatar: React.FC<any> = () => {
+  const { user } = useAuth()
   const avatarStyle = { bgcolor: '#4675CE', width: '33px', height: '33px' }
   const filePicker = useRef(null)
 
@@ -35,12 +37,12 @@ const ProfileAvatar: React.FC<any> = ({ data }) => {
         className='profile__audioPicker'
       />
       <div className='profileAbout__avatarEdit'>
-        <Avatar sx={avatarStyle} variant='rounded' src={data.avatar} />
+        <Avatar sx={avatarStyle} variant='rounded' src={user.avatar} />
         <ThemeProvider theme={profileButtonTheme}>
           <Button onClick={handlePicker} startIcon={<CameraAltOutlinedIcon />}>
             Загрузить
           </Button>
-          <Button sx={{ minWidth: '0' }} disabled={!data.avatar}>
+          <Button sx={{ minWidth: '30px', width: '35px' }} disabled={!user.avatar}>
             <DeleteOutlineOutlinedIcon fontSize='small' />
           </Button>
         </ThemeProvider>

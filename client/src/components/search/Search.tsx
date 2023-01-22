@@ -52,7 +52,7 @@ const Search: React.FC = () => {
       <div className={s.search__top}>
         <input
           className={s.search__input}
-          placeholder='Поиск товаров...'
+          placeholder='Поиск по товару или категории'
           type='text'
           onChange={(evt) => handleSearchValue(evt.target.value)}
           onFocus={() => updateDebounceFocus(true)}
