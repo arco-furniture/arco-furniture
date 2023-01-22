@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { API_URL, getAuthUrl, getProductUrl } from '../configs/config'
 import { axiosClassic } from '../api/interceptors'
 

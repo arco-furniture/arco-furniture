@@ -23,6 +23,9 @@ export const authSlice = createSlice({
     setPopupAuth(state) {
       state.popupAuth = !state.popupAuth
     },
+    setUser(state, action) {
+      state.user = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, { payload }) => {
