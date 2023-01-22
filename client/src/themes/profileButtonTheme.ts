@@ -8,6 +8,7 @@ export const profileButtonTheme = createTheme({
       textTransform: 'capitalize',
       letterSpacing: '0.01em',
       border: '1px solid #E0E0E0',
+      width: '110px',
     },
   },
 })

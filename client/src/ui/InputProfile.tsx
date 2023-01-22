@@ -1,12 +1,25 @@
 import React from 'react'
 import { TextField, ThemeProvider } from '@mui/material'
-// eslint-disable-next-line import/named
 import { profileInputTheme } from '../themes/profileInputTheme'
 
-const InputProfile: React.FC<any> = ({ label, defaultValue, disabled = false, type = 'text', placeholder = '' }) => {
+const InputProfile: React.FC<any> = (props) => {
+  const {
+    name,
+    onChange,
+    value,
+    error = false,
+    textError,
+    label,
+    defaultValue,
+    disabled = false,
+    type = 'text',
+    placeholder = '',
+  } = props
   return (
     <ThemeProvider theme={profileInputTheme}>
       <TextField
+        name={name}
+        className='input'
         label={label}
         variant='outlined'
         size='small'
@@ -15,6 +28,10 @@ const InputProfile: React.FC<any> = ({ label, defaultValue, disabled = false, ty
         disabled={disabled}
         type={type}
         placeholder={placeholder}
+        helperText={textError}
+        error={error}
+        onChange={onChange}
+        value={value}
       />
     </ThemeProvider>
   )

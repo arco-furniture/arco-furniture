@@ -1,14 +1,14 @@
-import axios from 'axios'
-// eslint-disable-next-line import/named
+import axios from '../api/interceptors'
 import { API_URL, getProfileUrl } from '../configs/config'
-import Cookies from 'js-cookie'
 
 export const ProfileService = {
   async getProfileInfo() {
-    const refreshToken = Cookies.get('refreshToken')
-    const { data } = await axios.post(`${API_URL}${getProfileUrl('/info')}`, {
-      refreshToken,
-    })
+    const { data } = await axios.get(`${API_URL}${getProfileUrl('/info')}`)
+    return data
+  },
+
+  async changeFirstName(firstName) {
+    const { data } = await axios.patch(`${API_URL}${getProfileUrl('/firstname/change')}`, firstName)
     return data
   },
 }
