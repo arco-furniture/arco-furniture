@@ -1,34 +1,17 @@
 import SwiperImages from './SwiperImages'
-import { Button, IconButton } from '@mui/material'
 import CardColors from './CardColors'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import Tag from '../tag/Tag'
-import BlackTooltip from '../BlackTooltip/BlackTooltip'
-import { Link } from 'react-router-dom'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { ICard } from './types'
-import { colorsTypes, IItem, imagesTypes } from '../../types/itemTypes'
-import { getBasketItem } from '../../utils/getBasketItem'
+import { colorsTypes, imagesTypes } from '../../types/itemTypes'
 import imageNotFound from '../../images/notFound.png'
-import { useActions } from '../../hooks/useActions'
-import { useHome } from '../../hooks/useStateSelectors'
 import { iconsCategory } from 'app/constants'
+import CardBottom from './CardBottom'
 
 const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   const [visible, setVisible] = useState<boolean>(false)
-  const [isLiked, setIsLiked] = useState<boolean>(false)
-  const { favoriteData } = useHome()
-  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === item._id)
   const [selectedColor, setSelectedColor] = useState('')
-  const { addItemForBasket, postFavoriteItem, deleteFavoriteItem, openAlertBar, setProduct, getFirstColor } =
-    useActions()
-
-  useEffect(() => {
-    if (isFavorite) {
-      setIsLiked(true)
-    }
-  }, [])
 
   useEffect(() => {
     if (isTop) {
@@ -36,38 +19,6 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
       setSelectedColor(findItem.color)
     }
   }, [isTop])
-
-  const onClickBuyButton = () => {
-    setProduct(item)
-    getFirstColor(item.colors)
-  }
-
-  const handleIsFavorite = () => {
-    if (!isFavorite) {
-      postFavoriteItem(item)
-      return true
-    }
-    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== item._id)
-    deleteFavoriteItem(withoutItemsFavorite)
-    return false
-  }
-
-  const onClickFavoriteButton = () => {
-    setIsLiked(handleIsFavorite())
-    openAlertBar({
-      message: item.title,
-      type: 'favorite',
-    })
-  }
-
-  const handlerOnSubmit = () => {
-    openAlertBar({
-      message: item.title,
-      type: 'cart',
-    })
-    const basketItem = getBasketItem(item, selectedColor)
-    addItemForBasket(basketItem)
-  }
 
   const checkImages = (images: imagesTypes[]) => {
     if (!images.length) {
@@ -107,30 +58,7 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
           setSelectedColor={setSelectedColor}
           setVisible={setVisible}
         />
-        <form className='card__buttons-wrapper'>
-          {selectedColor ? (
-            <Button style={{ width: '100%' }} size='medium' variant='contained' onClick={() => handlerOnSubmit()}>
-              в корзину
-            </Button>
-          ) : (
-            <>
-              <Link
-                to={`/category/${item.category}/product/${item._id}`}
-                className='card__link-buy'
-                onClick={() => onClickBuyButton()}
-              >
-                <Button style={{ width: '100%' }} size='medium' variant='outlined'>
-                  купить
-                </Button>
-              </Link>
-              <BlackTooltip title='Добавить в избранное' placement='top-start'>
-                <IconButton color='error' onClick={() => onClickFavoriteButton()}>
-                  {isLiked ? <Favorite /> : <FavoriteBorder />}
-                </IconButton>
-              </BlackTooltip>
-            </>
-          )}
-        </form>
+        <CardBottom selectedColor={selectedColor} item={item} />
       </div>
     </article>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useEffect } from 'react'
 import logo from '../../images/logo-black.svg'
 import { Badge } from '@mui/material'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -8,16 +8,31 @@ import Search from '../search/Search'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import ListIcon from '@mui/icons-material/List'
-import { useBasket, useHome } from '../../hooks/useStateSelectors'
+import { useBasket, useOther } from '../../hooks/useStateSelectors'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
+import { useActions } from '../../hooks/useActions'
+import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 
 const HeaderMiddle: React.FC = () => {
   const { dataBasketItems, totalPrice } = useBasket()
-  const { favoriteData } = useHome()
+  const { favorites } = getFavoriteFromLS()
+  const { checkBasketItems } = useActions()
+  const { itemIsLiked } = useOther()
   const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
   const countBasketItems = dataBasketItems.reduce((sum: number, currentItem: any) => {
     return sum + currentItem.count
   }, 0)
+
+  useEffect(() => {
+    const newFavorites = JSON.stringify(favorites)
+    localStorage.setItem('favorites', newFavorites)
+  }, [itemIsLiked])
+
+  useEffect(() => {
+    const newItems = JSON.stringify(dataBasketItems)
+    localStorage.setItem('items', newItems)
+    checkBasketItems()
+  }, [dataBasketItems])
 
   return (
     <div className='header__middle'>
@@ -35,9 +50,9 @@ const HeaderMiddle: React.FC = () => {
               <span className='header__middle-item-span'>Лента заказов</span>
             </Link>
           </BlackTooltip>
-          {favoriteData.length ? (
+          {favorites.length ? (
             <Link to='/favorite' className='header__middle-item'>
-              <Badge badgeContent={favoriteData.length} color='error'>
+              <Badge badgeContent={favorites.length} color='error'>
                 <FavoriteBorderIcon color='primary' />
               </Badge>
               <span className='header__middle-item-span'>Избранное</span>
@@ -45,7 +60,7 @@ const HeaderMiddle: React.FC = () => {
           ) : (
             <BlackTooltip title={<TitleTooltip title='В избранном ничего нет' />} placement='bottom'>
               <div className='header__middle-item' style={{ cursor: 'default' }}>
-                <Badge badgeContent={favoriteData.length} color='error'>
+                <Badge badgeContent={favorites.length} color='error'>
                   <FavoriteBorderIcon color='primary' />
                 </Badge>
                 <span className='header__middle-item-span'>Избранное</span>
@@ -74,4 +89,4 @@ const HeaderMiddle: React.FC = () => {
     </div>
   )
 }
-export default HeaderMiddle
+export default memo(HeaderMiddle)

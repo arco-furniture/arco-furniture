@@ -1,5 +1,5 @@
 import Chip from '@mui/material/Chip'
-import React from 'react'
+import React, { memo } from 'react'
 import { IItem } from '../../../types/itemTypes'
 import { specsTypes } from '../../../types/basketTypes'
 import { styles } from 'app/constants'
@@ -44,4 +44,4 @@ const FilterStyle: React.FC = () => {
     </div>
   )
 }
-export default FilterStyle
+export default memo(FilterStyle)

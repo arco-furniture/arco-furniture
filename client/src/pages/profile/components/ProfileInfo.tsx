@@ -43,7 +43,6 @@ const ProfileInfo: React.FC<any> = () => {
 
   type Inputs = {
     firstName: string
-    exampleRequired: string
   }
 
   const {

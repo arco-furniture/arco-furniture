@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { filterCategory } from './category.actions'
 
 const initialState: any = {
-  categoryData: [],
   price: [0, 250000],
   searchPrice: [0, 0],
-  categoryStatus: 'loading',
   sort: 'rating',
   categoryParams: {
     paramsId: null,
@@ -57,26 +54,8 @@ export const categorySlice = createSlice({
       state.currentPage = action.payload
     },
     setChangeSort(state, action) {
-      console.log(action.payload)
       state.sort = action.payload
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(filterCategory.pending, (state) => {
-      state.categoryStatus = 'loading'
-      state.categoryData = []
-    })
-    builder.addCase(filterCategory.fulfilled, (state, { payload }) => {
-      state.categoryStatus = 'success'
-      console.log(payload)
-      state.categoryData = payload.data
-      state.allPages = payload.allPages
-      // state.searchPrice = payload.minMaxPrice
-    })
-    builder.addCase(filterCategory.rejected, (state) => {
-      state.categoryStatus = 'error'
-      state.categoryData = []
-    })
   },
 })
 

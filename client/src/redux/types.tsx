@@ -16,7 +16,6 @@ export interface IHomeState {
   searchData: IItem[]
   adviceStatus: 'success' | 'error' | 'loading'
   searchStatus: 'initial' | 'success' | 'error' | 'loading'
-  favoriteData: any
 }
 
 export interface IOtherState {
@@ -25,14 +24,12 @@ export interface IOtherState {
     message: string
     type: string
   }
+  itemIsLiked: boolean
   statusAuthorsPopup: boolean
-  height: number | null
-  width: number | null
 }
 
 export interface IProductState {
   currentColor: any
-  productData: any
   productStatus: string
 }
 

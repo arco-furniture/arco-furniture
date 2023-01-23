@@ -1,5 +1,5 @@
 import Chip from '@mui/material/Chip'
-import React from 'react'
+import React, { memo } from 'react'
 import { ITag } from './types'
 
 const Tag: React.FC<ITag> = (props) => {
@@ -48,4 +48,4 @@ const Tag: React.FC<ITag> = (props) => {
   )
 }
 
-export default Tag
+export default memo(Tag)

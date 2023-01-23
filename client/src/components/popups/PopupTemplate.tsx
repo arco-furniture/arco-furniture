@@ -9,4 +9,4 @@ const PopupTemplate: React.FC<IPopupTemplate> = ({ children, status, handleClose
   </Dialog>
 )
 
-export default PopupTemplate
+export default memo(PopupTemplate)

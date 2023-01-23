@@ -1,6 +1,6 @@
 import { Collapse, List } from '@mui/material'
 import FilterTemplate from './FilterTemplate'
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { FilterColor, FilterPrice, FilterStyle, FilterMaterial, FilterTag } from './filters'
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined'
@@ -48,4 +48,4 @@ const CategoryFilters: React.FC = () => {
   )
 }
 
-export default CategoryFilters
+export default memo(CategoryFilters)
