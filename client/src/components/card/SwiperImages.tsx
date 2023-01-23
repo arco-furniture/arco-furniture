@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import 'swiper/scss'
 import { ISwiperImages } from './types'
 
@@ -55,4 +55,4 @@ const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
   )
 }
 
-export default SwiperImages
+export default memo(SwiperImages)

@@ -1,5 +1,5 @@
 import { InputAdornment, Slider, TextField } from '@mui/material'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import debounce from 'lodash/debounce'
 import { IItem } from '../../../types/itemTypes'
@@ -79,4 +79,4 @@ const FilterPrice: React.FC = () => {
   )
 }
 
-export default FilterPrice
+export default memo(FilterPrice)

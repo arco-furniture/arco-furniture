@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip'
 import { Button, IconButton } from '@mui/material'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../../components/BlackTooltip/BlackTooltip'
 import { IItem, colorsTypes } from '../../types/itemTypes'
 import { getBasketItem } from '../../utils/getBasketItem'
 import { colors } from 'app/constants'
-import { useHome, useProduct } from '../../hooks/useStateSelectors'
+import { useProduct } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
+import { handleChangeFavorite } from '../../utils/handleChangeFavorite'
 
 const ProductParams: React.FC<any> = ({ product }) => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
   const [isLiked, setIsLiked] = useState(false)
   const { currentColor } = useProduct()
-  const { favoriteData } = useHome()
-  const { addItemForBasket, deleteFavoriteItem, postFavoriteItem, openAlertBar, setCurrentColor } = useActions()
-  const isFavorite = favoriteData.some((favorite: IItem) => favorite._id === product._id)
+  const { favorites } = getFavoriteFromLS()
+  const { addItemForBasket, openAlertBar, setCurrentColor, setItemIsLiked } = useActions()
+  const isFavorite = favorites.some((favorite: IItem) => favorite._id === product._id)
   const existColors = colors.map((item) => {
     const isExist = product.colors?.some((color) => color.nameColor === item.nameColor)
     return {
@@ -58,8 +59,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
     return <Chip label='Под заказ' color='error' variant='filled' />
   }
 
-  const handlerOnSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault()
+  const handlerOnClickBuy = () => {
     openAlertBar({
       message: product.title,
       type: 'cart',
@@ -68,18 +68,10 @@ const ProductParams: React.FC<any> = ({ product }) => {
     addItemForBasket(basketItem)
   }
 
-  const handleIsFavorite = () => {
-    if (!isFavorite) {
-      postFavoriteItem(product)
-      return true
-    }
-    const withoutItemsFavorite = favoriteData.filter((favorite: IItem) => favorite._id !== product._id)
-    deleteFavoriteItem(withoutItemsFavorite)
-    return false
-  }
-
   const onClickFavoriteButton = () => {
-    setIsLiked(handleIsFavorite())
+    handleChangeFavorite({ isFavorite, item: product })
+    setIsLiked(!isLiked)
+    setItemIsLiked()
     openAlertBar({
       message: product.title,
       type: 'favorite',
@@ -87,7 +79,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
   }
 
   return (
-    <form className='product__params panel' onSubmit={(evt) => handlerOnSubmit(evt)}>
+    <div className='product__params panel'>
       <div className='product__top-wrapper'>
         <h2>{product.title}</h2>
         {currentColor.exist ? <ChipSuccess /> : <ChipError />}
@@ -137,6 +129,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
           size='large'
           type='submit'
           variant='contained'
+          onClick={handlerOnClickBuy}
         >
           добавить в корзину
         </Button>
@@ -146,8 +139,8 @@ const ProductParams: React.FC<any> = ({ product }) => {
           </IconButton>
         </BlackTooltip>
       </div>
-    </form>
+    </div>
   )
 }
 
-export default ProductParams
+export default memo(ProductParams)

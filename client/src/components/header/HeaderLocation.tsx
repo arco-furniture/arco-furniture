@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { initialCategories } from 'app/constants'
 import { IInitialCategories } from 'components/header/types'
@@ -8,7 +8,7 @@ import { useAuth, useProduct } from '../../hooks/useStateSelectors'
 const HeaderLocation: React.FC = () => {
   const location = useLocation()
   const locationArray = location.pathname.split('/').filter((item) => item)
-  const { productData } = useProduct()
+  // const { productData } = useProduct()
   const { user } = useAuth()
 
   const isCategory = locationArray.indexOf('category') !== -1
@@ -67,16 +67,16 @@ const HeaderLocation: React.FC = () => {
             </Link>
           </li>
         )}
-        {isProduct && productData && (
-          <li className='header__paramsItem'>
-            <span className='header__arrow'>
-              <KeyboardArrowRightIcon fontSize='small' />
-            </span>
-            <Link className='header__paramsLink' to={`/category/${productData.category}/product/${productData._id}`}>
-              {productData.title}
-            </Link>
-          </li>
-        )}
+        {/* {isProduct && productData && ( */}
+        {/*  <li className='header__paramsItem'> */}
+        {/*    <span className='header__arrow'> */}
+        {/*      <KeyboardArrowRightIcon fontSize='small' /> */}
+        {/*    </span> */}
+        {/*    <Link className='header__paramsLink' to={`/category/${productData.category}/product/${productData._id}`}> */}
+        {/*      {productData.title} */}
+        {/*    </Link> */}
+        {/*  </li> */}
+        {/* )} */}
         {isProfile && user && (
           <li className='header__paramsItem'>
             <span className='header__arrow'>
@@ -92,4 +92,4 @@ const HeaderLocation: React.FC = () => {
   )
 }
 
-export default HeaderLocation
+export default memo(HeaderLocation)

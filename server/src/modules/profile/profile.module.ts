@@ -17,8 +17,8 @@ import { path } from 'app-root-path'
       }
     ]),
     ServeStaticModule.forRoot({
-      rootPath: `${path}/images`,
-      serveRoot: '/images'
+      rootPath: `${path}/mediabank`,
+      serveRoot: '/mediabank'
     })
   ],
   providers: [ProfileService],

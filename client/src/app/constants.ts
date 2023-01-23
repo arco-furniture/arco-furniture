@@ -44,6 +44,7 @@ export const backendSkills = [
   { name: 'TypeScript', icon: Skill.typescript },
   { name: 'Nest.js', icon: Skill.nestjs },
   { name: 'MongoDB', icon: Skill.mongodb },
+  { name: 'Passport.js', icon: Skill.passport },
 ]
 
 export const frontendSkills = [

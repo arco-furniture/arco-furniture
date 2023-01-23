@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Checkbox, ButtonGroup, Button } from '@mui/material'
 import styles from '../../scss/modules/basket/basket-item.module.scss'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
@@ -8,9 +8,9 @@ import CloseIcon from '@mui/icons-material/Close'
 import { IBasketItem } from '../../types/basketTypes'
 import { useActions } from '../../hooks/useActions'
 
-const BasketItem: React.FC<IBasketItem> = (item) => {
+const BasketItem: React.FC<IBasketItem> = (props) => {
   const [benefit, setBenefit] = useState<any>(0)
-  const { article, color, count, image, oldPrice, price, title, id, isControl } = item
+  const { article, color, count, image, oldPrice, price, title, id, isControl } = props
   const { removeItemForBasket, handleCountItem } = useActions()
   const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
   const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
@@ -24,16 +24,16 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
   }
 
   const handleRemoveCard = () => {
-    removeItemForBasket(item)
+    removeItemForBasket(props)
   }
 
   const handleBenefitItem = () => {
-    setBenefit((item.oldPrice - item.price) * item.count)
+    setBenefit((props.oldPrice - props.price) * props.count)
   }
 
   useEffect(() => {
     handleBenefitItem()
-  }, [item])
+  }, [props])
 
   return (
     <div className={styles.item}>
@@ -62,7 +62,7 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
               className={styles.item__button_count}
               style={stylesCountButtonLeft}
               onClick={() => handleCountItem({ id, status: false })}
-              disabled={item.count <= 1}
+              disabled={props.count <= 1}
             >
               <RemoveIcon />
             </Button>
@@ -111,4 +111,4 @@ const BasketItem: React.FC<IBasketItem> = (item) => {
   )
 }
 
-export default BasketItem
+export default memo(BasketItem)

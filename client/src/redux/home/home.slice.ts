@@ -1,14 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IHomeState } from '../types'
-import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { filterAdvice, getSearchItems } from './home.actions'
-
-const { favorites } = getFavoriteFromLS()
 
 const initialState: IHomeState = {
   adviceData: [],
   adviceStatus: 'loading',
-  favoriteData: favorites,
   searchStatus: 'initial',
   searchData: [],
 }
@@ -17,12 +13,6 @@ export const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
-    postFavoriteItem(state, actions) {
-      state.favoriteData = [...state.favoriteData, actions.payload]
-    },
-    deleteFavoriteItem(state, actions) {
-      state.favoriteData = actions.payload
-    },
     setClearSearchData(state) {
       state.searchData = []
     },

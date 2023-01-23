@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ButtonColor from 'components/buttonColor/ButtonColor'
 import { colors } from 'app/constants'
 import { useActions } from '../../../hooks/useActions'
@@ -31,4 +31,4 @@ const FilterColor: React.FC = () => {
   )
 }
 
-export default FilterColor
+export default memo(FilterColor)

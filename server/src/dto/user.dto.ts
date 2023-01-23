@@ -12,5 +12,5 @@ export class UserDto {
   @IsString()
   password: string
 
-  image: string | null
+  avatar: string | null
 }

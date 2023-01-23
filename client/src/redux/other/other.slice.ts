@@ -3,13 +3,12 @@ import { IOtherState } from '../types'
 
 const initialState: IOtherState = {
   statusAlert: false,
+  itemIsLiked: false,
   alert: {
     message: '',
     type: '',
   },
   statusAuthorsPopup: false,
-  height: null,
-  width: null,
 }
 
 export const otherSlice = createSlice({
@@ -29,9 +28,8 @@ export const otherSlice = createSlice({
     closeAuthorsPopup(state) {
       state.statusAuthorsPopup = false
     },
-    setSizeBody(state, { payload }) {
-      state.width = payload.width
-      state.height = payload.height
+    setItemIsLiked(state) {
+      state.itemIsLiked = !state.itemIsLiked
     },
   },
 })
