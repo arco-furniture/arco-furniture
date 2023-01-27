@@ -5,18 +5,18 @@ import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import CloseIcon from '@mui/icons-material/Close'
-import { IBasketItem } from '../../types/basketTypes'
+import nullImage from '../../images/notFound.png'
 import { useActions } from '../../hooks/useActions'
 
-const BasketItem: React.FC<IBasketItem> = (props) => {
+const BasketItem: React.FC<any> = ({ item, isControl = false }) => {
   const [benefit, setBenefit] = useState<any>(0)
-  const { article, color, count, image, oldPrice, price, title, id, isControl } = props
+  const { article, color, count, image, oldPrice, price, title, _id } = item
   const { removeItemForBasket, handleCountItem } = useActions()
   const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
   const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
   const stylesCountButtonRight = { ...stylesCountButtons, borderLeft: 'solid 0 #D9D9D9' }
   const stylesCounter = {
-    borderLeft: 'solid 0 #D9D9D9',
+    borderLeft: `solid ${isControl ? 0 : '1px'} #D9D9D9`,
     minWidth: '24px',
     color: '#414141',
     fontSize: '14px',
@@ -24,24 +24,30 @@ const BasketItem: React.FC<IBasketItem> = (props) => {
   }
 
   const handleRemoveCard = () => {
-    removeItemForBasket(props)
+    removeItemForBasket(item)
   }
 
   const handleBenefitItem = () => {
-    setBenefit((props.oldPrice - props.price) * props.count)
+    setBenefit((item.oldPrice - item.price) * item.count)
   }
 
   useEffect(() => {
     handleBenefitItem()
-  }, [props])
+  }, [item])
 
   return (
     <div className={styles.item}>
-      <img className={styles.item__image} src={image} alt='image' style={{ width: '188px' }} />
+      <img
+        className={styles.item__image}
+        src={image || nullImage}
+        alt='image'
+        draggable={false}
+        style={{ width: '188px' }}
+      />
       <div className={styles.item__container}>
         <div className={styles.item__left}>
           <div className={styles.item__box}>
-            {isControl && <Checkbox sx={{ width: '15px', height: '15px', mr: '5px' }} />}
+            {isControl && <Checkbox sx={{ width: '15px', height: '15px', mr: '5px' }} checked />}
             <p className={styles.item__title}>{title}</p>
           </div>
           <div className={styles.item__specsBox}>
@@ -56,34 +62,38 @@ const BasketItem: React.FC<IBasketItem> = (props) => {
             </div>
           </div>
         </div>
-        {isControl && (
-          <ButtonGroup sx={{ mt: '12px' }} size='small' variant='outlined' className={styles.item__button_group}>
+        <ButtonGroup sx={{ mt: '12px' }} size='small' variant='outlined' className={styles.item__button_group}>
+          {isControl && (
             <Button
               className={styles.item__button_count}
               style={stylesCountButtonLeft}
-              onClick={() => handleCountItem({ id, status: false })}
-              disabled={props.count <= 1}
+              onClick={() => handleCountItem({ _id, status: false })}
+              disabled={item.count <= 1}
             >
               <RemoveIcon />
             </Button>
-            <Button style={stylesCounter} disabled>
-              {count}
-            </Button>
+          )}
+          <Button style={stylesCounter} disabled>
+            {count}
+          </Button>
+          {isControl && (
             <Button
               className={styles.item__button_count}
               style={stylesCountButtonRight}
               size='small'
-              onClick={() => handleCountItem({ id, status: true })}
+              onClick={() => handleCountItem({ _id, status: true })}
             >
               <AddIcon />
             </Button>
-          </ButtonGroup>
-        )}
+          )}
+        </ButtonGroup>
         <div className={styles.item__contain}>
           <div className={styles.item__wrapperPrice}>
             <div style={{ justifyContent: 'space-between' }} className={styles.item__box}>
-              <p className={styles.item__price}>{getPriceWithFormat(count * oldPrice)} &#8381;</p>
-              <p className={styles.item__new}>{getPriceWithFormat(count * price)} &#8381;</p>
+              <p className={styles.item__price}>
+                {getPriceWithFormat(isControl ? count * oldPrice : oldPrice)} &#8381;
+              </p>
+              <p className={styles.item__new}>{getPriceWithFormat(isControl ? count * price : price)} &#8381;</p>
             </div>
             <p className={styles.item__prof}>выгода {getPriceWithFormat(benefit)}</p>
           </div>

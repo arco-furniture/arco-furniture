@@ -26,37 +26,27 @@ export const authSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload
     },
+    setIsLoadingAuth(state) {
+      state.isLoadingAuth = true
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, { payload }) => {
-      state.isLoadingAuth = false
       state.user = payload.user
     })
     builder.addCase(registerUser.rejected, (state) => {
-      state.isLoadingAuth = false
-      state.user = null
-    })
-    builder.addCase(registerUser.pending, (state) => {
-      state.isLoadingAuth = true
       state.user = null
     })
 
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
-      state.isLoadingAuth = false
       state.user = payload.user
     })
     builder.addCase(loginUser.rejected, (state) => {
-      state.isLoadingAuth = false
-      state.user = null
-    })
-    builder.addCase(loginUser.pending, (state) => {
-      state.isLoadingAuth = true
       state.user = null
     })
 
     builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
       state.user = payload.user
-      state.isLoadingAuth = true
     })
   },
 })

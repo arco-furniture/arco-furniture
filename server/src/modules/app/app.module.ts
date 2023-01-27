@@ -10,6 +10,7 @@ import {TypegooseModule} from "nestjs-typegoose";
 import {getMongoConfig} from "../../config/mongo.config";
 import {AuthModule} from "../auth/auth.module";
 import {ProfileModule} from "../profile/profile.module";
+import {BasketModule} from "../basket/basket.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import {ProfileModule} from "../profile/profile.module";
     SearchModule,
     AuthModule,
     ProfileModule,
+    BasketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,127 +1,167 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import BasketNavigation from './BasketNavigation'
+import React, { useEffect, useRef, useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import styles from '../../scss/modules/basket/basket.module.scss'
 import { IBasketItem } from '../../types/basketTypes'
 import BasketItem from './BasketItem'
 import { Button, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { useBasket } from '../../hooks/useStateSelectors'
+import { useAuth, useBasket } from '../../hooks/useStateSelectors'
+import { blue, red } from '@mui/material/colors'
+import { useQuery } from 'react-query'
+import { BasketService } from '../../services/basket.service'
+import { toastError } from '../../api/withToastrErrorRedux'
 import { useActions } from '../../hooks/useActions'
 
 const BasketControl: React.FC = () => {
-  const navigate = useNavigate()
-  const { dataBasketItems, totalPrice, basketBtnStatus } = useBasket()
-  const { changeBasketBtnStatus } = useActions()
-  const { register, handleSubmit } = useForm()
-  const [dataInfo, setDataInfo] = useState('')
-  const styleNavigation = [{ 1: '#4675CE', 2: 'rgba(65, 65, 65, 0.2)', 3: 'rgba(65, 65, 65, 0.2)' }]
+  const { dataBasketItems, totalPrice } = useBasket()
+  const { setUser } = useActions()
+  const { user } = useAuth()
+  const { setPopupAuth } = useActions()
+  const [dataRequest, setDataRequest] = useState<object>({})
+  const isMounted = useRef<boolean>(false)
 
-  const [values, setValues] = React.useState({})
-  const [errors, setErrors] = React.useState({})
-  const [isValid, setIsValid] = React.useState(false)
+  const { refetch } = useQuery(
+    'basket post stage info',
+    () =>
+      BasketService.postStageInfo(dataRequest)
+        .then((info) => setUser(info))
+        .catch((error) => toastError(error)),
+    {
+      enabled: false,
+    },
+  )
 
-  const handleChangeLabel = (evt: any) => {
-    const { name } = evt
-    const { value } = evt
-    setValues({ ...values, [name]: value })
-    setErrors({ ...errors, [name]: evt.validationMessage })
-    setIsValid(evt.closest('form').checkValidity())
+  useEffect(() => {
+    if (isMounted.current) {
+      refetch()
+    }
+    isMounted.current = true
+  }, [dataRequest])
+
+  type TypesUseForm = {
+    delivery: 'Курьером' | 'Почтой'
+    pay: 'Оплата картой' | 'Наличные'
+    query: boolean
   }
 
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    navigate('/basket/order')
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm<TypesUseForm>({
+    mode: 'onChange',
+  })
+
+  const getRequestItems = (items) => {
+    return items.map((item) => {
+      return {
+        _id: item._id,
+        color: item.color,
+        count: item.count,
+      }
+    })
   }
 
-  const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeBasketBtnStatus(e.target.checked)
+  const onSubmit = (data) => {
+    if (user && isValid) {
+      const items = getRequestItems(dataBasketItems)
+      const info = { delivery: data.delivery, pay: data.pay }
+      setDataRequest({ info, items })
+    } else {
+      setPopupAuth()
+    }
   }
 
   return (
-    <section>
-      <BasketNavigation bgcolor={styleNavigation} />
-      <div className={styles.basket}>
-        <div className={styles.basket__container}>
-          {dataBasketItems?.map((item: IBasketItem) => (
-            <BasketItem
-              key={item.id}
-              id={item.id}
-              article={item.article}
-              color={item.color}
-              count={item.count}
-              image={item.image}
-              oldPrice={item.oldPrice}
-              price={item.price}
-              specs={item.specs}
-              title={item.title}
-              isControl
+    <section className={styles.basket__section}>
+      <div className={styles.basket__container}>
+        {dataBasketItems?.map((item: IBasketItem) => (
+          <BasketItem item={item} key={item._id} isControl />
+        ))}
+      </div>
+      <div className={styles.menu}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <p className={styles.menu__title}>Выберите способ доставки</p>
+          <div className={styles.menu__box}>
+            <Controller
+              rules={{ required: true }}
+              control={control}
+              name='delivery'
+              defaultValue='Курьером'
+              render={({ field: { onChange } }) => (
+                <RadioGroup row defaultValue='Курьером'>
+                  <FormControlLabel
+                    className={styles.menu__label}
+                    value='Курьером'
+                    control={<Radio />}
+                    label='Курьером'
+                    onChange={onChange}
+                  />
+                  <FormControlLabel
+                    className={styles.menu__label}
+                    value='Почтой'
+                    control={<Radio />}
+                    label='Почтой'
+                    onChange={onChange}
+                  />
+                </RadioGroup>
+              )}
             />
-          ))}
-        </div>
-        <div className={styles.menu}>
-          <form onSubmit={(evt) => handleSubmitForm(evt)}>
-            <p className={styles.menu__title}>Выберите способ доставки</p>
-            <div className={styles.menu__box}>
-              <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' name='radio-buttons-group'>
-                <FormControlLabel
-                  className={styles.menu__label}
-                  {...register('delivery')}
-                  value='Самовывоз'
-                  control={<Radio />}
-                  label='Самовывоз'
-                  onChange={(evt) => handleChangeLabel(evt.target)}
+          </div>
+          <p className={styles.menu__title}>Выберите способ оплаты</p>
+          <div className={styles.menu__box}>
+            <Controller
+              rules={{ required: true }}
+              control={control}
+              name='pay'
+              defaultValue='Оплата картой'
+              render={({ field: { onChange } }) => (
+                <RadioGroup defaultValue='Оплата картой' row>
+                  <FormControlLabel
+                    className={styles.menu__label}
+                    value='Наличные'
+                    control={<Radio />}
+                    label='Наличные'
+                    onChange={onChange}
+                  />
+                  <FormControlLabel
+                    className={styles.menu__label}
+                    value='Оплата картой'
+                    control={<Radio />}
+                    label='Оплата картой'
+                    onChange={onChange}
+                  />
+                </RadioGroup>
+              )}
+            />
+          </div>
+          <div className={styles.menu__line} />
+          <div className={styles.menu__price}>
+            <p className={styles.menu__title}>Итого:</p>
+            <p className={styles.menu__title}>{getPriceWithFormat(totalPrice)} &#8381;</p>
+          </div>
+          <div className={styles.menu__line} />
+          <div style={{ display: 'flex', alignItems: 'start' }}>
+            <Controller
+              rules={{ required: true }}
+              control={control}
+              name='query'
+              render={({ field: { onChange, value } }) => (
+                <Checkbox
+                  onChange={onChange}
+                  checked={value}
+                  sx={{ color: red[700], '&.Mui-checked': { color: blue[700] } }}
                 />
-                <FormControlLabel
-                  className={styles.menu__label}
-                  {...register('delivery')}
-                  value='Доставка'
-                  control={<Radio />}
-                  label='Доставка'
-                  onChange={(evt) => handleChangeLabel(evt.target)}
-                />
-              </RadioGroup>
-            </div>
-            <p className={styles.menu__title}>Выберите способ оплаты</p>
-            <div className={styles.menu__box}>
-              <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' name='radio-buttons-group'>
-                <FormControlLabel
-                  className={styles.menu__label}
-                  {...register('payment')}
-                  value='cash'
-                  control={<Radio />}
-                  label='Наличные'
-                  onChange={(evt) => handleChangeLabel(evt.target)}
-                />
-                <FormControlLabel
-                  className={styles.menu__label}
-                  {...register('payment')}
-                  value='card'
-                  control={<Radio />}
-                  label='Оплата картой'
-                  onChange={(evt) => handleChangeLabel(evt.target)}
-                />
-              </RadioGroup>
-            </div>
-            <div className={styles.menu__line} />
-            <div className={styles.menu__price}>
-              <p className={styles.menu__title}>Итого:</p>
-              <p className={styles.menu__title}>{getPriceWithFormat(totalPrice)} &#8381;</p>
-            </div>
-            <p className={styles.menu__text}>Стоимость указана без учета доставки</p>
-            <div className={styles.menu__line} />
-            <div style={{ display: 'flex', alignItems: 'start' }}>
-              <Checkbox {...register('checkBox')} id='checkBox' onChange={(e) => handleChangeStatus(e)} />
-              <p className={styles.menu__text} style={{ width: '327px' }}>
-                Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.
-              </p>
-            </div>
-            <Button type='submit' className={styles.menu__button} variant='contained'>
-              Продолжить
-            </Button>
-          </form>
-        </div>
+              )}
+            />
+            <p className={styles.menu__text} style={{ width: '327px' }}>
+              Я подтверждаю, что я ознакомлен и согласен с условиями политики обработки персональных данных.
+            </p>
+          </div>
+          <Button variant='outlined' type='submit' className={styles.menu__button} disabled={!isValid}>
+            Продолжить
+          </Button>
+        </form>
       </div>
     </section>
   )

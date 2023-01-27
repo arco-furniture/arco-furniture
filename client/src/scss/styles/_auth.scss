@@ -113,3 +113,23 @@
     }
   }
 }
+
+.popup {
+
+  &__changeWrapper {
+    margin-top: 5px;
+    @include flex-column;
+    @include flex-center-between;
+    gap: 5px;
+  }
+
+  &__paragraph {
+    @include reset;
+    @include text-format(400, 16px, 21px);
+    color: $secondBlack;
+  }
+
+  &__link {
+    cursor: pointer;
+  }
+}

@@ -14,16 +14,13 @@ export class ProfileService {
   }
 
   async getProfile(id: string) {
-    const user = await this.UserModel.findById(id)
-
-    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    const user = await this.checkUser(id)
 
     return this.returnUserFields(user)
   }
 
   async uploadAvatar(files: Express.Multer.File[], id) {
-    const user = await this.UserModel.findById(id)
-    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    const user = await this.checkUser(id)
 
     const uploadFile:AvatarResponse[] = await this.saveFile(files, user)
 
@@ -52,8 +49,7 @@ export class ProfileService {
   }
 
   async deleteAvatar(id) {
-    const user = await this.UserModel.findById(id)
-    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    const user = await this.checkUser(id)
 
     const uploadFolder = `${path}/images`
     await ensureDir(uploadFolder)
@@ -66,8 +62,7 @@ export class ProfileService {
   }
 
   async changeFirstName(dto: FirstNameDto, id: string) {
-    const user = await this.UserModel.findById(id)
-    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    const user = await this.checkUser(id)
 
     user.firstName = dto.firstName
     await user.save()
@@ -76,8 +71,7 @@ export class ProfileService {
   }
 
   async changePassword(dto, id) {
-    const user = await this.UserModel.findById(id)
-    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    const user = await this.checkUser(id)
 
     const salt = await genSalt(10)
     user.password = await hash(dto.password, salt)
@@ -86,12 +80,21 @@ export class ProfileService {
     return this.returnUserFields(user)
   }
 
+  private async checkUser(id) {
+    const user = await this.UserModel.findById(id)
+    if (!user) throw new UnauthorizedException('Такого пользователя не существует')
+    return user
+  }
+
   private returnUserFields(user) {
     return {
       _id: user._id,
       email: user.email,
       firstName: user.firstName,
-      avatar: user.avatar
+      avatar: user.avatar,
+      money: user.money,
+      steps: user.steps,
+      basketItems: user.basketItems,
     }
   }
 }

@@ -1,8 +1,6 @@
 import HomeBanner from './Banner'
 import CountDown from 'components/countDown/CountDown'
-import Card from '../../components/card/Card'
-import item from '../../utils/item'
-// eslint-disable-next-line import/named
+import { cardPreviewInfo } from 'app/constants'
 import Button from '@mui/material/Button'
 import React from 'react'
 import CodeIcon from '@mui/icons-material/Code'
@@ -10,35 +8,22 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import { useActions } from '../../hooks/useActions'
 import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
+import { useQuery } from 'react-query'
+import { AdviceService } from '../../services/advice.service'
+import { getSkeletonCards } from '../../utils/getSkeletonCards'
+import { getCards } from '../../utils/getCards'
 
 const HomePreview: React.FC = () => {
   const { openAuthorsPopup } = useActions()
   const stylesButton = { color: '#414141' }
-
-  const cards = [
-    {
-      className: 'preview__icon_warranty',
-      title: 'Гарантия',
-      text: 'Официальные поставки',
-    },
-    {
-      className: 'preview__icon_shop',
-      title: 'Более 2000',
-      text: 'Торговых точек',
-    },
-    {
-      className: 'preview__icon_payment',
-      title: 'Оплата',
-      text: 'Легкие способы',
-    },
-  ]
+  const { isLoading, data, isSuccess } = useQuery('get top product', () => AdviceService.getTopProduct())
 
   return (
     <section className='preview'>
       <div className='preview__wrapper'>
         <h2 className='preview__title'>Почему мы?</h2>
         <ul className='preview__cards-wrapper'>
-          {cards.map((item, index) => (
+          {cardPreviewInfo.map((item, index) => (
             <li key={index} className='preview__container'>
               <div className={item.className} />
               <div className='preview__grout-text'>
@@ -58,7 +43,8 @@ const HomePreview: React.FC = () => {
           <h2 className='preview__title'>Товар дня</h2>
           <CountDown hours={18} minutes={0} />
         </div>
-        <Card item={item} isTop />
+        {isLoading && getSkeletonCards(1)}
+        {isSuccess && getCards(data, true)}
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>
       <div className='preview__info'>
