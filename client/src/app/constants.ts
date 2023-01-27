@@ -44,6 +44,7 @@ export const backendSkills = [
   { name: 'TypeScript', icon: Skill.typescript },
   { name: 'Nest.js', icon: Skill.nestjs },
   { name: 'MongoDB', icon: Skill.mongodb },
+  { name: 'Passport.js', icon: Skill.passport },
 ]
 
 export const frontendSkills = [
@@ -62,4 +63,22 @@ export const frontendSkills = [
 export const iconsCategory = [
   { name: 'Кухня', icon: Category.kitchen, category: 'kitchens' },
   { name: 'Гостиная', icon: Category.livingRooms, category: 'living-rooms' },
+]
+
+export const cardPreviewInfo = [
+  {
+    className: 'preview__icon_warranty',
+    title: 'Гарантия',
+    text: 'Официальные поставки',
+  },
+  {
+    className: 'preview__icon_shop',
+    title: 'Более 2000',
+    text: 'Торговых точек',
+  },
+  {
+    className: 'preview__icon_payment',
+    title: 'Оплата',
+    text: 'Легкие способы',
+  },
 ]

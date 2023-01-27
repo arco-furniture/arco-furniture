@@ -7,7 +7,7 @@ import {InjectModel} from "nestjs-typegoose";
 export class AdviceService {
   constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
-  getAll() {
+  async getAll() {
     return this.productModel.find({"advice.status": true})
   }
 
@@ -17,5 +17,17 @@ export class AdviceService {
     } else {
       return this.productModel.find({"advice.value": `${value}`})
     }
+  }
+
+  async getTopProduct() {
+    const cards = await this.productModel.find()
+    let randomCard  = await this.getRandomElement(cards)
+    randomCard.colors = await this.getRandomElement(randomCard.colors)
+    return [randomCard]
+  }
+
+
+  private async getRandomElement(cards) {
+    return cards[Math.floor(Math.random() * cards.length)]
   }
 }

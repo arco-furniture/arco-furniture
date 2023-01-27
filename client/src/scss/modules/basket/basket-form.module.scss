@@ -3,8 +3,22 @@
 
 
 .order {
-    display: flex;
-    gap: 25px;
+    @include flex-column;
+    @include flex-between;
+    align-self: flex-start;
+    gap: 42px;
+
+    background-color: #FBFBFB;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    min-width: 380px;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    @include flex-center;
+    gap: 35px;
 }
 
 .form {
@@ -13,10 +27,6 @@
     border-radius: 5px;
     padding: 20px;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
-
-    &__input {
-        width: 100%;
-    }
 
     &__wrapper {
         @include flex-column;

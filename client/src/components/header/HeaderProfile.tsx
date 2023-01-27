@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from '../../scss/modules/headerProfile.module.scss'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import { Avatar, Badge } from '@mui/material'
@@ -17,8 +17,6 @@ const HeaderProfile = () => {
     setAnchorEl(event.currentTarget)
   }
 
-  console.log(user)
-
   return (
     <div className={styles.headerProfile}>
       <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
@@ -35,4 +33,4 @@ const HeaderProfile = () => {
   )
 }
 
-export default HeaderProfile
+export default memo(HeaderProfile)

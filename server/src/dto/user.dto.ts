@@ -1,4 +1,7 @@
 import {IsEmail, IsString, MinLength} from "class-validator";
+import {prop} from "@typegoose/typegoose";
+import {BasketInfoDto} from "./basketInfo.dto";
+import {BasketItemDto} from "./BasketItem.dto";
 
 export class UserDto {
 
@@ -12,5 +15,14 @@ export class UserDto {
   @IsString()
   password: string
 
-  image: string | null
+  avatar: string | null
+
+  money: number
+
+  steps: {
+    info: BasketInfoDto | null
+    form: null
+  }
+
+  basketItems: null | BasketItemDto[]
 }

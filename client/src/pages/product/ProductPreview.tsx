@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
-import React, { useRef } from 'react'
+import React, { memo, useRef } from 'react'
 import { IProductPreview } from './types'
 import { SwiperArrows } from '../../components'
 
@@ -39,4 +39,4 @@ const ProductPreview: React.FC<IProductPreview> = ({ thumbsSwiper, images }) => 
   )
 }
 
-export default ProductPreview
+export default memo(ProductPreview)

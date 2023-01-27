@@ -11,7 +11,9 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.wrapper}>
-        <img draggable={false} className={styles.logo} src={logo} alt='logo' />
+        <a href='/'>
+          <img draggable={false} className={styles.logo} src={logo} alt='logo' />
+        </a>
         <div className={styles.middle}>
           <div className={styles.about}>
             <p className={styles.aboutText}>
@@ -46,7 +48,7 @@ const Footer: React.FC = () => {
         </div>
         <div className={styles.bottom}>
           <em className={styles.copy}>&copy; Yandex Team 2023</em>
-          <a href='https://github.com/arco-furniture/arco-furniture'>
+          <a href='https://github.com/arco-furniture/arco-furniture' target='_blank' rel='noreferrer'>
             <IconButton>
               <QrCodeIcon color='primary' />
             </IconButton>

@@ -13,6 +13,12 @@ export class AdviceController {
   }
 
   @HttpCode(200)
+  @Get('/top')
+  getTopProduct() {
+    return this.adviceService.getTopProduct()
+  }
+
+  @HttpCode(200)
   @Get()
   getAllAdvice() {
     return this.adviceService.getAll()

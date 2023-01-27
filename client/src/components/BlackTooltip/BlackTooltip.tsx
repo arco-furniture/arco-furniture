@@ -1,5 +1,5 @@
 import { Tooltip } from '@mui/material'
-import React from 'react'
+import React, { memo } from 'react'
 import { IBlackTooltip } from './types'
 
 const BlackTooltip: React.FC<IBlackTooltip> = ({ children, title, placement }) => {
@@ -30,4 +30,4 @@ const BlackTooltip: React.FC<IBlackTooltip> = ({ children, title, placement }) =
   )
 }
 
-export default BlackTooltip
+export default memo(BlackTooltip)

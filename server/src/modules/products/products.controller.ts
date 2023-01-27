@@ -14,8 +14,8 @@ export class ProductsController {
 
   @HttpCode(200)
   @Get(':id')
-  getProduct(@Param('id') id: string ): Promise<ProductModel[]> {
-    return this.productsService.getProductItem(id)
+  async getProduct(@Param('id') id: string ): Promise<ProductModel[]> {
+    return await this.productsService.getProductItem(id)
   }
 
   @HttpCode(200)

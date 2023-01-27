@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import CategoryFilters from './CategoryFilters'
 import { Pagination } from '@mui/material'
 import { getSkeletonCards } from '../../utils/getSkeletonCards'
@@ -8,40 +8,53 @@ import { useParams } from 'react-router-dom'
 import { useCategory } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import CategoryNull from 'pages/category/CategoryNull'
+import { useQuery } from 'react-query'
+import { CategoryService } from '../../services/category.service'
 
 const Category: React.FC = () => {
-  const { categoryData, categoryStatus, dataFilter, currentPage, allPages, sort } = useCategory()
-  const { setChangePage, filterCategory } = useActions()
+  const { dataFilter, currentPage, sort } = useCategory()
+  const { setChangePage } = useActions()
   const { categoryName } = useParams()
-  const isSuccess = categoryStatus === 'success'
-
-  // запрос на изменение
-  useEffect(() => {
-    filterCategory({ data: dataFilter, filter: categoryName, page: currentPage, sort })
-  }, [dataFilter, categoryName, currentPage, sort])
 
   useEffect(() => {
     setChangePage(1)
   }, [categoryName])
 
+  const {
+    isLoading,
+    refetch,
+    isSuccess,
+    data: items,
+  } = useQuery(
+    'change filters category',
+    () => CategoryService.filterCategory({ data: dataFilter, filter: categoryName, page: currentPage, sort }),
+    {
+      enabled: false,
+    },
+  )
+
+  useEffect(() => {
+    refetch()
+  }, [dataFilter, categoryName, currentPage, sort])
+
   return (
     <section className='category'>
-      <h2 style={{ position: 'sticky' }} className='category__title'>{`${categoryData.length} товаров`}</h2>
+      <h2 style={{ position: 'sticky' }} className='category__title'>{`${items?.length} товаров`}</h2>
       <div className='category__wrapper'>
         <CategoryFilters />
         <div className='category__content'>
           <CategorySort />
-          {categoryData.length === 0 && isSuccess ? (
+          {items?.length === 0 && isSuccess ? (
             <CategoryNull />
           ) : (
             <div className='category__cards'>
-              {categoryStatus === 'loading' && getSkeletonCards(6)}
-              {categoryStatus === 'success' && getCards(categoryData)}
+              {isLoading && getSkeletonCards(6)}
+              {items?.data?.length && getCards(items.data)}
               <div className='category__pagination'>
                 <Pagination
                   onChange={(_evt, page) => setChangePage(page)}
                   shape='rounded'
-                  count={allPages}
+                  count={items?.allPages}
                   color='primary'
                   size='large'
                 />
@@ -54,4 +67,4 @@ const Category: React.FC = () => {
   )
 }
 
-export default React.memo(Category)
+export default memo(Category)

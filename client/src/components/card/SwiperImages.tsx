@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import 'swiper/scss'
 import { ISwiperImages } from './types'
 
-const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
+const SwiperImages: React.FC<ISwiperImages> = ({ images, visible, isTop }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [indexActive, setIndexActive] = useState<number>(0)
 
@@ -17,9 +17,9 @@ const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
   })
 
   const navItems = images.map((_item, index) => {
-    // if (images.length <= 1) {
-    //   return <></>
-    // }
+    if (images.length <= 1 || isTop) {
+      return <React.Fragment key={index} />
+    }
     return (
       <SwiperSlide
         key={index}
@@ -55,4 +55,4 @@ const SwiperImages: React.FC<ISwiperImages> = ({ images, visible }) => {
   )
 }
 
-export default SwiperImages
+export default memo(SwiperImages)

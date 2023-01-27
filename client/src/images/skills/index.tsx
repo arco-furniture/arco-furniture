@@ -12,6 +12,7 @@ import ReactHookForm from './ReactHookForm'
 import MaterialUI from './MaterialUI'
 import Scss from './Scss'
 import ReactQuery from './ReactQuery'
+import Passport from './Passport'
 
 const Icon = {
   axios: <Axios />,
@@ -27,6 +28,7 @@ const Icon = {
   scss: <Scss />,
   materialUI: <MaterialUI />,
   reactQuery: <ReactQuery />,
+  passport: <Passport />,
 }
 
 export default Icon

@@ -1,6 +1,6 @@
 import { Collapse, List } from '@mui/material'
-import FilterTemplate from './FilterTemplate'
-import React, { useState } from 'react'
+import ListItemTemplate from '../../components/listItemTemplate/ListItemTemplate'
+import React, { memo, useState } from 'react'
 import { FilterColor, FilterPrice, FilterStyle, FilterMaterial, FilterTag } from './filters'
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined'
@@ -18,34 +18,34 @@ const CategoryFilters: React.FC = () => {
   return (
     <article className='filters panel panel-filters'>
       <List>
-        <FilterTemplate title='Цена' setOpen={setOpenPrice} open={false} icon={<LocalOfferOutlinedIcon />}>
+        <ListItemTemplate title='Цена' setOpen={setOpenPrice} open={false} icon={<LocalOfferOutlinedIcon />}>
           <Collapse in={false} timeout='auto' unmountOnExit>
             <FilterPrice />
           </Collapse>
-        </FilterTemplate>
-        <FilterTemplate title='Цвет' setOpen={setOpenColor} open={openColor} icon={<ColorizeOutlinedIcon />}>
+        </ListItemTemplate>
+        <ListItemTemplate title='Цвет' setOpen={setOpenColor} open={openColor} icon={<ColorizeOutlinedIcon />}>
           <Collapse in={openColor} timeout='auto' unmountOnExit>
             <FilterColor />
           </Collapse>
-        </FilterTemplate>
-        <FilterTemplate title='Стиль' setOpen={setOpenStyle} open={openStyle} icon={<StyleOutlinedIcon />}>
+        </ListItemTemplate>
+        <ListItemTemplate title='Стиль' setOpen={setOpenStyle} open={openStyle} icon={<StyleOutlinedIcon />}>
           <Collapse in={openStyle} timeout='auto' unmountOnExit>
             <FilterStyle />
           </Collapse>
-        </FilterTemplate>
-        <FilterTemplate title='Материал' setOpen={setOpenMaterial} open={openMaterial} icon={<ChairOutlinedIcon />}>
+        </ListItemTemplate>
+        <ListItemTemplate title='Материал' setOpen={setOpenMaterial} open={openMaterial} icon={<ChairOutlinedIcon />}>
           <Collapse in={openMaterial} timeout='auto' unmountOnExit>
             <FilterMaterial />
           </Collapse>
-        </FilterTemplate>
-        <FilterTemplate title='Теги' setOpen={setOpenTag} open={openTag} icon={<StarBorderOutlinedIcon />}>
+        </ListItemTemplate>
+        <ListItemTemplate title='Теги' setOpen={setOpenTag} open={openTag} icon={<StarBorderOutlinedIcon />}>
           <Collapse in={openTag} timeout='auto' unmountOnExit>
             <FilterTag />
           </Collapse>
-        </FilterTemplate>
+        </ListItemTemplate>
       </List>
     </article>
   )
 }
 
-export default CategoryFilters
+export default memo(CategoryFilters)

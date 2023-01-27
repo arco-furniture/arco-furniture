@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { specsNamesTypes } from './types'
 import { specsTypes } from '../../types/basketTypes'
 
@@ -28,4 +28,4 @@ const ProductSpecs: React.FC<any> = ({ specs }) => {
   )
 }
 
-export default ProductSpecs
+export default memo(ProductSpecs)

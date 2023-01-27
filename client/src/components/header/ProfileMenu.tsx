@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Divider, ListItemIcon } from '@mui/material'
@@ -10,6 +10,7 @@ import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { logout } from '../../redux/auth/auth.actions'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 
 const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
   const navigate = useNavigate()
@@ -68,7 +69,7 @@ const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
     >
       <div className={styles.moneyWrapper}>
         <h4 className={styles.title}>Ваш баланс</h4>
-        <em className={styles.money}>500 000 ₽</em>
+        <em className={styles.money}>{user ? getPriceWithFormat(user.money) : ''} ₽</em>
       </div>
       <Divider />
       <MenuItem sx={{ padding: '10px 15px' }} onClick={() => onClickProfile()}>
@@ -103,4 +104,4 @@ const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
   )
 }
 
-export default ProfileMenu
+export default memo(ProfileMenu)

@@ -7,11 +7,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import { Link } from '@mui/material'
+import Cookies from 'js-cookie'
 
 const AuthPopup = () => {
-  const [isErrors, setIsErrors] = useState<boolean>(false)
   const { isLoading, popupAuth } = useAuth()
-  const { setPopupAuth } = useActions()
+  const { setPopupAuth, setPopupRegister } = useActions()
+  const { checkAuth } = useActions()
 
   const Schema = yup.object().shape({
     email: yup.string().required('Вы не заполнили').email('Некорректная электронная почта'),
@@ -22,53 +24,64 @@ const AuthPopup = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(Schema),
   })
 
-  // проверяет на наличие всех ошибок в форме
-  const existErrors = Object.keys(errors).length
-  useEffect(() => {
-    setIsErrors(existErrors !== 0)
-  }, [existErrors])
-
   const { loginUser } = useActions()
 
-  const onSubmit = (data) => {
-    if (!isErrors) {
+  const onSubmit = async (data) => {
+    if (isValid) {
       const userData = {
         email: data.email,
         password: data.password,
       }
       setPopupAuth()
-      loginUser(userData)
+      await loginUser(userData)
+      const accessToken = Cookies.get('accessToken')
+      if (accessToken) {
+        await checkAuth()
+      }
     }
+  }
+
+  const handleLink = () => {
+    setPopupAuth()
+    setPopupRegister()
   }
 
   return (
     <PopupTemplate status={popupAuth} handleClose={setPopupAuth}>
-      <Form title='Авторизация' onSubmit={handleSubmit(onSubmit)}>
-        <InputForm
-          label='Электронная почта'
-          placeholder='example@mail.ru'
-          type='email'
-          error={!!errors.email}
-          textError={errors?.email?.message}
-          {...register('email')}
-        />
-        <InputForm
-          label='Пароль'
-          type='password'
-          error={!!errors.password}
-          textError={errors?.password?.message}
-          {...register('password')}
-        />
-        <button type='submit' className={`form__submit ${isErrors && 'form__submit_disabled'}`} disabled={isLoading}>
-          Войти
-        </button>
-      </Form>
+      <>
+        <Form title='Авторизация' onSubmit={handleSubmit(onSubmit)}>
+          <InputForm
+            label='Электронная почта'
+            placeholder='example@mail.ru'
+            type='email'
+            error={!!errors.email}
+            textError={errors?.email?.message}
+            {...register('email')}
+          />
+          <InputForm
+            label='Пароль'
+            type='password'
+            error={!!errors.password}
+            textError={errors?.password?.message}
+            {...register('password')}
+          />
+          <button type='submit' className={`form__submit ${!isValid && 'form__submit_disabled'}`} disabled={isLoading}>
+            Войти
+          </button>
+        </Form>
+        <div className='popup__changeWrapper'>
+          <p className='popup__paragraph'>У вас еще нет личного профиля?</p>
+          <Link fontSize={16} className='popup__link' onClick={() => handleLink()}>
+            Зарегистрироваться
+          </Link>
+        </div>
+      </>
     </PopupTemplate>
   )
 }

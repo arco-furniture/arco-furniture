@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import { Alert } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
@@ -47,4 +47,4 @@ const AlertBar: React.FC = () => {
   )
 }
 
-export default AlertBar
+export default memo(AlertBar)

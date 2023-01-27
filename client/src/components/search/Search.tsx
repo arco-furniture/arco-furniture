@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState, memo } from 'react'
 import s from '../../scss/modules/search.module.scss'
 import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
@@ -76,4 +76,4 @@ const Search: React.FC = () => {
   )
 }
 
-export default React.memo(Search)
+export default memo(Search)

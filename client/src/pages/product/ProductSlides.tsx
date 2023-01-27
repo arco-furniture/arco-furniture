@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Thumbs } from 'swiper'
 import { IProductSlides } from './types'
-import React from 'react'
+import React, { memo } from 'react'
 
 const ProductSlides: React.FC<IProductSlides> = ({ setThumbsSwiper, images }) => {
   const navSlides = images?.map((item, index) => {
@@ -34,4 +34,4 @@ const ProductSlides: React.FC<IProductSlides> = ({ setThumbsSwiper, images }) =>
   )
 }
 
-export default ProductSlides
+export default memo(ProductSlides)

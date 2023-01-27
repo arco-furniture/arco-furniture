@@ -1,5 +1,5 @@
 import Tag from '../../../components/tag/Tag'
-import React from 'react'
+import React, { memo } from 'react'
 import { useActions } from '../../../hooks/useActions'
 import { useCategory } from '../../../hooks/useStateSelectors'
 
@@ -39,4 +39,4 @@ const FilterTag: React.FC = () => {
   )
 }
 
-export default FilterTag
+export default memo(FilterTag)

@@ -6,14 +6,17 @@ import Cookies from 'js-cookie'
 
 const AuthProvider: React.FC<any> = ({ children }) => {
   const { user } = useAuth()
-  const { checkAuth, logout } = useActions()
+  const { checkAuth, logout, setIsLoadingAuth } = useActions()
   const { pathname } = useLocation()
 
   useEffect(() => {
     const accessToken = Cookies.get('accessToken')
-    console.log(accessToken)
     if (accessToken) {
       checkAuth()
+      console.log(accessToken)
+      setIsLoadingAuth()
+    } else {
+      setIsLoadingAuth()
     }
   }, [])
 

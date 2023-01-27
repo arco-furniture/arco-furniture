@@ -5,14 +5,9 @@ import AuthButtons from './AuthButtons'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { BlackTooltip } from 'components/index'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
-import Cookies from 'js-cookie'
 
 const HeaderTop: React.FC = () => {
-  const { user, isLoadingAuth } = useAuth()
-
-  const CheckAuth = () => {
-    return isLoadingAuth ? <HeaderProfile /> : <AuthButtons />
-  }
+  const { isLoadingAuth, user } = useAuth()
 
   return (
     <div className='header__top'>
@@ -25,7 +20,7 @@ const HeaderTop: React.FC = () => {
             </button>
           </BlackTooltip>
         </div>
-        <CheckAuth />
+        {isLoadingAuth && (user ? <HeaderProfile /> : <AuthButtons />)}
       </div>
     </div>
   )

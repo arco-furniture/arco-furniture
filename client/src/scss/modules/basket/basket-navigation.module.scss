@@ -2,30 +2,30 @@
 @import "../../mixins";
 
 .navigation {
+    @include flex-center-between;
+    width: 100%;
+    margin-bottom: 30px;
+}
 
-    &__container {
-        @include flex-center;
-        gap: 20px;
-    }
+.wrapper {
+    @include flex-center;
+    gap: 40px;
+    width: 100%;
+}
 
-    &__circle {
-        border-radius: 50%;
-        @include flex-center-center;
-        color: white;
-        width: 24px;
-        height: 24px;
-        margin-left: 9px;
-        @include text-format(400, 14px, 21px);
-    }
+.clear {
+    background-color: #FBFBFB;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+}
 
-    &__wrapper {
-        @include flex-center-between;
-    }
+.title {
+    @include reset;
+    @include text-format(700, 26px, 34px);
+    color: $mainBlack;
+}
 
-    &__line {
-        background-color: #555555;
-        width: 153px;
-        height: 1px;
-        margin-left: 9px;
-    }
+.stepper {
+    width: 100%;
+    @include flex-center-between;
+    max-width: 800px;
 }

@@ -1,5 +1,5 @@
 import { MenuItem, TextField } from '@mui/material'
-import React from 'react'
+import React, { memo } from 'react'
 import { useCategory } from '../../../hooks/useStateSelectors'
 import { useActions } from '../../../hooks/useActions'
 
@@ -36,4 +36,4 @@ const FilterMaterial: React.FC = () => {
   )
 }
 
-export default FilterMaterial
+export default memo(FilterMaterial)
