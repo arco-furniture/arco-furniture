@@ -1,12 +1,12 @@
 import { API_URL, getAuthUrl } from 'configs/config'
-import axios from 'axios'
 import Cookies from 'js-cookie'
 import { removeTokensStorage, saveToStorage } from './helpers'
 import { getContentType } from '../api/api.helpers'
+import { axiosClassic } from '../api/interceptors'
 
 export const AuthService = {
   async register(email: string, password: string, firstName: string) {
-    const response = await axios.post<any>(`${API_URL}${getAuthUrl('/register')}`, {
+    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/register')}`, {
       email,
       password,
       firstName,
@@ -20,7 +20,7 @@ export const AuthService = {
   },
 
   async login(email: string, password: string) {
-    const response = await axios.post<any>(`${API_URL}${getAuthUrl('/login')}`, {
+    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/login')}`, {
       email,
       password,
     })
@@ -39,7 +39,7 @@ export const AuthService = {
 
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
-    const response = await axios.post<any>(
+    const response = await axiosClassic.post<any>(
       `${API_URL}${getAuthUrl('/login/access-token')}`,
       {
         refreshToken,

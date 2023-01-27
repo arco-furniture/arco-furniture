@@ -28,7 +28,7 @@ export class ProfileController {
   @UseInterceptors(FileInterceptor('file'))
   @Auth()
   async uploadAvatar(@UploadedFile() file: Express.Multer.File, @User('_id') _id: string) {
-    return this.profileService.uploadAvatar([file], _id)
+    return this.profileService.uploadAvatar(Array(file), _id)
   }
 
   @HttpCode(200)

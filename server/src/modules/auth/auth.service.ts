@@ -33,8 +33,15 @@ export class AuthService {
         firstName: dto.firstName,
         email: dto.email,
         password: await hash(dto.password, salt),
-        avatar: null
-      })
+        avatar: null,
+        money: 650000,
+        steps: {
+          info: null,
+          form: null
+        },
+        basketItems: null,
+      }
+      )
 
     const user = await newUser.save()
 
@@ -76,7 +83,10 @@ export class AuthService {
       _id: user._id,
       email: user.email,
       firstName: user.firstName,
-      avatar: user.avatar
+      avatar: user.avatar,
+      money: user.money,
+      steps: user.steps,
+      basketItems: user.basketItems,
     }
   }
 
@@ -88,12 +98,11 @@ export class AuthService {
 
     const user = await this.UserModel.findById(result._id)
 
-    const newTokens = await this.issueTokenPair(String(user._id))
+    const newTokens = await this.issueTokenPair(String(user.id))
 
     return {
       user: this.returnUserFields(user),
       ...newTokens,
     }
-
   }
 }

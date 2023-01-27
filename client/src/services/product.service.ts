@@ -1,4 +1,4 @@
-import { API_URL, getAuthUrl, getProductUrl } from '../configs/config'
+import { API_URL, getProductUrl } from '../configs/config'
 import { axiosClassic } from '../api/interceptors'
 
 export const ProductService = {

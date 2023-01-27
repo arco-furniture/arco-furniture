@@ -1,9 +1,9 @@
-import {IsEmail, IsString, MinLength} from "class-validator";
+import {IsEmail, IsString, MinLength, IsNumber, IsArray} from "class-validator";
 import {prop} from "@typegoose/typegoose";
-import {BasketInfoDto} from "./basketInfo.dto";
 import {BasketItemDto} from "./BasketItem.dto";
+import {BasketInfoDto} from "./basketInfo.dto";
 
-export class UserDto {
+export class allUserDto {
 
   @IsString()
   firstName: string
@@ -17,12 +17,12 @@ export class UserDto {
 
   avatar: string | null
 
+  @IsNumber()
   money: number
 
-  steps: {
-    info: BasketInfoDto | null
-    form: null
-  }
+  @IsArray()
+  steps: BasketInfoDto | null
 
+  @IsArray()
   basketItems: null | BasketItemDto[]
 }

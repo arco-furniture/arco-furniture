@@ -7,11 +7,7 @@ import { BlackTooltip } from 'components/index'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 
 const HeaderTop: React.FC = () => {
-  const { isLoadingAuth } = useAuth()
-
-  const CheckAuth = () => {
-    return isLoadingAuth ? <HeaderProfile /> : <AuthButtons />
-  }
+  const { isLoadingAuth, user } = useAuth()
 
   return (
     <div className='header__top'>
@@ -24,7 +20,7 @@ const HeaderTop: React.FC = () => {
             </button>
           </BlackTooltip>
         </div>
-        <CheckAuth />
+        {isLoadingAuth && (user ? <HeaderProfile /> : <AuthButtons />)}
       </div>
     </div>
   )

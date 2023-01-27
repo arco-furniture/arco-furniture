@@ -2,18 +2,30 @@
 @import "../../mixins";
 
 .basket {
-    display: flex;
-    gap: 30px;
     max-width: 1180px;
+    @include flex-column;
+
+    &__wrapper {
+        @include flex-center-between;
+        width: 100%;
+        gap: 30px;
+    }
 
     &__container {
         @include flex-column;
         gap: 25px;
         width: 100%;
+        align-self: flex-start;
+    }
+
+    &__section {
+        @include flex-center;
+        gap: 35px;
     }
 }
 
 .menu {
+    align-self: flex-start;
     box-sizing: border-box;
     min-width: 380px;
     background-color: #FBFBFB;
@@ -52,7 +64,7 @@
 
     &__price {
         @include flex-center-between;
-        margin-top: 15px;
+        margin: 15px 0;
     }
 
     &__button {

@@ -22,4 +22,5 @@ export interface ISwiperCards {
 export interface ISwiperImages {
   images: imagesTypes[]
   visible: boolean
+  isTop: boolean
 }

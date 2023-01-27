@@ -4,10 +4,6 @@ import { IItem } from '../types/itemTypes'
 export interface IBasketState {
   totalPrice: number
   totalOldPrice: number
-  totalBenefit: number
-  basketBtnStatus: boolean
-  basketOrderBtnStatus: boolean
-  dataBuyInfo: []
   dataBasketItems: IBasketItem[]
 }
 

@@ -9,8 +9,6 @@ const Product = () => {
   const { productId } = useParams()
   const { data, isSuccess } = useQuery('get product', () => ProductService.getProduct(productId))
 
-  console.log('asd')
-
   return (
     isSuccess && (
       <section className='product'>

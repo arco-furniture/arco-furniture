@@ -1,5 +1,4 @@
 import React from 'react'
-// eslint-disable-next-line import/named
 import { ProfileAbout, ProfileBuy, ProfileReviews, ProfileMonies } from './index'
 
 const Profile = () => {

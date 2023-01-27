@@ -1,6 +1,6 @@
 import SwiperImages from './SwiperImages'
 import CardColors from './CardColors'
-import React, { memo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Tag from '../tag/Tag'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { ICard } from './types'
@@ -40,7 +40,7 @@ const Card: React.FC<ICard> = ({ item, isTop = false }) => {
   return (
     <article className='card' onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
       <Tag tag={item.mark} isCard price={item.price} oldPrice={item.oldPrice} />
-      <SwiperImages images={checkImages(item.cardImages)} visible={visible} />
+      <SwiperImages images={checkImages(item.cardImages)} visible={visible} isTop={isTop} />
       <p className='card__title'>{getPrefixTitle(item)}</p>
       <div className='card__desc-wrapper'>
         <div className='card__price-wrapper'>

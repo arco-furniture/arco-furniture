@@ -3,7 +3,7 @@ import imageNotFound from '../images/notFound.png'
 
 export const getBasketItem = (item: IItem, currentColor: any) => {
   return {
-    id: item._id,
+    _id: item._id,
     title: item.title,
     price: item.price,
     oldPrice: item.oldPrice,

@@ -1,16 +1,16 @@
 import React from 'react'
-import styles from '../../scss/modules/main.module.scss'
+import styles from '../scss/modules/main.module.scss'
 import { Routes, Route } from 'react-router-dom'
 import { Home, Favorite } from 'pages/index'
-import AlertBar from '../alertBar/AlertBar'
-import AuthorsPopup from '../popups/AuthorsPopup'
-import { Preloader } from '../index'
+import AlertBar from 'components/alertBar/AlertBar'
+import AuthorsPopup from 'components/popups/AuthorsPopup'
+import { Preloader } from 'components/index'
 import Loadable from 'react-loadable'
 import PageNotFound from 'pages/notFound/PageNotFound'
 import RegisterPopup from 'components/popups/RegisterPopup'
 import AuthPopup from 'components/popups/AuthPopup'
 
-const Main: React.FC = () => {
+const AppRoutes: React.FC = () => {
   const Category = Loadable({
     loader: () => import(/* webpackChunkName: "Category" */ 'pages/category/Category'),
     loading: () => <Preloader />,
@@ -21,23 +21,13 @@ const Main: React.FC = () => {
     loading: () => <Preloader />,
   })
 
-  const BasketControl = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketControl" */ 'pages/basket/BasketControl'),
-    loading: () => <Preloader />,
-  })
-
-  const BasketOrder = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketOrder" */ 'pages/basket/BasketOrder'),
-    loading: () => <Preloader />,
-  })
-
-  const BasketApproval = Loadable({
-    loader: () => import(/* webpackChunkName: "BasketApproval" */ 'pages/basket/BasketApproval'),
-    loading: () => <Preloader />,
-  })
-
   const Profile = Loadable({
     loader: () => import(/* webpackChunkName: "Category" */ 'pages/profile/Profile'),
+    loading: () => <Preloader />,
+  })
+
+  const Basket = Loadable({
+    loader: () => import(/* webpackChunkName: "Basket" */ 'pages/basket/Basket'),
     loading: () => <Preloader />,
   })
 
@@ -51,9 +41,7 @@ const Main: React.FC = () => {
             <Route path='/category/:categoryName' element={<Category />} />
             <Route path='/category/:categoryName/product/:productId' element={<Product />} />
             <Route path='/favorite' element={<Favorite />} />
-            <Route path='/basket/' element={<BasketControl />} />
-            <Route path='/basket/order' element={<BasketOrder />} />
-            <Route path='/basket/order/approval' element={<BasketApproval />} />
+            <Route path='/basket' element={<Basket />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
@@ -66,4 +54,4 @@ const Main: React.FC = () => {
   )
 }
 
-export default Main
+export default AppRoutes

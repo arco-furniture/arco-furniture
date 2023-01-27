@@ -1,5 +1,5 @@
 export interface IBasketItem {
-  id: number
+  _id: number
   title: string
   price: number
   oldPrice: number

@@ -7,13 +7,19 @@ import ProfileInfo from 'pages/profile/components/ProfileInfo'
 import ProfilePassword from 'pages/profile/components/ProfilePassword'
 import { useActions } from '../../hooks/useActions'
 import { toastError } from '../../api/withToastrErrorRedux'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useStateSelectors'
 
 const ProfileAbout: React.FC = () => {
   const { setUser } = useActions()
-  const { isLoading, isError } = useQuery('get profile info', () =>
+  const navigate = useNavigate()
+  const { user } = useAuth()
+
+  const { isLoading } = useQuery('get profile info', () =>
     ProfileService.getProfileInfo()
-      .then((info) => setUser(info))
-      .catch((error) => toastError(error)),
+      .then((userInfo) => setUser(userInfo))
+      .catch((error) => toastError(error))
+      .catch(() => !user && navigate('/')),
   )
 
   return isLoading ? (

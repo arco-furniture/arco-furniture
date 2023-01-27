@@ -4,8 +4,6 @@ import {AdviceController} from "./advice.controller";
 import {TypegooseModule} from "nestjs-typegoose";
 import {ProductModel} from "../../models/product.model";
 import {ConfigModule, ConfigService} from "@nestjs/config";
-import {JwtModule} from "@nestjs/jwt";
-import {getJwtConfig} from "../../config/jwt.config";
 
 @Module({
   imports: [
@@ -18,11 +16,6 @@ import {getJwtConfig} from "../../config/jwt.config";
       }
     ]),
     ConfigModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: getJwtConfig
-    })
   ],
   providers: [AdviceService],
   controllers: [AdviceController]
