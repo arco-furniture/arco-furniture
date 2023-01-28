@@ -1,4 +1,4 @@
-import BasketItem from './BasketItem'
+import BasketItem from './components/BasketItem'
 import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import React from 'react'
 import { useQuery } from 'react-query'

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import styles from '../../scss/modules/basket/basket.module.scss'
 import { IBasketItem } from '../../types/basketTypes'
-import BasketItem from './BasketItem'
+import BasketItem from './components/BasketItem'
 import { Button, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { useAuth, useBasket } from '../../hooks/useStateSelectors'
@@ -52,21 +52,10 @@ const BasketControl: React.FC = () => {
     mode: 'onChange',
   })
 
-  const getRequestItems = (items) => {
-    return items.map((item) => {
-      return {
-        _id: item._id,
-        color: item.color,
-        count: item.count,
-      }
-    })
-  }
-
   const onSubmit = (data) => {
     if (user && isValid) {
-      const items = getRequestItems(dataBasketItems)
       const info = { delivery: data.delivery, pay: data.pay }
-      setDataRequest({ info, items })
+      setDataRequest(info)
     } else {
       setPopupAuth()
     }

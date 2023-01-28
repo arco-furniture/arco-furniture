@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpCode, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, Post} from '@nestjs/common';
 import {BasketService} from "./basket.service";
 import {Auth} from "../../decorators/auth.decorator";
 import {User} from "../../decorators/user.decorator";
@@ -15,10 +15,19 @@ export class BasketController {
   @Auth()
   async postStageInfo(
     @User('_id') _id: string,
-    @Body('info') info: BasketInfoDto,
+    @Body('info') info: BasketInfoDto)
+  {
+    return this.basketService.postStageInfo(_id, info)
+  }
+
+  @HttpCode(200)
+  @Post('items')
+  @Auth()
+  async postBasketItems(
+    @User('_id') _id: string,
     @Body('items') items: BasketItemDto[])
   {
-    return this.basketService.postStageInfo(_id, info, items)
+    return this.basketService.postBasketItems(_id, items)
   }
 
   @HttpCode(200)
@@ -50,5 +59,19 @@ export class BasketController {
   @Auth()
   async getBasketScore(@User('_id') _id: string) {
     return this.basketService.getBasketScore(_id)
+  }
+
+  @HttpCode(200)
+  @Post('clear')
+  @Auth()
+  async deleteBasketItems(@User('_id') _id: string) {
+    return this.basketService.deleteBasketItems(_id)
+  }
+
+  @HttpCode(200)
+  @Post('payment')
+  @Auth()
+  async paymentBasketItems(@User('_id') _id: string) {
+    return this.basketService.paymentBasketItems(_id)
   }
 }

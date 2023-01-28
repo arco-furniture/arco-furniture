@@ -39,7 +39,7 @@ export class AuthService {
           info: null,
           form: null
         },
-        basketItems: null,
+        basketItems: [],
       }
       )
 

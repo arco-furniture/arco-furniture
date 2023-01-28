@@ -29,5 +29,5 @@ export class UserModel extends TimeStamps{
   }
 
   @prop()
-  basketItems: BasketItemDto[] | null
+  basketItems: BasketItemDto[] | []
 }

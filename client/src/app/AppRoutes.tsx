@@ -9,6 +9,7 @@ import Loadable from 'react-loadable'
 import PageNotFound from 'pages/notFound/PageNotFound'
 import RegisterPopup from 'components/popups/RegisterPopup'
 import AuthPopup from 'components/popups/AuthPopup'
+import PaymentPopup from 'components/popups/PaymentPopup'
 
 const AppRoutes: React.FC = () => {
   const Category = Loadable({
@@ -50,6 +51,7 @@ const AppRoutes: React.FC = () => {
       <AuthorsPopup />
       <RegisterPopup />
       <AuthPopup />
+      <PaymentPopup />
     </main>
   )
 }

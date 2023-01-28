@@ -11,6 +11,7 @@ import {getMongoConfig} from "../../config/mongo.config";
 import {AuthModule} from "../auth/auth.module";
 import {ProfileModule} from "../profile/profile.module";
 import {BasketModule} from "../basket/basket.module";
+import {OrderModule} from "../order/order.module";
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import {BasketModule} from "../basket/basket.module";
     AuthModule,
     ProfileModule,
     BasketModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

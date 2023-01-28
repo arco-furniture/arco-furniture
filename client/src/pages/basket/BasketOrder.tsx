@@ -7,6 +7,7 @@ import MenuOrder from 'pages/basket/components/MenuOrder'
 import styles from '../../scss/modules/basket/basket-form.module.scss'
 import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
+import { useActions } from '../../hooks/useActions'
 
 type TypesUseForm = {
   firstName: string
@@ -20,6 +21,7 @@ type TypesUseForm = {
 const BasketOrder: React.FC = () => {
   const isMounted = useRef<boolean>(false)
   const [dataRequest, setDataRequest] = useState<TypesUseForm | null>(null)
+  const { setUser } = useActions()
 
   const Schema = yup.object().shape({
     firstName: yup
@@ -48,9 +50,13 @@ const BasketOrder: React.FC = () => {
     resolver: yupResolver(Schema),
   })
 
-  const { refetch } = useQuery('post stage order', () => BasketService.postStageOrder(dataRequest), {
-    enabled: false,
-  })
+  const { refetch } = useQuery(
+    'post stage order',
+    () => BasketService.postStageOrder(dataRequest).then((userInfo) => setUser(userInfo)),
+    {
+      enabled: false,
+    },
+  )
 
   const onSubmit = (data) => {
     if (isValid) {

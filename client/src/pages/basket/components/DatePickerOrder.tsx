@@ -8,7 +8,6 @@ const DatePickerOrder: React.FC<any> = ({ control, errors }) => {
   const [date, setDate] = useState<Date | null>(new Date())
   const styleWrapper = { paddingTop: '42px', display: 'flex', justifyContent: 'flex-end', width: '100%' }
 
-  console.log(errors)
   return (
     <div style={styleWrapper}>
       <Controller

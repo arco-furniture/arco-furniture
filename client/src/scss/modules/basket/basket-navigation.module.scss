@@ -29,3 +29,9 @@
     @include flex-center-between;
     max-width: 800px;
 }
+
+.step {
+    border-radius: 40px;
+    padding: 5px 3px;
+    margin: 5px 0;
+}
