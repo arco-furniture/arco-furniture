@@ -6,7 +6,7 @@
     background-color: #FBFBFB;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    height: 127px;
+    min-height: 127px;
 
     &__container {
         padding: 15px 15px 15px 33px;
@@ -19,9 +19,28 @@
 
     &__image {
         min-width: 140px;
-        height: 100%;
+        min-height: 100%;
         object-fit: cover;
         border-radius: 4px 0 0 4px;
+    }
+
+    &__count {
+        font-family: Roboto,sans-serif;
+        @include text-format(500, 0.75rem, 1);
+        text-align: center;
+        background-color: #E13B3F;
+        border-radius: 50%;
+        color: $white;
+        padding: 3px;
+        height: 20px;
+        width: 20px;
+        line-height: 1.1;
+        box-sizing: border-box;
+    }
+
+    &__check {
+        @include flex-center;
+        gap: 7px;
     }
 
     &__box {
@@ -38,22 +57,22 @@
         gap: 10px;
     }
 
-    &__specifications {
+    &__left {
         @include flex-column;
+        justify-content: space-between;
+        height: 100%;
     }
 
-    &__left {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        justify-content: space-between;
+    &__top {
+        @include flex-column;
+        gap: 10px;
     }
 
     &__contain {
-        height: 100%;
         @include flex-column;
-        justify-content: space-between;
+        @include flex-center-between;
         align-items: flex-end;
+        height: 100%;
     }
 
     &__title {
@@ -67,6 +86,8 @@
         height: 15.8px;
         background-color: #2D2D2D;
         border-radius: 2px;
+        box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     &__button_group {
@@ -82,14 +103,18 @@
         }
     }
 
+    &__boxArtical {
+        @include flex-center-between;
+        gap: 5px;
+    }
+
     &__artical {
         @include reset;
-        font-size: 14px;
-        line-height: 18px;
+        @include text-format(400, 14px, 18px);
     }
 
     &__text {
-        @include text-format(400, 14px, 18px);
+        @include text-format(700, 14px, 18px);
         margin: 0 5px 0 0;
         color: #555555;
     }
@@ -128,4 +153,40 @@
             height: 20px;
         }
     }
+}
+
+.specs {
+    &__wrapper {
+        @include flex-center-between;
+        gap: 5px;
+    }
+
+    &__icon {
+        background-color: #F8F8F8 !important;
+    }
+
+    &__title {
+        @include reset;
+        width: 100%;
+        margin-right: 5px;
+        @include text-format(700, 14px, 18px);
+        color: #555555;
+    }
+
+    &__content {
+        @include flex-center;
+        gap: 5px;
+
+        ul {
+            @include flex-column;
+            @include reset-list;
+            gap: 7px;
+
+            li {
+                @include text-format(400, 12px, 16px);
+                color: $white;
+            }
+        }
+    }
+
 }

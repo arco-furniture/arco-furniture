@@ -1,13 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from 'scss/modules/basket/basket-navigation.module.scss'
 import { IconButton, Step, StepButton, Stepper } from '@mui/material'
-import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined'
-import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
-import { BlackTooltip } from 'components/index'
+import { useActions } from '../../hooks/useActions'
+import { useAuth } from '../../hooks/useStateSelectors'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import AcceptPopover from 'components/acceptPopover/AcceptPopover'
+import { useNavigate } from 'react-router-dom'
 
 const BasketNavigation: React.FC<any> = ({ activeStep }) => {
   const steps = ['Ваша корзина', 'Оформление заказа', 'Оплата заказа']
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({})
+  const { clearBasketItems, setClearBasketState } = useActions()
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const { user } = useAuth()
+
+  const handleClearBasket = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(evt.currentTarget)
+  }
+
+  const handleAccept = () => {
+    if (user) {
+      clearBasketItems()
+    } else {
+      setClearBasketState()
+      localStorage.removeItem('items')
+    }
+  }
 
   return (
     <div className={styles.navigation}>
@@ -16,16 +34,22 @@ const BasketNavigation: React.FC<any> = ({ activeStep }) => {
         <Stepper activeStep={activeStep} className={styles.stepper}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
-              <StepButton style={{ padding: '5px 3px', margin: '5px 0' }}>{label}</StepButton>
+              <StepButton className={styles.step} disabled={activeStep <= index}>
+                {label}
+              </StepButton>
             </Step>
           ))}
         </Stepper>
       </div>
-      <BlackTooltip title={<TitleTooltip title='Очистить корзину' />} placement='top'>
-        <IconButton aria-label='fingerprint' color='error' className={styles.clear}>
-          <RemoveShoppingCartOutlinedIcon />
-        </IconButton>
-      </BlackTooltip>
+      <IconButton aria-label='fingerprint' color='error' className={styles.clear} onClick={handleClearBasket}>
+        <DeleteOutlineOutlinedIcon />
+      </IconButton>
+      <AcceptPopover
+        anchorEl={anchorEl}
+        setAnchorEl={setAnchorEl}
+        handleAccept={handleAccept}
+        question='Очистить корзину?'
+      />
     </div>
   )
 }

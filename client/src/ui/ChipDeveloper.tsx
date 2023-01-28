@@ -1,6 +1,6 @@
 import React from 'react'
 import Chip from '@mui/material/Chip'
-import styles from '../scss/modules/authorsPopup.module.scss'
+import styles from '../scss/modules/popups.module.scss'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
 const ChipDeveloper: React.FC<any> = ({ item, size }) => {

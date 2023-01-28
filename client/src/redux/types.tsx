@@ -22,6 +22,8 @@ export interface IOtherState {
   }
   itemIsLiked: boolean
   statusAuthorsPopup: boolean
+  statusPaymentPopup: boolean
+  paymentValue: null | number
 }
 
 export interface IProductState {

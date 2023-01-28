@@ -8,7 +8,7 @@ import Search from '../search/Search'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import ListIcon from '@mui/icons-material/List'
-import { useBasket, useOther } from '../../hooks/useStateSelectors'
+import { useAuth, useBasket, useOther } from '../../hooks/useStateSelectors'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 import { useActions } from '../../hooks/useActions'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
@@ -18,6 +18,7 @@ const HeaderMiddle: React.FC = () => {
   const { favorites } = getFavoriteFromLS()
   const { checkBasketItems } = useActions()
   const { itemIsLiked } = useOther()
+  const { user } = useAuth()
   const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
   const countBasketItems = dataBasketItems.reduce((sum: number, currentItem: any) => {
     return sum + currentItem.count

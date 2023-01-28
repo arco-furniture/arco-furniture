@@ -3,6 +3,7 @@ import { IInitialCategories } from 'components/header/types'
 import { authorsNameTypes } from 'components/popups/types'
 import Skill from '../images/skills/index'
 import Category from '../images/category/index'
+import { specsNamesTypes } from 'pages/product/types'
 
 export const colors: searchColorType[] = [
   { nameColor: 'gray', color: '#E4E4E4' },
@@ -31,6 +32,12 @@ export const initialCategories: IInitialCategories[] = [
   { name: 'Детские', link: 'childish', categoryId: 6 },
   { name: 'Диваны', link: 'sofas', categoryId: 7 },
   { name: 'Столы и стулья', link: 'tables-and-chairs', categoryId: 8 },
+]
+
+export const specsNames: specsNamesTypes[] = [
+  { name: 'Стиль', specsNameId: 'style' },
+  { name: 'Материал', specsNameId: 'material' },
+  { name: 'Размер', specsNameId: 'size' },
 ]
 
 export const authorsName: authorsNameTypes[] = [

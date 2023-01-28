@@ -8,9 +8,16 @@
     }
 
     &__title {
+        @include reset;
         @include text-format(700, 26px, 34px);
-        color: #4675CE;
-        margin: 0;
+        color: $blue;
+    }
+
+    &__paragraph {
+        @include reset;
+        margin-top: 10px;
+        @include text-format(400, 18px, 28px);
+        color: #414141;
     }
 
     &__subtitle {
@@ -25,9 +32,26 @@
         color: #414141;
     }
 
-    &__img {
+    &__authorsImage {
         width: 600px;
         min-height: 428px;
+    }
+
+    &__imageContainer {
+        position: relative;
+    }
+
+    &__payImage {
+        width: 500px;
+        min-height: 500px;
+    }
+
+    &__payValue {
+        @include reset;
+        @include text-format(700, 22px, 16px);
+        position: absolute;
+        top: 140px;
+        left: 190px;
     }
 
     &__bottom {

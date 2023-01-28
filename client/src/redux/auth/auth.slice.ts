@@ -52,3 +52,5 @@ export const authSlice = createSlice({
 })
 
 export const { reducer, actions } = authSlice
+
+export const { setUser } = authSlice.actions

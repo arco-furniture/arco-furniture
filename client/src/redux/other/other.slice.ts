@@ -9,6 +9,8 @@ const initialState: IOtherState = {
     type: '',
   },
   statusAuthorsPopup: false,
+  statusPaymentPopup: false,
+  paymentValue: null,
 }
 
 export const otherSlice = createSlice({
@@ -31,7 +33,17 @@ export const otherSlice = createSlice({
     setItemIsLiked(state) {
       state.itemIsLiked = !state.itemIsLiked
     },
+    openPaymentPopup(state, action) {
+      state.statusPaymentPopup = true
+      state.paymentValue = action.payload
+    },
+    closePaymentPopup(state) {
+      state.statusPaymentPopup = false
+      state.paymentValue = null
+    },
   },
 })
 
 export const { reducer, actions } = otherSlice
+
+export const { openPaymentPopup } = otherSlice.actions

@@ -1,4 +1,4 @@
-import {Injectable, UnauthorizedException} from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable, UnauthorizedException} from '@nestjs/common';
 import {InjectModel} from "nestjs-typegoose";
 import {UserModel} from "../../models/user.model";
 import {ModelType} from "@typegoose/typegoose/lib/types";
@@ -13,13 +13,16 @@ export class BasketService {
     @InjectModel(ProductModel) private ProductModel: ModelType<ProductModel>
   ) {}
 
-  async postStageInfo(id: string, info: BasketInfoDto, items: BasketItemDto[]) {
+  async postStageInfo(id: string, info: BasketInfoDto) {
     const user = await this.checkUser(id)
-
-    if (!items) throw new Error('Корзина пустая')
     if (Object.keys(info).length === 0) throw new Error('Нет данных формы')
-
     user.steps = {info, form: null}
+    await user.save()
+    return this.returnUserFields(user)
+  }
+
+  async postBasketItems(id: string, items: BasketItemDto[]) {
+    const user = await this.checkUser(id)
     user.basketItems = items
     await user.save()
     return this.returnUserFields(user)
@@ -52,7 +55,7 @@ export class BasketService {
 
   async getBasketApproval(id: string) {
     const user = await this.UserModel.findById(id)
-    let basketParas = await user.basketItems
+    const basketParas = await user.basketItems
     return await this.getBasketUser(basketParas)
   }
 
@@ -86,13 +89,43 @@ export class BasketService {
   async getBasketScore(id) {
     const user = await this.checkUser(id)
     const basket = await this.getBasketUser(user.basketItems)
-    const allPrice = await this.reduceItems(basket, "price")
+    const allPrice: number = await this.reduceItems(basket, "price")
     const dataSolvency = await this.getIsSolvency(user.money, allPrice)
     return {
       allPrice: allPrice,
       userMoney: user.money,
       solvency: dataSolvency,
     }
+  }
+
+  async deleteBasketItems(id: string) {
+    const user = await this.checkUser(id)
+    user.basketItems = []
+    user.steps = {
+      info: null,
+      form: null
+    }
+    await user.save()
+    return this.returnUserFields(user)
+  }
+
+  async paymentBasketItems(id: string) {
+    const user = await this.checkUser(id)
+    const basket = await this.getBasketUser(user.basketItems)
+    const allPrice = await this.reduceItems(basket, "price")
+    const dataSolvency = await this.getIsSolvency(user.money, allPrice)
+
+    if (!dataSolvency.pay)  throw new HttpException('Недостаточно средств', HttpStatus.FORBIDDEN);
+
+    user.money = user.money - allPrice
+    user.basketItems = []
+    user.steps = {
+      info: null,
+      form: null
+    }
+    await user.save()
+
+    return { user: this.returnUserFields(user), orderAmount: await allPrice }
   }
 
   private async getIsSolvency(userMoney, allPrice) {

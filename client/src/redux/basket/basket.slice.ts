@@ -4,6 +4,7 @@ import { checkOldPriceBasket } from '../../utils/checkOldPriceBasket'
 import { IBasketItem } from '../../types/basketTypes'
 import { IBasketState } from '../types'
 import { getBasketFromLS } from '../../utils/getBasketFromLS'
+import { clearBasketItems, paymentBasketItems } from './basket.actions'
 
 const { items } = getBasketFromLS()
 
@@ -62,6 +63,17 @@ export const basketSlice = createSlice({
       state.totalPrice = checkPriceBasket(state.dataBasketItems)
       state.totalOldPrice = checkOldPriceBasket(state.dataBasketItems)
     },
+    setClearBasketState(state) {
+      state.dataBasketItems = []
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(clearBasketItems.fulfilled, (state) => {
+      state.dataBasketItems = []
+    })
+    builder.addCase(paymentBasketItems.fulfilled, (state) => {
+      state.dataBasketItems = []
+    })
   },
 })
 
