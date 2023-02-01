@@ -8,11 +8,7 @@ const CategoryNull = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    bgColor: '#fff',
-    boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
-    paddingTop: '20px',
-    borderRadius: '5px',
-    marginTop: '10px',
+    padding: '20px 80px',
   }
 
   return (
@@ -23,7 +19,7 @@ const CategoryNull = () => {
       <Typography variant='subtitle1' gutterBottom>
         но они обязательно скоро появятся!
       </Typography>
-      <img draggable={false} src={image} alt='image' height='550px' />
+      <img draggable={false} src={image} alt='image' width='100%' style={{ marginTop: '20px' }} />
     </Box>
   )
 }

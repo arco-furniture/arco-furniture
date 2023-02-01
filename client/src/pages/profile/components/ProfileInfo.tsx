@@ -111,7 +111,7 @@ const ProfileInfo: React.FC<any> = () => {
           helperText={errors?.firstName?.message}
         />
       </form>
-      <ListItemButton className='profileAbout__emailItem' disabled={!active}>
+      <ListItemButton className='profileAbout__emailItem'>
         <ListItemIcon style={{ minWidth: 'auto' }}>
           <LocalPostOfficeOutlinedIcon color='primary' style={{ marginLeft: '15px' }} />
         </ListItemIcon>

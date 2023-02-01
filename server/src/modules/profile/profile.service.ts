@@ -6,7 +6,8 @@ import {FirstNameDto} from "../../dto/firstName.dto";
 import {AvatarResponse} from "./avatar.interface";
 import { path } from 'app-root-path'
 import {ensureDir, writeFile, unlink} from "fs-extra";
-import {genSalt, hash} from "bcryptjs";
+import {compare, genSalt, hash} from "bcryptjs";
+import {ChangePasswordDto} from "../../dto/changePassword.dto";
 
 @Injectable()
 export class ProfileService {
@@ -51,7 +52,7 @@ export class ProfileService {
   async deleteAvatar(id) {
     const user = await this.checkUser(id)
 
-    const uploadFolder = `${path}/images`
+    const uploadFolder = `${path}/mediabank`
     await ensureDir(uploadFolder)
     await unlink(`${uploadFolder}/${user._id}.jpg`)
 
@@ -70,11 +71,14 @@ export class ProfileService {
     return this.returnUserFields(user)
   }
 
-  async changePassword(dto, id) {
+  async changePassword(dto: ChangePasswordDto, id) {
     const user = await this.checkUser(id)
 
+    const isValidPassword = await compare(dto.password, user.password)
+    if (!isValidPassword) throw new UnauthorizedException('Неверный текущий пароль')
+
     const salt = await genSalt(10)
-    user.password = await hash(dto.password, salt)
+    user.password = await hash(dto.newPassword, salt)
     await user.save()
 
     return this.returnUserFields(user)

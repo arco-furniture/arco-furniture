@@ -6,11 +6,12 @@ import { TextField } from '@mui/material'
 import { Controller } from 'react-hook-form'
 const DatePickerOrder: React.FC<any> = ({ control, errors }) => {
   const [date, setDate] = useState<Date | null>(new Date())
+  const maxDate = Date.now() + 1000000000
   const styleWrapper = { paddingTop: '42px', display: 'flex', justifyContent: 'flex-end', width: '100%' }
-
   return (
     <div style={styleWrapper}>
       <Controller
+        defaultValue={date}
         name='reqDate'
         control={control}
         render={({ field: { onChange, ...restField } }) => (
@@ -18,14 +19,22 @@ const DatePickerOrder: React.FC<any> = ({ control, errors }) => {
             <DesktopDatePicker
               label='Дата доставки'
               minDate={new Date()}
+              maxDate={new Date(maxDate)}
               value={date}
-              onError={errors?.reqDate}
               onChange={(event) => {
                 onChange(event)
                 setDate(event)
               }}
               renderInput={(params) => (
-                <TextField defaultValue={date} size='small' sx={{ maxWidth: '180px' }} {...params} color='primary' />
+                <TextField
+                  defaultValue={date}
+                  size='small'
+                  sx={{ maxWidth: '180px' }}
+                  {...params}
+                  color='primary'
+                  error={!!errors?.reqDate}
+                  helperText={errors?.errors?.message}
+                />
               )}
               {...restField}
             />
@@ -36,4 +45,4 @@ const DatePickerOrder: React.FC<any> = ({ control, errors }) => {
   )
 }
 
-export default memo(DatePickerOrder)
+export default DatePickerOrder

@@ -2,20 +2,32 @@ import { Avatar, Button, ThemeProvider } from '@mui/material'
 import { profileButtonTheme } from '../../../themes/profileButtonTheme'
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import { useAuth } from '../../../hooks/useStateSelectors'
-import { useQuery } from 'react-query'
+import { useQuery, useInfiniteQuery, QueryClient } from 'react-query'
 import { ProfileService } from '../../../services/profile.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../../api/withToastrErrorRedux'
 import { useActions } from '../../../hooks/useActions'
+import AcceptPopover from 'components/acceptPopover/AcceptPopover'
 
 const ProfileAvatar: React.FC<any> = () => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const { user } = useAuth()
-  const avatarStyle = { bgcolor: '#4675CE', width: '33px', height: '33px' }
+  const avatarStyle = {
+    bgcolor: '#4675CE',
+    width: '33px',
+    height: '33px',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
+  }
   const filePicker = useRef(null)
   const avatarData = new FormData()
   const { setUser } = useActions()
+
+  const handleAccept = () => {
+    refetchDelete()
+  }
 
   // загрузка аватара
   const { isLoading, refetch: refetchUpload } = useQuery(
@@ -31,7 +43,7 @@ const ProfileAvatar: React.FC<any> = () => {
   )
 
   // удаление аватара
-  const { refetch: refetchDelete } = useQuery(
+  const { refetch: refetchDelete } = useInfiniteQuery(
     'delete profile avatar',
     () =>
       ProfileService.deleteAvatar()
@@ -50,8 +62,8 @@ const ProfileAvatar: React.FC<any> = () => {
     await refetchUpload()
   }
 
-  const onClickDeleteAvatar = async () => {
-    await refetchDelete()
+  const onClickDeleteAvatar = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(evt.currentTarget)
   }
 
   const handlePicker = () => {
@@ -76,14 +88,16 @@ const ProfileAvatar: React.FC<any> = () => {
           <Button onClick={handlePicker} startIcon={<CameraAltOutlinedIcon />}>
             {isLoading ? 'Загрузка...' : 'Загрузить'}
           </Button>
-          <Button
-            sx={{ minWidth: '30px', width: '35px' }}
-            disabled={!user.avatar}
-            onClick={() => onClickDeleteAvatar()}
-          >
+          <Button sx={{ minWidth: '30px', width: '35px' }} disabled={!user.avatar} onClick={onClickDeleteAvatar}>
             <DeleteOutlineOutlinedIcon fontSize='small' />
           </Button>
         </ThemeProvider>
+        <AcceptPopover
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+          handleAccept={handleAccept}
+          question='Вы хотите удалить аватар?'
+        />
       </div>
     </div>
   )

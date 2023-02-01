@@ -1,12 +1,26 @@
 import BasketItem from './components/BasketItem'
 import styles from '../../scss/modules/basket/basket-approval.module.scss'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import MenuApproval from 'pages/basket/components/MenuApproval'
+import { useBasket } from '../../hooks/useStateSelectors'
 
 const BasketApproval: React.FC = () => {
-  const { data } = useQuery('get basket approval', () => BasketService.getBasketApproval())
+  const { dataBasketItems, isLoadingBasket } = useBasket()
+  const { data, refetch } = useQuery(
+    ['get basket approval', dataBasketItems],
+    () => BasketService.getBasketApproval(),
+    {
+      enabled: false,
+    },
+  )
+
+  useEffect(() => {
+    if (isLoadingBasket) {
+      refetch()
+    }
+  }, [dataBasketItems, isLoadingBasket])
 
   return (
     <section>

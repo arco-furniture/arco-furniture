@@ -38,7 +38,7 @@
 
 .box {
   background-color: $white;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12);
   border-radius: 7px;
   padding: 10px 20px;
   box-sizing: border-box;
@@ -87,7 +87,7 @@
   }
 
   &__form {
-    margin-top: 10px;
+    margin-top: 5px;
     @include flex-column;
     gap: 20px;
   }
@@ -98,10 +98,11 @@
     border: 1px solid rgba(0, 0, 0, 0.2) !important;
     padding: 0 !important;
     min-height: 45px;
-    margin-top: 17px !important;
+    margin-top: 23px !important;
+    cursor: default !important;
 
-    &:hover {
-      border: 1px solid rgba(0, 0, 0, 0.8) !important;
+    .MuiTouchRipple-root {
+      display: none;
     }
   }
 

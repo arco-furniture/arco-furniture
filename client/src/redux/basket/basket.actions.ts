@@ -21,9 +21,19 @@ export const paymentBasketItems = createAsyncThunk('basket/paymentBasketItems', 
     const { user, orderAmount } = await BasketService.paymentBasketItems()
     await thunkAPI.dispatch(setUser(user))
     await thunkAPI.dispatch(openPaymentPopup(orderAmount))
+    window.scrollTo(0, 0)
     localStorage.removeItem('items')
   } catch (error) {
     toastError(error)
+    return thunkAPI.rejectWithValue(error)
+  }
+})
+
+export const postBasketItems: any = createAsyncThunk('basket/postBasketItems', async (item, thunkAPI) => {
+  try {
+    await BasketService.postBasketItems(item)
+  } catch (error) {
+    toastr.error('Ошибка', 'Не добавить товар в корзину')
     return thunkAPI.rejectWithValue(error)
   }
 })

@@ -14,7 +14,7 @@ const AuthorsPopup: React.FC = () => {
   return (
     <ConfettiTemplate statusPopup={statusAuthorsPopup} handleClose={closeAuthorsPopup}>
       <div className={styles.popup__container}>
-        <img className={styles.popup__authorsImage} src={authors} alt='authors' />
+        <img className={styles.popup__authorsImage} draggable={false} src={authors} alt='authors' />
         <p className={styles.popup__text}>Над проектом работали</p>
         <div className={styles.popup__bottom}>
           {authorsName.map((item, index) => (

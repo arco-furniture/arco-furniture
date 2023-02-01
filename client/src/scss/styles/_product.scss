@@ -32,6 +32,7 @@
     background-color: #FBFBFB;
     @include flex-column;
     @include flex-center-between;
+    min-height: 507px;
   }
 
   &__slides {
@@ -130,13 +131,32 @@
     ul {
       @include reset-list;
       @include flex-center-between;
-      gap: 12px;
+      gap: 17px;
 
       li {
         width: 30px;
         height: 30px;
         border-radius: 2px;
         position: relative;
+
+        .product__light {
+          box-sizing: border-box;
+          border-radius: 7px;
+          position: absolute;
+          top: -7px;
+          left: -7px;
+          width: 44px;
+          height: 44px;
+          transition: opacity ease-in-out 0.2s;
+
+          &_active{
+            opacity: 1;
+          }
+
+          &_disabled {
+            opacity: 0;
+          }
+        }
 
         button {
           width: 30px;
@@ -183,6 +203,14 @@
     position: absolute;
     bottom: -30px;
     color: #D32F2F;
+  }
+
+  &__closeIcon {
+    position: absolute;
+    z-index: 3;
+    top: 4px;
+    left: 3px;
+    color: #fff;
   }
 
   &__buttons {

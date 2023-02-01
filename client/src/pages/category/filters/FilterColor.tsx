@@ -22,7 +22,7 @@ const FilterColor: React.FC = () => {
 
   return (
     <div className='filters__filter-color'>
-      <ul>
+      <ul style={{ padding: '2px' }}>
         {colors.map((obj) => (
           <ButtonColor key={obj.nameColor} objColor={obj} onClick={onClickButtonColor} />
         ))}

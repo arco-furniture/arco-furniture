@@ -9,10 +9,12 @@ const SwiperCards: React.FC<ISwiperCards> = ({ children }) => {
   const prevRef = useRef(null)
   const nextRef = useRef(null)
   const [reset, setReset] = useState(37)
-
   const slides = children.map((card, index) => {
     return (
-      <SwiperSlide key={index} style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <SwiperSlide
+        key={index}
+        style={{ display: 'flex', justifyContent: 'space-between', padding: '0 3px', boxSizing: 'border-box' }}
+      >
         {card}
       </SwiperSlide>
     )
@@ -29,9 +31,10 @@ const SwiperCards: React.FC<ISwiperCards> = ({ children }) => {
         style={{ width: '100%' }}
         id='advice-swiper'
         cssMode
+        className='advice__swiperBetween'
         mousewheel
         keyboard
-        spaceBetween={reset}
+        spaceBetween={36}
         slidesPerGroup={4}
         slidesPerView={4}
         navigation={{

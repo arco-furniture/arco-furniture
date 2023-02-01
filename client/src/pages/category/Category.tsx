@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import CategoryFilters from './CategoryFilters'
 import { Pagination } from '@mui/material'
 import { getSkeletonCards } from '../../utils/getSkeletonCards'
@@ -10,26 +10,31 @@ import { useActions } from '../../hooks/useActions'
 import CategoryNull from 'pages/category/CategoryNull'
 import { useQuery } from 'react-query'
 import { CategoryService } from '../../services/category.service'
+import CategoryNotFound from 'pages/category/CategoryNotFound'
 
 const Category: React.FC = () => {
   const { dataFilter, currentPage, sort } = useCategory()
   const { setChangePage } = useActions()
   const { categoryName } = useParams()
+  const categoryRef = useRef(null)
+  const executeScroll = () => categoryRef.current.scrollIntoView({ behavior: 'smooth' })
 
   useEffect(() => {
     setChangePage(1)
   }, [categoryName])
 
   const {
+    isError,
+    isSuccess,
     isLoading,
     refetch,
-    isSuccess,
     data: items,
   } = useQuery(
-    'change filters category',
+    ['change filters category', categoryName],
     () => CategoryService.filterCategory({ data: dataFilter, filter: categoryName, page: currentPage, sort }),
     {
       enabled: false,
+      retry: false,
     },
   )
 
@@ -37,21 +42,25 @@ const Category: React.FC = () => {
     refetch()
   }, [dataFilter, categoryName, currentPage, sort])
 
+  const counter = items?.data ? `${items?.count} шт.` : ''
+
   return (
-    <section className='category'>
-      <h2 style={{ position: 'sticky' }} className='category__title'>{`${items?.length} товаров`}</h2>
+    <section className='category' ref={categoryRef}>
+      <h2 style={{ position: 'sticky' }} className='category__title'>
+        {counter}
+      </h2>
       <div className='category__wrapper'>
         <CategoryFilters />
         <div className='category__content'>
           <CategorySort />
-          {items?.length === 0 && isSuccess ? (
-            <CategoryNull />
-          ) : (
+          {isError ? <CategoryNull /> : <></>}
+          {items?.data?.length ? (
             <div className='category__cards'>
               {isLoading && getSkeletonCards(6)}
               {items?.data?.length && getCards(items.data)}
               <div className='category__pagination'>
                 <Pagination
+                  onClick={() => executeScroll()}
                   onChange={(_evt, page) => setChangePage(page)}
                   shape='rounded'
                   count={items?.allPages}
@@ -60,7 +69,10 @@ const Category: React.FC = () => {
                 />
               </div>
             </div>
+          ) : (
+            <></>
           )}
+          {!items?.count && isSuccess && <CategoryNotFound />}
         </div>
       </div>
     </section>

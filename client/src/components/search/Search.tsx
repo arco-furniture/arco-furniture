@@ -13,7 +13,7 @@ const Search: React.FC = () => {
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
   const { getSearchItems, setClearSearchStatus } = useActions()
-  const styleSearch = { boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.15)', backgroundColor: '#f7f7f7' }
+  const styleSearch = { backgroundColor: '#f7f7f7' }
   const inputRef = useRef(null)
 
   const handleSearchValue = (value) => {
@@ -66,7 +66,7 @@ const Search: React.FC = () => {
               <CloseIcon />
             </IconButton>
           )}
-          <IconButton disabled={!searchValue.length} size='small' color='primary'>
+          <IconButton size='small' color={isFocus ? 'primary' : 'default'}>
             <SearchIcon />
           </IconButton>
         </div>

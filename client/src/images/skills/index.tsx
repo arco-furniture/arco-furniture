@@ -13,6 +13,8 @@ import MaterialUI from './MaterialUI'
 import Scss from './Scss'
 import ReactQuery from './ReactQuery'
 import Passport from './Passport'
+import Ubuntu from './Ubuntu'
+import Nginx from './Nginx'
 
 const Icon = {
   axios: <Axios />,
@@ -29,6 +31,8 @@ const Icon = {
   materialUI: <MaterialUI />,
   reactQuery: <ReactQuery />,
   passport: <Passport />,
+  ubuntu: <Ubuntu />,
+  nginx: <Nginx />,
 }
 
 export default Icon

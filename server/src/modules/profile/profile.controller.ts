@@ -11,6 +11,7 @@ import {User} from "../../decorators/user.decorator";
 import {FirstNameDto} from "../../dto/firstName.dto";
 import {FileInterceptor} from "@nestjs/platform-express";
 import {PasswordDto} from "../../dto/password.dto";
+import {ChangePasswordDto} from "../../dto/changePassword.dto";
 
 @Controller('profile')
 export class ProfileController {
@@ -49,7 +50,7 @@ export class ProfileController {
   @HttpCode(200)
   @Patch('password/change')
   @Auth()
-  async changePassword(@Body() dto: PasswordDto, @User('_id') _id: string) {
+  async changePassword(@Body() dto: ChangePasswordDto, @User('_id') _id: string) {
     return this.profileService.changePassword(dto, _id)
   }
 }

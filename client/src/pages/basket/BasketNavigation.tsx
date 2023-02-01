@@ -1,30 +1,61 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from 'scss/modules/basket/basket-navigation.module.scss'
 import { IconButton, Step, StepButton, Stepper } from '@mui/material'
 import { useActions } from '../../hooks/useActions'
 import { useAuth } from '../../hooks/useStateSelectors'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import AcceptPopover from 'components/acceptPopover/AcceptPopover'
-import { useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { BasketService } from '../../services/basket.service'
 
 const BasketNavigation: React.FC<any> = ({ activeStep }) => {
   const steps = ['Ваша корзина', 'Оформление заказа', 'Оплата заказа']
-  const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({})
+  const [completed, setCompleted] = useState<{ [k: number]: boolean }>({})
   const { clearBasketItems, setClearBasketState } = useActions()
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const [anchorElClearBasket, setAnchorElClearBasket] = useState<HTMLButtonElement | null>(null)
+  const [anchorElChangeStage, setAnchorElChangeStage] = useState<HTMLButtonElement | null>(null)
+  const [indexStage, setIndexStage] = useState<number>(1)
+  const isMounted = useRef<boolean>(false)
+  const [requestStage, setRequestStage] = useState(false)
   const { user } = useAuth()
+  const { setUser } = useActions()
+
+  const { refetch } = useQuery(
+    'change stage basket',
+    () => BasketService.changeStage(indexStage).then((userInfo) => setUser(userInfo)),
+    {
+      enabled: false,
+    },
+  )
 
   const handleClearBasket = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(evt.currentTarget)
+    setAnchorElClearBasket(evt.currentTarget)
   }
 
-  const handleAccept = () => {
+  const handleChangeStage = (evt, index) => {
+    setIndexStage(index)
+    setAnchorElChangeStage(evt)
+  }
+
+  const handleAcceptClearBasket = () => {
     if (user) {
       clearBasketItems()
     } else {
       setClearBasketState()
       localStorage.removeItem('items')
     }
+  }
+
+  useEffect(() => {
+    if (isMounted.current) {
+      refetch()
+      isMounted.current = false
+    }
+  }, [requestStage])
+
+  const handleAcceptChangeStage = () => {
+    setRequestStage(!requestStage)
+    isMounted.current = true
   }
 
   return (
@@ -34,7 +65,11 @@ const BasketNavigation: React.FC<any> = ({ activeStep }) => {
         <Stepper activeStep={activeStep} className={styles.stepper}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
-              <StepButton className={styles.step} disabled={activeStep <= index}>
+              <StepButton
+                className={styles.step}
+                disabled={activeStep <= index}
+                onClick={(evt) => handleChangeStage(evt, index)}
+              >
                 {label}
               </StepButton>
             </Step>
@@ -45,9 +80,16 @@ const BasketNavigation: React.FC<any> = ({ activeStep }) => {
         <DeleteOutlineOutlinedIcon />
       </IconButton>
       <AcceptPopover
-        anchorEl={anchorEl}
-        setAnchorEl={setAnchorEl}
-        handleAccept={handleAccept}
+        anchorEl={anchorElChangeStage}
+        setAnchorEl={setAnchorElChangeStage}
+        handleAccept={handleAcceptChangeStage}
+        question={`Перейти на стадию "${steps[indexStage]}"?
+         Информация с предыдущих стадий будет удалена.`}
+      />
+      <AcceptPopover
+        anchorEl={anchorElClearBasket}
+        setAnchorEl={setAnchorElClearBasket}
+        handleAccept={handleAcceptClearBasket}
         question='Очистить корзину?'
       />
     </div>

@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {ModelType} from "@typegoose/typegoose/lib/types";
 import {ProductModel} from "../../models/product.model";
 import {InjectModel} from "nestjs-typegoose";
@@ -10,6 +10,7 @@ export class CategoryService {
   async filterCategory(filters) {
     const { value, page, data, sort } = filters
     const categoryItems = await this.productModel.find({category: value})
+    if (!categoryItems.length) throw new HttpException('В категории нет товаров ', HttpStatus.FORBIDDEN);
     return this.getAllFilters([...categoryItems], data, page, sort)
   }
 
@@ -24,6 +25,7 @@ export class CategoryService {
     const sortItems = await this.getSortItems(resultAllFilters, sort)
 
     return {
+      count: resultAllFilters.length,
       data: this.getResultPage(sortItems, page),
       allPages: this.getCountAllPages(resultAllFilters),
       // minMaxPrice: this.getFormatPrice(resultAllFilters),
