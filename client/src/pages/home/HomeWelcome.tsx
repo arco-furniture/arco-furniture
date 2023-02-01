@@ -9,6 +9,7 @@ import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 import { BlackTooltip } from 'components/index'
 import { Link } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const HomeWelcome: React.FC = () => {
   return (
@@ -20,7 +21,14 @@ const HomeWelcome: React.FC = () => {
           занимается продажей кухонной и корпусной мебели, вернее даже будет сказать что в первую очередь мы не продаем,
           а стараемся помочь нашим клиентам с выбором.
         </p>
-        <img draggable={false} className='welcome__image' src={welcome} alt='welcome' />
+        <LazyLoadImage
+          width='100%'
+          height='310px'
+          effect='blur'
+          className='welcome__image'
+          alt='работник'
+          src={welcome}
+        />
       </div>
       <div className='welcome__column'>
         <div className='welcome__top'>
@@ -34,10 +42,10 @@ const HomeWelcome: React.FC = () => {
                   textTransform: 'none',
                   color: '#4675ce',
                   fontWeight: 700,
-                  boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
+                  boxShadow:
+                    '0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
                   paddingRight: '12px',
                 }}
-                disabled
                 variant='text'
                 endIcon={<RateReviewOutlinedIcon />}
               >

@@ -34,11 +34,11 @@ const HomePreview: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className='preview__wrapper'>
+      <div className='preview__wrapper preview__wrapper_banner'>
         <h2 className='preview__title'>Новые акции</h2>
         <HomeBanner />
       </div>
-      <div className='preview__wrapper'>
+      <div className='preview__wrapper preview__wrapper_top'>
         <div className='preview__timer-container'>
           <h2 className='preview__title'>Товар дня</h2>
           <CountDown hours={18} minutes={0} />

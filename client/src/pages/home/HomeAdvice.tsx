@@ -10,8 +10,19 @@ const HomeAdvice: React.FC = () => {
   const { adviceData, adviceStatus } = useHome()
   const { filterAdvice } = useActions()
   const [sortIndex, setSortIndex] = useState(0)
-  const sortActiveStyles = { backgroundColor: '#4675CE', opacity: 0.6, color: '#fff' }
-  const sortDefaultStyles = { backgroundColor: '#F5F5F5', color: '#555', boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)' }
+  const sortActiveStyles = {
+    backgroundColor: '#4675CE',
+    opacity: 0.6,
+    color: '#fff',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.07), 0 4px 4px 0px rgba(0, 0, 0, 0.06), 0 2px 5px 0px rgba(0, 0, 0, 0.02)',
+  }
+  const sortDefaultStyles = {
+    backgroundColor: '#F5F5F5',
+    color: '#555',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.07), 0 4px 4px 0px rgba(0, 0, 0, 0.06), 0 2px 5px 0px rgba(0, 0, 0, 0.02)',
+  }
   const sortArray = [
     { name: 'Все', advice: 'all' },
     { name: 'Хиты продаж', advice: 'top' },

@@ -4,13 +4,15 @@ import { Button, IconButton } from '@mui/material'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import BlackTooltip from '../../components/BlackTooltip/BlackTooltip'
-import { IItem, colorsTypes } from '../../types/itemTypes'
+import { colorsTypes, IItem } from '../../types/itemTypes'
 import { getBasketItem } from '../../utils/getBasketItem'
 import { colors } from 'app/constants'
 import { useProduct } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { handleChangeFavorite } from '../../utils/handleChangeFavorite'
+import { getPrefixTitle } from '../../utils/getPrefixTitle'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 
 const ProductParams: React.FC<any> = ({ product }) => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
@@ -19,6 +21,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
   const { favorites } = getFavoriteFromLS()
   const { addItemForBasket, openAlertBar, setCurrentColor, setItemIsLiked } = useActions()
   const isFavorite = favorites.some((favorite: IItem) => favorite._id === product._id)
+
   const existColors = colors.map((item) => {
     const isExist = product.colors?.some((color) => color.nameColor === item.nameColor)
     return {
@@ -34,21 +37,21 @@ const ProductParams: React.FC<any> = ({ product }) => {
     }
   }, [])
 
-  const handleCurrentColor = (obj: colorsTypes, currentIndex, index) => {
-    const notExistColor = {
-      backgroundColor: 'inherit',
-      border: `3px solid ${obj.color}`,
+  useEffect(() => {
+    const isLoading = Object.keys(product).length
+    if (isLoading) {
+      const currentColor = existColors.find((item) => item.exist)
+      const index = existColors.indexOf(currentColor)
+      setCurrentColor({ index, ...currentColor })
     }
-    const defaultStylesColor = {
+  }, [product])
+
+  const handleCurrentColor = (obj: colorsTypes) => {
+    return {
       borderRadius: '5px',
       backgroundColor: obj.color,
       transition: 'transform ease-in-out 0.1s',
-      opacity: 1,
     }
-    if (!obj?.exist) {
-      return Object.assign({}, defaultStylesColor, notExistColor)
-    }
-    return defaultStylesColor
   }
 
   const ChipSuccess = () => {
@@ -81,7 +84,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
   return (
     <div className='product__params panel'>
       <div className='product__top-wrapper'>
-        <h2>{product.title}</h2>
+        <h2>{getPrefixTitle(product)}</h2>
         {currentColor.exist ? <ChipSuccess /> : <ChipError />}
       </div>
       <div className='product__price-wrapper'>
@@ -94,8 +97,13 @@ const ProductParams: React.FC<any> = ({ product }) => {
         <h3 className='product__title'>Цвета исполнения:</h3>
         <ul>
           {existColors.map((item: colorsTypes, index: number) => {
+            const isActive = currentColor.index === index
             return (
               <li key={index}>
+                <span
+                  className={`product__light ${isActive ? 'product__light_active' : 'product__light_disabled'}`}
+                  style={{ border: `3px solid ${isActive && item.exist ? '#4675CE' : '#d32f2f'}` }}
+                />
                 <Button
                   onClick={() =>
                     setCurrentColor({
@@ -105,10 +113,11 @@ const ProductParams: React.FC<any> = ({ product }) => {
                       exist: item.exist,
                     })
                   }
-                  style={handleCurrentColor(item, currentColor.index, index)}
+                  style={handleCurrentColor(item)}
                   variant='contained'
-                />
-                {/* {currentColor.index === index && <span className='product__circle' />} */}
+                >
+                  {!item.exist && <CloseOutlinedIcon className='product__closeIcon' />}
+                </Button>
               </li>
             )
           })}

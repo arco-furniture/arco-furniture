@@ -1,5 +1,14 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Button, IconButton, TextField, ThemeProvider } from '@mui/material'
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  ThemeProvider,
+} from '@mui/material'
 import { profileButtonTheme } from '../../../themes/profileButtonTheme'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined'
@@ -12,38 +21,48 @@ import { ProfileService } from '../../../services/profile.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../../api/withToastrErrorRedux'
 import { useActions } from '../../../hooks/useActions'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const ProfilePassword: React.FC<any> = () => {
   const [active, setActive] = useState(false)
   const [password, setPassword] = useState('')
-  const [passwordReplay, setPasswordReplay] = useState('')
-  const [formValues, setFormValues] = useState({ password, passwordReplay })
+  const [newPassword, setNewPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [formValues, setFormValues] = useState({ password, newPassword })
   const { setUser } = useActions()
+
+  const handleClickShowPassword = () => {
+    if (active) {
+      setShowPassword(!showPassword)
+    }
+  }
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+  }
 
   useEffect(() => {
     if (active) {
-      setFormValues({ password, passwordReplay })
+      setFormValues({ password, newPassword })
     } else {
+      setShowPassword(false)
       setPassword('')
-      setPasswordReplay('')
+      setNewPassword('')
 
       resetField('password')
-      resetField('passwordReplay')
+      resetField('newPassword')
     }
-  }, [password, passwordReplay, active])
+  }, [password, newPassword, active])
 
   const Schema = yup.object().shape({
     password: yup.string().required('Вы не заполнили').min(6, 'Не менее 6 символов'),
-    passwordReplay: yup
-      .string()
-      .required('Вы не заполнили')
-      .min(6, 'Не менее 6 символов')
-      .oneOf([yup.ref('password')], 'Пароли не совпадают'),
+    newPassword: yup.string().required('Вы не заполнили').min(6, 'Не менее 6 символов'),
   })
 
   type Inputs = {
     password: string
-    passwordReplay: string
+    newPassword: string
   }
 
   const {
@@ -65,7 +84,7 @@ const ProfilePassword: React.FC<any> = () => {
   const { isLoading, refetch } = useQuery(
     'change profile first name',
     () =>
-      ProfileService.changePassword({ password: formValues.password })
+      ProfileService.changePassword(formValues)
         .then((info) => setUser(info))
         .then(() => toastr.success('Данные сохранены', 'Вы изменили пароль'))
         .catch((error) => toastError(error))
@@ -84,7 +103,7 @@ const ProfilePassword: React.FC<any> = () => {
             <Button
               type='submit'
               startIcon={<VpnKeyOutlinedIcon />}
-              disabled={!formValues.password || !formValues.passwordReplay}
+              disabled={!formValues.password || !formValues.newPassword}
             >
               {isLoading ? 'Загрузка...' : 'Сохранить'}
             </Button>
@@ -93,38 +112,67 @@ const ProfilePassword: React.FC<any> = () => {
             {!active ? <LockOutlinedIcon color='error' /> : <LockOpenOutlinedIcon color='success' />}
           </IconButton>
         </div>
-        <TextField
-          {...register('password')}
-          type='password'
-          name='password'
-          className='input'
-          label='Пароль'
-          variant='outlined'
-          size='small'
-          sx={{ width: '100%' }}
-          disabled={!active}
-          placeholder='*******'
-          onChange={(evt) => setPassword(evt.target.value)}
-          value={password}
-          error={!!errors.password}
-          helperText={errors?.password?.message}
-        />
-        <TextField
-          {...register('passwordReplay')}
-          type='password'
-          name='passwordReplay'
-          className='input'
-          label='Подтвердите пароль'
-          variant='outlined'
-          size='small'
-          sx={{ width: '100%' }}
-          disabled={!active}
-          placeholder='*******'
-          onChange={(evt) => setPasswordReplay(evt.target.value)}
-          value={passwordReplay}
-          error={!!errors.passwordReplay}
-          helperText={errors?.passwordReplay?.message}
-        />
+        <FormControl sx={{ width: '100%' }} variant='outlined' {...register('password')} disabled={!active}>
+          <InputLabel htmlFor='password'>Пароль</InputLabel>
+          <OutlinedInput
+            size='small'
+            disabled={!active}
+            name='password'
+            className='input'
+            id='password'
+            type={showPassword ? 'text' : 'password'}
+            onChange={(evt) => setPassword(evt.target.value)}
+            value={password}
+            endAdornment={
+              <InputAdornment position='end'>
+                <IconButton
+                  disabled={!active}
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge='end'
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label='Password'
+          />
+          <FormHelperText className='textHelper' color='error' error={!!errors.password}>
+            {errors?.password?.message}
+          </FormHelperText>
+        </FormControl>
+
+        <FormControl sx={{ width: '100%' }} variant='outlined' {...register('newPassword')} disabled={!active}>
+          <InputLabel htmlFor='newPassword'>Новый пароль</InputLabel>
+          <OutlinedInput
+            size='small'
+            disabled={!active}
+            name='newPassword'
+            className='input'
+            id='newPassword'
+            type={showPassword ? 'text' : 'password'}
+            onChange={(evt) => setNewPassword(evt.target.value)}
+            value={newPassword}
+            endAdornment={
+              <InputAdornment position='end'>
+                <IconButton
+                  disabled={!active}
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge='end'
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label='password replay'
+          />
+          <FormHelperText className='textHelper' color='error' error={!!errors.newPassword}>
+            {errors?.newPassword?.message}
+          </FormHelperText>
+        </FormControl>
       </form>
     </div>
   )

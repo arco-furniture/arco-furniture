@@ -5,6 +5,7 @@ export interface IBasketState {
   totalPrice: number
   totalOldPrice: number
   dataBasketItems: IBasketItem[]
+  isLoadingBasket: boolean
 }
 
 export interface IHomeState {

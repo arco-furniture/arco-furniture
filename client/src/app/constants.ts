@@ -67,6 +67,11 @@ export const frontendSkills = [
   { name: 'React Hook Form', icon: Skill.reactHookForm },
 ]
 
+export const otherSkills = [
+  { name: 'Ubuntu', icon: Skill.ubuntu },
+  { name: 'Nginx', icon: Skill.nginx },
+]
+
 export const iconsCategory = [
   { name: 'Кухня', icon: Category.kitchen, category: 'kitchens' },
   { name: 'Гостиная', icon: Category.livingRooms, category: 'living-rooms' },

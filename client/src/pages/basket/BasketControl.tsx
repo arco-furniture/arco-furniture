@@ -11,6 +11,7 @@ import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import { toastError } from '../../api/withToastrErrorRedux'
 import { useActions } from '../../hooks/useActions'
+import { getRequestItems } from '../../utils/getRequestItems'
 
 const BasketControl: React.FC = () => {
   const { dataBasketItems, totalPrice } = useBasket()
@@ -20,16 +21,15 @@ const BasketControl: React.FC = () => {
   const [dataRequest, setDataRequest] = useState<object>({})
   const isMounted = useRef<boolean>(false)
 
-  const { refetch } = useQuery(
-    'basket post stage info',
-    () =>
-      BasketService.postStageInfo(dataRequest)
-        .then((info) => setUser(info))
-        .catch((error) => toastError(error)),
-    {
-      enabled: false,
+  const { refetch } = useQuery('basket post stage info', () => BasketService.postStageInfo(dataRequest), {
+    enabled: false,
+    onSuccess(info) {
+      setUser(info)
     },
-  )
+    onError(error) {
+      toastError(error)
+    },
+  })
 
   useEffect(() => {
     if (isMounted.current) {

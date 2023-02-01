@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from '../../scss/modules/footer.module.scss'
 import logo from '../../images/logo-black.svg'
-import ChipDeveloper from '../../ui/ChipDeveloper'
-import { authorsName, backendSkills, frontendSkills } from 'app/constants'
+import { backendSkills, frontendSkills, otherSkills } from 'app/constants'
 import Skill from 'components/skill/Skill'
-import { IconButton } from '@mui/material'
+import { IconButton, Link } from '@mui/material'
 import QrCodeIcon from '@mui/icons-material/QrCode'
 
 const Footer: React.FC = () => {
@@ -21,11 +20,11 @@ const Footer: React.FC = () => {
               кабинетом и оформлением заказа.
             </p>
           </div>
-          <div className={styles.developers}>
-            <h4 className={styles.title}>Developers</h4>
-            <div className={styles.devContain}>
-              {authorsName.map((item, index) => (
-                <ChipDeveloper key={index} item={item} size='small' />
+          <div className={styles.other}>
+            <h4 className={styles.title}>Other</h4>
+            <div className={styles.skills}>
+              {otherSkills.map((item, index) => (
+                <Skill name={item.name} icon={item.icon} key={index} />
               ))}
             </div>
           </div>
@@ -48,11 +47,21 @@ const Footer: React.FC = () => {
         </div>
         <div className={styles.bottom}>
           <em className={styles.copy}>&copy; Yandex Team 2023</em>
-          <a href='https://github.com/arco-furniture/arco-furniture' target='_blank' rel='noreferrer'>
-            <IconButton>
-              <QrCodeIcon color='primary' />
-            </IconButton>
-          </a>
+          <div className={styles.version}>
+            <Link
+              className={styles.releases}
+              href='https://github.com/arco-furniture/arco-furniture/releases'
+              target='_blank'
+              rel='noreferrer'
+            >
+              v2.2.0
+            </Link>
+            <Link href='https://github.com/arco-furniture/arco-furniture' target='_blank' rel='noreferrer'>
+              <IconButton>
+                <QrCodeIcon color='primary' />
+              </IconButton>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

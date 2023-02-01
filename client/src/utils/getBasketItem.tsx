@@ -11,6 +11,7 @@ export const getBasketItem = (item: IItem, currentColor: any) => {
     specs: item.specs,
     color: currentColor,
     article: item.article,
+    category: item.category,
   }
 }
 

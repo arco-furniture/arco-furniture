@@ -41,4 +41,9 @@ export const BasketService = {
     const { data } = await axios.post(`${API_URL}${getBasketUrl('/payment')}`)
     return data
   },
+
+  async changeStage(stage) {
+    const { data } = await axios.post(`${API_URL}${getBasketUrl(`/stage/change/${stage}`)}`)
+    return data
+  },
 }

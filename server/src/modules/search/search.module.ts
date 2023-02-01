@@ -6,9 +6,11 @@ import {ProductModel} from "../../models/product.model";
 import {ConfigModule, ConfigService} from "@nestjs/config";
 import {JwtModule} from "@nestjs/jwt";
 import {getJwtConfig} from "../../config/jwt.config";
+import {BasketModule} from "../basket/basket.module";
 
 @Module({
   imports: [
+    BasketModule,
     TypegooseModule.forFeature([
       {
         typegooseClass: ProductModel,

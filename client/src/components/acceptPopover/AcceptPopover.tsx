@@ -5,6 +5,7 @@ const AcceptPopover: React.FC<any> = ({ anchorEl, setAnchorEl, anchor = 'left', 
   const isMounted = useRef<boolean>(false)
   const wrapperStyles = { position: 'absolute' }
   const buttonStyles = { display: 'flex', padding: '0 16px 16px 16px', gap: '10px' }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -49,7 +50,7 @@ const AcceptPopover: React.FC<any> = ({ anchorEl, setAnchorEl, anchor = 'left', 
         anchorEl={anchorEl}
         onClose={handleClose}
       >
-        <Typography sx={{ p: 2 }}>{question}</Typography>
+        <Typography sx={{ p: 2, maxWidth: '240px' }}>{question}</Typography>
         <Box sx={buttonStyles}>
           <Button size='small' color='success' variant='contained' onClick={() => onClickAccept()}>
             Подтвердить

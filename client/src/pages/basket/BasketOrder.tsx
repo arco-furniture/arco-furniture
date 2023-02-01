@@ -37,7 +37,7 @@ const BasketOrder: React.FC = () => {
       .required('Вы не заполнили')
       .matches(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/, 'Некорректный номер телефона'),
     address: yup.string().required('Вы не заполнили'),
-    reqDate: yup.date().nullable().typeError('Invalid Date'),
+    reqDate: yup.date().required('Некорректная дата доставки'),
   })
 
   const {

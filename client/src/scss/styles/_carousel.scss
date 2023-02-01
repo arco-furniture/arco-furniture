@@ -1,0 +1,68 @@
+@import "../mixins";
+@import "../variables";
+
+.swiper {
+  position: static;
+  padding: 3rem 0;
+}
+
+.swiper-container {
+  transition: ease-in-out 0.2s;
+}
+
+.swiper-wrapper {
+  padding-bottom: 10px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 0;
+}
+
+.swiper-pagination {
+  width: 100%;
+  @include flex-center-center;
+  gap: 15px !important;
+  position: absolute;
+  bottom: 3px !important;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.card:hover .swiper-pagination {
+  opacity: 1;
+}
+
+.slides-hidden {
+  opacity: 0;
+}
+
+.swiper-pagination-bullet {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12);
+  opacity: 0.7;
+  border: 1.7px solid rgba(255, 255, 255, 0.9);
+  transition: opacity ease-in-out 0.2s, background-color ease-in-out 0.1s;
+  box-sizing: border-box;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $blue;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+

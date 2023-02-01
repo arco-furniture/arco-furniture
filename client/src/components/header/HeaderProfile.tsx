@@ -8,7 +8,14 @@ import { BlackTooltip } from 'components/index'
 import { useAuth } from '../../hooks/useStateSelectors'
 
 const HeaderProfile = () => {
-  const stylesAvatar = { bgcolor: '#4675CE', height: '33px', width: '33px', marginRight: '7px' }
+  const stylesAvatar = {
+    bgcolor: '#4675CE',
+    height: '33px',
+    width: '33px',
+    marginRight: '7px',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
+  }
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const { user } = useAuth()

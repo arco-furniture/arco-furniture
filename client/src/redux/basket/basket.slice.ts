@@ -12,12 +12,16 @@ const initialState: IBasketState = {
   totalPrice: 0,
   totalOldPrice: 0,
   dataBasketItems: items,
+  isLoadingBasket: false,
 }
 
 export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
+    setIsLoadingBasket(state, action) {
+      state.isLoadingBasket = action.payload
+    },
     addItemForBasket(state, action) {
       const findItem = state.dataBasketItems.find((item: IBasketItem) => item._id === action.payload._id)
       if (findItem) {

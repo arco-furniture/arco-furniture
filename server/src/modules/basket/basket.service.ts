@@ -59,6 +59,26 @@ export class BasketService {
     return await this.getBasketUser(basketParas)
   }
 
+  async changeStep(id: string, stage: string) {
+    const user = await this.UserModel.findById(id)
+    switch (stage){
+      case '0':
+        user.steps = {
+          info: null,
+          form: null
+        }
+        break
+      case '1':
+        user.steps = {
+          info: user.steps.info,
+          form: null
+        }
+        break
+    }
+    await user.save()
+    return this.returnUserFields(user)
+  }
+
   private async getBasketUser(params) {
     params = [...params]
     const arrayId = await params.map((item) =>  item._id)
@@ -147,7 +167,7 @@ export class BasketService {
     return await basket.reduce((sum, current) => { return sum + current[name] }, 0)
   }
 
-  private async getCards(arrayId) {
+  async getCards(arrayId) {
     const cards = await this.ProductModel.find({ _id: { $in: arrayId }});
     if (cards) return JSON.parse(JSON.stringify(cards))
   }

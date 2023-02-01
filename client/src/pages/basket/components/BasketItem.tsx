@@ -8,10 +8,11 @@ import CloseIcon from '@mui/icons-material/Close'
 import nullImage from '../../../images/notFound.png'
 import { useActions } from '../../../hooks/useActions'
 import SpecsItem from './SpecsItem'
+import { getPrefixTitle } from '../../../utils/getPrefixTitle'
 
 const BasketItem: React.FC<any> = ({ item, isControl = false }) => {
   const [benefit, setBenefit] = useState<any>(0)
-  const { article, color, count, image, oldPrice, price, title, _id, specs } = item
+  const { article, color, count, image, oldPrice, price, _id, specs } = item
   const { removeItemForBasket, handleCountItem } = useActions()
   const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }
   const stylesCountButtonLeft = { ...stylesCountButtons, borderRight: 'solid 0 #D9D9D9' }
@@ -54,10 +55,10 @@ const BasketItem: React.FC<any> = ({ item, isControl = false }) => {
               ) : (
                 <span className={styles.item__count}>{count}</span>
               )}
-              <p className={styles.item__title}>{title}</p>
+              <p className={styles.item__title}>{getPrefixTitle(item)}</p>
             </div>
             <div className={styles.item__box}>
-              <p className={styles.item__text}>Цвет:</p>
+              <p className={styles.item__text}>Цвет</p>
               <div className={styles.item__color} style={{ backgroundColor: color }} />
             </div>
           </div>

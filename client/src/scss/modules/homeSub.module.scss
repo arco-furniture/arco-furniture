@@ -4,39 +4,48 @@
 .homeSub {
   width: 100%;
   margin: 20px 0;
-  min-height: 160px;
-  background-color: $blue;
-  padding: 30px;
+  height: 160px;
+  background-color: #fff;
   box-sizing: border-box;
   border-radius: 5px;
-  @include flex-center;
   position: relative;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12);
   overflow: hidden;
+  display: flex;
 }
 
 .wrapper {
-  @include flex-center-between;
-  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  min-width: 100%;
   z-index: 2;
+  padding: 30px;
 }
 
 .text {
+  position: absolute;
   @include reset;
   @include text-format(400, 25px, 32px);
   color: $white;
+  top: 10px;
 }
 
 .image {
   position: absolute;
   width: 100%;
-  height: 100%;
   object-fit: cover;
-  z-index: 1;
   left: 0;
   right: 0;
 }
 
-.form {
-  @include flex-center-between;
-  gap: 20px;
+.wrapperButton {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  margin-bottom: 30px;
+}
+
+.button {
+  background-color: #fff !important;
+  color: #3ca9d8 !important;
 }

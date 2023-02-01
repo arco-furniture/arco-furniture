@@ -3,6 +3,7 @@ import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
 import { ICardColors } from './types'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 
 const CardColors: React.FC<ICardColors> = (props) => {
   const { colorPalette, visible, setVisible, selectedColor, setSelectedColor, isTop } = props
@@ -42,6 +43,8 @@ const CardColors: React.FC<ICardColors> = (props) => {
       {colors.map((palette, index) => {
         const isCurrentColor = selectedColor === palette.color
         const styleButton = {
+          boxShadow:
+            '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
           backgroundColor: palette.color,
           opacity: isCurrentColor || selectedColor === '' ? 1 : 0.1,
         }

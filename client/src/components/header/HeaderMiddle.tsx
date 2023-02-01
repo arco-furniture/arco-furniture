@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import logo from '../../images/logo-black.svg'
 import { Badge } from '@mui/material'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -12,11 +12,12 @@ import { useAuth, useBasket, useOther } from '../../hooks/useStateSelectors'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 import { useActions } from '../../hooks/useActions'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
+import { getRequestItems } from '../../utils/getRequestItems'
 
 const HeaderMiddle: React.FC = () => {
   const { dataBasketItems, totalPrice } = useBasket()
   const { favorites } = getFavoriteFromLS()
-  const { checkBasketItems } = useActions()
+  const { checkBasketItems, postBasketItems, setIsLoadingBasket } = useActions()
   const { itemIsLiked } = useOther()
   const { user } = useAuth()
   const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
@@ -33,7 +34,16 @@ const HeaderMiddle: React.FC = () => {
     const newItems = JSON.stringify(dataBasketItems)
     localStorage.setItem('items', newItems)
     checkBasketItems()
+    postItems()
   }, [dataBasketItems])
+
+  const postItems = async () => {
+    if (user) {
+      setIsLoadingBasket(false)
+      await postBasketItems(getRequestItems(dataBasketItems))
+    }
+    setIsLoadingBasket(true)
+  }
 
   return (
     <div className='header__middle'>

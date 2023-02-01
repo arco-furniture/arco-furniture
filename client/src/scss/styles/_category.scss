@@ -7,7 +7,7 @@
     position: relative;
     @include flex-center-between;
     align-items: flex-start;
-    gap: 30px;
+    column-gap: 30px;
     width: 100%;
     min-height: 101vh;
     margin: 0 auto;
@@ -20,6 +20,7 @@
     line-height: 34px;
     color: $mainBlack;
     margin: 0 0 30px;
+    min-height: 34px;
   }
 
   &__content {
@@ -61,7 +62,7 @@
   }
 
   &__cards {
-    min-height: 570px;
+    min-height: 460px;
     @include flex-center;
     flex-wrap: wrap;
     min-width: 100%;

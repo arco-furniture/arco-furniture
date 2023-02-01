@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../../scss/modules/basket/basket-approval.module.scss'
 import { Button, Collapse, ThemeProvider } from '@mui/material'
-import { useAuth } from '../../../hooks/useStateSelectors'
+import { useAuth, useBasket } from '../../../hooks/useStateSelectors'
 import ListItemTemplate from 'components/listItemTemplate/ListItemTemplate'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import DeliveryApproval from 'pages/basket/components/DeliveryApproval'
@@ -12,8 +12,12 @@ import { theme } from '../../../themes/errorButtonTheme'
 import AcceptPopover from 'components/acceptPopover/AcceptPopover'
 import { useActions } from '../../../hooks/useActions'
 
-const MenuApproval = () => {
+const MenuApproval: React.FC<any> = () => {
   const { user } = useAuth()
+  const { totalPrice } = useBasket()
+  const { data, isSuccess, refetch } = useQuery(['get price approval', totalPrice], () =>
+    BasketService.getPriceApproval(),
+  )
   const [openForm, setOpenForm] = useState(false)
   const [solvency, setSolvency] = useState<boolean>(false)
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
@@ -22,19 +26,22 @@ const MenuApproval = () => {
   const isNotPay = info?.pay !== 'Оплата картой'
 
   const getDeliveryDate = () => {
-    const date = new Date(form?.reqDate || '')
+    const date = new Date(form?.reqDate)
     const month = Number(date.getMonth()) + 1
     const year = date.getFullYear()
     const day = date.getDate()
     return `${day}.${month <= 9 ? String(0 + String(month)) : month}.${year}г.`
   }
 
-  const { data, isSuccess } = useQuery('get price approval', () => BasketService.getPriceApproval())
   const buttonInfo = solvency ? 'Оплатить заказ' : data?.solvency?.info
 
   const handleClickApproval = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(evt.currentTarget)
   }
+
+  useEffect(() => {
+    refetch()
+  }, [totalPrice])
 
   useEffect(() => {
     if (data?.solvency) {

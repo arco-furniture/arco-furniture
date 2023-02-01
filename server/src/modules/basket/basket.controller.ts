@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, HttpCode, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, Param, Post} from '@nestjs/common';
 import {BasketService} from "./basket.service";
 import {Auth} from "../../decorators/auth.decorator";
 import {User} from "../../decorators/user.decorator";
@@ -45,6 +45,13 @@ export class BasketController {
     @Body('form') form: BasketFormDto)
   {
     return this.basketService.postStageOrder(_id, form)
+  }
+
+  @HttpCode(200)
+  @Post('stage/change/:stage')
+  @Auth()
+  async changeStep(@User('_id') _id: string, @Param('stage') stage: string) {
+    return this.basketService.changeStep(_id, stage)
   }
 
   @HttpCode(200)

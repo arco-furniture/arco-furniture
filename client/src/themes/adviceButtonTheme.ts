@@ -11,6 +11,10 @@ export const adviceButtonTheme = createTheme({
       gap: '10px',
       backgroundColor: '#F5F5F5',
       letterSpacing: '0.02em',
+      '&:hover': {
+        backgroundColor: '#F5F5F5',
+        color: '#F5F5F5',
+      },
     },
   },
 })

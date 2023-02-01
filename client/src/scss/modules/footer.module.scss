@@ -17,11 +17,11 @@
 
 .middle {
   display: grid;
-  gap: 35px;
+  gap: 50px;
   width: 100%;
-  grid-template-columns: minmax(200px, 250px) minmax(150px, 230px) auto auto;
+  grid-template-columns: minmax(200px, 250px) minmax(140px, 180px) 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-template-areas: 'about developers backend frontend';
+  grid-template-areas: 'about other backend frontend';
   border-bottom: 1px solid #e7e7e9;
   padding-bottom: 30px;
 }
@@ -49,14 +49,9 @@
   margin-bottom: 20px;
 }
 
-.developers {
-  grid-area: developers;
+.other {
+  grid-area: other;
   @include flex-column;
-}
-
-.devContain {
-  @include flex-column;
-  gap: 12px;
 }
 
 .title {
@@ -92,4 +87,13 @@
   font-style: normal;
   @include text-format(400, 14px, 20px);
   color: $grayDark;
+}
+
+.version {
+  @include flex-center-between;
+  gap: 20px;
+}
+
+.releases {
+  @include text-format(400, 14px, 18px);
 }
