@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.faa5de2f.css",
-    "main.js": "/static/js/main.8ab6da10.js",
+    "main.js": "/static/js/main.05f75804.js",
     "Category.js": "/static/js/Category.4b57d6e4.chunk.js",
     "Product.js": "/static/js/Product.e36df340.chunk.js",
     "Basket.css": "/static/css/Basket.27f3193a.chunk.css",
@@ -19,7 +19,7 @@
     "static/media/phone_logo.svg": "/static/media/phone_logo.c4665664d77f9933608f.svg",
     "index.html": "/index.html",
     "main.faa5de2f.css.map": "/static/css/main.faa5de2f.css.map",
-    "main.8ab6da10.js.map": "/static/js/main.8ab6da10.js.map",
+    "main.05f75804.js.map": "/static/js/main.05f75804.js.map",
     "Category.4b57d6e4.chunk.js.map": "/static/js/Category.4b57d6e4.chunk.js.map",
     "Product.e36df340.chunk.js.map": "/static/js/Product.e36df340.chunk.js.map",
     "Basket.27f3193a.chunk.css.map": "/static/css/Basket.27f3193a.chunk.css.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.faa5de2f.css",
-    "static/js/main.8ab6da10.js"
+    "static/js/main.05f75804.js"
   ]
 }
