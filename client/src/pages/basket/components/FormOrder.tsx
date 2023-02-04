@@ -23,7 +23,7 @@ const FormOrder: React.FC<any> = ({ register, errors }) => {
             label='Имя'
             variant='outlined'
             size='small'
-            value={firstName}
+            value={firstName || ''}
             onChange={(evt) => setFirstName(evt.target.value)}
             error={!!errors.firstName}
             helperText={errors?.firstName?.message}

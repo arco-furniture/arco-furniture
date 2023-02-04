@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {ModelType} from "@typegoose/typegoose/lib/types";
 import {ProductModel} from "../../models/product.model";
 import {InjectModel} from "nestjs-typegoose";
+import {hash} from "bcryptjs";
 
 @Injectable()
 export class AdviceService {
