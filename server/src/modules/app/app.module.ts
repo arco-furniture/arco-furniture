@@ -15,7 +15,9 @@ import {OrderModule} from "../order/order.module";
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypegooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

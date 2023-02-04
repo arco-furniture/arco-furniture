@@ -23,4 +23,10 @@ export class AdviceController {
   getAllAdvice() {
     return this.adviceService.getAll()
   }
+
+  @HttpCode(200)
+  @Get()
+  pushItems() {
+    return this.adviceService.pushItems()
+  }
 }
