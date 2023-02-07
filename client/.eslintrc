@@ -15,7 +15,8 @@
   "env": {
     "browser": true,
     "jest": true,
-    "es6": true
+    "es6": true,
+    "amd": true
   },
   "globals": {
     "Atomics": "readonly",

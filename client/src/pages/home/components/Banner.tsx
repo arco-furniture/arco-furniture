@@ -5,20 +5,17 @@ import 'swiper/css/navigation'
 import { Navigation, Autoplay } from 'swiper'
 import React, { useRef } from 'react'
 import { SwiperArrows } from 'components/index'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const Banner: React.FC = (): JSX.Element => {
   const images = [banner, banner]
   const prevRef = useRef(null)
   const nextRef = useRef(null)
 
-  const slides = images.map((item, index) => {
-    return (
-      <SwiperSlide key={index} style={{ display: 'flex', justifyContent: 'center' }}>
-        <LazyLoadImage width='100%' height='284px' effect='blur' className='preview__banner' alt='Баннер' src={item} />
-      </SwiperSlide>
-    )
-  })
+  const slides = images.map((item, index) => (
+    <SwiperSlide key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+      <img width='100%' height='284px' className='preview__banner' alt='Баннер' src={item} />
+    </SwiperSlide>
+  ))
 
   return (
     <div className='preview__contain'>

@@ -4,7 +4,6 @@ import { Button, ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 import { BlackTooltip } from 'components/index'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const HomeSub: React.FC = (): JSX.Element => (
   <div className={styles.homeSub}>
@@ -23,11 +22,10 @@ const HomeSub: React.FC = (): JSX.Element => (
         </div>
       </ThemeProvider>
     </div>
-    <LazyLoadImage
+    <img
       src='https://i.postimg.cc/LsQLyv9W/telegram.jpg'
       width='100%'
       height='160px'
-      effect='blur'
       className={styles.image}
       alt='telegram'
     />
