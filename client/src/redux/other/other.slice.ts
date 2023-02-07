@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { IOtherState } from '../types'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IAlert, IOtherState } from './types'
 
 const initialState: IOtherState = {
   statusAlert: false,
@@ -10,15 +11,21 @@ const initialState: IOtherState = {
   },
   statusAuthorsPopup: false,
   statusPaymentPopup: false,
+  statusPopupProject: false,
   paymentValue: null,
+  activePreloader: false,
+  isLoading: true,
 }
 
 export const otherSlice = createSlice({
   name: 'other',
   initialState,
   reducers: {
-    openAlertBar(state, actions) {
-      state.alert = actions.payload
+    setIsLoading(state) {
+      state.isLoading = false
+    },
+    openAlertBar(state, { payload }: PayloadAction<IAlert>) {
+      state.alert = payload
       state.statusAlert = true
     },
     closeAlertBar(state) {
@@ -33,17 +40,26 @@ export const otherSlice = createSlice({
     setItemIsLiked(state) {
       state.itemIsLiked = !state.itemIsLiked
     },
-    openPaymentPopup(state, action) {
+    openPaymentPopup(state, { payload }: PayloadAction<number>) {
       state.statusPaymentPopup = true
-      state.paymentValue = action.payload
+      state.paymentValue = payload
     },
     closePaymentPopup(state) {
       state.statusPaymentPopup = false
       state.paymentValue = null
+    },
+    closePopupProject(state) {
+      state.statusPopupProject = false
+    },
+    openPopupProject(state) {
+      state.statusPopupProject = true
+    },
+    setActivePreloader(state, { payload }: PayloadAction<boolean>) {
+      state.activePreloader = payload
     },
   },
 })
 
 export const { reducer, actions } = otherSlice
 
-export const { openPaymentPopup } = otherSlice.actions
+export const { openPaymentPopup, setIsLoading } = otherSlice.actions

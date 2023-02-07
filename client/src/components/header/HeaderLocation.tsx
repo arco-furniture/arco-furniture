@@ -1,30 +1,28 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { initialCategories } from 'app/constants'
-import { IInitialCategories } from 'components/header/types'
+import { INITIAL_CATEGORIES } from 'app/constants'
+import { IInitialCategories } from 'types/constantsTypes'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import { useAuth, useProduct } from '../../hooks/useStateSelectors'
+import { useAuth } from '../../hooks/useStateSelectors'
 
-const HeaderLocation: React.FC = () => {
+const HeaderLocation: React.FC = (): JSX.Element => {
   const location = useLocation()
-  const locationArray = location.pathname.split('/').filter((item) => item)
-  // const { productData } = useProduct()
   const { user } = useAuth()
-
-  const isCategory = locationArray.indexOf('category') !== -1
-  const [category, setCategory] = useState<IInitialCategories | null>({ name: '', link: '', categoryId: null })
-
-  const isBasket = locationArray.indexOf('basket') !== -1
-  const isFavorite = locationArray.indexOf('favorite') !== -1
-
-  const isProduct = locationArray.indexOf('product') !== -1
-  const isProfile = locationArray.indexOf('profile') !== -1
+  // const { productData } = useProduct()
+  const locationArray = location.pathname.split('/').filter((item) => item)
+  const initialCategory: IInitialCategories = { name: null, link: null, categoryId: null }
+  const isCategory: boolean = locationArray.indexOf('category') !== -1
+  const [category, setCategory] = useState<IInitialCategories | null>(initialCategory)
+  const isBasket: boolean = locationArray.indexOf('basket') !== -1
+  const isFavorite: boolean = locationArray.indexOf('favorite') !== -1
+  const isProduct: boolean = locationArray.indexOf('product') !== -1
+  const isProfile: boolean = locationArray.indexOf('profile') !== -1
 
   useEffect(() => {
     if (isCategory) {
       let isCurrentCategory: any = locationArray.indexOf('category')
       isCurrentCategory = locationArray[isCurrentCategory + 1]
-      const findCategory = initialCategories.find((item) => item.link === isCurrentCategory)
+      const findCategory = INITIAL_CATEGORIES.find((item) => item.link === isCurrentCategory)
       setCategory(findCategory)
     }
   }, [locationArray])

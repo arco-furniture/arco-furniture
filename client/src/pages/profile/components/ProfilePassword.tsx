@@ -23,12 +23,14 @@ import { toastError } from '../../../api/withToastrErrorRedux'
 import { useActions } from '../../../hooks/useActions'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { IPasswordsType } from 'pages/profile/types'
+import { SchemaPasswords } from '../../../schemas'
 
-const ProfilePassword: React.FC<any> = () => {
-  const [active, setActive] = useState(false)
-  const [password, setPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+const ProfilePassword: React.FC = (): JSX.Element => {
+  const [active, setActive] = useState<boolean>(false)
+  const [password, setPassword] = useState<string>('')
+  const [newPassword, setNewPassword] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const [formValues, setFormValues] = useState({ password, newPassword })
   const { setUser } = useActions()
 
@@ -55,24 +57,14 @@ const ProfilePassword: React.FC<any> = () => {
     }
   }, [password, newPassword, active])
 
-  const Schema = yup.object().shape({
-    password: yup.string().required('Вы не заполнили').min(6, 'Не менее 6 символов'),
-    newPassword: yup.string().required('Вы не заполнили').min(6, 'Не менее 6 символов'),
-  })
-
-  type Inputs = {
-    password: string
-    newPassword: string
-  }
-
   const {
     register,
     handleSubmit,
     resetField,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<IPasswordsType>({
     mode: 'onBlur',
-    resolver: yupResolver(Schema),
+    resolver: yupResolver(SchemaPasswords),
   })
 
   const onSubmit = () => {

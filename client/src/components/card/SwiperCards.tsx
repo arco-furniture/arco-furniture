@@ -4,17 +4,17 @@ import 'swiper/css'
 import React, { useEffect, useRef, useState } from 'react'
 import { ISwiperCards } from './types'
 import { SwiperArrows } from '../index'
+// eslint-disable-next-line import/named
+import { CSSSelector } from 'swiper/types'
 
-const SwiperCards: React.FC<ISwiperCards> = ({ children }) => {
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
-  const [reset, setReset] = useState(37)
-  const slides = children.map((card, index) => {
+const SwiperCards: React.FC<ISwiperCards> = ({ children }): JSX.Element => {
+  const prevRef = useRef<HTMLButtonElement | CSSSelector | null>(null)
+  const nextRef = useRef<HTMLButtonElement | CSSSelector | null>(null)
+  const [reset, setReset] = useState<boolean>(false)
+
+  const slides: JSX.Element[] = children.map((card, index) => {
     return (
-      <SwiperSlide
-        key={index}
-        style={{ display: 'flex', justifyContent: 'space-between', padding: '0 3px', boxSizing: 'border-box' }}
-      >
+      <SwiperSlide key={index} className='card__slide'>
         {card}
       </SwiperSlide>
     )
@@ -22,7 +22,7 @@ const SwiperCards: React.FC<ISwiperCards> = ({ children }) => {
 
   // временный костыль
   useEffect(() => {
-    setReset(36)
+    setReset(!reset)
   }, [])
 
   return (

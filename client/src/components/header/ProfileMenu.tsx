@@ -11,8 +11,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { logout } from '../../redux/auth/auth.actions'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import { IProfileMenu } from './types'
 
-const ProfileMenu = ({ open, setAnchorEl, anchorEl }) => {
+const ProfileMenu: React.FC<IProfileMenu> = ({ open, setAnchorEl, anchorEl }): JSX.Element => {
   const navigate = useNavigate()
   const { user } = useAuth()
 

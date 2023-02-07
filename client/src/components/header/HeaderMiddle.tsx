@@ -1,27 +1,26 @@
-import React, { memo, useEffect, useState } from 'react'
-import logo from '../../images/logo-black.svg'
-import { Badge } from '@mui/material'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import React, { memo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Search, BlackTooltip, TitleTooltip } from 'components'
+import { Badge } from '@mui/material'
+import { ShoppingCartOutlined } from '@mui/icons-material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import Search from '../search/Search'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import BlackTooltip from '../BlackTooltip/BlackTooltip'
 import ListIcon from '@mui/icons-material/List'
 import { useAuth, useBasket, useOther } from '../../hooks/useStateSelectors'
-import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 import { useActions } from '../../hooks/useActions'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { getRequestItems } from '../../utils/getRequestItems'
+import logo from '../../images/logo-black.svg'
+import { IBasketItem } from 'pages/basket/types'
 
-const HeaderMiddle: React.FC = () => {
+const HeaderMiddle: React.FC = (): JSX.Element => {
   const { dataBasketItems, totalPrice } = useBasket()
   const { favorites } = getFavoriteFromLS()
   const { checkBasketItems, postBasketItems, setIsLoadingBasket } = useActions()
   const { itemIsLiked } = useOther()
   const { user } = useAuth()
-  const badgeBasketPrice = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
-  const countBasketItems = dataBasketItems.reduce((sum: number, currentItem: any) => {
+  const badgeBasketPrice: string = totalPrice ? `${getPriceWithFormat(totalPrice)}  ₽` : 'Корзина'
+  const countBasketItems: number = dataBasketItems.reduce((sum: number, currentItem: IBasketItem) => {
     return sum + currentItem.count
   }, 0)
 
@@ -81,7 +80,7 @@ const HeaderMiddle: React.FC = () => {
           {dataBasketItems.length ? (
             <Link to='/basket' className='header__middle-item'>
               <Badge badgeContent={countBasketItems} color='error'>
-                <ShoppingCartOutlinedIcon color='primary' />
+                <ShoppingCartOutlined color='primary' />
               </Badge>
               <span className='header__middle-item-span'>{badgeBasketPrice}</span>
             </Link>
@@ -89,7 +88,7 @@ const HeaderMiddle: React.FC = () => {
             <BlackTooltip title={<TitleTooltip title='Добавьте товар в корзину' />} placement='bottom'>
               <div className='header__middle-item' style={{ cursor: 'default' }}>
                 <Badge badgeContent={countBasketItems} color='error'>
-                  <ShoppingCartOutlinedIcon color='primary' />
+                  <ShoppingCartOutlined color='primary' />
                 </Badge>
                 <span className='header__middle-item-span'>{badgeBasketPrice}</span>
               </div>

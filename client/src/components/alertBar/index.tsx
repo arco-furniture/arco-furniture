@@ -1,0 +1,43 @@
+import React, { memo, SyntheticEvent } from 'react'
+// eslint-disable-next-line import/named
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar'
+import { Alert } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined'
+import { useActions } from '../../hooks/useActions'
+import { useOther } from '../../hooks/useStateSelectors'
+
+const AlertBar: React.FC = (): JSX.Element => {
+  const { alert, statusAlert } = useOther()
+  const { closeAlertBar } = useActions()
+  const { type, message } = alert
+
+  const handleClose: any = (event: SyntheticEvent<Element, Event>, reason: SnackbarCloseReason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    closeAlertBar()
+  }
+
+  return (
+    <Snackbar open={statusAlert} autoHideDuration={1200} onClose={handleClose}>
+      <Alert
+        icon={
+          type === 'cart' ? (
+            <AddShoppingCartOutlinedIcon style={{ color: '#73A2FA' }} />
+          ) : (
+            <FavoriteIcon style={{ color: '#ee4343' }} />
+          )
+        }
+        onClose={handleClose}
+        severity='warning'
+        variant='filled'
+        className='alert'
+      >
+        {message}
+      </Alert>
+    </Snackbar>
+  )
+}
+
+export default memo(AlertBar)

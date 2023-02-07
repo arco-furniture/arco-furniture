@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { IHomeState } from '../types'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { filterAdvice, getSearchItems } from './home.actions'
+import { IItem } from '../../types/itemTypes'
+import { IHomeState } from './types'
 
 const initialState: IHomeState = {
   adviceData: [],
@@ -25,8 +27,8 @@ export const homeSlice = createSlice({
       state.adviceData = []
       state.adviceStatus = 'loading'
     })
-    builder.addCase(filterAdvice.fulfilled, (state, action) => {
-      state.adviceData = action.payload
+    builder.addCase(filterAdvice.fulfilled, (state, { payload }: PayloadAction<IItem[]>) => {
+      state.adviceData = payload
       state.adviceStatus = 'success'
     })
     builder.addCase(filterAdvice.rejected, (state) => {
@@ -37,8 +39,8 @@ export const homeSlice = createSlice({
       state.searchData = []
       state.searchStatus = 'loading'
     })
-    builder.addCase(getSearchItems.fulfilled, (state, action) => {
-      state.searchData = action.payload
+    builder.addCase(getSearchItems.fulfilled, (state, { payload }: PayloadAction<IItem[]>) => {
+      state.searchData = payload
       state.searchStatus = 'success'
     })
     builder.addCase(getSearchItems.rejected, (state) => {

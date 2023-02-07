@@ -1,29 +1,28 @@
 import React, { memo, useEffect, useState } from 'react'
-import Chip from '@mui/material/Chip'
-import { Button, IconButton } from '@mui/material'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import BlackTooltip from '../../components/BlackTooltip/BlackTooltip'
-import { colorsTypes, IItem } from '../../types/itemTypes'
-import { getBasketItem } from '../../utils/getBasketItem'
-import { colors } from 'app/constants'
+import { COLORS } from 'app/constants'
 import { useProduct } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import { Button, IconButton, Chip } from '@mui/material'
+import { Favorite, FavoriteBorder, CloseOutlined } from '@mui/icons-material'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import { BlackTooltip } from 'components'
+import { IItem, IProductParams } from '../../types/itemTypes'
+import { getBasketItem } from '../../utils/getBasketItem'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { handleChangeFavorite } from '../../utils/handleChangeFavorite'
 import { getPrefixTitle } from '../../utils/getPrefixTitle'
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import { colorType } from '../../types/constantsTypes'
 
-const ProductParams: React.FC<any> = ({ product }) => {
+const ProductParams: React.FC<IProductParams> = ({ product }): JSX.Element => {
   const styleSubmit = { fontSize: '18px', fontWeight: 700 }
-  const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState<boolean>(false)
   const { currentColor } = useProduct()
   const { favorites } = getFavoriteFromLS()
   const { addItemForBasket, openAlertBar, setCurrentColor, setItemIsLiked } = useActions()
   const isFavorite = favorites.some((favorite: IItem) => favorite._id === product._id)
 
-  const existColors = colors.map((item) => {
-    const isExist = product.colors?.some((color) => color.nameColor === item.nameColor)
+  const existColors = COLORS.map((item): colorType => {
+    const isExist = product.colors?.some((color: colorType) => color.nameColor === item.nameColor)
     return {
       nameColor: item.nameColor,
       color: item.color,
@@ -46,7 +45,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
     }
   }, [product])
 
-  const handleCurrentColor = (obj: colorsTypes) => {
+  const handleCurrentColor = (obj: colorType) => {
     return {
       borderRadius: '5px',
       backgroundColor: obj.color,
@@ -96,13 +95,13 @@ const ProductParams: React.FC<any> = ({ product }) => {
       <div className='product__colors'>
         <h3 className='product__title'>Цвета исполнения:</h3>
         <ul>
-          {existColors.map((item: colorsTypes, index: number) => {
+          {existColors.map((item: colorType, index: number) => {
             const isActive = currentColor.index === index
             return (
               <li key={index}>
                 <span
                   className={`product__light ${isActive ? 'product__light_active' : 'product__light_disabled'}`}
-                  style={{ border: `3px solid ${isActive && item.exist ? '#4675CE' : '#d32f2f'}` }}
+                  style={{ border: `3px solid ${isActive ? '#4675CE' : '#fff'}` }}
                 />
                 <Button
                   onClick={() =>
@@ -116,7 +115,7 @@ const ProductParams: React.FC<any> = ({ product }) => {
                   style={handleCurrentColor(item)}
                   variant='contained'
                 >
-                  {!item.exist && <CloseOutlinedIcon className='product__closeIcon' />}
+                  {!item.exist && <CloseOutlined className='product__closeIcon' />}
                 </Button>
               </li>
             )

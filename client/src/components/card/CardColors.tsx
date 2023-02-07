@@ -1,11 +1,10 @@
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined'
-import BlackTooltip from '../BlackTooltip/BlackTooltip'
+import { BlackTooltip } from 'components'
 import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
 import { ICardColors } from './types'
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 
-const CardColors: React.FC<ICardColors> = (props) => {
+const CardColors: React.FC<ICardColors> = (props): JSX.Element => {
   const { colorPalette, visible, setVisible, selectedColor, setSelectedColor, isTop } = props
 
   const colors = colorPalette.filter((_item, index) => index < 3)
@@ -40,21 +39,20 @@ const CardColors: React.FC<ICardColors> = (props) => {
           <AutoAwesomeOutlinedIcon color='primary' style={{ marginRight: '5px' }} />
         </BlackTooltip>
       )}
-      {colors.map((palette, index) => {
+      {colors.map((palette) => {
         const isCurrentColor = selectedColor === palette.color
         const styleButton = {
-          boxShadow:
-            '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
           backgroundColor: palette.color,
           opacity: isCurrentColor || selectedColor === '' ? 1 : 0.1,
         }
         return (
-          <li key={index}>
+          <li key={palette.color}>
             <Button
               disabled={isTop}
               style={styleButton}
               onClick={() => handleCurrentColor(palette.color)}
               variant='contained'
+              className='card__button-color'
             />
           </li>
         )

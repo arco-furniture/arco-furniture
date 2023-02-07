@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ICategoryState } from './types'
 
-const initialState: any = {
+const initialState: ICategoryState = {
   price: [0, 250000],
   searchPrice: [0, 0],
   sort: 'rating',
@@ -26,35 +28,26 @@ export const categorySlice = createSlice({
     setCategoryParams(state, action) {
       state.categoryParams = action.payload
     },
-    setCategoryPrice(state, action) {
-      state.filterPrice = action.payload
+    setMaterial(state, { payload }: PayloadAction<string>) {
+      state.dataFilter.material = payload
     },
-    setFilteredData(state, action) {
-      state.categoryData = action.payload
+    setColors(state, { payload }: PayloadAction<string[]>) {
+      state.dataFilter.colors = [...payload]
     },
-    changeCategoryStatus(state, action) {
-      state.categoryStatus = action.payload
+    setStyles(state, { payload }: PayloadAction<string[]>) {
+      state.dataFilter.styles = [...payload]
     },
-    setMaterial(state, action) {
-      state.dataFilter.material = action.payload
+    setTags(state, { payload }: PayloadAction<string[]>) {
+      state.dataFilter.tags = [...payload]
     },
-    setColors(state, action) {
-      state.dataFilter.colors = [...action.payload]
+    setPrice(state, { payload }: PayloadAction<[number, number]>) {
+      state.dataFilter.minMaxPrice = payload
     },
-    setStyles(state, action) {
-      state.dataFilter.styles = [...action.payload]
+    setChangePage(state, { payload }: PayloadAction<number>) {
+      state.currentPage = payload
     },
-    setTags(state, action) {
-      state.dataFilter.tags = [...action.payload]
-    },
-    setPrice(state, action) {
-      state.dataFilter.minMaxPrice = action.payload
-    },
-    setChangePage(state, action) {
-      state.currentPage = action.payload
-    },
-    setChangeSort(state, action) {
-      state.sort = action.payload
+    setChangeSort(state, { payload }: PayloadAction<string>) {
+      state.sort = payload
     },
   },
 })

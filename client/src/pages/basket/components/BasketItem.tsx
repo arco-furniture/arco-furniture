@@ -9,9 +9,10 @@ import nullImage from '../../../images/notFound.png'
 import { useActions } from '../../../hooks/useActions'
 import SpecsItem from './SpecsItem'
 import { getPrefixTitle } from '../../../utils/getPrefixTitle'
+import { IBasketItemExtends } from 'pages/basket/types'
 
-const BasketItem: React.FC<any> = ({ item, isControl = false }) => {
-  const [benefit, setBenefit] = useState<any>(0)
+const BasketItem: React.FC<IBasketItemExtends> = ({ item, isControl = false }): JSX.Element => {
+  const [benefit, setBenefit] = useState<number>(0)
   const { article, color, count, image, oldPrice, price, _id, specs } = item
   const { removeItemForBasket, handleCountItem } = useActions()
   const stylesCountButtons = { border: '1px solid #D9D9D9', minWidth: '26px', padding: '0' }

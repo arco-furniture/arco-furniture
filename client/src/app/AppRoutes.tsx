@@ -1,15 +1,9 @@
 import React from 'react'
-import styles from '../scss/modules/main.module.scss'
-import { Routes, Route } from 'react-router-dom'
-import { Home, Favorite } from 'pages/index'
-import AlertBar from 'components/alertBar/AlertBar'
-import AuthorsPopup from 'components/popups/AuthorsPopup'
-import { Preloader } from 'components/index'
 import Loadable from 'react-loadable'
-import PageNotFound from 'pages/notFound/PageNotFound'
-import RegisterPopup from 'components/popups/RegisterPopup'
-import AuthPopup from 'components/popups/AuthPopup'
-import PaymentPopup from 'components/popups/PaymentPopup'
+import { Routes, Route } from 'react-router-dom'
+import styles from '../scss/modules/main.module.scss'
+import { Home, Favorite, PageNotFound } from 'pages'
+import { Preloader, AlertBar, AuthorsPopup, RegisterPopup, AuthPopup, PaymentPopup, ProjectPopup } from 'components'
 
 const AppRoutes: React.FC = () => {
   const Category = Loadable({
@@ -52,6 +46,7 @@ const AppRoutes: React.FC = () => {
       <RegisterPopup />
       <AuthPopup />
       <PaymentPopup />
+      <ProjectPopup />
     </main>
   )
 }

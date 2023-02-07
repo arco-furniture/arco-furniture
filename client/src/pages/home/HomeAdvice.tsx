@@ -1,15 +1,16 @@
-import Chip from '@mui/material/Chip'
 import React, { useEffect, useState } from 'react'
-import { getSkeletonCards } from '../../utils/getSkeletonCards'
-import SwiperCards from '../../components/card/SwiperCards'
+import Chip from '@mui/material/Chip'
+import { SwiperCards } from 'components'
 import { getCards } from '../../utils/getCards'
 import { useHome } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
+import { ADVICE_NAME } from 'app/constants'
+import { adviceNameTypes } from '../../types/constantsTypes'
 
-const HomeAdvice: React.FC = () => {
+const HomeAdvice: React.FC = (): JSX.Element => {
   const { adviceData, adviceStatus } = useHome()
   const { filterAdvice } = useActions()
-  const [sortIndex, setSortIndex] = useState(0)
+  const [sortIndex, setSortIndex] = useState<number>(0)
   const sortActiveStyles = {
     backgroundColor: '#4675CE',
     opacity: 0.6,
@@ -23,13 +24,6 @@ const HomeAdvice: React.FC = () => {
     boxShadow:
       '0 3px 1px -2px rgba(0, 0, 0, 0.07), 0 4px 4px 0px rgba(0, 0, 0, 0.06), 0 2px 5px 0px rgba(0, 0, 0, 0.02)',
   }
-  const sortArray = [
-    { name: 'Все', advice: 'all' },
-    { name: 'Хиты продаж', advice: 'top' },
-    { name: 'Новинки', advice: 'new' },
-    { name: 'Скидки', advice: 'discount' },
-    { name: 'Экологичные материалы', advice: 'eco' },
-  ]
 
   // Получаем данные из mockAPI по заданным фильтрам
   useEffect(() => {
@@ -38,14 +32,14 @@ const HomeAdvice: React.FC = () => {
 
   const handleSortItems = (index: number) => {
     setSortIndex(index)
-    const request = sortArray[index].advice
+    const request = ADVICE_NAME[index].advice
     filterAdvice(request)
   }
 
   return (
     <article className='advice'>
       <ul className='advice__sort'>
-        {sortArray.map((item, currentIndex) => (
+        {ADVICE_NAME.map((item: adviceNameTypes, currentIndex: number) => (
           <li key={currentIndex}>
             <Chip
               style={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
@@ -56,7 +50,6 @@ const HomeAdvice: React.FC = () => {
         ))}
       </ul>
       <div className='advice__cards'>
-        {adviceStatus === 'loading' && getSkeletonCards(4)}
         {adviceStatus === 'success' && <SwiperCards>{getCards(adviceData)}</SwiperCards>}
       </div>
     </article>

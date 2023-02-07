@@ -1,4 +1,5 @@
-import { colorsTypes, IItem, imagesTypes } from '../../types/itemTypes'
+import { IItem, imageTypes } from '../../types/itemTypes'
+import { colorType } from '../../types/constantsTypes'
 
 export interface ICard {
   item: IItem
@@ -7,11 +8,11 @@ export interface ICard {
 }
 
 export interface ICardColors {
-  colorPalette: colorsTypes[]
+  colorPalette: colorType[]
   visible: boolean
-  setVisible: any
+  setVisible: (visible: boolean) => void
   selectedColor: string
-  setSelectedColor: any
+  setSelectedColor: (color: string) => void
   isTop: boolean
 }
 
@@ -20,7 +21,15 @@ export interface ISwiperCards {
 }
 
 export interface ISwiperImages {
-  images: imagesTypes[]
-  visible: boolean
+  images: imageTypes[]
   isTop: boolean
+}
+
+export interface ICardBottom {
+  selectedColor: string
+  item: IItem
+}
+
+export interface ICarousel {
+  children: JSX.Element[]
 }

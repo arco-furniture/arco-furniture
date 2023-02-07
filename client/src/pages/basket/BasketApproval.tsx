@@ -5,8 +5,9 @@ import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import MenuApproval from 'pages/basket/components/MenuApproval'
 import { useBasket } from '../../hooks/useStateSelectors'
+import { IBasketItem } from 'pages/basket/types'
 
-const BasketApproval: React.FC = () => {
+const BasketApproval: React.FC = (): JSX.Element => {
   const { dataBasketItems, isLoadingBasket } = useBasket()
   const { data, refetch } = useQuery(
     ['get basket approval', dataBasketItems],
@@ -26,7 +27,7 @@ const BasketApproval: React.FC = () => {
     <section>
       <div className={styles.approve}>
         <div className={styles.approve__container}>
-          {data?.map((item: any) => (
+          {data?.map((item: IBasketItem) => (
             <BasketItem key={item._id} item={item} />
           ))}
         </div>

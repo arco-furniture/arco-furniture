@@ -1,11 +1,12 @@
+import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { store } from '../redux/store'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
-import React from 'react'
 import AuthProvider from './AuthProvider'
-import Toaster from 'components/toaster/Toaster'
 import MuiProvider from './MuiProvider'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { Toaster } from 'components'
+import { IProvider } from './types'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,7 +16,7 @@ const queryClient = new QueryClient({
   },
 })
 
-const MainProvider: React.FC<any> = ({ children }) => {
+const MainProvider: React.FC<IProvider> = ({ children }): JSX.Element => {
   return (
     <BrowserRouter>
       <ReduxProvider store={store}>

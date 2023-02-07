@@ -1,6 +1,6 @@
-import { colorsTypes } from '../types/itemTypes'
+import { colorType } from '../types/constantsTypes'
 
-export const findColor = (items: colorsTypes[]) => {
+export const findColor = (items: colorType[]) => {
   const colorsArray = items.map((item) => item.color)
   const objColor = items.find((item) => item.exist)
   let index = {}

@@ -4,19 +4,20 @@ import { IconButton, Step, StepButton, Stepper } from '@mui/material'
 import { useActions } from '../../hooks/useActions'
 import { useAuth } from '../../hooks/useStateSelectors'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import AcceptPopover from 'components/acceptPopover/AcceptPopover'
+import { AcceptPopover } from 'components'
 import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
+import { IActiveStep } from 'pages/basket/types'
 
-const BasketNavigation: React.FC<any> = ({ activeStep }) => {
+const BasketNavigation: React.FC<IActiveStep> = ({ activeStep }): JSX.Element => {
   const steps = ['Ваша корзина', 'Оформление заказа', 'Оплата заказа']
   const [completed, setCompleted] = useState<{ [k: number]: boolean }>({})
   const { clearBasketItems, setClearBasketState } = useActions()
-  const [anchorElClearBasket, setAnchorElClearBasket] = useState<HTMLButtonElement | null>(null)
-  const [anchorElChangeStage, setAnchorElChangeStage] = useState<HTMLButtonElement | null>(null)
+  const [anchorElClearBasket, setAnchorElClearBasket] = useState(null)
+  const [anchorElChangeStage, setAnchorElChangeStage] = useState(null)
   const [indexStage, setIndexStage] = useState<number>(1)
   const isMounted = useRef<boolean>(false)
-  const [requestStage, setRequestStage] = useState(false)
+  const [requestStage, setRequestStage] = useState<boolean>(false)
   const { user } = useAuth()
   const { setUser } = useActions()
 
@@ -32,7 +33,7 @@ const BasketNavigation: React.FC<any> = ({ activeStep }) => {
     setAnchorElClearBasket(evt.currentTarget)
   }
 
-  const handleChangeStage = (evt, index) => {
+  const handleChangeStage = (evt: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
     setIndexStage(index)
     setAnchorElChangeStage(evt)
   }

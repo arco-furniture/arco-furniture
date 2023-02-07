@@ -3,11 +3,13 @@
 
 .swiper {
   position: static;
-  padding: 3rem 0;
+  padding: 0;
 }
 
 .swiper-container {
   transition: ease-in-out 0.2s;
+  position: relative !important;
+  min-width: 0 !important;
 }
 
 .swiper-wrapper {

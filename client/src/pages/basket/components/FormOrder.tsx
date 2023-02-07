@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import stylesForm from '../../../scss/modules/basket/basket-form.module.scss'
 import { TextField } from '@mui/material'
 import { useAuth } from '../../../hooks/useStateSelectors'
+import { IFormOrder } from 'pages/basket/types'
 
-const FormOrder: React.FC<any> = ({ register, errors }) => {
+const FormOrder: React.FC<IFormOrder> = ({ register, errors }) => {
   const { user } = useAuth()
   const [firstName, setFirstName] = useState<string>(user?.firstName)
   const [city, setCity] = useState<string>('')

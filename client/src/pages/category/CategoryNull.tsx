@@ -2,7 +2,7 @@ import React from 'react'
 import image from 'images/CategoryNull.svg'
 import { Box, Typography } from '@mui/material'
 
-const CategoryNull = () => {
+const CategoryNull: React.FC = (): JSX.Element => {
   const styleBox = {
     display: 'flex',
     flexDirection: 'column',

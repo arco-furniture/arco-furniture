@@ -6,7 +6,7 @@ import { useOther } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { getPriceWithFormat } from 'utils/getPriceWithFormat'
 
-const PaymentPopup = () => {
+const PaymentPopup: React.FC = (): JSX.Element => {
   const { statusPaymentPopup, paymentValue } = useOther()
   const { closePaymentPopup } = useActions()
   return (

@@ -3,14 +3,11 @@ import Cookies from 'js-cookie'
 import { removeTokensStorage, saveToStorage } from './helpers'
 import { getContentType } from '../api/api.helpers'
 import { axiosClassic } from '../api/interceptors'
+import { IAuthUser, IRegisterUser } from '../redux/auth/types'
 
 export const AuthService = {
-  async register(email: string, password: string, firstName: string) {
-    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/register')}`, {
-      email,
-      password,
-      firstName,
-    })
+  async register(dataRegister: IRegisterUser) {
+    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/register')}`, dataRegister)
 
     if (response.data.accessToken) {
       saveToStorage(response.data)
@@ -19,11 +16,8 @@ export const AuthService = {
     return response
   },
 
-  async login(email: string, password: string) {
-    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/login')}`, {
-      email,
-      password,
-    })
+  async login(dataAuth: IAuthUser) {
+    const response = await axiosClassic.post(`${API_URL}${getAuthUrl('/login')}`, dataAuth)
 
     if (response.data.accessToken) {
       saveToStorage(response.data)

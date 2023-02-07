@@ -1,4 +1,4 @@
-export const errorCatch = (error: any): string =>
+export const errorCatch = (error): string =>
   error.response && error.response.data
     ? typeof error.response.data.message === 'object'
       ? error.response.data.message[0]

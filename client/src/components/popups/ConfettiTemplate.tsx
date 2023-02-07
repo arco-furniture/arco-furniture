@@ -3,11 +3,12 @@ import Confetti from 'react-confetti'
 import Dialog from '@mui/material/Dialog'
 import { DialogContent } from '@mui/material'
 import { useLocation } from 'react-router-dom'
+import { IConfettiTemplate } from 'components/popups/types'
 
-const ConfettiTemplate: React.FC<any> = ({ children, statusPopup, handleClose }) => {
+const ConfettiTemplate: React.FC<IConfettiTemplate> = ({ children, statusPopup, handleClose }): JSX.Element => {
   const { pathname } = useLocation()
-  const [width, setWidth] = useState(document.body.clientWidth - 25)
-  const [height, setHeight] = useState(document.body.clientHeight)
+  const [width, setWidth] = useState<number>(document.body.clientWidth - 25)
+  const [height, setHeight] = useState<number>(document.body.clientHeight)
 
   useEffect(() => {
     setWidth(document.body.clientWidth - 25)

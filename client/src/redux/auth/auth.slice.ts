@@ -1,7 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { checkAuth, loginUser, registerUser } from './auth.actions'
+import { IAuthState, IAuth } from './types'
+import { IUser } from '../../types/userTypes'
 
-const initialState: any = {
+const initialState: IAuthState = {
   eyeStatus: false,
   isLoadingAuth: false,
   popupRegister: false,
@@ -23,29 +26,29 @@ export const authSlice = createSlice({
     setPopupAuth(state) {
       state.popupAuth = !state.popupAuth
     },
-    setUser(state, action) {
-      state.user = action.payload
+    setUser(state, { payload }: PayloadAction<IUser>) {
+      state.user = payload
     },
     setIsLoadingAuth(state) {
       state.isLoadingAuth = true
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+    builder.addCase(registerUser.fulfilled, (state, { payload }: PayloadAction<IAuth>) => {
       state.user = payload.user
     })
     builder.addCase(registerUser.rejected, (state) => {
       state.user = null
     })
 
-    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+    builder.addCase(loginUser.fulfilled, (state, { payload }: PayloadAction<IAuth>) => {
       state.user = payload.user
     })
     builder.addCase(loginUser.rejected, (state) => {
       state.user = null
     })
 
-    builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
+    builder.addCase(checkAuth.fulfilled, (state, { payload }: PayloadAction<IAuth>) => {
       state.user = payload.user
     })
   },

@@ -1,39 +1,39 @@
 import React from 'react'
-import s from '../../scss/modules/search.module.scss'
-import BlackTooltip from 'components/BlackTooltip/BlackTooltip'
-import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
-import { IconButton } from '@mui/material'
-import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { iconsCategory } from 'app/constants'
 import { useNavigate } from 'react-router-dom'
+import { ICONS_CATEGORY } from 'app/constants'
 import { useActions } from '../../hooks/useActions'
 import { useHome } from '../../hooks/useStateSelectors'
-import SearchError from 'components/search/SearchError'
 import { getPrefixTitle } from '../../utils/getPrefixTitle'
+import { BlackTooltip, TitleTooltip, SearchError } from 'components'
+import s from '../../scss/modules/search.module.scss'
+import { IconButton } from '@mui/material'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
+import { ISearchContent } from 'components/search/types'
+import { IItem } from '../../types/itemTypes'
 
-const SearchContent: React.FC<any> = ({ searchData, setSearchValue }) => {
+const SearchContent: React.FC<ISearchContent> = ({ searchData, setSearchValue }): JSX.Element => {
   const navigate = useNavigate()
   const { setClearSearchData } = useActions()
   const { searchStatus } = useHome()
   const isError = searchStatus === 'error'
   const data = searchData.slice(0, 4)
 
-  const onClickCategory = (item, evt) => {
+  const onClickCategory = (item: IItem, evt: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     evt.stopPropagation()
     navigate(`/category/${item.category}`)
     setSearchValue('')
     setClearSearchData()
   }
 
-  const onClickSearchItem = (item, evt) => {
+  const onClickSearchItem = (item: IItem, evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     evt.stopPropagation()
     navigate(`/category/${item.category}/product/${item._id}`)
     setSearchValue('')
     setClearSearchData()
   }
 
-  const getIconItem = (category) => {
-    const res = iconsCategory.find((item) => {
+  const getIconItem = (category): JSX.Element | null => {
+    const res = ICONS_CATEGORY.find((item) => {
       if (item.category === category) {
         return item.icon
       }

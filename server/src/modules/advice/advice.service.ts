@@ -9,10 +9,10 @@ export class AdviceService {
   constructor(@InjectModel(ProductModel) private productModel: ModelType<ProductModel>) {}
 
   async getAll() {
-    return this.productModel.find({"advice.status": true})
+    return await this.productModel.find({"advice.status": true})
   }
 
-  findCurrentAdvice(value) {
+  findCurrentAdvice(value: string) {
     if (value === 'all') {
       return this.productModel.find({"advice.status": true})
     } else {

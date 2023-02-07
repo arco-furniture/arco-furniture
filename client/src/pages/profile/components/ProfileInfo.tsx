@@ -13,9 +13,10 @@ import { toastError } from '../../../api/withToastrErrorRedux'
 import { useAuth } from '../../../hooks/useStateSelectors'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
-import * as yup from 'yup'
+import { SchemaInfo } from '../../../schemas'
+import { IInfoType } from 'pages/profile/types'
 
-const ProfileInfo: React.FC<any> = () => {
+const ProfileInfo: React.FC = (): JSX.Element => {
   const { user } = useAuth()
   const [active, setActive] = useState(false)
   const [formValues, setFormValues] = useState({ firstName: user.firstName })
@@ -34,25 +35,14 @@ const ProfileInfo: React.FC<any> = () => {
     },
   )
 
-  const Schema = yup.object().shape({
-    firstName: yup
-      .string()
-      .required('Вы не заполнили')
-      .matches(/^[a-zа-яё]+$/i, 'Некорректное имя'),
-  })
-
-  type Inputs = {
-    firstName: string
-  }
-
   const {
     register,
     handleSubmit,
     resetField,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<IInfoType>({
     mode: 'onBlur',
-    resolver: yupResolver(Schema),
+    resolver: yupResolver(SchemaInfo),
   })
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import {Controller, Get, HttpCode, Query} from '@nestjs/common';
 import { AdviceService } from './advice.service'
 import {filterAdviceValueDto} from "../../dto/filterAdviceValue.dto";
+import {ItemDto} from "../../dto/item.dto";
 
 @Controller('advice')
 export class AdviceController {
@@ -14,7 +15,7 @@ export class AdviceController {
 
   @HttpCode(200)
   @Get('/top')
-  getTopProduct() {
+  getTopProduct(): Promise<ItemDto[]> {
     return this.adviceService.getTopProduct()
   }
 
@@ -22,11 +23,5 @@ export class AdviceController {
   @Get()
   getAllAdvice() {
     return this.adviceService.getAll()
-  }
-
-  @HttpCode(200)
-  @Get()
-  pushItems() {
-    return this.adviceService.pushItems()
   }
 }

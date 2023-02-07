@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { findColor } from '../../utils/findColor'
-import { IProductState } from '../types'
+import { ICurrentColor, IProductState } from './types'
 
 const initialState: IProductState = {
-  currentColor: {},
+  currentColor: { color: '', exist: false, index: 0 },
   productStatus: '',
 }
 
@@ -14,8 +15,8 @@ export const productSlice = createSlice({
     getFirstColor(state, action) {
       state.currentColor = findColor(action.payload)
     },
-    setCurrentColor(state, action) {
-      state.currentColor = action.payload
+    setCurrentColor(state, { payload }: PayloadAction<ICurrentColor>) {
+      state.currentColor = payload
     },
   },
 })

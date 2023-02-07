@@ -1,25 +1,20 @@
 import { InputAdornment, Slider, TextField } from '@mui/material'
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import debounce from 'lodash/debounce'
-import { IItem } from '../../../types/itemTypes'
 import { useCategory } from '../../../hooks/useStateSelectors'
 import { useActions } from '../../../hooks/useActions'
 
-const FilterPrice: React.FC = () => {
-  const { categoryData, price, searchPrice } = useCategory()
+const FilterPrice: React.FC = (): JSX.Element => {
+  const { price, searchPrice } = useCategory()
   const { setPrice } = useActions()
-  const [value, setValue] = useState(searchPrice)
-  const [changeValue, setChangeValue] = useState(false)
+  const [value, setValue] = useState<number | number[]>(searchPrice)
+  const [changeValue, setChangeValue] = useState<boolean>(false)
 
-  const isMounted = useRef<boolean>(false)
-
-  // minMax определение должно быть на стороне фронта
-
-  useEffect(() => {
-    setChangeValue(false)
-    setValue(searchPrice)
-  }, [categoryData])
+  // useEffect(() => {
+  //   setChangeValue(false)
+  //   setValue(searchPrice)
+  // }, [categoryData])
 
   useEffect(() => {
     if (changeValue) {

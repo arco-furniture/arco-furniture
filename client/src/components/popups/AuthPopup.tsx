@@ -1,38 +1,33 @@
-import React, { useEffect, useState, memo } from 'react'
+import React from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
-import Form from 'ui/Form'
 import InputForm from 'ui/InputForm'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { Link } from '@mui/material'
 import Cookies from 'js-cookie'
+import { authPopupDataTypes } from 'components/popups/types'
+import { SchemaAuth } from '../../schemas'
+import Form from 'ui/Form'
 
-const AuthPopup = () => {
-  const { isLoading, popupAuth } = useAuth()
+const AuthPopup: React.FC = (): JSX.Element => {
+  const { popupAuth } = useAuth()
   const { setPopupAuth, setPopupRegister } = useActions()
   const { checkAuth } = useActions()
 
-  const Schema = yup.object().shape({
-    email: yup.string().required('Вы не заполнили').email('Некорректная электронная почта'),
-    password: yup.string().required('Вы не заполнили'),
-  })
-
-  // хук валидации формы
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<authPopupDataTypes>({
     mode: 'onBlur',
-    resolver: yupResolver(Schema),
+    resolver: yupResolver(SchemaAuth),
   })
 
   const { loginUser } = useActions()
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: authPopupDataTypes) => {
     if (isValid) {
       const userData = {
         email: data.email,
@@ -71,7 +66,7 @@ const AuthPopup = () => {
             textError={errors?.password?.message}
             {...register('password')}
           />
-          <button type='submit' className={`form__submit ${!isValid && 'form__submit_disabled'}`} disabled={isLoading}>
+          <button type='submit' className={`form__submit ${!isValid && 'form__submit_disabled'}`}>
             Войти
           </button>
         </Form>
@@ -86,4 +81,4 @@ const AuthPopup = () => {
   )
 }
 
-export default memo(AuthPopup)
+export default AuthPopup

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import styles from '../../../scss/modules/basket/basket-approval.module.scss'
 import { Button, Collapse, ThemeProvider } from '@mui/material'
 import { useAuth, useBasket } from '../../../hooks/useStateSelectors'
-import ListItemTemplate from 'components/listItemTemplate/ListItemTemplate'
+import { ListItemTemplate, AcceptPopover } from 'components'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import DeliveryApproval from 'pages/basket/components/DeliveryApproval'
-import { useQuery } from 'react-query'
 import { BasketService } from '../../../services/basket.service'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import { theme } from '../../../themes/errorButtonTheme'
-import AcceptPopover from 'components/acceptPopover/AcceptPopover'
 import { useActions } from '../../../hooks/useActions'
 
 const MenuApproval: React.FC<any> = () => {

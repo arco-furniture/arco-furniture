@@ -7,8 +7,6 @@ async function bootstrap() {
     origin: [
       'http://localhost:4400',
       'http://localhost:4450',
-      'https://localhost:4450',
-      'https://localhost:4400',
       'https://acro-furniture.tk',
       'http://acro-furniture.tk',
     ],

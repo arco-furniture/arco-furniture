@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useActions } from '../../hooks/useActions'
 import { useCategory } from '../../hooks/useStateSelectors'
 
-const CategorySort: React.FC = () => {
-  const [sortIndex, setSortIndex] = useState(0)
+const CategorySort: React.FC = (): JSX.Element => {
+  const [sortIndex, setSortIndex] = useState<number>(0)
   const { setChangeSort } = useActions()
   const { sort } = useCategory()
 

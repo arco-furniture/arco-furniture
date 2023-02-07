@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BasketApproval, BasketControl, BasketOrder } from '../index'
 import BasketNavigation from 'pages/basket/BasketNavigation'
 import { useAuth, useBasket } from '../../hooks/useStateSelectors'
-import { useNavigate } from 'react-router-dom'
 
-const Basket: React.FC = () => {
+const Basket: React.FC = (): JSX.Element => {
   const { dataBasketItems } = useBasket()
   const navigate = useNavigate()
   const { user } = useAuth()
   const [isControl, setIsControl] = useState<boolean>(true)
   const [isApproval, setIsApproval] = useState<boolean>(false)
   const [isOrder, setIsOrder] = useState<boolean>(false)
-  const [activeStep, setActiveStep] = useState(0)
+  const [activeStep, setActiveStep] = useState<number>(0)
 
   if (!dataBasketItems.length) {
     navigate('/')

@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/named
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { checkPriceBasket } from '../../utils/checkPriceBasket'
 import { checkOldPriceBasket } from '../../utils/checkOldPriceBasket'
-import { IBasketItem } from '../../types/basketTypes'
-import { IBasketState } from '../types'
 import { getBasketFromLS } from '../../utils/getBasketFromLS'
 import { clearBasketItems, paymentBasketItems } from './basket.actions'
+import { IBasketItem } from 'pages/basket/types'
+import { IBasketPushItem, IBasketState, ICountBasket } from './types'
 
 const { items } = getBasketFromLS()
 
@@ -19,29 +20,29 @@ export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    setIsLoadingBasket(state, action) {
+    setIsLoadingBasket(state, action: PayloadAction<boolean>) {
       state.isLoadingBasket = action.payload
     },
-    addItemForBasket(state, action) {
-      const findItem = state.dataBasketItems.find((item: IBasketItem) => item._id === action.payload._id)
+    addItemForBasket(state, { payload }: PayloadAction<IBasketPushItem>) {
+      const findItem = state.dataBasketItems.find((item: IBasketItem) => item._id === payload._id)
       if (findItem) {
         findItem.count++
         const filterItems = state.dataBasketItems.filter((item: IBasketItem) => item !== findItem)
         state.dataBasketItems = [...filterItems, findItem]
       } else {
-        state.dataBasketItems.push({ ...action.payload, count: 1 })
+        state.dataBasketItems.push({ ...payload, count: 1 })
       }
       state.totalPrice = checkPriceBasket(state.dataBasketItems)
       state.totalOldPrice = checkOldPriceBasket(state.dataBasketItems)
     },
-    removeItemForBasket(state, action) {
-      state.dataBasketItems = state.dataBasketItems.filter((item: IBasketItem) => item._id !== action.payload._id)
+    removeItemForBasket(state, { payload }: PayloadAction<IBasketPushItem>) {
+      state.dataBasketItems = state.dataBasketItems.filter((item: IBasketItem) => item._id !== payload._id)
       state.totalPrice = checkPriceBasket(state.dataBasketItems)
       state.totalOldPrice = checkOldPriceBasket(state.dataBasketItems)
     },
-    handleCountItem(state, action) {
-      const currentId = action.payload._id
-      const statusBoolean = action.payload.status
+    handleCountItem(state, { payload }: PayloadAction<ICountBasket>) {
+      const currentId = payload._id
+      const statusBoolean = payload.status
       const newItems = state.dataBasketItems.map((item: IBasketItem) => {
         if (item._id === currentId) {
           switch (statusBoolean) {

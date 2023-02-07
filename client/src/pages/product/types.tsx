@@ -1,16 +1,20 @@
-import { imagesTypes } from '../../types/itemTypes'
+import { imageTypes } from '../../types/itemTypes'
 
 export interface IProductPreview {
-  images: imagesTypes[]
+  images: imageTypes[]
   thumbsSwiper: any
 }
 
 export interface IProductSlides {
-  images: imagesTypes[]
+  images: imageTypes[]
   setThumbsSwiper: any
 }
 
 export type specsNamesTypes = {
   name: string
   specsNameId: 'style' | 'material' | 'size'
+}
+
+export interface IProductSpecs {
+  specs: specsNamesTypes[]
 }
