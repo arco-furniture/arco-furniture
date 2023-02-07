@@ -1,6 +1,7 @@
 import React from 'react'
+import { IForm } from './types'
 
-const Form: React.FC<any> = (props) => {
+const Form: React.FC<IForm> = (props) => {
   const { title, children } = props
 
   return (

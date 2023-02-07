@@ -13,6 +13,49 @@
         color: $blue;
     }
 
+    &__wrapper {
+        width: 100%;
+    }
+
+    &__target {
+        @include reset;
+        @include text-format(400, 16px, 21px);
+        margin-top: 10px;
+    }
+
+    &__imp {
+        @include reset;
+        @include text-format(400, 16px, 21px);
+        font-style: italic;
+        margin-top: 10px;
+
+        b {
+            color: $red;
+        }
+
+    }
+
+    &__titleMoments {
+        @include reset;
+        @include text-format(700, 18px, 22px);
+        margin: 10px 0;
+        color: $blue;
+    }
+
+    &__moments {
+        @include reset-list;
+        @include flex-column;
+        gap: 20px;
+    }
+
+    &__moment {
+        @include reset;
+        @include text-format(400, 16px, 22px);
+        letter-spacing: 0.02rem;
+        display: flex;
+        gap: 10px;
+    }
+
     &__paragraph {
         @include reset;
         margin-top: 10px;

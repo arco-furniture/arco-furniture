@@ -147,7 +147,8 @@
           left: -7px;
           width: 44px;
           height: 44px;
-          transition: opacity ease-in-out 0.2s;
+          transition: opacity ease-in-out 0.1s;
+          border-color: $blue;
 
           &_active{
             opacity: 1;

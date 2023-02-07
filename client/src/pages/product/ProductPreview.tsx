@@ -4,7 +4,7 @@ import React, { memo, useRef } from 'react'
 import { IProductPreview } from './types'
 import { SwiperArrows } from '../../components'
 
-const ProductPreview: React.FC<IProductPreview> = ({ thumbsSwiper, images }) => {
+const ProductPreview: React.FC<IProductPreview> = ({ thumbsSwiper, images }): JSX.Element => {
   const nextRef = useRef(null)
   const prevRef = useRef(null)
 

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
@@ -7,12 +7,13 @@ import { useActions } from '../../hooks/useActions'
 import { getBasketItem } from '../../utils/getBasketItem'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { handleChangeFavorite } from '../../utils/handleChangeFavorite'
+import { ICardBottom } from 'components/card/types'
 
-const CardBottom: React.FC<any> = ({ selectedColor, item }) => {
+const CardBottom: React.FC<ICardBottom> = ({ selectedColor, item }): JSX.Element => {
   const { favorites } = getFavoriteFromLS()
   const { getFirstColor, addItemForBasket, openAlertBar, setItemIsLiked } = useActions()
-  const isFavorite = favorites.some((favorite: IItem) => favorite._id === item._id)
-  const [isLiked, setIsLiked] = useState(isFavorite)
+  const isFavorite: boolean = favorites.some((favorite: IItem) => favorite._id === item._id)
+  const [isLiked, setIsLiked] = useState<boolean>(isFavorite)
 
   const onClickFavoriteButton = () => {
     handleChangeFavorite({ isFavorite, item })
@@ -69,4 +70,4 @@ const CardBottom: React.FC<any> = ({ selectedColor, item }) => {
   )
 }
 
-export default memo(CardBottom)
+export default CardBottom

@@ -1,46 +1,33 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
 import Form from 'ui/Form'
 import InputForm from 'ui/InputForm'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { Link } from '@mui/material'
 import Cookies from 'js-cookie'
+import { dataRegisterTypes, registerPopupDataTypes } from 'components/popups/types'
+import { SchemaRegister } from '../../schemas'
 
-const RegisterPopup = () => {
-  const { isLoading, popupRegister } = useAuth()
+const RegisterPopup: React.FC = (): JSX.Element => {
+  const { popupRegister } = useAuth()
   const { setPopupAuth, setPopupRegister } = useActions()
   const { checkAuth } = useActions()
 
-  const Schema = yup.object().shape({
-    firstName: yup
-      .string()
-      .required('Вы не заполнили')
-      .matches(/^[a-zа-яё]+$/i, 'Некорректное имя'),
-    email: yup.string().required('Вы не заполнили').email('Некорректная электронная почта'),
-    password: yup.string().required('Вы не заполнили'),
-    passwordReplay: yup
-      .string()
-      .required('Вы не заполнили')
-      .oneOf([yup.ref('password')], 'Пароли не совпадают'),
-  })
-
-  // хук валидации формы
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<registerPopupDataTypes>({
     mode: 'onBlur',
-    resolver: yupResolver(Schema),
+    resolver: yupResolver(SchemaRegister),
   })
 
   const { registerUser } = useActions()
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: dataRegisterTypes) => {
     if (isValid) {
       const userData = {
         password: data.password,
@@ -95,7 +82,7 @@ const RegisterPopup = () => {
             textError={errors?.passwordReplay?.message}
             {...register('passwordReplay')}
           />
-          <button type='submit' className={`form__submit ${!isValid && 'form__submit_disabled'}`} disabled={isLoading}>
+          <button type='submit' className={`form__submit ${!isValid && 'form__submit_disabled'}`}>
             Зарегистрироваться
           </button>
         </Form>

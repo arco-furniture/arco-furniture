@@ -7,8 +7,9 @@ import { useQuery } from 'react-query'
 import { BasketService } from '../../../services/basket.service'
 import DatePickerOrder from 'pages/basket/components/DatePickerOrder'
 import { useBasket } from '../../../hooks/useStateSelectors'
+import { IMenuOrder } from 'pages/basket/types'
 
-const MenuOrder: React.FC<any> = ({ isValid, control, errors }) => {
+const MenuOrder: React.FC<IMenuOrder> = ({ isValid, control, errors }): JSX.Element => {
   const { dataBasketItems, isLoadingBasket } = useBasket()
   const { data, isSuccess, refetch } = useQuery('get price preliminary', () => BasketService.getPricePreliminary())
 

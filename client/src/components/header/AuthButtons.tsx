@@ -3,7 +3,7 @@ import styles from '../../scss/modules/authButtons.module.scss'
 import { Button } from '@mui/material'
 import { useActions } from '../../hooks/useActions'
 
-const AuthButtons: React.FC<any> = () => {
+const AuthButtons: React.FC = (): JSX.Element => {
   const { setPopupAuth, setPopupRegister } = useActions()
 
   const onClickRegister = () => {

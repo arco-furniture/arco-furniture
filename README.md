@@ -10,11 +10,11 @@
 ![React](https://img.shields.io/badge/-React-0d1117?style=for-the-badge&logo=React)
 ![Redux](https://img.shields.io/badge/-Redux_Toolkit-0d1117?style=for-the-badge&logo=Redux)
 ![react-query](https://img.shields.io/badge/-react_query-0d1117?style=for-the-badge&logo=react-query)
-![Jest](https://img.shields.io/badge/-Jest+Enzyme-0d1117?style=for-the-badge&logo=Jest)
+![Jest](https://img.shields.io/badge/-Jest_&_Enzyme-0d1117?style=for-the-badge&logo=Jest)
 ![React_router](https://img.shields.io/badge/-React_router-0d1117?style=for-the-badge&logo=React-router)
 ![React_hook_form](https://img.shields.io/badge/-React_hook_form-0d1117?style=for-the-badge&logo=react-hook-form)
 ![Axios](https://img.shields.io/badge/-Axios-0d1117?style=for-the-badge&logo=Axios)
-![SCSS](https://img.shields.io/badge/-SCSS-0d1117?style=for-the-badge&logo=sass)
+![SCSS](https://img.shields.io/badge/-SCSS/modules-0d1117?style=for-the-badge&logo=sass)
 ![Material_UI](https://img.shields.io/badge/-Material_UI-0d1117?style=for-the-badge&logo=mui)
 ![Styled-components](https://img.shields.io/badge/-Styled_components-0d1117?style=for-the-badge&logo=Styled-components)
 ![Swiper](https://img.shields.io/badge/-Swiper-0d1117?style=for-the-badge&logo=swiper)
@@ -28,6 +28,10 @@
 ![mongodb](https://img.shields.io/badge/-mongo_db-0d1117?style=for-the-badge&logo=mongodb)
 ![jwt](https://img.shields.io/badge/-jwt-0d1117?style=for-the-badge&logo=asd)
 ![passport.js](https://img.shields.io/badge/-passport.js-0d1117?style=for-the-badge&logo=passport)
+
+## Deploy
+![Ubuntu](https://img.shields.io/badge/-Ubuntu-0d1117?style=for-the-badge&logo=Ubuntu) 
+![Nginx](https://img.shields.io/badge/-Nginx-0d1117?style=for-the-badge&logo=Nginx)
 
 ## Команда разработки
 ![Максим](https://img.shields.io/badge/-Петерс_Максим-0d1117?style=for-the-badge&logo=github)

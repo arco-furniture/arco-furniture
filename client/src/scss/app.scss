@@ -16,6 +16,7 @@ body {
     min-width: 320px;
     min-height: 100vh;
     @include flex-column-center;
+    transition: opacity ease 0.1s;
   }
 }
 
@@ -77,8 +78,48 @@ body {
   }
 }
 
+.alert {
+  background-color: $mainBlack !important;
+  box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.1) !important;
+  color: $white !important;
+  width: 100% !important;
+}
+
 .textHelper {
   position: absolute;
   bottom: -16px;
   left: -10px;
+}
+
+.preloader {
+  @include flex-center-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  transition: opacity ease-in-out 0.2s;
+
+  &_active {
+    opacity: 1;
+  }
+
+  &_disabled {
+    opacity: 0;
+  }
+
+  &__wrapper {
+    @include flex-column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__title {
+    @include reset;
+    @include text-format(400, 22px, 28px)
+  }
 }

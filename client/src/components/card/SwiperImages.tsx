@@ -1,13 +1,13 @@
 import React from 'react'
 import 'swiper/scss'
 import { ISwiperImages } from './types'
-import Carousel from './components/Carousel'
+import Carousel from './Carousel'
 import { SwiperSlide } from 'swiper/react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-const SwiperImages: React.FC<ISwiperImages> = ({ images, visible, isTop = true }) => {
+const SwiperImages: React.FC<ISwiperImages> = ({ images, isTop = true }): JSX.Element => {
   return images.length > 1 && !isTop ? (
-    <Carousel visible={visible}>
+    <Carousel>
       {images.map((item, key) => (
         <SwiperSlide key={key}>
           <LazyLoadImage

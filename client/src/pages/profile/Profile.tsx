@@ -1,16 +1,17 @@
 import React from 'react'
-import { ProfileAbout, ProfileBuy, ProfileReviews, ProfileMonies } from './index'
+import ProfileAbout from './ProfileAbout'
+import ProfileBuy from './ProfileBuy'
+import ProfileReviews from './ProfileReviews'
+import ProfileMonies from './ProfileMonies'
 
-const Profile = () => {
-  return (
-    <section className='profile'>
-      <h2 className='title profile__title'>Личный профиль</h2>
-      <ProfileAbout />
-      <ProfileBuy />
-      <ProfileMonies />
-      <ProfileReviews />
-    </section>
-  )
-}
+const Profile: React.FC = (): JSX.Element => (
+  <section className='profile'>
+    <h2 className='title profile__title'>Личный профиль</h2>
+    <ProfileAbout />
+    <ProfileBuy />
+    <ProfileMonies />
+    <ProfileReviews />
+  </section>
+)
 
 export default Profile

@@ -1,12 +1,12 @@
 import Dialog from '@mui/material/Dialog'
 import { DialogContent } from '@mui/material'
 import { IPopupTemplate } from './types'
-import React, { memo } from 'react'
+import React from 'react'
 
-const PopupTemplate: React.FC<IPopupTemplate> = ({ children, status, handleClose }) => (
+const PopupTemplate: React.FC<IPopupTemplate> = ({ children, status, handleClose }): JSX.Element => (
   <Dialog open={status} onClose={() => handleClose()}>
     <DialogContent>{children}</DialogContent>
   </Dialog>
 )
 
-export default memo(PopupTemplate)
+export default PopupTemplate

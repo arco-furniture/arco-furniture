@@ -12,11 +12,11 @@ import { useQuery } from 'react-query'
 import { CategoryService } from '../../services/category.service'
 import CategoryNotFound from 'pages/category/CategoryNotFound'
 
-const Category: React.FC = () => {
+const Category: React.FC = (): JSX.Element => {
   const { dataFilter, currentPage, sort } = useCategory()
   const { setChangePage } = useActions()
   const { categoryName } = useParams()
-  const categoryRef = useRef(null)
+  const categoryRef = useRef<HTMLDivElement | null>(null)
   const executeScroll = () => categoryRef.current.scrollIntoView({ behavior: 'smooth' })
 
   useEffect(() => {

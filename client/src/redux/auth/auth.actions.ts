@@ -3,12 +3,16 @@ import { errorCatch } from '../../api/api.helpers'
 import { AuthService } from 'services/auth.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../api/withToastrErrorRedux'
+import { setIsLoading } from '../other/other.slice'
+import { IAuth, IAuthUser, IRegisterUser } from './types'
 
-export const checkAuth = createAsyncThunk<any>('auth/check-auth', async (_, thunkAPI) => {
+export const checkAuth = createAsyncThunk<IAuth>('auth/check-auth', async (_, thunkAPI) => {
   try {
     const response = await AuthService.getNewTokens()
+    await thunkAPI.dispatch(setIsLoading())
     return response.data
   } catch (error) {
+    await thunkAPI.dispatch(setIsLoading())
     if (errorCatch(error) === 'jwt expired') {
       toastr.error('Авторизация', 'Ваша авторизация завершена, пожалуйста, войдите в систему еще раз')
       logout()
@@ -17,23 +21,20 @@ export const checkAuth = createAsyncThunk<any>('auth/check-auth', async (_, thun
   }
 })
 
-export const registerUser = createAsyncThunk<any, any>(
-  'auth/register',
-  async ({ email, password, firstName }, thunkAPI) => {
-    try {
-      const response = await AuthService.register(email, password, firstName)
-      toastr.success('Регистрация', 'прошла успешно!')
-      return response.data
-    } catch (error) {
-      toastError(error)
-      return thunkAPI.rejectWithValue(error)
-    }
-  },
-)
-
-export const loginUser = createAsyncThunk<any, any>('auth/login', async ({ email, password }, thunkAPI) => {
+export const registerUser = createAsyncThunk<IAuth, IRegisterUser>('auth/register', async (dataRegister, thunkAPI) => {
   try {
-    const response = await AuthService.login(email, password)
+    const response = await AuthService.register(dataRegister)
+    toastr.success('Регистрация', 'прошла успешно!')
+    return response.data
+  } catch (error) {
+    toastError(error)
+    return thunkAPI.rejectWithValue(error)
+  }
+})
+
+export const loginUser = createAsyncThunk<IAuth, IAuthUser>('auth/login', async (dataAuth, thunkAPI) => {
+  try {
+    const response = await AuthService.login(dataAuth)
     toastr.success('Авторизация', 'прошла успешно!')
     return response.data
   } catch (error) {

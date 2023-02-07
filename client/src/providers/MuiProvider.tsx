@@ -1,7 +1,8 @@
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material'
+import { IProvider } from './types'
 
-const MuiProvider: React.FC<any> = ({ children }) => {
+const MuiProvider: React.FC<IProvider> = ({ children }): JSX.Element => {
   const theme = createTheme({
     palette: {
       mode: 'light',

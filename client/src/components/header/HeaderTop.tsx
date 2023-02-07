@@ -2,12 +2,15 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
 import React from 'react'
 import HeaderProfile from './HeaderProfile'
 import AuthButtons from './AuthButtons'
-import { useAuth } from '../../hooks/useStateSelectors'
+import { useAuth, useOther } from '../../hooks/useStateSelectors'
 import { BlackTooltip } from 'components/index'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 
-const HeaderTop: React.FC = () => {
+const HeaderTop: React.FC = (): JSX.Element => {
   const { isLoadingAuth, user } = useAuth()
+  const { isLoading } = useOther()
+
+  const PanelAuth = () => (user ? <HeaderProfile /> : <AuthButtons />)
 
   return (
     <div className='header__top'>
@@ -20,7 +23,7 @@ const HeaderTop: React.FC = () => {
             </button>
           </BlackTooltip>
         </div>
-        {isLoadingAuth && (user ? <HeaderProfile /> : <AuthButtons />)}
+        <PanelAuth />
       </div>
     </div>
   )

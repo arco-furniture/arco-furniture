@@ -1,7 +1,8 @@
-import { IItem, imagesTypes } from '../types/itemTypes'
+import { IItem, imageTypes } from '../types/itemTypes'
 import imageNotFound from '../images/notFound.png'
+import { IBasketPushItem } from 'redux/basket/types'
 
-export const getBasketItem = (item: IItem, currentColor: any) => {
+export const getBasketItem = (item: IItem, currentColor: string): IBasketPushItem => {
   return {
     _id: item._id,
     title: item.title,
@@ -15,6 +16,6 @@ export const getBasketItem = (item: IItem, currentColor: any) => {
   }
 }
 
-export const getCardImages = (images: imagesTypes[]) => {
-  return images?.find((item: imagesTypes) => item)?.image || imageNotFound
+export const getCardImages = (images: imageTypes[]) => {
+  return images?.find((item: imageTypes) => item)?.image || imageNotFound
 }

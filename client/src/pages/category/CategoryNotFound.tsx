@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Button, Typography } from '@mui/material'
 
-const CategoryNotFound = () => {
+const CategoryNotFound: React.FC = (): JSX.Element => {
   const styleBox = {
     display: 'flex',
     flexDirection: 'column',

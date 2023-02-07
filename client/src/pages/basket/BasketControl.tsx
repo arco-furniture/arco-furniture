@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import styles from '../../scss/modules/basket/basket.module.scss'
-import { IBasketItem } from '../../types/basketTypes'
 import BasketItem from './components/BasketItem'
 import { Button, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
@@ -11,9 +10,9 @@ import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import { toastError } from '../../api/withToastrErrorRedux'
 import { useActions } from '../../hooks/useActions'
-import { getRequestItems } from '../../utils/getRequestItems'
+import { IBasketItem, IControlForm, requestDataTypes } from 'pages/basket/types'
 
-const BasketControl: React.FC = () => {
+const BasketControl: React.FC = (): JSX.Element => {
   const { dataBasketItems, totalPrice } = useBasket()
   const { setUser } = useActions()
   const { user } = useAuth()
@@ -38,21 +37,15 @@ const BasketControl: React.FC = () => {
     isMounted.current = true
   }, [dataRequest])
 
-  type TypesUseForm = {
-    delivery: 'Курьером' | 'Почтой'
-    pay: 'Оплата картой' | 'Наличные'
-    query: boolean
-  }
-
   const {
     handleSubmit,
     control,
     formState: { isValid },
-  } = useForm<TypesUseForm>({
+  } = useForm<IControlForm>({
     mode: 'onChange',
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: requestDataTypes) => {
     if (user && isValid) {
       const info = { delivery: data.delivery, pay: data.pay }
       setDataRequest(info)

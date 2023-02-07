@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import {
   IconButton,
   styled,
@@ -10,8 +10,7 @@ import {
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded'
 import styles from '../../../scss/modules/basket/basket-item.module.scss'
 import { specsNamesTypes } from 'pages/product/types'
-// eslint-disable-next-line import/named
-import { specsNames } from 'app/constants'
+import { SPECS_NAME } from 'app/constants'
 
 const SpecsItem: React.FC<any> = ({ specs }) => {
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -25,7 +24,7 @@ const SpecsItem: React.FC<any> = ({ specs }) => {
   const SpecsList = () => (
     <div className={styles.specs__content}>
       <ul>
-        {specsNames?.map((item: specsNamesTypes) => (
+        {SPECS_NAME?.map((item: specsNamesTypes) => (
           <li style={{ color: '#cbcbcb', fontWeight: 700 }} key={item.specsNameId}>{`${item.name}:`}</li>
         ))}
       </ul>

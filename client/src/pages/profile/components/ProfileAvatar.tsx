@@ -1,17 +1,16 @@
+import React, { memo, useRef } from 'react'
 import { Avatar, Button, ThemeProvider } from '@mui/material'
 import { profileButtonTheme } from '../../../themes/profileButtonTheme'
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined'
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import React, { memo, useRef, useState } from 'react'
+import { CameraAltOutlined, DeleteOutlineOutlined } from '@mui/icons-material'
 import { useAuth } from '../../../hooks/useStateSelectors'
-import { useQuery, useInfiniteQuery, QueryClient } from 'react-query'
+import { useQuery, useInfiniteQuery } from 'react-query'
 import { ProfileService } from '../../../services/profile.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../../api/withToastrErrorRedux'
 import { useActions } from '../../../hooks/useActions'
-import AcceptPopover from 'components/acceptPopover/AcceptPopover'
+import { AcceptPopover } from 'components'
 
-const ProfileAvatar: React.FC<any> = () => {
+const ProfileAvatar: React.FC = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const { user } = useAuth()
   const avatarStyle = {
@@ -21,7 +20,7 @@ const ProfileAvatar: React.FC<any> = () => {
     boxShadow:
       '0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
   }
-  const filePicker = useRef(null)
+  const filePicker = useRef<HTMLInputElement | null>(null)
   const avatarData = new FormData()
   const { setUser } = useActions()
 
@@ -55,7 +54,7 @@ const ProfileAvatar: React.FC<any> = () => {
     },
   )
 
-  const handleChangeUpload = async (e) => {
+  const handleChangeUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const file = e.target.files[0]
     await avatarData.set('file', file) // на бэке ожидает form-data "file"
@@ -78,18 +77,18 @@ const ProfileAvatar: React.FC<any> = () => {
         name='audio'
         accept='image/png, image/jpg, image/jpeg'
         type='file'
-        onChange={handleChangeUpload}
+        onChange={(evt) => handleChangeUpload(evt)}
         ref={filePicker}
         className='profile__audioPicker'
       />
       <div className='profileAbout__avatarEdit'>
         <Avatar sx={avatarStyle} variant='rounded' src={user.avatar} />
         <ThemeProvider theme={profileButtonTheme}>
-          <Button onClick={handlePicker} startIcon={<CameraAltOutlinedIcon />}>
+          <Button onClick={handlePicker} startIcon={<CameraAltOutlined />}>
             {isLoading ? 'Загрузка...' : 'Загрузить'}
           </Button>
           <Button sx={{ minWidth: '30px', width: '35px' }} disabled={!user.avatar} onClick={onClickDeleteAvatar}>
-            <DeleteOutlineOutlinedIcon fontSize='small' />
+            <DeleteOutlineOutlined fontSize='small' />
           </Button>
         </ThemeProvider>
         <AcceptPopover

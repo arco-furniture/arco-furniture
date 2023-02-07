@@ -1,17 +1,13 @@
+import React from 'react'
 // eslint-disable-next-line import/no-unresolved
 import styles from '../../../scss/modules/basket/basket-specifications.module.scss'
-import { specsTypes } from '../../types/basketTypes'
-import React from 'react'
+import { IBasketSpecifications } from 'pages/basket/types'
 
-const BasketSpecifications: React.FC<specsTypes> = (props) => {
-  return (
-    <div>
-      <div className={styles.specifications__box}>
-        <p className={styles.specifications__text}>{props.specsId}</p>
-        <p className={styles.specifications__text}>{props.value}</p>
-      </div>
-    </div>
-  )
-}
+const BasketSpecifications: React.FC<IBasketSpecifications> = ({ specsId, value }): JSX.Element => (
+  <div className={styles.specifications__box}>
+    <p className={styles.specifications__text}>{specsId}</p>
+    <p className={styles.specifications__text}>{value}</p>
+  </div>
+)
 
 export default BasketSpecifications

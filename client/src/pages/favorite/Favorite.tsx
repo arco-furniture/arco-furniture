@@ -4,7 +4,7 @@ import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { useOther } from '../../hooks/useStateSelectors'
 import { useNavigate } from 'react-router-dom'
 
-const Favorite: React.FC = () => {
+const Favorite: React.FC = (): JSX.Element => {
   const { favorites } = getFavoriteFromLS()
   const { itemIsLiked } = useOther()
   const navigate = useNavigate()

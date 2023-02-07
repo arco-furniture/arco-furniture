@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import FormOrder from 'pages/basket/components/FormOrder'
 import MenuOrder from 'pages/basket/components/MenuOrder'
@@ -8,37 +7,13 @@ import styles from '../../scss/modules/basket/basket-form.module.scss'
 import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import { useActions } from '../../hooks/useActions'
+import { SchemaOrder } from '../../schemas'
+import { TypesUseForm } from 'pages/basket/types'
 
-type TypesUseForm = {
-  firstName: string
-  city: string
-  phone: string
-  address: string
-  comment: string
-  reqDate: object
-}
-
-const BasketOrder: React.FC = () => {
+const BasketOrder: React.FC = (): JSX.Element => {
   const isMounted = useRef<boolean>(false)
   const [dataRequest, setDataRequest] = useState<TypesUseForm | null>(null)
   const { setUser } = useActions()
-
-  const Schema = yup.object().shape({
-    firstName: yup
-      .string()
-      .required('Вы не заполнили')
-      .matches(/^[a-zа-яё]+$/i, 'Некорректное имя'),
-    city: yup
-      .string()
-      .required('Вы не заполнили')
-      .matches(/^[a-zа-яё]+$/i, 'Некорректное имя'),
-    phone: yup
-      .string()
-      .required('Вы не заполнили')
-      .matches(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/, 'Некорректный номер телефона'),
-    address: yup.string().required('Вы не заполнили'),
-    reqDate: yup.date().required('Некорректная дата доставки'),
-  })
 
   const {
     register,
@@ -47,7 +22,7 @@ const BasketOrder: React.FC = () => {
     formState: { isValid, errors },
   } = useForm<TypesUseForm>({
     mode: 'onBlur',
-    resolver: yupResolver(Schema),
+    resolver: yupResolver(SchemaOrder),
   })
 
   const { refetch } = useQuery(

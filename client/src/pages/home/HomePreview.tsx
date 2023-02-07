@@ -1,29 +1,28 @@
-import HomeBanner from './Banner'
-import CountDown from 'components/countDown/CountDown'
-import { cardPreviewInfo } from 'app/constants'
-import Button from '@mui/material/Button'
 import React from 'react'
+import { useQuery } from 'react-query'
+import HomeBanner from './components/Banner'
+import { CountDown } from 'components'
+import { CARD_PREVIEW_INFO } from 'app/constants'
+import Button from '@mui/material/Button'
 import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import { useActions } from '../../hooks/useActions'
 import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
-import { useQuery } from 'react-query'
 import { AdviceService } from '../../services/advice.service'
-import { getSkeletonCards } from '../../utils/getSkeletonCards'
 import { getCards } from '../../utils/getCards'
 
-const HomePreview: React.FC = () => {
-  const { openAuthorsPopup } = useActions()
+const HomePreview: React.FC = (): JSX.Element => {
+  const { openAuthorsPopup, openPopupProject } = useActions()
   const stylesButton = { color: '#414141' }
-  const { isLoading, data, isSuccess } = useQuery('get top product', () => AdviceService.getTopProduct())
+  const { data, isSuccess } = useQuery('get top product', () => AdviceService.getTopProduct())
 
   return (
     <section className='preview'>
       <div className='preview__wrapper'>
         <h2 className='preview__title'>Почему мы?</h2>
         <ul className='preview__cards-wrapper'>
-          {cardPreviewInfo.map((item, index) => (
+          {CARD_PREVIEW_INFO.map((item, index) => (
             <li key={index} className='preview__container'>
               <div className={item.className} />
               <div className='preview__grout-text'>
@@ -43,7 +42,6 @@ const HomePreview: React.FC = () => {
           <h2 className='preview__title'>Товар дня</h2>
           <CountDown hours={18} minutes={0} />
         </div>
-        {isLoading && getSkeletonCards(1)}
         {isSuccess && getCards(data, true)}
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>
@@ -58,7 +56,12 @@ const HomePreview: React.FC = () => {
             <CodeIcon style={{ color: '#4675CE' }} />
             Авторы проекта
           </Button>
-          <Button style={stylesButton} className='preview__info-text' disabled>
+          <Button
+            color='primary'
+            style={stylesButton}
+            className='preview__info-text'
+            onClick={() => openPopupProject()}
+          >
             <SettingsOutlinedIcon style={{ color: '#4675CE' }} />
             Коротко о проекте
           </Button>
