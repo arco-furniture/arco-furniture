@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Button from '@mui/material/Button'
 import welcome from '../../images/welcome.jpg'
 import Rating from '@mui/material/Rating'
@@ -18,14 +17,7 @@ const HomeWelcome: React.FC = (): JSX.Element => (
         занимается продажей кухонной и корпусной мебели, вернее даже будет сказать что в первую очередь мы не продаем, а
         стараемся помочь нашим клиентам с выбором.
       </p>
-      <LazyLoadImage
-        width='100%'
-        height='310px'
-        effect='blur'
-        className='welcome__image'
-        alt='работник'
-        src={welcome}
-      />
+      <img width='100%' height='310px' className='welcome__image' alt='работник' src={welcome} />
     </div>
     <div className='welcome__column'>
       <div className='welcome__top'>
