@@ -3,7 +3,8 @@ import Loadable from 'react-loadable'
 import { Routes, Route } from 'react-router-dom'
 import styles from '../scss/modules/main.module.scss'
 import { Home, Favorite, PageNotFound } from 'pages'
-import { Preloader, AlertBar, AuthorsPopup, RegisterPopup, AuthPopup, PaymentPopup, ProjectPopup } from 'components'
+import { AlertBar, AuthorsPopup, RegisterPopup, AuthPopup, PaymentPopup, ProjectPopup } from 'components'
+import Preloader from 'components/preloader'
 
 const AppRoutes: React.FC = () => {
   const Category = Loadable({
@@ -17,7 +18,7 @@ const AppRoutes: React.FC = () => {
   })
 
   const Profile = Loadable({
-    loader: () => import(/* webpackChunkName: "Category" */ 'pages/profile/Profile'),
+    loader: () => import(/* webpackChunkName: "Profile" */ 'pages/profile/Profile'),
     loading: () => <Preloader />,
   })
 

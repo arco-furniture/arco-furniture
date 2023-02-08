@@ -1,6 +1,5 @@
 export { default as Card } from './card'
 export { default as BlackTooltip } from './BlackTooltip'
-export { default as Preloader } from './preloader'
 export { default as AcceptPopover } from './acceptPopover'
 export { default as AlertBar } from './alertBar'
 export { default as ButtonColor } from './buttonColor'

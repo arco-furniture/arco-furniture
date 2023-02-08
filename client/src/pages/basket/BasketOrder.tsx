@@ -47,7 +47,7 @@ const BasketOrder: React.FC = (): JSX.Element => {
   }, [dataRequest])
 
   return (
-    <section>
+    <section className={styles.section}>
       <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <FormOrder register={register} errors={errors} />
         <MenuOrder isValid={isValid} control={control} errors={errors} />

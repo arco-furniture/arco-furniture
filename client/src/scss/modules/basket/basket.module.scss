@@ -21,6 +21,7 @@
     &__section {
         @include flex-center;
         gap: 35px;
+        animation: ani 0.2s ease-in-out;
     }
 }
 
@@ -73,4 +74,9 @@
         text-transform: uppercase;
         @include text-format(700, 18px, 34px);
     }
+}
+
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }

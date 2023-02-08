@@ -29,7 +29,11 @@ const Card: React.FC<ICard> = ({ item, isTop = false }): JSX.Element => {
   }
 
   return (
-    <article className='card' onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+    <article
+      className={`card ${isTop ? 'card_top' : ''}`}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
       <Tag tag={item.mark} isCard price={item.price} oldPrice={item.oldPrice} />
       <SwiperImages images={checkImages(item.cardImages)} isTop={isTop} />
       <h3 className='card__title'>{getPrefixTitle(item)}</h3>

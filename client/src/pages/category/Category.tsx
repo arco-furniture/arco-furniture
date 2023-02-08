@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react'
 import CategoryFilters from './CategoryFilters'
 import { Pagination } from '@mui/material'
-import { getSkeletonCards } from '../../utils/getSkeletonCards'
 import { getCards } from '../../utils/getCards'
 import CategorySort from './CategorySort'
 import { useParams } from 'react-router-dom'
@@ -26,7 +25,6 @@ const Category: React.FC = (): JSX.Element => {
   const {
     isError,
     isSuccess,
-    isLoading,
     refetch,
     data: items,
   } = useQuery(
@@ -56,7 +54,6 @@ const Category: React.FC = (): JSX.Element => {
           {isError ? <CategoryNull /> : <></>}
           {items?.data?.length ? (
             <div className='category__cards'>
-              {isLoading && getSkeletonCards(6)}
               {items?.data?.length && getCards(items.data)}
               <div className='category__pagination'>
                 <Pagination

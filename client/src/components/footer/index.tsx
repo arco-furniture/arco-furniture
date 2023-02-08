@@ -16,7 +16,7 @@ const Footer: React.FC = (): JSX.Element => {
         <div className={styles.middle}>
           <div className={styles.about}>
             <p className={styles.aboutText}>
-              <span>Акромебель</span> - это онлайн-магазин мебели с разнообразным выбором фильтров товара, личным
+              <span>АркоМебель</span> - это онлайн-магазин мебели с разнообразным выбором фильтров товара, личным
               кабинетом и оформлением заказа.
             </p>
           </div>

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import ProductParams from './ProductParams'
@@ -11,6 +11,9 @@ const Product: React.FC = (): JSX.Element => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const { productId } = useParams()
   const { data, isSuccess } = useQuery('get product', () => ProductService.getProduct(productId))
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     isSuccess && (

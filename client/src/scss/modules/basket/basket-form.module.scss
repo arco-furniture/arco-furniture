@@ -20,6 +20,10 @@
     gap: 35px;
 }
 
+.section {
+    animation: ani 0.2s ease-in-out;
+}
+
 .datePicker {
     padding-top: 42px;
     display: flex;
@@ -50,4 +54,9 @@
         @include text-format(700, 18px, 23px);
         color: #414141;
     }
+}
+
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
