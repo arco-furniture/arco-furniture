@@ -13,17 +13,12 @@ const initialState: IOtherState = {
   statusPaymentPopup: false,
   statusPopupProject: false,
   paymentValue: null,
-  activePreloader: false,
-  isLoading: true,
 }
 
 export const otherSlice = createSlice({
   name: 'other',
   initialState,
   reducers: {
-    setIsLoading(state) {
-      state.isLoading = false
-    },
     openAlertBar(state, { payload }: PayloadAction<IAlert>) {
       state.alert = payload
       state.statusAlert = true
@@ -54,12 +49,9 @@ export const otherSlice = createSlice({
     openPopupProject(state) {
       state.statusPopupProject = true
     },
-    setActivePreloader(state, { payload }: PayloadAction<boolean>) {
-      state.activePreloader = payload
-    },
   },
 })
 
 export const { reducer, actions } = otherSlice
 
-export const { openPaymentPopup, setIsLoading } = otherSlice.actions
+export const { openPaymentPopup } = otherSlice.actions

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useActions } from '../../hooks/useActions'
 import { useOther } from '../../hooks/useStateSelectors'
 import PopupTemplate from 'components/popups/PopupTemplate'
@@ -15,8 +15,8 @@ const ProjectPopup: React.FC = (): JSX.Element => {
           Коротко о проекте 🔥
         </h3>
         <p className={styles.popup__target}>
-          Проект создавался с целью усовершенствования ключевых навыков разработки клиент-серверного приложения
-          (Frontend / Backend / Deploy).
+          Проект создавался с целью закрепления ключевых навыков разработки клиент-серверного приложения (Frontend /
+          Backend / Deploy).
         </p>
         <p className={styles.popup__imp}>
           В нем <b>не предполагается</b> оптимизация верстки под различные разрешения экрана, pixel perfect и т.п.
@@ -32,7 +32,7 @@ const ProjectPopup: React.FC = (): JSX.Element => {
             <DoneOutlinedIcon color='primary' style={{ position: 'relative' }} />
             Работа с данными реализована в комбинации с Redux Toolkit и React Query. В основном использовался React
             Query для кеширования запросов. А Redux для изменения стейта в двух и более компонентах. Для стейтов и
-            экшенов созданы хуки с оптимизацией useMemo.
+            экшенов созданы удобные хуки.
           </li>
           <li className={styles.popup__moment}>
             <DoneOutlinedIcon color='primary' style={{ position: 'relative' }} />
@@ -45,8 +45,7 @@ const ProjectPopup: React.FC = (): JSX.Element => {
           </li>
           <li className={styles.popup__moment}>
             <DoneOutlinedIcon color='primary' style={{ position: 'relative' }} />
-            Оптимизирована загрузка компонентов и картинок через lazy loading для более быстрой загрузки первой
-            страницы.
+            Оптимизирована загрузка компонентов через lazy loading для более быстрой загрузки первой страницы.
           </li>
         </ul>
       </div>
@@ -54,4 +53,4 @@ const ProjectPopup: React.FC = (): JSX.Element => {
   )
 }
 
-export default ProjectPopup
+export default memo(ProjectPopup)

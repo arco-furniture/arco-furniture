@@ -36,6 +36,7 @@
 
   &__swiper {
     max-width: 556px;
+    min-height: 284px;
     @include reset;
   }
 

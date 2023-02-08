@@ -12,6 +12,10 @@
     }
 }
 
+.section {
+    animation: ani 0.2s ease-in-out;
+}
+
 .menu {
     &__promo {
         position: relative;
@@ -123,4 +127,9 @@
         gap: 15px;
         margin-top: 10px;
     }
+}
+
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }

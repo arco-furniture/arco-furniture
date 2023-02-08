@@ -13,13 +13,6 @@ import { AcceptPopover } from 'components'
 const ProfileAvatar: React.FC = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const { user } = useAuth()
-  const avatarStyle = {
-    bgcolor: '#4675CE',
-    width: '33px',
-    height: '33px',
-    boxShadow:
-      '0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
-  }
   const filePicker = useRef<HTMLInputElement | null>(null)
   const avatarData = new FormData()
   const { setUser } = useActions()
@@ -34,7 +27,12 @@ const ProfileAvatar: React.FC = (): JSX.Element => {
     () =>
       ProfileService.uploadAvatar(avatarData)
         .then((info) => setUser(info))
-        .then(() => toastr.success('Данные сохранены', 'Вы изменили аватар'))
+        .then(() =>
+          toastr.success(
+            'Аватар загружен',
+            'На продакшене функция временно не работает. Настройка nginx... ¯\\_(ツ)_/¯ ',
+          ),
+        )
         .catch((error) => toastError(error)),
     {
       enabled: false,
@@ -82,7 +80,7 @@ const ProfileAvatar: React.FC = (): JSX.Element => {
         className='profile__audioPicker'
       />
       <div className='profileAbout__avatarEdit'>
-        <Avatar sx={avatarStyle} variant='rounded' src={user.avatar} />
+        <Avatar className='profileAbout__image' variant='rounded' />
         <ThemeProvider theme={profileButtonTheme}>
           <Button onClick={handlePicker} startIcon={<CameraAltOutlined />}>
             {isLoading ? 'Загрузка...' : 'Загрузить'}

@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
-import { useOther } from '../../hooks/useStateSelectors'
+import React from 'react'
+import CircularProgress, { circularProgressClasses } from '@mui/material/CircularProgress'
+import { Box } from '@mui/material'
 
 const Preloader: React.FC = (): JSX.Element => {
-  const { activePreloader } = useOther()
-  const [stylesHidden, setStylesHidden] = useState<object>({ overFlow: 'hidden', display: 'none' })
-
-  useEffect(() => {
-    if (!activePreloader) {
-      const timeout = setTimeout(() => setStylesHidden({ overFlow: 'hidden', display: 'none' }), 1000)
-      return clearTimeout(timeout)
-    } else {
-      setStylesHidden({ overFlow: 'visible', display: 'flex' })
-    }
-  }, [activePreloader])
-
   return (
-    <section
-      style={stylesHidden}
-      className={`preloader ${activePreloader ? 'preloader_active' : 'preloader_disabled'}`}
-    >
-      <div className='preloader__wrapper'>
-        <h2 className='preloader__title'>Загрузка...</h2>
-        <CircularProgress />
-      </div>
-    </section>
+    <Box className='preloader'>
+      <Box className='preloader__wrapper'>
+        <CircularProgress
+          variant='determinate'
+          sx={{
+            color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+          }}
+          size={40}
+          thickness={4}
+          value={100}
+        />
+        <CircularProgress
+          variant='indeterminate'
+          disableShrink
+          sx={{
+            color: (theme) => (theme.palette.mode === 'light' ? '#5a81e5' : '#4675CE'),
+            animationDuration: '550ms',
+            position: 'absolute',
+            left: 0,
+            [`& .${circularProgressClasses.circle}`]: {
+              strokeLinecap: 'round',
+            },
+          }}
+          size={40}
+          thickness={4}
+        />
+      </Box>
+    </Box>
   )
 }
 

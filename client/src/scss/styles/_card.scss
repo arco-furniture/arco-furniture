@@ -17,10 +17,19 @@
   margin: 10px 0;
   z-index: 50;
   background-color: #fff;
+  animation: ani 0.2s ease-in-out;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 1px -3px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  &_top {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 1px -3px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+
+    &:hover {
+      transform: translateY(-5px);}
   }
 
   &__type_active {
@@ -178,3 +187,7 @@
   }
 }
 
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

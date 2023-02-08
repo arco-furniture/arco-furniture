@@ -26,7 +26,7 @@ const HeaderProfile: React.FC = (): JSX.Element => {
       </BlackTooltip>
       <button className={styles.buttonProfile} onClick={handleClick}>
         <h2 className={styles.name}>{user?.firstName}</h2>
-        <Avatar className={styles.avatar} variant='rounded' src={user ? user.avatar : null} />
+        <Avatar className={styles.avatar} variant='rounded' src={null} />
       </button>
       <ProfileMenu open={open} setAnchorEl={setAnchorEl} anchorEl={anchorEl} />
     </div>

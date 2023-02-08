@@ -24,7 +24,7 @@ const BasketApproval: React.FC = (): JSX.Element => {
   }, [dataBasketItems, isLoadingBasket])
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.approve}>
         <div className={styles.approve__container}>
           {data?.map((item: IBasketItem) => (

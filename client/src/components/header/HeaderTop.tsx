@@ -2,13 +2,12 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
 import React from 'react'
 import HeaderProfile from './HeaderProfile'
 import AuthButtons from './AuthButtons'
-import { useAuth, useOther } from '../../hooks/useStateSelectors'
+import { useAuth } from '../../hooks/useStateSelectors'
 import { BlackTooltip } from 'components/index'
 import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
 
 const HeaderTop: React.FC = (): JSX.Element => {
-  const { isLoadingAuth, user } = useAuth()
-  const { isLoading } = useOther()
+  const { user } = useAuth()
 
   const PanelAuth = () => (user ? <HeaderProfile /> : <AuthButtons />)
 

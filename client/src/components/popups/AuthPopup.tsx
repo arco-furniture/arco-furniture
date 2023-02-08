@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PopupTemplate from 'components/popups/PopupTemplate'
 import InputForm from 'ui/InputForm'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -81,4 +81,4 @@ const AuthPopup: React.FC = (): JSX.Element => {
   )
 }
 
-export default AuthPopup
+export default memo(AuthPopup)

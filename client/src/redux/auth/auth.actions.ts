@@ -3,16 +3,13 @@ import { errorCatch } from '../../api/api.helpers'
 import { AuthService } from 'services/auth.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../api/withToastrErrorRedux'
-import { setIsLoading } from '../other/other.slice'
 import { IAuth, IAuthUser, IRegisterUser } from './types'
 
 export const checkAuth = createAsyncThunk<IAuth>('auth/check-auth', async (_, thunkAPI) => {
   try {
     const response = await AuthService.getNewTokens()
-    await thunkAPI.dispatch(setIsLoading())
     return response.data
   } catch (error) {
-    await thunkAPI.dispatch(setIsLoading())
     if (errorCatch(error) === 'jwt expired') {
       toastr.error('Авторизация', 'Ваша авторизация завершена, пожалуйста, войдите в систему еще раз')
       logout()

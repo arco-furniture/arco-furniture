@@ -6,8 +6,6 @@ export interface IOtherState {
   statusPaymentPopup: boolean
   statusPopupProject: boolean
   paymentValue: null | number
-  activePreloader: boolean
-  isLoading: boolean
 }
 
 export interface IAlert {
