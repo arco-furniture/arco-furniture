@@ -27,7 +27,7 @@ export class ProfileService {
 
     if (!uploadFile) throw new UnauthorizedException('Не удалось загрузить аватар') // потом поменять код ошибки
 
-    user.avatar = `${process.env.URL}:${process.env.PORT}${uploadFile[0].url}`
+    user.avatar = uploadFile[0].url
     await user.save()
 
     return this.returnUserFields(user)
@@ -36,12 +36,13 @@ export class ProfileService {
   private async saveFile(files: Express.Multer.File[], user) {
     const uploadFolder = `${path}/mediabank`
     await ensureDir(uploadFolder)
+    const ACCESS_URL = process.env.ACCESS_URL
 
     const res:AvatarResponse[] = await Promise.all(
       files.map(async file => {
         await writeFile(`${uploadFolder}/${user._id}.jpg`, file.buffer)
         return {
-          url: `/mediabank/${user._id}.jpg`,
+          url: `${ACCESS_URL}/api/mediabank/${user._id}.jpg`,
           name: user._id,
         }
       })
