@@ -2,8 +2,8 @@
 
 ![Лендинг](https://i.ibb.co/xsJbBjM/work-acro.jpg)
 
-[//]: # (### <img src="https://cdn-icons-png.flaticon.com/512/7135/7135133.png" width="25" />[ Ссылка на проект]&#40;https://arco-furniture.github.io/arco-furniture/&#41;)
-### <img src="https://im.wampi.ru/2022/09/28/figma.png" width="25" />[ Ссылка на макет](https://www.figma.com/file/Iatke6np8uI2zeeQVtSAvy/Untitled?node-id=0%3A1)
+## [www.acro-furniture.tk](https://acro-furniture.tk)
+### <img src="https://im.wampi.ru/2022/09/28/figma.png" width="25" />[Макет](https://www.figma.com/file/Iatke6np8uI2zeeQVtSAvy/Untitled?node-id=0%3A1)
 
 ## Frontend
 ![TypeScript](https://img.shields.io/badge/-TypeScript-0d1117?style=for-the-badge&logo=TypeScript)
@@ -26,8 +26,8 @@
 ![TypeScript](https://img.shields.io/badge/-TypeScript-0d1117?style=for-the-badge&logo=TypeScript)
 ![nest](https://img.shields.io/badge/-nest.js-0d1117?style=for-the-badge&logo=nestjs)
 ![mongodb](https://img.shields.io/badge/-mongo_db-0d1117?style=for-the-badge&logo=mongodb)
-![jwt](https://img.shields.io/badge/-jwt-0d1117?style=for-the-badge&logo=asd)
 ![passport.js](https://img.shields.io/badge/-passport.js-0d1117?style=for-the-badge&logo=passport)
+![jwt](https://img.shields.io/badge/-jwt-0d1117?style=for-the-badge&logo=json)
 
 ## Deploy
 ![Ubuntu](https://img.shields.io/badge/-Ubuntu-0d1117?style=for-the-badge&logo=Ubuntu) 
@@ -39,32 +39,34 @@
 ![Илья](https://img.shields.io/badge/-Трубицин_Илья-0d1117?style=for-the-badge&logo=github)
 
 ## О разработке
-**SCRUM:** недельные спринты, митинги, планирование/ведение задач в Trello, разбор ошибок/достижений и взаимное код-ревью на Github'e.
+**SCRUM:**
+- Еженедельные митинги
+- планирование/ведение спринта в Trello
+- Код-ревью на GitHub - фидбек, взаимопомощь
+- Управление релизами (development, unit-tests, production)
 
-## Инструкция для работы с проектом:
+## Инструкция для работы с проектом
 
-[//]: # (Клонируйте репозиторий)
+Клонируйте репозиторий
 
-[//]: # (```)
+```
+git clone git@github.com:arco-furniture/arco-furniture.git
+cd arco-furniture
+```
+В настройках IDE подключите плагины ESLint и prettier. Укажите кофиг `eslint`
 
-[//]: # (git clone git@github.com:arco-furniture/arco-furniture.git)
+В директориях `client` и `server` создайте файлы `.env`
 
-[//]: # (cd arco-furniture)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (В настройках IDE подключите плагины ESLint и prettier. Укажите кофиг `eslint`)
-
-[//]: # ()
-[//]: # (![Лендинг]&#40;https://i.ibb.co/92VpFMh/2022-12-01-00-13-19.png&#41;)
-
-[//]: # ()
-[//]: # (В директории `client` создайте файл `.env` и укажите API бэкенда, пример:)
-
-[//]: # (```)
-
-[//]: # (REACT_APP_API_MAIN=http://localhost:4000/api)
-
-[//]: # (```)
-
+#### client
+```
+NODE_ENV=development  // development | production
+REACT_APP_API=http://localhost:4400/api
+```
+#### server
+```
+NODE_ENV=development  //development | production
+MONGO_URI=mongodb://localhost:27017/arco  // URL mongoDB 
+JWT_SECRET_KEY=~A."S(D`1d  // random SECRET key
+PORT=4400
+URL=http://localhost
+```
