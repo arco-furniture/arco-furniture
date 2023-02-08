@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.63c04e6d.css",
-    "main.js": "/static/js/main.76c69b2e.js",
-    "Category.js": "/static/js/Category.d81aae8d.chunk.js",
+    "main.js": "/static/js/main.d3b150e6.js",
+    "Category.js": "/static/js/Category.51f61d7f.chunk.js",
     "Product.js": "/static/js/Product.47adaff6.chunk.js",
     "Profile.js": "/static/js/Profile.a6aeb91e.chunk.js",
     "Basket.css": "/static/css/Basket.27f3193a.chunk.css",
@@ -20,8 +20,8 @@
     "static/media/phone_logo.svg": "/static/media/phone_logo.c4665664d77f9933608f.svg",
     "index.html": "/index.html",
     "main.63c04e6d.css.map": "/static/css/main.63c04e6d.css.map",
-    "main.76c69b2e.js.map": "/static/js/main.76c69b2e.js.map",
-    "Category.d81aae8d.chunk.js.map": "/static/js/Category.d81aae8d.chunk.js.map",
+    "main.d3b150e6.js.map": "/static/js/main.d3b150e6.js.map",
+    "Category.51f61d7f.chunk.js.map": "/static/js/Category.51f61d7f.chunk.js.map",
     "Product.47adaff6.chunk.js.map": "/static/js/Product.47adaff6.chunk.js.map",
     "Profile.a6aeb91e.chunk.js.map": "/static/js/Profile.a6aeb91e.chunk.js.map",
     "Basket.27f3193a.chunk.css.map": "/static/css/Basket.27f3193a.chunk.css.map",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.63c04e6d.css",
-    "static/js/main.76c69b2e.js"
+    "static/js/main.d3b150e6.js"
   ]
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Box, Button, Typography } from '@mui/material'
+import { useActions } from '../../hooks/useActions'
 
 const CategoryNotFound: React.FC = (): JSX.Element => {
+  const { setResetFilters } = useActions()
   const styleBox = {
     display: 'flex',
     flexDirection: 'column',
@@ -16,7 +18,7 @@ const CategoryNotFound: React.FC = (): JSX.Element => {
       <Typography color='mediumbluea' variant='h4' gutterBottom>
         Нет товаров по заданным фильтрам 🐒
       </Typography>
-      <Button style={{ marginTop: '40px' }} variant='outlined'>
+      <Button style={{ marginTop: '40px' }} variant='outlined' onClick={() => setResetFilters()}>
         Сбросить настройки
       </Button>
     </Box>

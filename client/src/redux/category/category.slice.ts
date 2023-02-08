@@ -49,6 +49,15 @@ export const categorySlice = createSlice({
     setChangeSort(state, { payload }: PayloadAction<string>) {
       state.sort = payload
     },
+    setResetFilters(state) {
+      state.dataFilter = {
+        minMaxPrice: [0, 0],
+        colors: [],
+        styles: [],
+        material: '',
+        tags: [],
+      }
+    },
   },
 })
 

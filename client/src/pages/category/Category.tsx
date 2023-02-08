@@ -13,7 +13,7 @@ import CategoryNotFound from 'pages/category/CategoryNotFound'
 
 const Category: React.FC = (): JSX.Element => {
   const { dataFilter, currentPage, sort } = useCategory()
-  const { setChangePage } = useActions()
+  const { setChangePage, setResetFilters } = useActions()
   const { categoryName } = useParams()
   const categoryRef = useRef<HTMLDivElement | null>(null)
   const executeScroll = () => categoryRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -21,6 +21,10 @@ const Category: React.FC = (): JSX.Element => {
   useEffect(() => {
     setChangePage(1)
   }, [categoryName])
+
+  useEffect(() => {
+    setResetFilters()
+  }, [])
 
   const {
     isError,
