@@ -14,6 +14,7 @@ const AuthProvider: React.FC<IProvider> = ({ children }): JSX.Element => {
     const accessToken = Cookies.get('accessToken')
     if (accessToken) {
       checkAuth()
+      console.log(accessToken)
       setIsLoadingAuth()
     } else {
       setIsLoadingAuth()
