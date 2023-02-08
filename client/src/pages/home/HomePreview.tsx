@@ -11,12 +11,11 @@ import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
 import { AdviceService } from '../../services/advice.service'
 import { getCards } from '../../utils/getCards'
-import Preloader from 'components/preloader'
 
 const HomePreview: React.FC = (): JSX.Element => {
   const { openAuthorsPopup, openPopupProject } = useActions()
   const stylesButton = { color: '#414141' }
-  const { data, isSuccess, isLoading } = useQuery('get top product', () => AdviceService.getTopProduct())
+  const { data, isSuccess } = useQuery('get top product', () => AdviceService.getTopProduct())
 
   return (
     <section className='preview'>
@@ -44,7 +43,6 @@ const HomePreview: React.FC = (): JSX.Element => {
           <CountDown hours={18} minutes={0} />
         </div>
         {isSuccess && getCards(data, true)}
-        {isLoading && <Preloader />}
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>
       <div className='preview__info'>
