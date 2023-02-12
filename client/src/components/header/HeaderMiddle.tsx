@@ -34,7 +34,7 @@ const HeaderMiddle: React.FC = (): JSX.Element => {
     localStorage.setItem('items', newItems)
     checkBasketItems()
     postItems()
-  }, [dataBasketItems])
+  }, [dataBasketItems, user])
 
   const postItems = async () => {
     if (user) {

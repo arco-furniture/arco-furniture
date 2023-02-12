@@ -1,5 +1,4 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import HomeBanner from './components/Banner'
 import { CountDown } from 'components'
 import { CARD_PREVIEW_INFO } from 'app/constants'
@@ -9,13 +8,13 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import { useActions } from '../../hooks/useActions'
 import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
-import { AdviceService } from '../../services/advice.service'
 import { getCards } from '../../utils/getCards'
+import { useHome } from '../../hooks/useStateSelectors'
 
 const HomePreview: React.FC = (): JSX.Element => {
   const { openAuthorsPopup, openPopupProject } = useActions()
   const stylesButton = { color: '#414141' }
-  const { data, isSuccess } = useQuery('get top product', () => AdviceService.getTopProduct())
+  const { topProduct } = useHome()
 
   return (
     <section className='preview'>
@@ -42,7 +41,7 @@ const HomePreview: React.FC = (): JSX.Element => {
           <h2 className='preview__title'>Товар дня</h2>
           <CountDown hours={18} minutes={0} />
         </div>
-        {isSuccess && getCards(data, true)}
+        {topProduct && getCards(topProduct, true)}
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>
       <div className='preview__info'>
