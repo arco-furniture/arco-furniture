@@ -8,7 +8,7 @@ const Basket: React.FC = (): JSX.Element => {
   const { dataBasketItems } = useBasket()
   const navigate = useNavigate()
   const { user } = useAuth()
-  const [isControl, setIsControl] = useState<boolean>(true)
+  const [isControl, setIsControl] = useState<boolean>(false)
   const [isApproval, setIsApproval] = useState<boolean>(false)
   const [isOrder, setIsOrder] = useState<boolean>(false)
   const [activeStep, setActiveStep] = useState<number>(0)

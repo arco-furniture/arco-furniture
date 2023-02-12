@@ -39,7 +39,6 @@ bower_components
 build/Release
 
 dist
-build
 
 # Dependency directories
 node_modules/

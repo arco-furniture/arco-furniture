@@ -17,3 +17,11 @@ export const getSearchItems = createAsyncThunk<IItem[], string>('home/getSearchI
     return thunkAPI.rejectWithValue(error)
   }
 })
+
+export const getTopProduct = createAsyncThunk<IItem[], void>('home/getTopProduct', async (_, thunkAPI) => {
+  try {
+    return await HomeService.getTopProduct()
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
