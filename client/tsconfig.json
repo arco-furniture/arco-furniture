@@ -20,15 +20,5 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "app/*": ["./app/*"],
-      "components/*": ["./components/*"],
-      "config/*": ["./config/*"],
-      "icons/*": ["./assets/icons"],
-      "helpers/*": ["./helpers/*"],
-      "lib/*": ["./lib/*"],
-      "hooks/*": ["./lib/hooks/*"],
-      "pages/*": ["./pages/*"]
-    },
   }
 }

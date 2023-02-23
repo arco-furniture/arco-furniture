@@ -1,5 +1,15 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Button, IconButton, ListItemButton, ListItemIcon, ListItemText, TextField, ThemeProvider } from '@mui/material'
+import {
+  Avatar,
+  Button,
+  IconButton,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  TextField,
+  ThemeProvider,
+} from '@mui/material'
 import { profileButtonTheme } from '../../../themes/profileButtonTheme'
 import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
@@ -66,6 +76,15 @@ const ProfileInfo: React.FC = (): JSX.Element => {
     resetField('firstName')
   }
 
+  const MyListItemButton = styled(ListItemButton)({
+    backgroundColor: '#fff',
+    borderRadius: '5px',
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    padding: 0,
+    marginTop: 0,
+    cursor: 'default',
+  })
+
   return (
     <div className='profileAbout__info'>
       <h3 className='subtitle'>Персональная информация</h3>
@@ -93,7 +112,7 @@ const ProfileInfo: React.FC = (): JSX.Element => {
           variant='outlined'
           size='small'
           defaultValue={formValues.firstName}
-          sx={{ width: '100%' }}
+          sx={{ width: '100%', margin: '5px 0 30px' }}
           disabled={!active}
           value={formValues.firstName}
           onChange={handleOnChange}
@@ -101,12 +120,12 @@ const ProfileInfo: React.FC = (): JSX.Element => {
           helperText={errors?.firstName?.message}
         />
       </form>
-      <ListItemButton className='profileAbout__emailItem'>
-        <ListItemIcon style={{ minWidth: 'auto' }}>
-          <LocalPostOfficeOutlinedIcon color='primary' style={{ marginLeft: '15px' }} />
+      <MyListItemButton className='profileAbout__emailItem'>
+        <ListItemIcon sx={{ minWidth: 'auto', margin: '7px 0' }}>
+          <LocalPostOfficeOutlinedIcon color='primary' sx={{ marginLeft: '15px' }} />
         </ListItemIcon>
-        <ListItemText primary={user.email} style={{ marginLeft: '15px' }} />
-      </ListItemButton>
+        <ListItemText primary={user.email} sx={{ marginLeft: '15px' }} />
+      </MyListItemButton>
     </div>
   )
 }

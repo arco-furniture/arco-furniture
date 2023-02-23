@@ -16,10 +16,12 @@
 ![Axios](https://img.shields.io/badge/-Axios-0d1117?style=for-the-badge&logo=Axios)
 ![SCSS](https://img.shields.io/badge/-SCSS/modules-0d1117?style=for-the-badge&logo=sass)
 ![Material_UI](https://img.shields.io/badge/-Material_UI-0d1117?style=for-the-badge&logo=mui)
+![Chart.js](https://img.shields.io/badge/-chart.js-0d1117?style=for-the-badge&logo=chart.js)
 ![Styled-components](https://img.shields.io/badge/-Styled_components-0d1117?style=for-the-badge&logo=Styled-components)
 ![Swiper](https://img.shields.io/badge/-Swiper-0d1117?style=for-the-badge&logo=swiper)
 ![loadable](https://img.shields.io/badge/-React_loadable-0d1117?style=for-the-badge&logo=react_loadable)
 ![lodash](https://img.shields.io/badge/-Lodash-0d1117?style=for-the-badge&logo=lodash)
+![webpack](https://img.shields.io/badge/-webpack-0d1117?style=for-the-badge&logo=webpack)
 ![cookie](https://img.shields.io/badge/-cookie-0d1117?style=for-the-badge&logo=cookie)
 
 ## Backend
@@ -61,6 +63,7 @@ cd arco-furniture
 ```
 NODE_ENV=development  // development | production
 REACT_APP_API=http://localhost:4400/api
+REACT_APP_LOCATION_KEY= // dadata api key
 ```
 #### server
 ```

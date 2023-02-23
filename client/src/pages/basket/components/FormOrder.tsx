@@ -24,6 +24,7 @@ const FormOrder: React.FC<IFormOrder> = ({ register, errors }) => {
             label='Имя'
             variant='outlined'
             size='small'
+            sx={{ margin: '5px 0' }}
             value={firstName || ''}
             onChange={(evt) => setFirstName(evt.target.value)}
             error={!!errors.firstName}

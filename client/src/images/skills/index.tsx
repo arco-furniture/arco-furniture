@@ -15,6 +15,8 @@ import ReactQuery from './ReactQuery'
 import Passport from './Passport'
 import Ubuntu from './Ubuntu'
 import Nginx from './Nginx'
+import Chart from './Chart'
+import Webpack from './Webpack'
 
 const Icon = {
   axios: <Axios />,
@@ -33,6 +35,8 @@ const Icon = {
   passport: <Passport />,
   ubuntu: <Ubuntu />,
   nginx: <Nginx />,
+  chart: <Chart />,
+  webpack: <Webpack />,
 }
 
 export default Icon

@@ -7,3 +7,4 @@ export const getProductUrl = (string: string) => `/products${string}`
 export const getSearchUrl = (string: string) => `/search${string}`
 export const getProfileUrl = (string: string) => `/profile${string}`
 export const getBasketUrl = (string: string) => `/basket${string}`
+export const getOrderUrl = (string: string) => `/order${string}`

@@ -15,9 +15,9 @@ export class CategoryService {
   }
 
   private async getAllFilters(data, filters, page, sort) {
-    const { minMaxPrice, colors, styles, material, tags } = filters
+    const { price, colors, styles, material, tags } = filters
 
-    const findPrice = await this.filterPrice(data, minMaxPrice)
+    const findPrice = await this.filterPrice(data, price)
     const findColors = await this.filterColors(findPrice, colors)
     const findStyles = await this.filterStyles(findColors, styles)
     const findMaterial = await this.filterMaterial(findStyles, material)
@@ -72,7 +72,7 @@ export class CategoryService {
     const minPrice = minMaxPrice[0]
     const maxPrice = minMaxPrice[1]
 
-    if (minPrice !== 0 && maxPrice !== 0) {
+    if (minPrice && maxPrice) {
       return await data.filter((obj) => {
         return obj.price >= minPrice && obj.price <= maxPrice
       })
@@ -81,19 +81,6 @@ export class CategoryService {
     }
   }
 
-  private getFormatPrice(data) {
-    if (data.length) {
-      const price = data.map((obj: any) => obj.price)
-      const minPrice = Math.min(...price)
-      const maxPrice = Math.max(...price)
-
-      const minLastValue = minPrice % 5000
-      const maxLastValue = maxPrice % 5000
-      return [minPrice - (5000 + minLastValue) + 5000, maxPrice + (5000 - maxLastValue)]
-    } else {
-      return [0, 0]
-    }
-  }
 
   private async filterColors(data, colors){
     if(colors.length && data.length) {

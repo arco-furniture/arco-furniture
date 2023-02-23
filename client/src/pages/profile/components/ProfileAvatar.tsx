@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react'
-import { Avatar, Button, ThemeProvider } from '@mui/material'
+import { Avatar, Button, styled, ThemeProvider } from '@mui/material'
 import { profileButtonTheme } from '../../../themes/profileButtonTheme'
 import { CameraAltOutlined, DeleteOutlineOutlined } from '@mui/icons-material'
 import { useAuth } from '../../../hooks/useStateSelectors'
@@ -67,6 +67,14 @@ const ProfileAvatar: React.FC = (): JSX.Element => {
     filePicker.current.click()
   }
 
+  const MyAvatar = styled(Avatar)({
+    backgroundColor: '#4675CE',
+    width: '33px',
+    height: '33px',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 2px 2px 0px rgba(0, 0, 0, 0.06), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
+  })
+
   return (
     <div className='profileAbout__avatar'>
       <h3 className='subtitle'>Аватар</h3>
@@ -80,7 +88,7 @@ const ProfileAvatar: React.FC = (): JSX.Element => {
         className='profile__audioPicker'
       />
       <div className='profileAbout__avatarEdit'>
-        <Avatar className='profileAbout__image' variant='rounded' />
+        <MyAvatar variant='rounded' />
         <ThemeProvider theme={profileButtonTheme}>
           <Button onClick={handlePicker} startIcon={<CameraAltOutlined />}>
             {isLoading ? 'Загрузка...' : 'Загрузить'}

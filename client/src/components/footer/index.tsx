@@ -46,7 +46,7 @@ const Footer: React.FC = (): JSX.Element => {
           </div>
         </div>
         <div className={styles.bottom}>
-          <em className={styles.copy}>&copy; Yandex Team 2023</em>
+          <em className={styles.copy}>&copy; kejero team 2022</em>
           <div className={styles.version}>
             <Link
               className={styles.releases}

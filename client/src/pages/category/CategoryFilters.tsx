@@ -11,7 +11,7 @@ import {
 } from '@mui/icons-material'
 
 const CategoryFilters: React.FC = (): JSX.Element => {
-  const [openPrice, setOpenPrice] = useState<boolean>(true) // когда исправлю прайс
+  const [openPrice, setOpenPrice] = useState<boolean>(true)
   const [openColor, setOpenColor] = useState<boolean>(true)
   const [openStyle, setOpenStyle] = useState<boolean>(true)
   const [openMaterial, setOpenMaterial] = useState<boolean>(true)
@@ -20,8 +20,8 @@ const CategoryFilters: React.FC = (): JSX.Element => {
   return (
     <article className='filters panel panel-filters'>
       <List>
-        <ListItemTemplate title='Цена' setOpen={setOpenPrice} open={false} icon={<LocalOfferOutlined />}>
-          <Collapse in={false} timeout='auto' unmountOnExit>
+        <ListItemTemplate title='Цена' setOpen={setOpenPrice} open={openPrice} icon={<LocalOfferOutlined />}>
+          <Collapse in={openPrice} timeout='auto' unmountOnExit>
             <FilterPrice />
           </Collapse>
         </ListItemTemplate>

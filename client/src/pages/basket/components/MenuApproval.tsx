@@ -109,6 +109,7 @@ const MenuApproval: React.FC<any> = () => {
           fullWidth
           variant='outlined'
           type='submit'
+          sx={{ marginTop: '30px' }}
           className={styles.menu__button}
           disabled={!solvency}
           onClick={handleClickApproval}

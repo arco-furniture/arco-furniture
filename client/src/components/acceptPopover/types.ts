@@ -6,6 +6,7 @@ export interface IAcceptPopover {
   anchor?: 'left' | 'center' | 'right' | number
   handleAccept: () => void
   question: string
+  isFlip?: boolean
 }
 
 export type anchorElType = null | HTMLButtonElement

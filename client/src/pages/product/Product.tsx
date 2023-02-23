@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product.service'
 const Product: React.FC = (): JSX.Element => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const { productId } = useParams()
-  const { data, isSuccess } = useQuery('get product', () => ProductService.getProduct(productId))
+  const { data, isSuccess } = useQuery(['get product', productId], () => ProductService.getProduct(productId))
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])

@@ -125,7 +125,21 @@
     &-box {
       @include flex-center-between;
       gap: 15px;
-      margin-top: 10px;
+    }
+
+    &-slide {
+      @include flex-center-center;
+      margin: 0 5px;
+    }
+
+    &-listItem {
+      .MuiTypography-root {
+        font-family: 'PT Sans';
+      }
+
+      .MuiTouchRipple-root {
+        display: none;
+      }
     }
 
     &-price {

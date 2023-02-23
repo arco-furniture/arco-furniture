@@ -4,10 +4,11 @@ import {
   IInitialCategories,
   skillsType,
   iconsCategoryType,
-  cardPreviewInfoType,
   adviceNameTypes,
   cardContactInfoType,
+  IGrayCard,
 } from 'types/constantsTypes'
+import { Icons } from '../images/icons'
 import { authorsNameTypes } from 'components/popups/types'
 import Skill from '../images/skills/index'
 import Category from '../images/category/index'
@@ -81,6 +82,8 @@ export const FRONTEND_SKILLS: skillsType[] = [
   { name: 'SCSS', icon: Skill.scss },
   { name: 'React Router', icon: Skill.reactRouter },
   { name: 'React Hook Form', icon: Skill.reactHookForm },
+  { name: 'Chart.js', icon: Skill.chart },
+  { name: 'WebPack', icon: Skill.webpack },
 ]
 
 export const DEPLOY_SKILLS: skillsType[] = [
@@ -93,19 +96,19 @@ export const ICONS_CATEGORY: iconsCategoryType[] = [
   { name: 'Гостиная', icon: Category.livingRooms, category: 'living-rooms' },
 ]
 
-export const CARD_PREVIEW_INFO: cardPreviewInfoType[] = [
+export const CARD_PREVIEW_INFO: IGrayCard[] = [
   {
-    className: 'preview__icon_warranty',
+    icon: Icons.warranty,
     title: 'Гарантия',
     text: 'Официальные поставки',
   },
   {
-    className: 'preview__icon_shop',
+    icon: Icons.shops,
     title: 'Более 2000',
     text: 'Торговых точек',
   },
   {
-    className: 'preview__icon_payment',
+    icon: Icons.payment,
     title: 'Оплата',
     text: 'Легкие способы',
   },

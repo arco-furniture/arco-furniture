@@ -1,4 +1,4 @@
-import { API_URL, getAdviceUrl, getSearchUrl } from '../configs/config'
+import { API_URL, getAdviceUrl, getOrderUrl, getSearchUrl } from '../configs/config'
 import { axiosClassic } from '../api/interceptors'
 
 export const HomeService = {
@@ -9,6 +9,11 @@ export const HomeService = {
 
   async getTopProduct() {
     const { data } = await axiosClassic.get(`${API_URL}${getAdviceUrl('/top')}`)
+    return data
+  },
+
+  async getHomeStats() {
+    const { data } = await axiosClassic.get(`${API_URL}${getOrderUrl('/home/stats')}`)
     return data
   },
 }

@@ -41,7 +41,7 @@ const SpecsItem: React.FC<any> = ({ specs }) => {
       <div className={styles.specs__wrapper}>
         <h3 className={styles.specs__title}>Характеристики товара</h3>
         <CustomWidthTooltip placement='top' title={<SpecsList />} arrow>
-          <IconButton size='small' className={styles.specs__icon}>
+          <IconButton size='small' sx={{ backgroundColor: '#F8F8F8' }}>
             <InsertChartOutlinedRoundedIcon color='primary' fontSize='small' />
           </IconButton>
         </CustomWidthTooltip>

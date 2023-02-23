@@ -42,7 +42,7 @@ const HomeAdvice: React.FC = (): JSX.Element => {
         {ADVICE_NAME.map((item: adviceNameTypes, currentIndex: number) => (
           <li key={currentIndex}>
             <Chip
-              style={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
+              sx={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
               onClick={() => handleSortItems(currentIndex)}
               label={item.name}
             />

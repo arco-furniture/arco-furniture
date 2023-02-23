@@ -5,6 +5,7 @@ import styles from '../scss/modules/main.module.scss'
 import { Home, Favorite, PageNotFound } from 'pages'
 import { AlertBar, AuthorsPopup, RegisterPopup, AuthPopup, PaymentPopup, ProjectPopup } from 'components'
 import Preloader from 'components/preloader'
+import LocationPopup from 'components/popups/LocationPopup'
 
 const AppRoutes: React.FC = () => {
   const Category = Loadable({
@@ -48,6 +49,7 @@ const AppRoutes: React.FC = () => {
       <AuthPopup />
       <PaymentPopup />
       <ProjectPopup />
+      <LocationPopup />
     </main>
   )
 }

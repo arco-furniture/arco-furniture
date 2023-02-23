@@ -33,7 +33,14 @@
 
   &__buttons {
     @include flex-center-between;
-    gap: 3px;
+    gap: 7px;
+    margin-right: 5px;
+  }
+
+  &__loading {
+    @include flex-center;
+    min-height: 35px;
+    height: 100%;
   }
 
   &__content {

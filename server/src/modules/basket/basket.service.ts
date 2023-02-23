@@ -5,12 +5,14 @@ import {ModelType} from "@typegoose/typegoose/lib/types";
 import {BasketInfoDto} from "../../dto/basketInfo.dto";
 import {BasketItemDto} from "../../dto/BasketItem.dto";
 import {ProductModel} from 'src/models/product.model';
+import {OrderService} from "../order/order.service";
 
 @Injectable()
 export class BasketService {
   constructor(
     @InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>,
-    @InjectModel(ProductModel) private ProductModel: ModelType<ProductModel>
+    @InjectModel(ProductModel) private ProductModel: ModelType<ProductModel>,
+    private readonly OrderService: OrderService
   ) {}
 
   async postStageInfo(id: string, info: BasketInfoDto) {
@@ -136,6 +138,12 @@ export class BasketService {
     const dataSolvency = await this.getIsSolvency(user.money, allPrice)
 
     if (!dataSolvency.pay)  throw new HttpException('Недостаточно средств', HttpStatus.FORBIDDEN);
+
+    await this.OrderService.postNewOrder({
+      firstName: user.firstName,
+      basketItems: user.basketItems,
+      allPrice
+    })
 
     user.money = user.money - allPrice
     user.basketItems = []
