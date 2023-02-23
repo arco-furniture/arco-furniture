@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
-import PopupTemplate from 'components/popups/PopupTemplate'
+import PopupTemplate from '../popups/PopupTemplate'
 import styles from '../../scss/modules/popups.module.scss'
 import { useActions } from '../../hooks/useActions'
 import { useOther } from '../../hooks/useStateSelectors'
 import { Link, TextField } from '@mui/material'
 import debounce from 'lodash/debounce'
-import Preloader from 'components/preloader'
+import Preloader from '../preloader'
 
 const LocationPopup: React.FC = (): JSX.Element => {
   const { closePopupLocation, searchLocation, clearLocation } = useActions()

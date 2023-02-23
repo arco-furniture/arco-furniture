@@ -1,5 +1,5 @@
 import React from 'react'
-import { CARD_CONTACT_INFO } from 'app/constants'
+import { CARD_CONTACT_INFO } from '../../../app/constants'
 import { cardContactInfoType } from '../../../types/constantsTypes'
 
 const CardContact = () => (

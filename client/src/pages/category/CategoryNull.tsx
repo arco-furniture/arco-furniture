@@ -1,5 +1,5 @@
 import React from 'react'
-import image from 'images/CategoryNull.svg'
+import image from '../../images/CategoryNull.svg'
 import { Box, Typography } from '@mui/material'
 
 const CategoryNull: React.FC = (): JSX.Element => {

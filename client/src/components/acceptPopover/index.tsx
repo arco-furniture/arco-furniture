@@ -1,6 +1,6 @@
 import { Box, Button, Popover, styled, Typography } from '@mui/material'
 import React, { memo, useEffect, useRef } from 'react'
-import { IAcceptPopover } from 'components/acceptPopover/types'
+import { IAcceptPopover } from './types'
 
 const AcceptPopover: React.FC<IAcceptPopover> = ({
   anchorEl,

@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeBanner from './components/Banner'
-import { CountDown } from 'components'
-import { CARD_PREVIEW_INFO } from 'app/constants'
+import { CountDown } from '../../components'
+import { CARD_PREVIEW_INFO } from '../../app/constants'
 import Button from '@mui/material/Button'
 import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
@@ -10,8 +10,8 @@ import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
 import { getCards } from '../../utils/getCards'
 import { useHome } from '../../hooks/useStateSelectors'
-import GrayCard from 'ui/GrayCard'
-import Preloader from 'components/preloader'
+import GrayCard from '../../ui/GrayCard'
+import Preloader from '../../components/preloader'
 
 const HomePreview: React.FC = (): JSX.Element => {
   const { openAuthorsPopup, openPopupProject } = useActions()

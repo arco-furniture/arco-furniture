@@ -1,5 +1,5 @@
-import { specsNamesTypes } from 'pages/product/types'
-import { IBasketItem } from 'pages/basket/types'
+import { specsNamesTypes } from '../../pages/product/types'
+import { IBasketItem } from '../../pages/basket/types'
 
 export interface IBasketPushItem {
   _id: string

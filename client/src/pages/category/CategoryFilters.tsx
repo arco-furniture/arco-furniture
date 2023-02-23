@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { Collapse, List } from '@mui/material'
-import { ListItemTemplate } from 'components'
+import { ListItemTemplate } from '../../components'
 import { FilterColor, FilterPrice, FilterStyle, FilterMaterial, FilterTag } from './filters'
 import {
   StyleOutlined,

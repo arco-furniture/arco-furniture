@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from 'scss/modules/basket/basket-navigation.module.scss'
+import { useQuery } from 'react-query'
+import styles from '../../scss/modules/basket/basket-navigation.module.scss'
 import { IconButton, Step, StepButton, Stepper } from '@mui/material'
 import { useActions } from '../../hooks/useActions'
 import { useAuth } from '../../hooks/useStateSelectors'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import { AcceptPopover } from 'components'
-import { useQuery } from 'react-query'
+import { AcceptPopover } from '../../components'
 import { BasketService } from '../../services/basket.service'
-import { IActiveStep } from 'pages/basket/types'
+import { IActiveStep } from './types'
 
 const BasketNavigation: React.FC<IActiveStep> = ({ activeStep }): JSX.Element => {
   const steps = ['Ваша корзина', 'Оформление заказа', 'Оплата заказа']

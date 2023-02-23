@@ -2,12 +2,11 @@ import React, { memo } from 'react'
 import styles from '../../scss/modules/headerProfile.module.scss'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import { Avatar, Badge } from '@mui/material'
-import ProfileMenu from 'components/header/ProfileMenu'
-import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
-import { BlackTooltip } from 'components/index'
+import { BlackTooltip, TitleTooltip } from '../index'
 import { useAuth } from '../../hooks/useStateSelectors'
-import { anchorElType } from 'components/acceptPopover/types'
 import styled from '@emotion/styled'
+import { anchorElType } from '../acceptPopover/types'
+import ProfileMenu from './ProfileMenu'
 
 const HeaderProfile: React.FC = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<anchorElType>(null)

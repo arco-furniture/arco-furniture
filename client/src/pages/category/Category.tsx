@@ -1,15 +1,15 @@
 import React, { memo, useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import CategoryFilters from './CategoryFilters'
 import { Pagination } from '@mui/material'
 import { getCards } from '../../utils/getCards'
 import CategorySort from './CategorySort'
-import { useParams } from 'react-router-dom'
 import { useCategory } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
-import CategoryNull from 'pages/category/CategoryNull'
-import { useQuery } from 'react-query'
+import CategoryNull from './CategoryNull'
 import { CategoryService } from '../../services/category.service'
-import CategoryNotFound from 'pages/category/CategoryNotFound'
+import CategoryNotFound from './CategoryNotFound'
 
 const Category: React.FC = (): JSX.Element => {
   const { dataFilter, currentPage, sort } = useCategory()

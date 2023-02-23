@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, BlackTooltip, TitleTooltip } from 'components'
+import { Search, BlackTooltip, TitleTooltip } from '../index'
 import { Badge } from '@mui/material'
 import { ShoppingCartOutlined } from '@mui/icons-material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
@@ -11,7 +11,7 @@ import { useActions } from '../../hooks/useActions'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { getRequestItems } from '../../utils/getRequestItems'
 import logo from '../../images/logo-black.svg'
-import { IBasketItem } from 'pages/basket/types'
+import { IBasketItem } from '../../pages/basket/types'
 
 const HeaderMiddle: React.FC = (): JSX.Element => {
   const { dataBasketItems, totalPrice } = useBasket()

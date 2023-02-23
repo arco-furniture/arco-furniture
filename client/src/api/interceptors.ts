@@ -62,6 +62,6 @@ export const axiosLocation = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Token ${process.env.REACT_APP_LOCATION_KEY}`,
+    Authorization: `Token ${process.env.LOCATION_KEY}`,
   },
 })

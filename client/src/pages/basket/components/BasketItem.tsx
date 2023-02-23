@@ -9,7 +9,7 @@ import nullImage from '../../../images/notFound.png'
 import { useActions } from '../../../hooks/useActions'
 import SpecsItem from './SpecsItem'
 import { getPrefixTitle } from '../../../utils/getPrefixTitle'
-import { IBasketItemExtends } from 'pages/basket/types'
+import { IBasketItemExtends } from '../types'
 
 const BasketItem: React.FC<IBasketItemExtends> = ({ item, isControl = false }): JSX.Element => {
   const [benefit, setBenefit] = useState<number>(0)

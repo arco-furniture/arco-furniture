@@ -14,7 +14,7 @@ export const LocationService = {
 
   async searchLocation(value) {
     const { data } = await axiosClassic.get(
-      `http://geohelper.info/api/v1/cities?apiKey=${process.env.REACT_APP_GEOHELPER_KEY}&locale%5Blang%5D=ru&locale%5BfallbackLang%5D=uk&filter%5Bname%5D=${value}&%5BcountryIso%5D=RU&locale%5Bpagination%5D=100`,
+      `http://geohelper.info/api/v1/cities?apiKey=${process.env.GEOHELPER_KEY}&locale%5Blang%5D=ru&locale%5BfallbackLang%5D=uk&filter%5Bname%5D=${value}&%5BcountryIso%5D=RU&locale%5Bpagination%5D=100`,
     )
     return data?.result
   },

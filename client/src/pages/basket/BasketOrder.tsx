@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useQuery } from 'react-query'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
-import FormOrder from 'pages/basket/components/FormOrder'
-import MenuOrder from 'pages/basket/components/MenuOrder'
+import FormOrder from './components/FormOrder'
+import MenuOrder from './components/MenuOrder'
 import styles from '../../scss/modules/basket/basket-form.module.scss'
-import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import { useActions } from '../../hooks/useActions'
 import { SchemaOrder } from '../../schemas'
-import { TypesUseForm } from 'pages/basket/types'
+import { TypesUseForm } from './types'
 
 const BasketOrder: React.FC = (): JSX.Element => {
   const isMounted = useRef<boolean>(false)

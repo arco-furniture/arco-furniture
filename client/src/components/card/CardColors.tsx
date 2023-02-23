@@ -1,5 +1,5 @@
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined'
-import { BlackTooltip } from 'components'
+import { BlackTooltip } from '../../components'
 import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
 import { ICardColors } from './types'

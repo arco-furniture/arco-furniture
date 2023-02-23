@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import AuthProvider from './AuthProvider'
 import MuiProvider from './MuiProvider'
-import { Toaster } from 'components'
+import { Toaster } from '../components'
 import { IProvider } from './types'
 
 const queryClient = new QueryClient({

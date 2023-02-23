@@ -1,4 +1,4 @@
-import { API_URL, getAuthUrl } from 'configs/config'
+import { API_URL, getAuthUrl } from '../configs/config'
 import Cookies from 'js-cookie'
 import { removeTokensStorage, saveToStorage } from './helpers'
 import { getContentType } from '../api/api.helpers'

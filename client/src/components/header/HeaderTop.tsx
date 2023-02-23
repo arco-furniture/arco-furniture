@@ -7,7 +7,7 @@ import { useAuth, useOther } from '../../hooks/useStateSelectors'
 import { LocationService } from '../../services/location.service'
 import { toastr } from 'react-redux-toastr'
 import { Button, styled } from '@mui/material'
-import { AcceptPopover } from 'components/index'
+import { AcceptPopover } from '../../components/index'
 import { useActions } from '../../hooks/useActions'
 
 const HeaderTop: React.FC = (): JSX.Element => {

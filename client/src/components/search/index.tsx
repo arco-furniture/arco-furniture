@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import debounce from 'lodash/debounce'
 import { useActions } from '../../hooks/useActions'
 import { useHome } from '../../hooks/useStateSelectors'
-import SearchContent from 'components/search/SearchContent'
+import SearchContent from './SearchContent'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Search: React.FC = (): JSX.Element => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pagination } from 'swiper'
 import { Swiper } from 'swiper/react'
-import { ICarousel } from 'components/card/types'
+import { ICarousel } from './types'
 
 const Carousel: React.FC<ICarousel> = ({ children }): JSX.Element => {
   return (

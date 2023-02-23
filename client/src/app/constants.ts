@@ -9,10 +9,10 @@ import {
   IGrayCard,
 } from 'types/constantsTypes'
 import { Icons } from '../images/icons'
-import { authorsNameTypes } from 'components/popups/types'
+import { authorsNameTypes } from '../components/popups/types'
 import Skill from '../images/skills/index'
 import Category from '../images/category/index'
-import { specsNamesTypes } from 'pages/product/types'
+import { specsNamesTypes } from '../pages/product/types'
 
 export const COLORS: colorType[] = [
   { nameColor: 'gray', color: '#E4E4E4' },

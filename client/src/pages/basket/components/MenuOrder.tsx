@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
+import { useQuery } from 'react-query'
+import { Button } from '@mui/material'
 import stylesForm from '../../../scss/modules/basket/basket-form.module.scss'
 import styles from '../../../scss/modules/basket/basket-order.module.scss'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
-import { Button } from '@mui/material'
-import { useQuery } from 'react-query'
 import { BasketService } from '../../../services/basket.service'
-import DatePickerOrder from 'pages/basket/components/DatePickerOrder'
+import DatePickerOrder from '../components/DatePickerOrder'
 import { useBasket } from '../../../hooks/useStateSelectors'
-import { IMenuOrder } from 'pages/basket/types'
+import { IMenuOrder } from '../types'
 
 const MenuOrder: React.FC<IMenuOrder> = ({ isValid, control, errors }): JSX.Element => {
   const { dataBasketItems, isLoadingBasket } = useBasket()

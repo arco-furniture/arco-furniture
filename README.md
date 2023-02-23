@@ -10,6 +10,7 @@
 ![React](https://img.shields.io/badge/-React-0d1117?style=for-the-badge&logo=React)
 ![Redux](https://img.shields.io/badge/-Redux_Toolkit-0d1117?style=for-the-badge&logo=Redux)
 ![react-query](https://img.shields.io/badge/-react_query-0d1117?style=for-the-badge&logo=react-query)
+![webpack](https://img.shields.io/badge/-webpack-0d1117?style=for-the-badge&logo=webpack)
 ![Jest](https://img.shields.io/badge/-Jest_&_Enzyme-0d1117?style=for-the-badge&logo=Jest)
 ![React_router](https://img.shields.io/badge/-React_router-0d1117?style=for-the-badge&logo=React-router)
 ![React_hook_form](https://img.shields.io/badge/-React_hook_form-0d1117?style=for-the-badge&logo=react-hook-form)
@@ -21,7 +22,6 @@
 ![Swiper](https://img.shields.io/badge/-Swiper-0d1117?style=for-the-badge&logo=swiper)
 ![loadable](https://img.shields.io/badge/-React_loadable-0d1117?style=for-the-badge&logo=react_loadable)
 ![lodash](https://img.shields.io/badge/-Lodash-0d1117?style=for-the-badge&logo=lodash)
-![webpack](https://img.shields.io/badge/-webpack-0d1117?style=for-the-badge&logo=webpack)
 ![cookie](https://img.shields.io/badge/-cookie-0d1117?style=for-the-badge&logo=cookie)
 
 ## Backend
@@ -44,8 +44,7 @@
 **SCRUM:**
 - Еженедельные митинги / созвоны
 - планирование / ведение спринтов в Trello
-- Код-ревью на GitHub - фидбек, взаимопомощь
-- Управление релизами (development, unit-tests, production)
+- Код-ревью на GitHub (фидбек/помощь)
 
 ## Инструкция для работы с проектом
 
@@ -62,8 +61,9 @@ cd arco-furniture
 #### client
 ```
 NODE_ENV=development  // development | production
-REACT_APP_API=http://localhost:4400/api
-REACT_APP_LOCATION_KEY= // dadata api key
+API=http://localhost:4400/api
+LOCATION_KEY= // dadata api key
+GEOHELPER_KEY= // geohelper api key
 ```
 #### server
 ```

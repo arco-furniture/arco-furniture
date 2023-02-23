@@ -1,5 +1,5 @@
 import React from 'react'
-import LineChart from 'pages/home/components/LineChart'
+import LineChart from '../components/LineChart'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import {
   Chart as ChartJS,
@@ -16,10 +16,10 @@ const ChartUserBuy = ({ chart }) => {
   ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title)
 
   const data = {
-    labels: chart.map((item) => item.day),
+    labels: chart?.map((item) => item.day) || [],
     datasets: [
       {
-        data: chart.map((item) => item.price.reduce((a, b) => a + b, 0)),
+        data: chart?.map((item) => item.price.reduce((a, b) => a + b, 0)) || [],
         backgroundColor: 'transparent',
         borderColor: '#4675ce',
         pointBorderColor: '#4675ce',

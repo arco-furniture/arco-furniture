@@ -1,6 +1,6 @@
+import React, { memo, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
-import React, { memo, useRef } from 'react'
 import { IProductPreview } from './types'
 import { SwiperArrows } from '../../components'
 

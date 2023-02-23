@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 import { useCategory } from '../../hooks/useStateSelectors'
-import { IButtonColor } from 'components/buttonColor/types'
+import { IButtonColor } from './types'
 
 const ButtonColor: React.FC<IButtonColor> = ({ objColor, onClick }): JSX.Element => {
   const { dataFilter } = useCategory()

@@ -10,15 +10,19 @@
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "commonjs",
     "sourceMap": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "noEmit": false,
+    "jsx": "react",
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
-  }
+  },
+  "include": [
+    "src",
+    "./src/assets/assets.d.ts"
+  ]
 }

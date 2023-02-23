@@ -1,5 +1,5 @@
 import React from 'react'
-import { ITitleTooltip } from 'components/BlackTooltip/types'
+import { ITitleTooltip } from './types'
 
 const TitleTooltip: React.FC<ITitleTooltip> = ({ title }): JSX.Element => {
   return <span className='tooltip-title'>{title}</span>

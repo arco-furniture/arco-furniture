@@ -24,7 +24,7 @@ import { useAuth } from '../../../hooks/useStateSelectors'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import { SchemaInfo } from '../../../schemas'
-import { IInfoType } from 'pages/profile/types'
+import { IInfoType } from '../types'
 
 const ProfileInfo: React.FC = (): JSX.Element => {
   const { user } = useAuth()

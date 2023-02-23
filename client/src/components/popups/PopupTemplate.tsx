@@ -1,5 +1,5 @@
 import Dialog from '@mui/material/Dialog'
-import { DialogContent, styled } from '@mui/material'
+import { DialogContent } from '@mui/material'
 import { IPopupTemplate } from './types'
 import React, { memo } from 'react'
 

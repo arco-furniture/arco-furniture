@@ -1,4 +1,4 @@
-import { IBasketItem } from 'pages/basket/types'
+import { IBasketItem } from '../pages/basket/types'
 
 export const checkOldPriceBasket = (items: IBasketItem[]) => {
   return items.reduce((sum: number, currentItem: any) => {

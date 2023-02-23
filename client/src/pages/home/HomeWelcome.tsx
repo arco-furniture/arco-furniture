@@ -1,12 +1,12 @@
 import React from 'react'
+import { useQuery } from 'react-query'
 import welcome from '../../images/welcome.jpg'
-import ChartUserBuy from 'pages/home/components/ChartUserBuy'
+import ChartUserBuy from './components/ChartUserBuy'
 import GrayCard from '../../ui/GrayCard'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { Icons } from '../../images/icons'
-import { useQuery } from 'react-query'
 import { HomeService } from '../../services/home.service'
-import Preloader from 'components/preloader'
+import Preloader from '../../components/preloader'
 
 const HomeWelcome: React.FC = (): JSX.Element => {
   const { isLoading, data } = useQuery('get stats home', () => HomeService.getHomeStats())

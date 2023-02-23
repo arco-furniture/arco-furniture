@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../scss/modules/feedback.module.scss'
-import { IFeedback } from 'components/feedback/types'
+import { IFeedback } from './types'
 
 const Feedback: React.FC<IFeedback> = ({ icon, title, children }): JSX.Element => {
   return (

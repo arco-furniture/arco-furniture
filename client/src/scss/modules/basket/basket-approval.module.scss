@@ -20,7 +20,7 @@
     &__promo {
         position: relative;
         @include flex-column;
-        align-items: end;
+        align-items: flex-end;
     }
 
     &__title {

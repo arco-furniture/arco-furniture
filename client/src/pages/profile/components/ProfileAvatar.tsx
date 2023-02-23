@@ -8,7 +8,7 @@ import { ProfileService } from '../../../services/profile.service'
 import { toastr } from 'react-redux-toastr'
 import { toastError } from '../../../api/withToastrErrorRedux'
 import { useActions } from '../../../hooks/useActions'
-import { AcceptPopover } from 'components'
+import { AcceptPopover } from '../../../components'
 
 const ProfileAvatar: React.FC = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)

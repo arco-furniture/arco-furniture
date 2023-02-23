@@ -1,10 +1,10 @@
 import React from 'react'
-import ConfettiTemplate from 'components/popups/ConfettiTemplate'
+import ConfettiTemplate from '../popups/ConfettiTemplate'
 import styles from '../../scss/modules/popups.module.scss'
 import pay from '../../images/pay.svg'
 import { useOther } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
-import { getPriceWithFormat } from 'utils/getPriceWithFormat'
+import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 
 const PaymentPopup: React.FC = (): JSX.Element => {
   const { statusPaymentPopup, paymentValue } = useOther()

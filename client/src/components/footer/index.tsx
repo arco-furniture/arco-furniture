@@ -1,6 +1,6 @@
 import React from 'react'
-import { BACKEND_SKILLS, FRONTEND_SKILLS, DEPLOY_SKILLS } from 'app/constants'
-import { Skill } from 'components'
+import { BACKEND_SKILLS, FRONTEND_SKILLS, DEPLOY_SKILLS } from '../../app/constants'
+import { Skill } from '../index'
 import styles from '../../scss/modules/footer.module.scss'
 import logo from '../../images/logo-black.svg'
 import { IconButton, Link } from '@mui/material'

@@ -9,8 +9,8 @@ import {
 } from '@mui/material'
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded'
 import styles from '../../../scss/modules/basket/basket-item.module.scss'
-import { specsNamesTypes } from 'pages/product/types'
-import { SPECS_NAME } from 'app/constants'
+import { specsNamesTypes } from '../../product/types'
+import { SPECS_NAME } from '../../../app/constants'
 
 const SpecsItem: React.FC<any> = ({ specs }) => {
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (

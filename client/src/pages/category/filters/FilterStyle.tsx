@@ -1,6 +1,6 @@
 import Chip from '@mui/material/Chip'
 import React, { memo } from 'react'
-import { STYLES } from 'app/constants'
+import { STYLES } from '../../../app/constants'
 import { useCategory } from '../../../hooks/useStateSelectors'
 import { useActions } from '../../../hooks/useActions'
 import { stylesType } from '../../../types/constantsTypes'
