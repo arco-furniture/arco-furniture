@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CountDownType } from './types'
 
 const CountDown: React.FC<CountDownType> = ({ hours = 0, minutes = 0, seconds = 0 }) => {
-  const [over, setOver] = React.useState(false)
-  const [[h, m, s], setTime] = React.useState([hours, minutes, seconds])
+  const [over, setOver] = useState(false)
+  const [[h, m, s], setTime] = useState([hours, minutes, seconds])
 
   const tick = () => {
     if (over) {

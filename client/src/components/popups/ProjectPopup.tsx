@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { useActions } from '../../hooks/useActions'
 import { useOther } from '../../hooks/useStateSelectors'
-import PopupTemplate from 'components/popups/PopupTemplate'
+import PopupTemplate from '../popups/PopupTemplate'
 import styles from '../../scss/modules/popups.module.scss'
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined'
 

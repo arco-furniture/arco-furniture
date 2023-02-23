@@ -98,7 +98,7 @@ export class AuthService {
 
     const user = await this.UserModel.findById(result._id)
 
-    const newTokens = await this.issueTokenPair(String(user.id))
+    const newTokens = await this.issueTokenPair(String(user._id))
 
     return {
       user: this.returnUserFields(user),

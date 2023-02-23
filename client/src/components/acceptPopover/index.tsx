@@ -1,6 +1,6 @@
-import { Box, Button, Popover, Typography } from '@mui/material'
+import { Box, Button, Popover, styled, Typography } from '@mui/material'
 import React, { memo, useEffect, useRef } from 'react'
-import { IAcceptPopover } from 'components/acceptPopover/types'
+import { IAcceptPopover } from './types'
 
 const AcceptPopover: React.FC<IAcceptPopover> = ({
   anchorEl,
@@ -8,10 +8,16 @@ const AcceptPopover: React.FC<IAcceptPopover> = ({
   anchor = 'left',
   handleAccept,
   question,
+  isFlip = false,
 }): JSX.Element => {
   const isMounted = useRef<boolean>(false)
-  const wrapperStyles = { position: 'absolute' }
-  const buttonStyles = { display: 'flex', padding: '0 16px 16px 16px', gap: '10px' }
+
+  const BoxButtons = styled(Button)({
+    display: 'flex',
+    flexDirection: isFlip ? 'row-reverse' : 'row',
+    padding: '0 16px 16px 16px',
+    gap: '10px',
+  })
 
   const handleClose = (): void => {
     setAnchorEl(null)
@@ -44,7 +50,7 @@ const AcceptPopover: React.FC<IAcceptPopover> = ({
   }, [anchorEl])
 
   return (
-    <Box sx={wrapperStyles}>
+    <Box sx={{ position: 'absolute' }}>
       <Popover
         anchorOrigin={{
           vertical: 'top',
@@ -60,14 +66,24 @@ const AcceptPopover: React.FC<IAcceptPopover> = ({
         onClose={handleClose}
       >
         <Typography sx={{ p: 2, maxWidth: '240px' }}>{question}</Typography>
-        <Box sx={buttonStyles}>
-          <Button size='small' color='success' variant='contained' onClick={() => onClickAccept()}>
+        <BoxButtons>
+          <Button
+            size='small'
+            color='success'
+            variant='contained'
+            onClick={() => (isFlip ? handleClose() : onClickAccept())}
+          >
             Подтвердить
           </Button>
-          <Button size='small' color='error' variant='outlined' onClick={() => setAnchorEl(null)}>
-            Отмена
+          <Button
+            size='small'
+            color='error'
+            variant='outlined'
+            onClick={() => (isFlip ? onClickAccept() : setAnchorEl(null))}
+          >
+            {isFlip ? 'Изменить' : 'Отмена'}
           </Button>
-        </Box>
+        </BoxButtons>
       </Popover>
     </Box>
   )

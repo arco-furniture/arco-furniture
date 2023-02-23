@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { anchorElType } from 'components/acceptPopover/types'
+import { anchorElType } from '../acceptPopover/types'
 
 export interface IProfileMenu {
   open: boolean

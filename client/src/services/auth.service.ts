@@ -1,4 +1,4 @@
-import { API_URL, getAuthUrl } from 'configs/config'
+import { API_URL, getAuthUrl } from '../configs/config'
 import Cookies from 'js-cookie'
 import { removeTokensStorage, saveToStorage } from './helpers'
 import { getContentType } from '../api/api.helpers'
@@ -33,7 +33,7 @@ export const AuthService = {
 
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
-    const response = await axiosClassic.post<any>(
+    const response = await axiosClassic.post(
       `${API_URL}${getAuthUrl('/login/access-token')}`,
       {
         refreshToken,

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import stylesForm from '../../../scss/modules/basket/basket-form.module.scss'
 import { TextField } from '@mui/material'
 import { useAuth } from '../../../hooks/useStateSelectors'
-import { IFormOrder } from 'pages/basket/types'
+import { IFormOrder } from '../types'
 
 const FormOrder: React.FC<IFormOrder> = ({ register, errors }) => {
   const { user } = useAuth()
@@ -24,6 +24,7 @@ const FormOrder: React.FC<IFormOrder> = ({ register, errors }) => {
             label='Имя'
             variant='outlined'
             size='small'
+            sx={{ margin: '5px 0' }}
             value={firstName || ''}
             onChange={(evt) => setFirstName(evt.target.value)}
             error={!!errors.firstName}

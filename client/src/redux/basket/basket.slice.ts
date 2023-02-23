@@ -4,8 +4,8 @@ import { checkPriceBasket } from '../../utils/checkPriceBasket'
 import { checkOldPriceBasket } from '../../utils/checkOldPriceBasket'
 import { getBasketFromLS } from '../../utils/getBasketFromLS'
 import { clearBasketItems, paymentBasketItems } from './basket.actions'
-import { IBasketItem } from 'pages/basket/types'
 import { IBasketPushItem, IBasketState, ICountBasket } from './types'
+import { IBasketItem } from '../../pages/basket/types'
 
 const { items } = getBasketFromLS()
 

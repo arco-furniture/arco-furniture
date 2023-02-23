@@ -1,7 +1,7 @@
+import React, { memo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Thumbs } from 'swiper'
 import { IProductSlides } from './types'
-import React, { memo } from 'react'
 import { imageTypes } from '../../types/itemTypes'
 
 const ProductSlides: React.FC<IProductSlides> = ({ setThumbsSwiper, images }): JSX.Element => {

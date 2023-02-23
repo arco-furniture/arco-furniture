@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@mui/material'
-import { IInitialCategories } from 'types/constantsTypes'
-import { INITIAL_CATEGORIES } from 'app/constants'
+import { IInitialCategories } from '../../types/constantsTypes'
+import { INITIAL_CATEGORIES } from '../../app/constants'
 import { useActions } from '../../hooks/useActions'
 
 const HeaderNav: React.FC = (): JSX.Element => {

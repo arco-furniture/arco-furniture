@@ -39,7 +39,8 @@
 
   &__place_city {
     @include reset;
-    @include text-format (700, 16px, 23px);
+    @include text-format (700, 16px, 20px);
+    letter-spacing: 0.02rem;
     color: $blue;
   }
 
@@ -61,13 +62,6 @@
 
   &__logo {
     width: 200px;
-  }
-
-  &__phone_logo {
-    background-image: url(../../images/phone_logo.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    @include size(19px, 19px);
   }
 
   &__middle-nav-content {

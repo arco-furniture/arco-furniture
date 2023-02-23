@@ -1,4 +1,4 @@
-import { specsNamesTypes } from 'pages/product/types'
+import { specsNamesTypes } from '../pages/product/types'
 import { colorType } from './constantsTypes'
 
 export interface IItem {

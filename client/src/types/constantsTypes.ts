@@ -44,10 +44,11 @@ export type iconsCategoryType = {
   category: linkCategoryType
 }
 
-export type cardPreviewInfoType = {
-  className: string
+export interface IGrayCard {
+  icon?: any
   title: string
   text: string
+  Icon?: any
 }
 
 export type cardContactInfoType = {

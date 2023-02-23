@@ -1,6 +1,5 @@
 export interface ICategoryState {
-  price: [number, number]
-  searchPrice: [number, number]
+  minMaxPrice: [number, number]
   sort: string
   categoryParams: ICategoryParams
   allPages: number
@@ -14,7 +13,7 @@ export interface ICategoryParams {
 }
 
 export interface IDataFilter {
-  minMaxPrice: [number, number]
+  price: [number, number]
   colors: string[]
   styles: string[]
   material: string

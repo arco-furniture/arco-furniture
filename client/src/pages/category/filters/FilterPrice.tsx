@@ -1,4 +1,4 @@
-import { InputAdornment, Slider, TextField } from '@mui/material'
+import { ListItemButton, ListItemText, Slider, styled } from '@mui/material'
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import debounce from 'lodash/debounce'
@@ -6,21 +6,22 @@ import { useCategory } from '../../../hooks/useStateSelectors'
 import { useActions } from '../../../hooks/useActions'
 
 const FilterPrice: React.FC = (): JSX.Element => {
-  const { price, searchPrice } = useCategory()
+  const { dataFilter, minMaxPrice } = useCategory()
+  const { price } = dataFilter
   const { setPrice } = useActions()
-  const [value, setValue] = useState<number | number[]>(searchPrice)
-  const [changeValue, setChangeValue] = useState<boolean>(false)
-
-  // useEffect(() => {
-  //   setChangeValue(false)
-  //   setValue(searchPrice)
-  // }, [categoryData])
+  const [values, setValues] = useState<number | number[]>(minMaxPrice)
+  const [changeValues, setChangeValues] = useState<boolean>(false)
 
   useEffect(() => {
-    if (changeValue) {
-      updateDebouncePrice(value)
+    setValues(price)
+  }, [minMaxPrice])
+
+  useEffect(() => {
+    if (changeValues) {
+      updateDebouncePrice(values)
+      setChangeValues(false)
     }
-  }, [value])
+  }, [values])
 
   const updateDebouncePrice = useCallback(
     debounce((value) => {
@@ -29,47 +30,52 @@ const FilterPrice: React.FC = (): JSX.Element => {
     [],
   )
 
-  const handleChangeValue = (evt: any, newValue: any) => {
-    setChangeValue(true)
-    setValue(newValue)
+  const handleChangeValue = (event: Event, newValue: number | number[], activeThumb: number) => {
+    if (!Array.isArray(newValue)) {
+      return
+    }
+
+    if (activeThumb === 0) {
+      setValues([Math.min(newValue[0], values[1] - 20000), values[1]])
+    } else {
+      setValues([values[0], Math.max(newValue[1], values[0] + 20000)])
+    }
+    setChangeValues(true)
   }
 
-  const inputPropsTextField = (text: string) => {
-    return {
-      startAdornment: (
-        <InputAdornment sx={{ fontSize: '2px' }} position='start'>
-          {text}
-        </InputAdornment>
-      ),
-    }
-  }
+  const MyListItemButton = styled(ListItemButton)({
+    backgroundColor: '#F5F5F5',
+    borderRadius: '5px',
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    minHeight: '45px',
+    padding: '0 10px',
+    cursor: 'default',
+  })
 
   return (
     <div className='filters__filter-price'>
       <div className='filters__filter-box'>
-        <TextField
-          size='small'
-          value={getPriceWithFormat(value[0])}
-          inputProps={{ style: { fontSize: 14, textAlign: 'start' } }}
-          InputProps={inputPropsTextField('от')}
-        />
-        <TextField
-          size='small'
-          variant='outlined'
-          value={getPriceWithFormat(value[1])}
-          inputProps={{ style: { fontSize: 14, textAlign: 'start' } }}
-          InputProps={inputPropsTextField('до')}
-        />
+        <MyListItemButton className='filters__filter-listItem'>
+          <ListItemText primary={getPriceWithFormat(values[0]) + ' ₽'} />
+        </MyListItemButton>
+        <MyListItemButton className='filters__filter-listItem'>
+          <ListItemText primary={getPriceWithFormat(values[1]) + ' ₽'} />
+        </MyListItemButton>
       </div>
-      <Slider
-        getAriaLabel={() => 'Temperature range'}
-        value={value}
-        onChange={handleChangeValue}
-        size='small'
-        step={price[0]}
-        min={0}
-        max={price[1]}
-      />
+      <div>
+        <div className='filters__filter-slide'>
+          <Slider
+            className='filters__filter-slide'
+            disableSwap
+            onChange={handleChangeValue}
+            value={values}
+            step={10000}
+            min={30000}
+            max={210000}
+            marks
+          />
+        </div>
+      </div>
     </div>
   )
 }

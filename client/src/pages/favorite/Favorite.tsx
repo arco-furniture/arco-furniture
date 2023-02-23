@@ -1,8 +1,8 @@
-import { getCards } from '../../utils/getCards'
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getCards } from '../../utils/getCards'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { useOther } from '../../hooks/useStateSelectors'
-import { useNavigate } from 'react-router-dom'
 
 const Favorite: React.FC = (): JSX.Element => {
   const { favorites } = getFavoriteFromLS()

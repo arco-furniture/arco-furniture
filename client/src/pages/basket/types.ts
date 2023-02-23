@@ -1,4 +1,4 @@
-import { specsNamesTypes } from 'pages/product/types'
+import { specsNamesTypes } from '../product/types'
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
 export interface IActiveStep {

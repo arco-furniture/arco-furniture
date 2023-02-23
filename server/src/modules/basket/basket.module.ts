@@ -4,6 +4,7 @@ import {BasketController} from "./basket.controller";
 import { BasketService } from './basket.service';
 import {UserModel} from "../../models/user.model";
 import {ProductModel} from "../../models/product.model";
+import {OrderModule} from "../order/order.module";
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import {ProductModel} from "../../models/product.model";
         }
       }
     ]),
+    OrderModule,
   ],
   providers: [BasketService],
   controllers: [BasketController],

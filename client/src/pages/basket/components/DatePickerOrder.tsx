@@ -1,10 +1,10 @@
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import React, { useState } from 'react'
+import { Controller } from 'react-hook-form'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { TextField } from '@mui/material'
-import { Controller } from 'react-hook-form'
-import { IDatePickerOrder } from 'pages/basket/types'
+import { IDatePickerOrder } from '../types'
 import styles from '../../../scss/modules/basket/basket-form.module.scss'
 
 const DatePickerOrder: React.FC<IDatePickerOrder> = ({ control, errors }): JSX.Element => {

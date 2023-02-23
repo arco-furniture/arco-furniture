@@ -3,7 +3,7 @@ import Confetti from 'react-confetti'
 import Dialog from '@mui/material/Dialog'
 import { DialogContent } from '@mui/material'
 import { useLocation } from 'react-router-dom'
-import { IConfettiTemplate } from 'components/popups/types'
+import { IConfettiTemplate } from './types'
 
 const ConfettiTemplate: React.FC<IConfettiTemplate> = ({ children, statusPopup, handleClose }): JSX.Element => {
   const { pathname } = useLocation()

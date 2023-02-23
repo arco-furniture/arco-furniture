@@ -1,7 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line import/no-unresolved
 import styles from '../../../scss/modules/basket/basket-specifications.module.scss'
-import { IBasketSpecifications } from 'pages/basket/types'
+import { IBasketSpecifications } from './types'
 
 const BasketSpecifications: React.FC<IBasketSpecifications> = ({ specsId, value }): JSX.Element => (
   <div className={styles.specifications__box}>

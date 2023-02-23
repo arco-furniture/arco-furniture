@@ -1,15 +1,15 @@
 import React, { memo } from 'react'
-import PopupTemplate from 'components/popups/PopupTemplate'
-import InputForm from 'ui/InputForm'
+import Cookies from 'js-cookie'
+import PopupTemplate from '../popups/PopupTemplate'
+import InputForm from '../../ui/InputForm'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { Link } from '@mui/material'
-import Cookies from 'js-cookie'
-import { authPopupDataTypes } from 'components/popups/types'
+import { authPopupDataTypes } from './types'
 import { SchemaAuth } from '../../schemas'
-import Form from 'ui/Form'
+import Form from '../../ui/Form'
 
 const AuthPopup: React.FC = (): JSX.Element => {
   const { popupAuth } = useAuth()

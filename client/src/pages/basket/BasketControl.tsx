@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useQuery } from 'react-query'
 import { useForm, Controller } from 'react-hook-form'
 import styles from '../../scss/modules/basket/basket.module.scss'
 import BasketItem from './components/BasketItem'
@@ -6,11 +7,10 @@ import { Button, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/mate
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { useAuth, useBasket } from '../../hooks/useStateSelectors'
 import { blue, red } from '@mui/material/colors'
-import { useQuery } from 'react-query'
 import { BasketService } from '../../services/basket.service'
 import { toastError } from '../../api/withToastrErrorRedux'
 import { useActions } from '../../hooks/useActions'
-import { IBasketItem, IControlForm, requestDataTypes } from 'pages/basket/types'
+import { IBasketItem, IControlForm, requestDataTypes } from './types'
 
 const BasketControl: React.FC = (): JSX.Element => {
   const { dataBasketItems, totalPrice } = useBasket()

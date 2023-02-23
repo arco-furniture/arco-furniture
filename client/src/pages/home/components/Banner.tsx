@@ -4,7 +4,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation, Autoplay } from 'swiper'
 import React, { useRef } from 'react'
-import { SwiperArrows } from 'components/index'
+import { SwiperArrows } from '../../../components'
 
 const Banner: React.FC = (): JSX.Element => {
   const images = [banner, banner]

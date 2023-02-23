@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { useActions } from '../../../hooks/useActions'
 import { useCategory } from '../../../hooks/useStateSelectors'
-import { Tag } from 'components'
+import { Tag } from '../../../components'
 // eslint-disable-next-line import/named
-import { tagType } from 'pages/category/types'
+import { tagType } from '../types'
 
 const FilterTag: React.FC = (): JSX.Element => {
   const { setTags } = useActions()

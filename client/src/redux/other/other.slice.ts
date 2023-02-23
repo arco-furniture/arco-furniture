@@ -1,10 +1,14 @@
 // eslint-disable-next-line import/named
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IAlert, IOtherState } from './types'
+import { searchLocation } from './other.actions'
 
 const initialState: IOtherState = {
   statusAlert: false,
   itemIsLiked: false,
+  currentLocation: sessionStorage.getItem('location'),
+  locations: [],
+  statusLocations: 'initial',
   alert: {
     message: '',
     type: '',
@@ -12,6 +16,7 @@ const initialState: IOtherState = {
   statusAuthorsPopup: false,
   statusPaymentPopup: false,
   statusPopupProject: false,
+  statusPopupLocation: false,
   paymentValue: null,
 }
 
@@ -49,6 +54,34 @@ export const otherSlice = createSlice({
     openPopupProject(state) {
       state.statusPopupProject = true
     },
+    closePopupLocation(state) {
+      state.statusPopupLocation = false
+    },
+    openPopupLocation(state) {
+      state.statusPopupLocation = true
+    },
+    clearLocation(state) {
+      state.statusLocations = 'initial'
+      state.locations = []
+    },
+    setCurrentLocation(state, { payload }: PayloadAction<string>) {
+      state.currentLocation = payload
+      sessionStorage.setItem('location', payload)
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(searchLocation.fulfilled, (state, { payload }) => {
+      state.locations = payload
+      state.statusLocations = 'success'
+    })
+    builder.addCase(searchLocation.rejected, (state) => {
+      state.locations = []
+      state.statusLocations = 'error'
+    })
+    builder.addCase(searchLocation.pending, (state) => {
+      state.locations = []
+      state.statusLocations = 'loading'
+    })
   },
 })
 

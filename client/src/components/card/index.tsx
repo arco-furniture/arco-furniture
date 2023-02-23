@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SwiperImages from './SwiperImages'
 import CardColors from './CardColors'
-import { Tag } from 'components'
+import { Tag } from '../../components/index'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { ICard } from './types'
 import { imageTypes } from '../../types/itemTypes'

@@ -1,14 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ICONS_CATEGORY } from 'app/constants'
+import { ICONS_CATEGORY } from '../../app/constants'
 import { useActions } from '../../hooks/useActions'
 import { useHome } from '../../hooks/useStateSelectors'
 import { getPrefixTitle } from '../../utils/getPrefixTitle'
-import { BlackTooltip, TitleTooltip, SearchError } from 'components'
+import { BlackTooltip, TitleTooltip, SearchError } from '../index'
 import s from '../../scss/modules/search.module.scss'
 import { IconButton } from '@mui/material'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
-import { ISearchContent } from 'components/search/types'
+import { ISearchContent } from './types'
 import { IItem } from '../../types/itemTypes'
 
 const SearchContent: React.FC<ISearchContent> = ({ searchData, setSearchValue }): JSX.Element => {

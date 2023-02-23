@@ -1,4 +1,4 @@
-import { authorsNameTypes } from 'components/popups/types'
+import { authorsNameTypes } from '../components/popups/types'
 // eslint-disable-next-line import/no-unresolved
 import { OverridableStringUnion } from '@mui/types'
 // eslint-disable-next-line import/named

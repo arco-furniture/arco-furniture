@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 
 const Preloader: React.FC = (): JSX.Element => {
   return (
-    <Box className='preloader'>
+    <Box className='preloader' sx={{ width: '100%', height: '100%' }}>
       <Box className='preloader__wrapper'>
         <CircularProgress
           variant='determinate'

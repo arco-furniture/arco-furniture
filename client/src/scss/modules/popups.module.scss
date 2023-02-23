@@ -17,6 +17,11 @@
         width: 100%;
     }
 
+    &__location {
+        width: 100%;
+        min-height: 220px;
+    }
+
     &__target {
         @include reset;
         @include text-format(400, 16px, 21px);
@@ -73,6 +78,33 @@
         margin: 16px 0 0;
         @include text-format(700, 26px, 34px);
         color: #414141;
+    }
+
+    &__previewTitle {
+        @include reset;
+        @include flex-center-center;
+        @include text-format(400, 22px, 26px);
+        color: $grayDark;
+        margin-top: 30px;
+    }
+
+    &__cites {
+        @include reset-list;
+        display: flex;
+        width: 100%;
+        min-width: 570px;
+        flex-wrap: wrap;
+        column-gap: 30px;
+        row-gap: 20px;
+    }
+
+    &__city {
+        @include reset;
+        @include text-format(400, 16px, 18px);
+
+        &_link {
+            cursor: pointer;
+        }
     }
 
     &__authorsImage {

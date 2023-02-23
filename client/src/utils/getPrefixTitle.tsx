@@ -1,4 +1,4 @@
-import { ICONS_CATEGORY } from 'app/constants'
+import { ICONS_CATEGORY } from '../app/constants'
 import React from 'react'
 
 export const getPrefixTitle = (obj) => {

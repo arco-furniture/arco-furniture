@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { IProductSpecs, specsNamesTypes } from './types'
-import { SPECS_NAME } from 'app/constants'
+import { SPECS_NAME } from '../../app/constants'
 
 const ProductSpecs: React.FC<IProductSpecs> = ({ specs }) => (
   <li className='product__specs panel'>

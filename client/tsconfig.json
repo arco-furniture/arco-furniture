@@ -10,25 +10,19 @@
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "commonjs",
     "sourceMap": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "noEmit": false,
+    "jsx": "react",
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "app/*": ["./app/*"],
-      "components/*": ["./components/*"],
-      "config/*": ["./config/*"],
-      "icons/*": ["./assets/icons"],
-      "helpers/*": ["./helpers/*"],
-      "lib/*": ["./lib/*"],
-      "hooks/*": ["./lib/hooks/*"],
-      "pages/*": ["./pages/*"]
-    },
-  }
+  },
+  "include": [
+    "src",
+    "./src/assets/assets.d.ts"
+  ]
 }

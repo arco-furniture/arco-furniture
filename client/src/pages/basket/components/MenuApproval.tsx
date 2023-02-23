@@ -3,9 +3,9 @@ import { useQuery } from 'react-query'
 import styles from '../../../scss/modules/basket/basket-approval.module.scss'
 import { Button, Collapse, ThemeProvider } from '@mui/material'
 import { useAuth, useBasket } from '../../../hooks/useStateSelectors'
-import { ListItemTemplate, AcceptPopover } from 'components'
+import { ListItemTemplate, AcceptPopover } from '../../../components'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import DeliveryApproval from 'pages/basket/components/DeliveryApproval'
+import DeliveryApproval from '../components/DeliveryApproval'
 import { BasketService } from '../../../services/basket.service'
 import { getPriceWithFormat } from '../../../utils/getPriceWithFormat'
 import { theme } from '../../../themes/errorButtonTheme'
@@ -109,6 +109,7 @@ const MenuApproval: React.FC<any> = () => {
           fullWidth
           variant='outlined'
           type='submit'
+          sx={{ marginTop: '30px' }}
           className={styles.menu__button}
           disabled={!solvency}
           onClick={handleClickApproval}

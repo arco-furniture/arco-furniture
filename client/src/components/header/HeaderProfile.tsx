@@ -2,11 +2,11 @@ import React, { memo } from 'react'
 import styles from '../../scss/modules/headerProfile.module.scss'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import { Avatar, Badge } from '@mui/material'
-import ProfileMenu from 'components/header/ProfileMenu'
-import TitleTooltip from 'components/BlackTooltip/TitleTooltip'
-import { BlackTooltip } from 'components/index'
+import { BlackTooltip, TitleTooltip } from '../index'
 import { useAuth } from '../../hooks/useStateSelectors'
-import { anchorElType } from 'components/acceptPopover/types'
+import styled from '@emotion/styled'
+import { anchorElType } from '../acceptPopover/types'
+import ProfileMenu from './ProfileMenu'
 
 const HeaderProfile: React.FC = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<anchorElType>(null)
@@ -17,6 +17,15 @@ const HeaderProfile: React.FC = (): JSX.Element => {
     setAnchorEl(event.currentTarget)
   }
 
+  const MyAvatar = styled(Avatar)({
+    backgroundColor: '#4675CE',
+    height: '33px',
+    width: '33px',
+    marginRight: '7px',
+    boxShadow:
+      '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12)',
+  })
+
   return (
     <div className={styles.headerProfile}>
       <BlackTooltip title={<TitleTooltip title='В разработке' />} placement='bottom'>
@@ -26,7 +35,7 @@ const HeaderProfile: React.FC = (): JSX.Element => {
       </BlackTooltip>
       <button className={styles.buttonProfile} onClick={handleClick}>
         <h2 className={styles.name}>{user?.firstName}</h2>
-        <Avatar className={styles.avatar} variant='rounded' src={null} />
+        <MyAvatar variant='rounded' src={null} />
       </button>
       <ProfileMenu open={open} setAnchorEl={setAnchorEl} anchorEl={anchorEl} />
     </div>

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { ButtonColor } from 'components'
-import { COLORS } from 'app/constants'
+import { ButtonColor } from '../../../components'
+import { COLORS } from '../../../app/constants'
 import { useActions } from '../../../hooks/useActions'
 import { useCategory } from '../../../hooks/useStateSelectors'
 

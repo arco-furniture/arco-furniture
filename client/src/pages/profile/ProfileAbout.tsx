@@ -1,14 +1,14 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { ProfileService } from '../../services/profile.service'
-import ProfileAvatar from 'pages/profile/components/ProfileAvatar'
-import ProfileInfo from 'pages/profile/components/ProfileInfo'
-import ProfilePassword from 'pages/profile/components/ProfilePassword'
+import ProfileAvatar from './components/ProfileAvatar'
+import ProfileInfo from './components/ProfileInfo'
+import ProfilePassword from './components/ProfilePassword'
 import { useActions } from '../../hooks/useActions'
 import { toastError } from '../../api/withToastrErrorRedux'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useStateSelectors'
-import Preloader from 'components/preloader'
+import Preloader from '../../components/preloader'
 
 const ProfileAbout: React.FC = (): JSX.Element => {
   const { setUser } = useActions()

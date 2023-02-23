@@ -11,7 +11,7 @@
     &__container {
         padding: 15px 15px 15px 33px;
         @include flex-between;
-        align-items: start;
+        align-items: flex-start;
         width: 100%;
         box-sizing: border-box;
         position: relative;
@@ -158,10 +158,6 @@
     &__wrapper {
         @include flex-center-between;
         gap: 5px;
-    }
-
-    &__icon {
-        background-color: #F8F8F8 !important;
     }
 
     &__title {

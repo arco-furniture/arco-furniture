@@ -3,8 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ICategoryState } from './types'
 
 const initialState: ICategoryState = {
-  price: [0, 250000],
-  searchPrice: [0, 0],
+  minMaxPrice: [30000, 210000],
   sort: 'rating',
   categoryParams: {
     paramsId: null,
@@ -13,7 +12,7 @@ const initialState: ICategoryState = {
   allPages: 1,
   currentPage: 1,
   dataFilter: {
-    minMaxPrice: [0, 0], // [min, max]
+    price: [0, 0], // [min, max]
     colors: [], // ['gray', 'yellow', 'vinous', 'brown', 'green', 'blue', 'black']
     styles: [], // ['классический', 'прованс'....]
     material: '', // '' | 'массив' | 'лдлп' | 'мдф'
@@ -41,7 +40,7 @@ export const categorySlice = createSlice({
       state.dataFilter.tags = [...payload]
     },
     setPrice(state, { payload }: PayloadAction<[number, number]>) {
-      state.dataFilter.minMaxPrice = payload
+      state.dataFilter.price = payload
     },
     setChangePage(state, { payload }: PayloadAction<number>) {
       state.currentPage = payload
@@ -50,8 +49,9 @@ export const categorySlice = createSlice({
       state.sort = payload
     },
     setResetFilters(state) {
+      state.minMaxPrice = [30000, 210000]
       state.dataFilter = {
-        minMaxPrice: [0, 0],
+        price: [30000, 210000],
         colors: [],
         styles: [],
         material: '',

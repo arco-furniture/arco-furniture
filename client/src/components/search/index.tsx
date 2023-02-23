@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState, memo } from 'react'
 import s from '../../scss/modules/search.module.scss'
-import { IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
 import debounce from 'lodash/debounce'
 import { useActions } from '../../hooks/useActions'
 import { useHome } from '../../hooks/useStateSelectors'
-import SearchContent from 'components/search/SearchContent'
+import SearchContent from './SearchContent'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Search: React.FC = (): JSX.Element => {
   const { searchData } = useHome()
@@ -15,6 +16,7 @@ const Search: React.FC = (): JSX.Element => {
   const { getSearchItems, setClearSearchStatus } = useActions()
   const styleSearch = { backgroundColor: '#f7f7f7' }
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSearchValue = (value) => {
     setSearchValue(value)
@@ -27,6 +29,7 @@ const Search: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     if (searchValue.length) {
+      setIsLoading(true)
       updateDebounceSearch(searchValue)
     } else {
       setClearSearchStatus()
@@ -35,6 +38,7 @@ const Search: React.FC = (): JSX.Element => {
 
   const updateDebounceSearch = useCallback(
     debounce((value) => {
+      setIsLoading(false)
       getSearchItems(value)
     }, 700),
     [],
@@ -66,9 +70,22 @@ const Search: React.FC = (): JSX.Element => {
               <CloseIcon />
             </IconButton>
           )}
-          <IconButton size='small' color={isFocus ? 'primary' : 'default'}>
-            <SearchIcon />
-          </IconButton>
+          <Box className={s.search__loading}>
+            <SearchIcon sx={{ color: isFocus ? '#4675CE' : '#c4c4c4' }} onClick={() => inputRef.current.focus()} />
+            {isLoading && (
+              <CircularProgress
+                thickness={2}
+                size={32}
+                sx={{
+                  color: '#4675CE',
+                  position: 'absolute',
+                  top: 6,
+                  right: 8,
+                  zIndex: 1,
+                }}
+              />
+            )}
+          </Box>
         </div>
       </div>
       {isFocus && <SearchContent setSearchValue={setSearchValue} searchData={searchData} />}

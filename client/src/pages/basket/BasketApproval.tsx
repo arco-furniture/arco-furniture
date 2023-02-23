@@ -1,11 +1,11 @@
-import BasketItem from './components/BasketItem'
-import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
+import BasketItem from './components/BasketItem'
+import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import { BasketService } from '../../services/basket.service'
-import MenuApproval from 'pages/basket/components/MenuApproval'
+import MenuApproval from './components/MenuApproval'
 import { useBasket } from '../../hooks/useStateSelectors'
-import { IBasketItem } from 'pages/basket/types'
+import { IBasketItem } from './types'
 
 const BasketApproval: React.FC = (): JSX.Element => {
   const { dataBasketItems, isLoadingBasket } = useBasket()

@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
-import PopupTemplate from 'components/popups/PopupTemplate'
-import Form from 'ui/Form'
-import InputForm from 'ui/InputForm'
+import PopupTemplate from '../popups/PopupTemplate'
+import Form from '../../ui/Form'
+import InputForm from '../../ui/InputForm'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import { Link } from '@mui/material'
 import Cookies from 'js-cookie'
-import { dataRegisterTypes, registerPopupDataTypes } from 'components/popups/types'
+import { dataRegisterTypes, registerPopupDataTypes } from './types'
 import { SchemaRegister } from '../../schemas'
 
 const RegisterPopup: React.FC = (): JSX.Element => {

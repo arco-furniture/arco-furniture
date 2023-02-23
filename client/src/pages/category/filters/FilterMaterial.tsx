@@ -2,7 +2,7 @@ import { MenuItem, TextField } from '@mui/material'
 import React, { memo } from 'react'
 import { useCategory } from '../../../hooks/useStateSelectors'
 import { useActions } from '../../../hooks/useActions'
-import { MaterialType } from 'pages/category/types'
+import { MaterialType } from '../types'
 
 const FilterMaterial: React.FC = (): JSX.Element => {
   const { dataFilter } = useCategory()

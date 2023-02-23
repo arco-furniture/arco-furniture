@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeBanner from './components/Banner'
-import { CountDown } from 'components'
-import { CARD_PREVIEW_INFO } from 'app/constants'
+import { CountDown } from '../../components'
+import { CARD_PREVIEW_INFO } from '../../app/constants'
 import Button from '@mui/material/Button'
 import CodeIcon from '@mui/icons-material/Code'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
@@ -10,25 +10,21 @@ import { ThemeProvider } from '@mui/material'
 import { adviceButtonTheme } from '../../themes/adviceButtonTheme'
 import { getCards } from '../../utils/getCards'
 import { useHome } from '../../hooks/useStateSelectors'
+import GrayCard from '../../ui/GrayCard'
+import Preloader from '../../components/preloader'
 
 const HomePreview: React.FC = (): JSX.Element => {
   const { openAuthorsPopup, openPopupProject } = useActions()
   const stylesButton = { color: '#414141' }
-  const { topProduct } = useHome()
+  const { topProduct, topProductStatus } = useHome()
 
   return (
     <section className='preview'>
       <div className='preview__wrapper'>
         <h2 className='preview__title'>Почему мы?</h2>
         <ul className='preview__cards-wrapper'>
-          {CARD_PREVIEW_INFO.map((item, index) => (
-            <li key={index} className='preview__container'>
-              <div className={item.className} />
-              <div className='preview__grout-text'>
-                <h3 className='preview__title-text'>{item.title}</h3>
-                <p className='preview__text'>{item.text}</p>
-              </div>
-            </li>
+          {CARD_PREVIEW_INFO.map((item) => (
+            <GrayCard key={item.title} title={item.title} Icon={item.icon} text={item.text} />
           ))}
         </ul>
       </div>
@@ -41,6 +37,7 @@ const HomePreview: React.FC = (): JSX.Element => {
           <h2 className='preview__title'>Товар дня</h2>
           <CountDown hours={18} minutes={0} />
         </div>
+        {topProductStatus === 'loading' && <Preloader />}
         {topProduct && getCards(topProduct, true)}
       </div>
       <h2 className='preview__title'>Рекомендуем</h2>

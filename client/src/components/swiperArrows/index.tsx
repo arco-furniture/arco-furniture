@@ -2,7 +2,7 @@ import React from 'react'
 import { IconButton } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { ISwiperArrows } from 'components/swiperArrows/types'
+import { ISwiperArrows } from './types'
 
 const SwiperArrows: React.FC<ISwiperArrows> = ({ prevRef, nextRef, widthValue }): JSX.Element => (
   <div className='arrows__nav' style={{ width: widthValue + '%' }}>

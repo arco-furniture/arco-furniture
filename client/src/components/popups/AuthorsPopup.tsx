@@ -1,11 +1,11 @@
+import React from 'react'
 import styles from '../../scss/modules/popups.module.scss'
 import authors from '../../images/Artboard.svg'
-import React from 'react'
 import { useOther } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
 import ChipDeveloper from '../../ui/ChipDeveloper'
-import { AUTHORS_NAME } from 'app/constants'
-import ConfettiTemplate from 'components/popups/ConfettiTemplate'
+import { AUTHORS_NAME } from '../../app/constants'
+import ConfettiTemplate from '../popups/ConfettiTemplate'
 
 const AuthorsPopup: React.FC = (): JSX.Element => {
   const { statusAuthorsPopup } = useOther()

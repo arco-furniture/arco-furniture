@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip'
-import { SwiperCards } from 'components'
+import { SwiperCards } from '../../components'
 import { getCards } from '../../utils/getCards'
 import { useHome } from '../../hooks/useStateSelectors'
 import { useActions } from '../../hooks/useActions'
-import { ADVICE_NAME } from 'app/constants'
+import { ADVICE_NAME } from '../../app/constants'
 import { adviceNameTypes } from '../../types/constantsTypes'
 
 const HomeAdvice: React.FC = (): JSX.Element => {
@@ -42,7 +42,7 @@ const HomeAdvice: React.FC = (): JSX.Element => {
         {ADVICE_NAME.map((item: adviceNameTypes, currentIndex: number) => (
           <li key={currentIndex}>
             <Chip
-              style={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
+              sx={sortIndex === currentIndex ? sortActiveStyles : sortDefaultStyles}
               onClick={() => handleSortItems(currentIndex)}
               label={item.name}
             />

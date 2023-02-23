@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BasketApproval, BasketControl, BasketOrder } from '../index'
-import BasketNavigation from 'pages/basket/BasketNavigation'
+import BasketNavigation from './BasketNavigation'
 import { useAuth, useBasket } from '../../hooks/useStateSelectors'
 
 const Basket: React.FC = (): JSX.Element => {

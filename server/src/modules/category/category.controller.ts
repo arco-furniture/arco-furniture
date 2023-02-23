@@ -11,9 +11,10 @@ export class CategoryController {
     @Query('value') value,
     @Query('page') page,
     @Query('sort') sort,
+    @Query('price') price,
     @Body() data
   ) {
-    return this.categoryService.filterCategory({ value, page, data, sort });
+    return this.categoryService.filterCategory({ value, page, data, sort, price });
   }
 }
 

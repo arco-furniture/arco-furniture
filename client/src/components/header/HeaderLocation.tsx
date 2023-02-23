@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { INITIAL_CATEGORIES } from 'app/constants'
+import { INITIAL_CATEGORIES } from '../../app/constants'
 import { IInitialCategories } from 'types/constantsTypes'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { useAuth } from '../../hooks/useStateSelectors'

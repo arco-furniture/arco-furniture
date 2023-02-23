@@ -7,7 +7,7 @@ import { useActions } from '../../hooks/useActions'
 import { getBasketItem } from '../../utils/getBasketItem'
 import { getFavoriteFromLS } from '../../utils/getFavoriteFromLS'
 import { handleChangeFavorite } from '../../utils/handleChangeFavorite'
-import { ICardBottom } from 'components/card/types'
+import { ICardBottom } from './types'
 
 const CardBottom: React.FC<ICardBottom> = ({ selectedColor, item }): JSX.Element => {
   const { favorites } = getFavoriteFromLS()
