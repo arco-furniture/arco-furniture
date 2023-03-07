@@ -1,5 +1,4 @@
-import React from 'react'
-import Loadable from 'react-loadable'
+import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import styles from '../scss/modules/main.module.scss'
 import { Home, Favorite, PageNotFound } from '../pages'
@@ -8,30 +7,15 @@ import Preloader from '../components/preloader'
 import LocationPopup from '../components/popups/LocationPopup'
 
 const AppRoutes: React.FC = () => {
-  const Category = Loadable({
-    loader: () => import(/* webpackChunkName: "Category" */ '../pages/category/Category'),
-    loading: () => <Preloader />,
-  })
-
-  const Product = Loadable({
-    loader: () => import(/* webpackChunkName: "Product" */ '../pages/product/Product'),
-    loading: () => <Preloader />,
-  })
-
-  const Profile = Loadable({
-    loader: () => import(/* webpackChunkName: "Profile" */ '../pages/profile/Profile'),
-    loading: () => <Preloader />,
-  })
-
-  const Basket = Loadable({
-    loader: () => import(/* webpackChunkName: "Basket" */ '../pages/basket/Basket'),
-    loading: () => <Preloader />,
-  })
+  const Category = React.lazy(() => import('../pages/category/Category'))
+  const Product = React.lazy(() => import('../pages/product/Product'))
+  const Profile = React.lazy(() => import('../pages/profile/Profile'))
+  const Basket = React.lazy(() => import('../pages/basket/Basket'))
 
   return (
     <main className={styles.main}>
       <div className={styles.content}>
-        <div>
+        <Suspense fallback={<Preloader />}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/profile/:profileId' element={<Profile />} />
@@ -41,7 +25,7 @@ const AppRoutes: React.FC = () => {
             <Route path='/basket' element={<Basket />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>
-        </div>
+        </Suspense>
       </div>
       <AlertBar />
       <AuthorsPopup />

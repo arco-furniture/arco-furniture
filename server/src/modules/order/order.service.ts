@@ -80,15 +80,17 @@ export class OrderService {
     const thoWeekDay = new Date(twoWeekDate).getDate()
     const rightDay = thoWeekDay + 14
     const data = []
+    let currentDaily = 0
 
     for (let i = thoWeekDay; i <= rightDay; i++) {
-      const indexMonth = new Date(i).getMonth()
+      const indexMonth = new Date(currentDaily + twoWeekDate).getMonth()
+      const day = new Date(currentDaily + twoWeekDate).getDate()
+      currentDaily += 86400000
       data.push({
-        day: i + ' ' + monthArray[indexMonth + 1],
+        day: day + ' ' + monthArray[indexMonth],
         price: []
       })
     }
-
     return data
   }
 }
