@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeBanner from './components/Banner'
+import Banner from '../../ui/Banner'
 import { CountDown } from '../../components'
 import { CARD_PREVIEW_INFO } from '../../app/constants'
 import Button from '@mui/material/Button'
@@ -12,11 +12,13 @@ import { getCards } from '../../utils/getCards'
 import { useHome } from '../../hooks/useStateSelectors'
 import GrayCard from '../../ui/GrayCard'
 import Preloader from '../../components/preloader'
+import banner from '../../images/home__banner.jpg'
 
 const HomePreview: React.FC = (): JSX.Element => {
   const { openAuthorsPopup, openPopupProject } = useActions()
   const stylesButton = { color: '#414141' }
   const { topProduct, topProductStatus } = useHome()
+  const images = [banner, banner]
 
   return (
     <section className='preview'>
@@ -30,7 +32,7 @@ const HomePreview: React.FC = (): JSX.Element => {
       </div>
       <div className='preview__wrapper preview__wrapper_banner'>
         <h2 className='preview__title'>Новые акции</h2>
-        <HomeBanner />
+        <Banner images={images} />
       </div>
       <div className='preview__wrapper preview__wrapper_top'>
         <div className='preview__timer-container'>

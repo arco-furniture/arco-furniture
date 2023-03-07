@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import welcome from '../../images/welcome.jpg'
-import ChartUserBuy from './components/ChartUserBuy'
+import ChartUserBuy from '../../ui/ChartUserBuy'
 import GrayCard from '../../ui/GrayCard'
 import { getPriceWithFormat } from '../../utils/getPriceWithFormat'
 import { Icons } from '../../images/icons'

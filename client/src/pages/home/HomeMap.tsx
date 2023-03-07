@@ -1,6 +1,6 @@
 import React from 'react'
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps'
-import CardContact from '../home/components/CardContact'
+import CardContact from '../../ui/CardContact'
 
 const HomeMap: React.FC = (): JSX.Element => {
   const defaultState = {

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
-import BasketItem from './components/BasketItem'
+import BasketItem from '../../ui/BasketItem'
 import styles from '../../scss/modules/basket/basket-approval.module.scss'
 import { BasketService } from '../../services/basket.service'
-import MenuApproval from './components/MenuApproval'
+import MenuApproval from '../../ui/MenuApproval'
 import { useBasket } from '../../hooks/useStateSelectors'
 import { IBasketItem } from './types'
 

@@ -112,7 +112,7 @@ const ProfileInfo: React.FC = (): JSX.Element => {
           variant='outlined'
           size='small'
           defaultValue={formValues.firstName}
-          sx={{ width: '100%', margin: '5px 0 30px' }}
+          sx={{ width: '100%', margin: '5px 0 12px' }}
           disabled={!active}
           value={formValues.firstName}
           onChange={handleOnChange}

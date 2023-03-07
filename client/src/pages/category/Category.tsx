@@ -80,4 +80,4 @@ const Category: React.FC = (): JSX.Element => {
   )
 }
 
-export default memo(Category)
+export default Category
