@@ -1,10 +1,5 @@
 # 🚀 Проект: «АркоМебель»
 
-![Лендинг](https://i.ibb.co/xsJbBjM/work-acro.jpg)
-
-## [www.acro-furniture.tk](https://acro-furniture.tk)
-### <img src="https://im.wampi.ru/2022/09/28/figma.png" width="25" />[Макет](https://www.figma.com/file/Iatke6np8uI2zeeQVtSAvy/Untitled?node-id=0%3A1)
-
 ## Frontend
 ![TypeScript](https://img.shields.io/badge/-TypeScript-0d1117?style=for-the-badge&logo=TypeScript)
 ![React](https://img.shields.io/badge/-React-0d1117?style=for-the-badge&logo=React)
@@ -34,17 +29,6 @@
 ## Deploy
 ![Ubuntu](https://img.shields.io/badge/-Ubuntu-0d1117?style=for-the-badge&logo=Ubuntu) 
 ![Nginx](https://img.shields.io/badge/-Nginx-0d1117?style=for-the-badge&logo=Nginx)
-
-## Команда разработки
-![Максим](https://img.shields.io/badge/-Петерс_Максим-0d1117?style=for-the-badge&logo=github)
-![Иван](https://img.shields.io/badge/-Рамзанов_Иван-0d1117?style=for-the-badge&logo=github)
-![Илья](https://img.shields.io/badge/-Трубицин_Илья-0d1117?style=for-the-badge&logo=github)
-
-## О разработке
-**SCRUM:**
-- Еженедельные митинги / созвоны
-- планирование / ведение спринтов в Trello
-- Код-ревью на GitHub (фидбек/помощь)
 
 ## Инструкция для работы с проектом
 
